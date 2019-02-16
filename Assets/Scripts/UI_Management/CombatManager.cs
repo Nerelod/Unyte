@@ -38,10 +38,12 @@ public class CombatManager : MonoBehaviour
         if(DataManager.manager.speed > EnemyDataManager.EnemyManager.speed)
         {
             combatState = CombatStates.PlayerOneAttacking;
+            EnemyDataManager.EnemyManager.assignedOrderInCombat = 2;
         }
         else
         {
             combatState = CombatStates.EnemyAttacking;
+            EnemyDataManager.EnemyManager.assignedOrderInCombat = 1;
         }
     }
 
@@ -75,6 +77,7 @@ public class CombatManager : MonoBehaviour
         //play enemy sprite damaged animation
         damageText.text = "-" + character.qDamage.ToString();
         StartCoroutine(FadeText());
+        StartCoroutine(WaitForKeyDown());
         return enemy.health -= character.qDamage;
     }
 
@@ -174,14 +177,18 @@ public class CombatManager : MonoBehaviour
 
                 HandleOrder(1);
                 
-                if(order == 2)
+                if(order == EnemyDataManager.EnemyManager.assignedOrderInCombat)
                 {
                     combatState = CombatStates.EnemyAttacking;
                 }
 
                 break;
             case CombatStates.EnemyAttacking:
-                //ManageText("Enemy's Turn");
+                /*if (textIsFinished && pressedSpace)
+                {
+                    ManageText("Enemy's Turn");
+                }*/
+
                 break;
             case CombatStates.ResetValues:
                 playerOneOption = CombatOptions.HasNotChosen;

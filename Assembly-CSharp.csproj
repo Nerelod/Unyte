@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\DataManagement\SaveCharacterData.cs" />
     <Compile Include="Assets\Scripts\DataManagement\VectorValue.cs" />
     <Compile Include="Assets\Scripts\DSPixelPerfectCamera.cs" />
+    <Compile Include="Assets\Scripts\Monster.cs" />
     <Compile Include="Assets\Scripts\QuitGameOnClick.cs" />
     <Compile Include="Assets\Scripts\SceneManagement\EnterSceneOnCollision.cs" />
     <Compile Include="Assets\Scripts\SceneManagement\LoadSceneOnClick.cs" />

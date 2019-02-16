@@ -18,13 +18,24 @@ public class MonsterController : MonoBehaviour
     public string animLeft;
     public string animRight;
     public string monsterName;
+    public Monster monster;
     public int health;
     public int experienceToGive;
     public Sprite combatSprite;
 
+    public string kindOfMonster;
+
+    void determineMonster()
+    {
+        if (kindOfMonster == "Slime")
+        {
+            monster = Monster.Slime;
+        }
+    }
 
     void Start()
     {
+        determineMonster();
         inRange = false;
         pointA = true;
         anim = GetComponent<Animator>();
@@ -97,6 +108,7 @@ public class MonsterController : MonoBehaviour
             EnemyDataManager.EnemyManager.currentName = monsterName;
             EnemyDataManager.EnemyManager.health = health;
             EnemyDataManager.EnemyManager.experienceGives = experienceToGive;
+            EnemyDataManager.EnemyManager.theMonster = monster;
             SceneManager.LoadScene("CombatScene");
         }
     }

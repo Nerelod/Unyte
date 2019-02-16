@@ -10,9 +10,10 @@ public class EnemyDataManager : MonoBehaviour
     public int health;
     public int experienceGives;
     public int speed = 3;
+    public int assignedOrderInCombat;
     public Sprite currentSprite = null;
     public string currentName;
-    
+    public Monster theMonster;
 
     private void Awake()
     {
