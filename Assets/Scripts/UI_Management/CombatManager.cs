@@ -12,26 +12,18 @@ public class CombatManager : MonoBehaviour
     public GameObject enemySprite;
     CombatStates combatState;
     CombatOptions playerOneOption;
-    //CombatOptions for each char in party
     private int order;
     private int playerOneChosenOrder;
-    public Text combatText;
-    public Text damageText;
-    string combattext;
-    private bool textIsFinished;
-    private bool pressedSpace;
-    private bool textHasBeenPrompt;
-    private float textFadeTime = 2;
     void Start()
     {
-        damageText.text = "";
+        CombatTextManager.combatTextManager.damageText.text = "";
         order = 1;
-        textHasBeenPrompt = false;
-        pressedSpace = false;
+        CombatTextManager.combatTextManager.textHasBeenPrompt = false;
+        CombatTextManager.combatTextManager.pressedSpace = false;
         playerOneChosenOrder = 0;
         playerOneOption = CombatOptions.HasNotChosen;
-        ManageText("A " + EnemyDataManager.EnemyManager.currentName + " appeared!");
-        StartCoroutine(WaitForKeyDown());
+        CombatTextManager.combatTextManager.ManageText("A " + EnemyDataManager.EnemyManager.currentName + " appeared!");
+        CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
         enemySprite = GameObject.Find("Enemy");
         enemySprite.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
 
@@ -47,37 +39,31 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    void ManageText(string txt)
-    {       
-        combattext = txt;
-        combatText.text = "";
-        StartCoroutine(PlayText());
-    }
-
     private void GetPlayerAction(int player)
     {
-        if (textIsFinished && !textHasBeenPrompt && pressedSpace)
+        if (CombatTextManager.combatTextManager.textIsFinished && !CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.pressedSpace)
         {
-            ManageText("Choose an Action");
-            textHasBeenPrompt = true;
+            CombatTextManager.combatTextManager.ManageText("Choose an Action");
+            CombatTextManager.combatTextManager.textHasBeenPrompt = true;
         }
-        if(player == 1 && textHasBeenPrompt)
+        if(player == 1 && CombatTextManager.combatTextManager.textHasBeenPrompt)
         {
             if (Input.GetKeyDown(KeyCode.Q) && playerOneOption == CombatOptions.HasNotChosen)
             {  
                 playerOneOption = CombatOptions.Attack;
-                ManageText("Choose Order To Act");
+                CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
             }
         }
     }
 
     private int Attack(EnemyDataManager enemy, DataManager character)
     {
-        ManageText("Player does " + character.qDamage.ToString() + " damage!");
+        CombatTextManager.combatTextManager.ManageText("Player does " + character.qDamage.ToString() + " damage!");
+        CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
         //play enemy sprite damaged animation
-        damageText.text = "-" + character.qDamage.ToString();
-        StartCoroutine(FadeText());
-        StartCoroutine(WaitForKeyDown());
+        CombatTextManager.combatTextManager.damageText.text = "-" + character.qDamage.ToString();
+        CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText());
+        CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
         return enemy.health -= character.qDamage;
     }
 
@@ -86,19 +72,19 @@ public class CombatManager : MonoBehaviour
 
         int theOrder = 0;
         
-        if (Input.GetKeyDown(KeyCode.Alpha1) && textIsFinished)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && CombatTextManager.combatTextManager.textIsFinished)
         {
-           
-            
-            ManageText("Order is One");
-            StartCoroutine(WaitForKeyDown());
+
+
+            CombatTextManager.combatTextManager.ManageText("Order is One");
+            CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
             theOrder = 1;                       
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && textIsFinished)
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && CombatTextManager.combatTextManager.textIsFinished)
         {
-            
-            ManageText("Order is Two");
-            StartCoroutine(WaitForKeyDown());
+
+            CombatTextManager.combatTextManager.ManageText("Order is Two");
+            CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
             theOrder = 2;
         }
         if(player == 1)
@@ -112,11 +98,11 @@ public class CombatManager : MonoBehaviour
     {
         if (player == 1)
         {
-            if (playerOneChosenOrder != order && textIsFinished && pressedSpace && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0)
+            if (playerOneChosenOrder != order && CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0)
             {
                 order += 1;
             }
-            else if (playerOneChosenOrder == order && textIsFinished && pressedSpace && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0)
+            else if (playerOneChosenOrder == order && CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0)
             {
                 if (playerOneOption == CombatOptions.Attack)
                 {                   
@@ -126,40 +112,6 @@ public class CombatManager : MonoBehaviour
             }
         }
     }
-
-    IEnumerator PlayText()
-    {
-        textIsFinished = false;
-        foreach (char c in combattext)
-        {
-            combatText.text += c;
-            yield return new WaitForSeconds(0.03f);
-        }
-        textIsFinished = true;
-    }
-    /*IEnumerator Wait(int seconds)
-    {
-        textIsFinished = false;
-        yield return new WaitForSeconds(seconds);
-        textIsFinished = true;
-    }*/
-    IEnumerator WaitForKeyDown()
-    {
-        pressedSpace = false;
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-        pressedSpace = true;
-    }
-    IEnumerator FadeText()
-    {
-        Text text = damageText;
-        Color originalColor = text.color;
-        for (float t = 0.01f; t < textFadeTime; t += Time.deltaTime)
-        {
-            text.color = Color.Lerp(originalColor, Color.clear, Mathf.Min(1, t / textFadeTime));
-            yield return null;
-        }
-    }
-
 
     void Update()
     {
@@ -184,11 +136,10 @@ public class CombatManager : MonoBehaviour
 
                 break;
             case CombatStates.EnemyAttacking:
-                /*if (textIsFinished && pressedSpace)
+                if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace)
                 {
-                    ManageText("Enemy's Turn");
-                }*/
-
+                    EnemyDataManager.EnemyManager.theMonster.Attack(EnemyDataManager.EnemyManager.theMonster.damage, EnemyDataManager.EnemyManager.theMonster.attackMessage);
+                }
                 break;
             case CombatStates.ResetValues:
                 playerOneOption = CombatOptions.HasNotChosen;
