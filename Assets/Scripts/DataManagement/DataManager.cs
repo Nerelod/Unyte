@@ -18,6 +18,7 @@ public class DataManager : MonoBehaviour
     public int qDamage;
     public string currentScene;
     public float xpos, ypos;
+    public string theName;
     public Boolean isBeingLoaded = false;
 
     private void Awake()
@@ -32,9 +33,11 @@ public class DataManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        
     }
-
+    private void Start() {
+        theName = "Player One";
+    }
     void addExperience(int experienceToAdd)
     {
         experience = experience + experienceToAdd;

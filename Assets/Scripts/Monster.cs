@@ -9,15 +9,26 @@ public class Monster
 
     public int damage;
     public string attackMessage;
+    public bool textWasPrompt = false;
     public Monster(int dmg, string atkmsg)
     {
         damage = dmg;
         attackMessage = atkmsg;
     }
 
-    public void Attack(int damage, string message)
+    public void Attack(int damage, string message, DataManager target)
     {
-        CombatTextManager.combatTextManager.ManageText(message);
+        if (textWasPrompt == false)
+        {
+            CombatTextManager.combatTextManager.ManageText(message);
+            CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+            textWasPrompt = true;
+        }
+        if (damage > 0 && CombatTextManager.combatTextManager.pressedSpace)
+        {
+            CombatTextManager.combatTextManager.ManageText(target.theName + " takes " + damage + " damage");
+            target.health = target.health - damage;
+        }
     }
 
 
