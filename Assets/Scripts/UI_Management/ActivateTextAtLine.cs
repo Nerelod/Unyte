@@ -19,8 +19,8 @@ public class ActivateTextAtLine : MonoBehaviour {
         theTextManager = FindObjectOfType<TextBoxManager>();
 	}
 
-    void OnTriggerEnter2D(Collider2D collision){ 
-        if(collision.name == "Player"){
+    void OnTriggerEnter2D(Collider2D collision) { 
+        if(collision.name == "Player") {
             if (requireButtonPress) {
                 waitForPress = true;
                 return;
@@ -29,12 +29,12 @@ public class ActivateTextAtLine : MonoBehaviour {
             theTextManager.currentLine = startLine;
             theTextManager.endAtLine = endLine;
             theTextManager.EnableTextBox();
-            if (destroyWhenActivated){
+            if (destroyWhenActivated) {
                 Destroy(gameObject);
             }
         }
     }
-    void OnTriggerExit2D(Collider2D collision){ 
+    void OnTriggerExit2D(Collider2D collision) { 
         if(collision.name == "Player") {
             waitForPress = false;
         }
@@ -45,12 +45,9 @@ public class ActivateTextAtLine : MonoBehaviour {
             theTextManager.currentLine = startLine;
             theTextManager.endAtLine = endLine;
             theTextManager.EnableTextBox();
-            if (destroyWhenActivated)
-            {
+            if (destroyWhenActivated) { 
                 Destroy(gameObject);
             }
         }
-	}
-
-    
+	}  
 }

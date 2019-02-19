@@ -8,11 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class SaveAndLoadData : MonoBehaviour
 {
-    private void Start()
-    {
+    private void Start() {     
     }
-    public void save()
-    {
+    public void save() {   
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/UnyteGameData.dat");
         PlayerData data = new PlayerData();
@@ -25,10 +23,8 @@ public class SaveAndLoadData : MonoBehaviour
         bf.Serialize(file, data);
         file.Close();
     }
-    public void load()
-    {
-        if (File.Exists(Application.persistentDataPath + "/UnyteGameData.dat"))
-        {
+    public void load() {    
+        if (File.Exists(Application.persistentDataPath + "/UnyteGameData.dat")) { 
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/UnyteGameData.dat", FileMode.Open);
             PlayerData data = (PlayerData)bf.Deserialize(file);
@@ -40,16 +36,13 @@ public class SaveAndLoadData : MonoBehaviour
             DataManager.manager.currentScene = data.currentScene;
 
             SceneManager.LoadScene(DataManager.manager.currentScene);
-            DataManager.manager.isBeingLoaded = true;
-            
+            DataManager.manager.isBeingLoaded = true;            
         }
     }
-
 }
 
 [Serializable]
-class PlayerData
-{
+class PlayerData { 
     public int experience;
     public int health;
     public float xpos, ypos;

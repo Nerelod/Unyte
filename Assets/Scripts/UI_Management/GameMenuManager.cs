@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameMenuManager : MonoBehaviour
-{
+public class GameMenuManager : MonoBehaviour { 
 
     public GameObject gameMenu;
 
@@ -11,20 +10,16 @@ public class GameMenuManager : MonoBehaviour
     public int fontSize;
     private GUIStyle guiStyle = new GUIStyle(); 
 
-    void Start()
-    {
-        gameMenu.SetActive(false);
-        
+    void Start() { 
+        gameMenu.SetActive(false);       
     }
 
     
-    void Update()
-    {
+    void Update() { 
         
     }
 
-    private void OnGUI()
-    {
+    private void OnGUI() { 
         guiStyle.fontSize = fontSize;
         guiStyle.font = theFont;
         guiStyle.normal.textColor = Color.white;

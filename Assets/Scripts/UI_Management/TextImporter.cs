@@ -8,8 +8,7 @@ public class TextImporter : MonoBehaviour {
     public string[] textLines;
 
 	void Start () {
-        if (textFile != null)
-        {
+        if (textFile != null) { 
             textLines = (textFile.text.Split('\n'));
         }
 	}

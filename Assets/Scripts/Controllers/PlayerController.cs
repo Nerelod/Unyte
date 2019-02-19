@@ -21,9 +21,9 @@ public class PlayerController : MonoBehaviour {
 
     
 
-    [SerializeField] int direction; //1 =  down, 2 = up, 3 = left, 4 = right, 5 = up left, 6 = up right, 7 = down left, 8 = down right
+    [SerializeField]
 
-    
+    int direction; //1 =  down, 2 = up, 3 = left, 4 = right, 5 = up left, 6 = up right, 7 = down left, 8 = down right
 
     void Start () {
         gameMenuIsActive = false;
@@ -31,107 +31,87 @@ public class PlayerController : MonoBehaviour {
         rigid = GetComponent<Rigidbody2D>();
         rigid.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         rigid.interpolation = RigidbodyInterpolation2D.Extrapolate;
-        if (DataManager.manager.isBeingLoaded == true)
-        {
+        if (DataManager.manager.isBeingLoaded == true) { 
+        
             transform.position = new Vector2(DataManager.manager.xpos, DataManager.manager.ypos);
             DataManager.manager.isBeingLoaded = false;
         }
-        else
-        {
+        else { 
+        
             transform.position = startingPosition.initialValue;
         }
-        
-      
-
     }
 
     private void Move(){
   
         if (Input.GetAxisRaw("Horizontal") > 0){
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
+            if (Input.GetKey(KeyCode.UpArrow)) {             
                 anim.Play("PlayerWalkingUpRight");
                 anim.speed = 1.5f;
                 direction = 6;
             }
-            else if (Input.GetKey(KeyCode.DownArrow))
-            {
+            else if (Input.GetKey(KeyCode.DownArrow)) { 
                 anim.Play("PlayerWalkingDownRight");
                 anim.speed = 1.5f;
                 direction = 8;
             }
-            else
-            {
+            else { 
                 anim.Play("PlayerWalkingRight");
                 anim.speed = 1.5f;
                 direction = 4;
             }
         }
         else if (Input.GetAxisRaw("Horizontal") < 0){
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
+            if (Input.GetKey(KeyCode.UpArrow)) {           
                 anim.Play("PlayerWalkingUpLeft");
                 anim.speed = 1.5f;
                 direction = 5;
             }
-            else if (Input.GetKey(KeyCode.DownArrow))
-            {
+            else if (Input.GetKey(KeyCode.DownArrow)) {            
                 anim.Play("PlayerWalkingDownLeft");
                 anim.speed = 1.5f;
                 direction = 7;
             }
-            else
-            {
+            else {           
                 anim.Play("PlayerWalkingLeft");
                 anim.speed = 1.5f;
                 direction = 3;
             }
         }
-        else if (Input.GetAxisRaw("Vertical") < 0)
-        {
+        else if (Input.GetAxisRaw("Vertical") < 0) {        
             anim.Play("PlayerWalkingDown");
             anim.speed = 1.5f;
             direction = 1;
         }
-        else if (Input.GetAxisRaw("Vertical") > 0)
-        {
+        else if (Input.GetAxisRaw("Vertical") > 0) {        
             anim.Play("PlayerWalkingUp");
             anim.speed = 1.5f;
             direction = 2;
         }
-        else
-        {
+        else {         
             anim.speed = 0;
-            if (direction == 1)
-            {
+            if (direction == 1) {            
                 anim.Play("PlayerDown");
             }
-            else if(direction == 2)
-            {
+            else if(direction == 2) { 
                 anim.Play("PlayerUp");
             }
-            else if(direction == 3)
-            {
+            else if(direction == 3) {           
                 anim.Play("PlayerLeft");
             }
-            else if(direction == 4)
-            {
+            else if(direction == 4) {           
                 anim.Play("PlayerRight");
             }
-            else if(direction == 5)
-            {
+            else if(direction == 5) {            
                 anim.Play("PlayerUpLeft");
             }
-            else if(direction == 6)
-            {
+            else if(direction == 6) {            
                 anim.Play("PlayerUpRight");
             }
-            else if(direction == 7)
-            {
+            else if(direction == 7) {           
                 anim.Play("PlayerDownLeft");
             }
-            else
-            {
+            else {           
                 anim.Play("PlayerDownRight");
             }
         }
@@ -147,16 +127,14 @@ public class PlayerController : MonoBehaviour {
         controlGameMenu();
     }
 
-    void controlGameMenu()
-    {
-        if (Input.GetKeyDown(KeyCode.X) && gameMenuIsActive) //If the gameMenu is active, pressing space turns it off
-        {
+    void controlGameMenu() { 
+    
+        if (Input.GetKeyDown(KeyCode.X) && gameMenuIsActive) { //If the gameMenu is active, pressing space turns it off        
             State = States.CanMove;
             gameMenuIsActive = false;
             gameMenu.SetActive(false);
         }
-        else if(Input.GetKeyDown(KeyCode.X) && gameMenuIsActive == false)//If the gameMenu is unactive, pressing space turns it on
-        {
+        else if(Input.GetKeyDown(KeyCode.X) && gameMenuIsActive == false) {//If the gameMenu is unactive, pressing space turns it on       
             State = States.CannotMove;
             gameMenuIsActive = true;
             gameMenu.SetActive(true);
@@ -165,22 +143,15 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
 
-        if (State == States.CanMove)
-        {
+        if (State == States.CanMove) {       
             Move();
         }
-        else if(State == States.CannotMove)
-        {
+        else if(State == States.CannotMove) {        
             controlGameMenu();
             //return;
         }
-        else
-        {
+        else {         
             return;
         }
-
-
-
     }
-
 }

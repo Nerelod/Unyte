@@ -6,16 +6,15 @@ using UnityEngine.UI;
 public enum CombatStates {PlayerOneAttacking, EnemyAttacking, ResetValues}
 public enum CombatOptions { Attack, Ability, Item, Run, HasNotChosen}
 
-public class CombatManager : MonoBehaviour
-{
+public class CombatManager : MonoBehaviour { 
+
 
     public GameObject enemySprite;
     CombatStates combatState;
     CombatOptions playerOneOption;
     private int order;
     private int playerOneChosenOrder;
-    void Start()
-    {
+    void Start() {    
         CombatTextManager.combatTextManager.damageText.text = "";
         order = 1;
         CombatTextManager.combatTextManager.textHasBeenPrompt = false;
@@ -27,37 +26,30 @@ public class CombatManager : MonoBehaviour
         enemySprite = GameObject.Find("Enemy");
         enemySprite.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
 
-        if(DataManager.manager.speed > EnemyDataManager.EnemyManager.speed)
-        {
+        if(DataManager.manager.speed > EnemyDataManager.EnemyManager.speed) {        
             combatState = CombatStates.PlayerOneAttacking;
             EnemyDataManager.EnemyManager.assignedOrderInCombat = 2;
         }
-        else
-        {
+        else {        
             combatState = CombatStates.EnemyAttacking;
             EnemyDataManager.EnemyManager.assignedOrderInCombat = 1;
         }
     }
 
-    private void GetPlayerAction(int player)
-    {
-        if (CombatTextManager.combatTextManager.textIsFinished && !CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.pressedSpace)
-        {
+    private void GetPlayerAction(int player) {    
+        if (CombatTextManager.combatTextManager.textIsFinished && !CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.pressedSpace) {         
             CombatTextManager.combatTextManager.ManageText("Choose an Action");
             CombatTextManager.combatTextManager.textHasBeenPrompt = true;
         }
-        if(player == 1 && CombatTextManager.combatTextManager.textHasBeenPrompt)
-        {
-            if (Input.GetKeyDown(KeyCode.Q) && playerOneOption == CombatOptions.HasNotChosen)
-            {  
+        if(player == 1 && CombatTextManager.combatTextManager.textHasBeenPrompt) {         
+            if (Input.GetKeyDown(KeyCode.Q) && playerOneOption == CombatOptions.HasNotChosen) {              
                 playerOneOption = CombatOptions.Attack;
                 CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
             }
         }
     }
 
-    private int Attack(EnemyDataManager enemy, DataManager character)
-    {
+    private int Attack(EnemyDataManager enemy, DataManager character) {     
         CombatTextManager.combatTextManager.ManageText("Player does " + character.qDamage.ToString() + " damage!");
         CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
         //play enemy sprite damaged animation
@@ -67,45 +59,32 @@ public class CombatManager : MonoBehaviour
         return enemy.health -= character.qDamage;
     }
 
-    private void GetOrder(int player)
-    {
-
+    private void GetOrder(int player) {    
         int theOrder = 0;
         
-        if (Input.GetKeyDown(KeyCode.Alpha1) && CombatTextManager.combatTextManager.textIsFinished)
-        {
-
-
+        if (Input.GetKeyDown(KeyCode.Alpha1) && CombatTextManager.combatTextManager.textIsFinished) {        
             CombatTextManager.combatTextManager.ManageText("Order is One");
             CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
             theOrder = 1;                       
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && CombatTextManager.combatTextManager.textIsFinished)
-        {
-
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && CombatTextManager.combatTextManager.textIsFinished) {       
             CombatTextManager.combatTextManager.ManageText("Order is Two");
             CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
             theOrder = 2;
         }
-        if(player == 1)
-        {
+        if(player == 1) {        
             playerOneChosenOrder = theOrder;
         }
     }
         
     //Get Target Method
-    private void HandleOrder(int player)
-    {
-        if (player == 1)
-        {
-            if (playerOneChosenOrder != order && CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0)
-            {
+    private void HandleOrder(int player) {    
+        if (player == 1) {        
+            if (playerOneChosenOrder != order && CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0) { 
                 order += 1;
             }
-            else if (playerOneChosenOrder == order && CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0)
-            {
-                if (playerOneOption == CombatOptions.Attack)
-                {                   
+            else if (playerOneChosenOrder == order && CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0) {            
+                if (playerOneOption == CombatOptions.Attack) {            
                     Attack(EnemyDataManager.EnemyManager, DataManager.manager);
                 }
                 order += 1;
@@ -113,31 +92,26 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        switch (combatState)
-        {
+    void Update() { 
+    
+        switch (combatState) {        
             case CombatStates.PlayerOneAttacking:
-                if (playerOneOption == CombatOptions.HasNotChosen)
-                {
+                if (playerOneOption == CombatOptions.HasNotChosen) {                 
                     GetPlayerAction(1);
                 }
-                if (playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder == 0)
-                {
+                if (playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder == 0) {                 
                     GetOrder(1);
                 }
 
                 HandleOrder(1);
                 
-                if(order == EnemyDataManager.EnemyManager.assignedOrderInCombat)
-                {
+                if(order == EnemyDataManager.EnemyManager.assignedOrderInCombat) {              
                     combatState = CombatStates.EnemyAttacking;
                 }
 
                 break;
             case CombatStates.EnemyAttacking:
-                if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace)
-                {
+                if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace) {              
                     EnemyDataManager.EnemyManager.theMonster.Attack(EnemyDataManager.EnemyManager.theMonster.damage, EnemyDataManager.EnemyManager.theMonster.attackMessage, DataManager.manager);
                 }
                 break;

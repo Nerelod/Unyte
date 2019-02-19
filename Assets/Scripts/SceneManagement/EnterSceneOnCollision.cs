@@ -15,25 +15,20 @@ public class EnterSceneOnCollision : MonoBehaviour {
     public float fadeWait;
 
 
-    private void Start()
-    {
+    private void Start() {     
         player = FindObjectOfType<PlayerController>();
     }
 
-    private void Awake()
-    {
-        if(fadeInPanel != null)
-        {
+    private void Awake() {     
+        if(fadeInPanel != null) {       
             GameObject panel = Instantiate(fadeInPanel, Vector3.zero, Quaternion.identity) as GameObject;
             Destroy(panel, 1);
         }
     }
 
 
-    public IEnumerator FadeCo()
-    {
-        if (fadeOutPanel != null)
-        {
+    public IEnumerator FadeCo() {   
+        if (fadeOutPanel != null) {         
             Instantiate(fadeOutPanel, Vector3.zero, Quaternion.identity);
         }
         yield return new WaitForSeconds(fadeWait);
@@ -42,17 +37,12 @@ public class EnterSceneOnCollision : MonoBehaviour {
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-        if (collision.CompareTag("Player"))
-        {
+    private void OnTriggerEnter2D(Collider2D collision) {    
+        if (collision.CompareTag("Player")) {        
             playerStorage.initialValue = playerPosition;
             player.State = States.CannotMove;
-            StartCoroutine(FadeCo());
-            
-        }
-        
+            StartCoroutine(FadeCo());            
+        }       
     }
 
 

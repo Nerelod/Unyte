@@ -25,26 +25,21 @@ public class TextBoxManager : MonoBehaviour {
 
     public float typeSpeed;
 
-    void Start()
-    {
+    void Start() { 
 
         player = FindObjectOfType<PlayerController>();
 
-        if (textFile != null)
-        {
+        if (textFile != null) { 
             textLines = (textFile.text.Split('\n'));
         }
-        if(endAtLine == 0)
-        {
+        if(endAtLine == 0) { 
             endAtLine = textLines.Length - 1;
         }
 
-        if (boxActive)
-        {
+        if (boxActive) { 
             EnableTextBox();
         }
-        else
-        {
+        else { 
             DisableTextBox();
         }
     }
@@ -52,30 +47,24 @@ public class TextBoxManager : MonoBehaviour {
     
     void Update () {
 
-        if (!boxActive)
-        {
+        if (!boxActive) { 
             return;
         }
 
         //theText.text = textLines[currentLine];
 
-        if (Input.GetKeyDown(KeyCode.Space) && boxActive == true)
-        {
-            if (!isTyping)
-            {
+        if (Input.GetKeyDown(KeyCode.Space) && boxActive == true) { 
+            if (!isTyping) { 
                 currentLine += 1;
 
-                if (currentLine > endAtLine)
-                {
+                if (currentLine > endAtLine) { 
                     DisableTextBox();
                 }
-                else
-                {
+                else { 
                     StartCoroutine(TextScroll(textLines[currentLine]));
                 }
             }
-            else if(isTyping && !cancelTyping)
-            {
+            else if(isTyping && !cancelTyping) { 
                 cancelTyping = true;
             }
         }
@@ -83,14 +72,12 @@ public class TextBoxManager : MonoBehaviour {
 
 	}
 
-    private IEnumerator TextScroll(string lineOfText)
-    {
+    private IEnumerator TextScroll(string lineOfText) { 
         int letter = 0;
         theText.text = "";
         isTyping = true;
         cancelTyping = false;
-        while (isTyping && !cancelTyping && (letter < lineOfText.Length - 1))
-        {
+        while (isTyping && !cancelTyping && (letter < lineOfText.Length - 1)) { 
             theText.text += lineOfText[letter];
             letter += 1;
             yield return new WaitForSeconds(typeSpeed);
@@ -100,28 +87,22 @@ public class TextBoxManager : MonoBehaviour {
         cancelTyping = false;
     }
 
-    public void EnableTextBox()
-    {
+    public void EnableTextBox() { 
         boxActive = true;
         theBox.SetActive(true);
-        if (stopPlayerMovement)
-        {
+        if (stopPlayerMovement) { 
             player.State = States.CannotMove;
         }
         StartCoroutine(TextScroll(textLines[currentLine]));
     }
-    public void DisableTextBox()
-    {
-        
+    public void DisableTextBox() {         
         boxActive = false;
         theBox.SetActive(false);
         player.State = States.CanMove;
         
     }
-    public void ReloadScript(TextAsset theText)
-    {
-        if(theText != null)
-        {
+    public void ReloadScript(TextAsset theText) { 
+        if(theText != null) { 
             textLines = new string[1];
             textLines = (theText.text.Split('\n'));
         }

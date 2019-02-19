@@ -15,26 +15,24 @@ public class EnemyDataManager : MonoBehaviour
     public string currentName;
     public Monster theMonster;
 
-    private void Awake()
-    {
-        if (EnemyManager == null)
-        {
+    private void Awake() { 
+    
+        if (EnemyManager == null) {         
             DontDestroyOnLoad(gameObject);
             EnemyManager = this;
         }
-        else if (EnemyManager != this)
-        {
+        else if (EnemyManager != this) {        
             Destroy(gameObject);
         }
     }
-    void Start()
-    {
+    void Start() { 
+    
         
     }
 
     
-    void Update()
-    {
+    void Update() { 
+    
         
     }
 }
