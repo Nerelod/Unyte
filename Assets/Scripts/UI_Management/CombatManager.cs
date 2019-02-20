@@ -112,7 +112,7 @@ public class CombatManager : MonoBehaviour {
                 break;
             case CombatStates.EnemyAttacking:
                 if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace) {              
-                    EnemyDataManager.EnemyManager.theMonster.Attack(EnemyDataManager.EnemyManager.theMonster.damage, EnemyDataManager.EnemyManager.theMonster.attackMessage, DataManager.manager);
+                    EnemyDataManager.EnemyManager.theMonster.Attack(DataManager.manager);
                 }
                 break;
             case CombatStates.ResetValues:
