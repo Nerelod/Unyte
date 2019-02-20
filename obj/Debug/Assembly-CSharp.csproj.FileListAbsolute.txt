@@ -172,4 +172,3 @@ D:\Unity\FirstProject\Temp\bin\Debug\UnityEngine.UnityTestProtocolModule.xml
 D:\Unity\FirstProject\Temp\bin\Debug\UnityEngine.VFXModule.xml
 D:\Unity\FirstProject\Temp\bin\Debug\UnityEngine.TestRunner.xml
 D:\Unity\FirstProject\Temp\bin\Debug\nunit.framework.xml
-D:\Unity\FirstProject\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache

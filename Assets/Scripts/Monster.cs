@@ -16,6 +16,7 @@ public class Monster {
     private string attackMessageThree;
     private string attackMessageFour;
     public bool textWasPrompt = false;
+    public bool displayedDamage = false;
     private int range;
     private int whichAttack;
 
@@ -37,26 +38,71 @@ public class Monster {
             if (textWasPrompt == false) {
                 CombatTextManager.combatTextManager.ManageText(attackMessage);
                 CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
-                textWasPrompt = true;
-            }
-            if (damage > 0 && CombatTextManager.combatTextManager.pressedSpace) {
-                CombatTextManager.combatTextManager.ManageText(target.theName + " takes " + damage + " damage");
                 target.health = target.health - damage;
+                textWasPrompt = true;
             }
         }
         else if(whichAttack == 2) {
             if (textWasPrompt == false) {
                 CombatTextManager.combatTextManager.ManageText(attackMessageTwo);
                 CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+                target.health = target.health - damageTwo;
                 textWasPrompt = true;
             }
-            if (damage > 0 && CombatTextManager.combatTextManager.pressedSpace) {
-                CombatTextManager.combatTextManager.ManageText(target.theName + " takes " + damageTwo + " damage");
-                target.health = target.health - damage;
+        }
+        if (whichAttack == 3) {
+            if (textWasPrompt == false) {
+                CombatTextManager.combatTextManager.ManageText(attackMessageThree);
+                CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+                target.health = target.health - damageThree;
+                textWasPrompt = true;
+            }
+        }
+        else if (whichAttack == 4) {
+            if (textWasPrompt == false) {
+                CombatTextManager.combatTextManager.ManageText(attackMessageFour);
+                CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+                target.health = target.health - damageFour;
+                textWasPrompt = true;
             }
         }
     }
 
-
-    
+    public void DisplayDamage(DataManager target) {
+        if (whichAttack == 1) {
+            if (damage > 0 && CombatTextManager.combatTextManager.textIsFinished) {
+                CombatTextManager.combatTextManager.ManageText(target.theName + " takes " + damage + " damage");
+                CombatTextManager.combatTextManager.enemyDamageText.text = "-" + damage.ToString();
+                CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.enemyDamageText));
+                CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+            }
+        }
+        else if (whichAttack == 2) {
+            if (damageTwo > 0 && CombatTextManager.combatTextManager.textIsFinished) {
+                CombatTextManager.combatTextManager.ManageText(target.theName + " takes " + damageTwo + " damage");
+                CombatTextManager.combatTextManager.enemyDamageText.text = "-" + damageTwo.ToString();
+                CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.enemyDamageText));
+                CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+            }
+        }
+        else if (whichAttack == 3) {
+            if (damageThree > 0 && CombatTextManager.combatTextManager.textIsFinished) {
+                CombatTextManager.combatTextManager.ManageText(target.theName + " takes " + damageThree + " damage");
+                CombatTextManager.combatTextManager.enemyDamageText.text = "-" + damageThree.ToString();
+                CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.enemyDamageText));
+                CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+            }
+        }
+        else if (whichAttack == 4) {
+            if (damageFour > 0 && CombatTextManager.combatTextManager.textIsFinished) {
+                CombatTextManager.combatTextManager.ManageText(target.theName + " takes " + damageFour + " damage");
+                CombatTextManager.combatTextManager.enemyDamageText.text = "-" + damageFour.ToString();
+                CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.enemyDamageText));
+                CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+            }
+        }
+        displayedDamage = true;
+    }
 }
+    
+

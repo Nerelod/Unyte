@@ -14,6 +14,7 @@ public class CombatManager : MonoBehaviour {
     CombatOptions playerOneOption;
     private int order;
     private int playerOneChosenOrder;
+    private bool enemyOneHasAttacked;
     void Start() {    
         CombatTextManager.combatTextManager.damageText.text = "";
         order = 1;
@@ -25,7 +26,7 @@ public class CombatManager : MonoBehaviour {
         CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
         enemySprite = GameObject.Find("Enemy");
         enemySprite.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
-
+        enemyOneHasAttacked = false;
         if(DataManager.manager.speed > EnemyDataManager.EnemyManager.speed) {        
             combatState = CombatStates.PlayerOneAttacking;
             EnemyDataManager.EnemyManager.assignedOrderInCombat = 2;
@@ -49,14 +50,13 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
-    private int Attack(EnemyDataManager enemy, DataManager character) {     
+    private void Attack(EnemyDataManager enemy, DataManager character) {     
         CombatTextManager.combatTextManager.ManageText("Player does " + character.qDamage.ToString() + " damage!");
-        CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
         //play enemy sprite damaged animation
         CombatTextManager.combatTextManager.damageText.text = "-" + character.qDamage.ToString();
-        CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText());
+        CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.damageText));
         CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
-        return enemy.health -= character.qDamage;
+        enemy.health -= character.qDamage;
     }
 
     private void GetOrder(int player) {    
@@ -111,11 +111,19 @@ public class CombatManager : MonoBehaviour {
 
                 break;
             case CombatStates.EnemyAttacking:
-                if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace) {              
+                if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !enemyOneHasAttacked) {              
                     EnemyDataManager.EnemyManager.theMonster.Attack(DataManager.manager);
+                    enemyOneHasAttacked = true;
+                }
+                if(CombatTextManager.combatTextManager.pressedSpace && CombatTextManager.combatTextManager.textIsFinished && !EnemyDataManager.EnemyManager.theMonster.displayedDamage) {
+                    EnemyDataManager.EnemyManager.theMonster.DisplayDamage(DataManager.manager);
+                }
+                if(CombatTextManager.combatTextManager.pressedSpace && CombatTextManager.combatTextManager.textIsFinished) {
+                    combatState = CombatStates.ResetValues;
                 }
                 break;
             case CombatStates.ResetValues:
+                Debug.LogWarning("ResetValues");
                 playerOneOption = CombatOptions.HasNotChosen;
                 playerOneChosenOrder = 0;
                 break;
