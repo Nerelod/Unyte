@@ -71,7 +71,7 @@ public class Monster {
     public void DisplayDamage(DataManager target) {
         if (whichAttack == 1) {
             if (damage > 0 && CombatTextManager.combatTextManager.textIsFinished) {
-                CombatTextManager.combatTextManager.ManageText(target.theName + " takes " + damage + " damage");
+                CombatTextManager.combatTextManager.ManageText(target.theName + " takes " + damage + " damage!");
                 CombatTextManager.combatTextManager.enemyDamageText.text = "-" + damage.ToString();
                 CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.enemyDamageText));
                 CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
@@ -79,7 +79,7 @@ public class Monster {
         }
         else if (whichAttack == 2) {
             if (damageTwo > 0 && CombatTextManager.combatTextManager.textIsFinished) {
-                CombatTextManager.combatTextManager.ManageText(target.theName + " takes " + damageTwo + " damage");
+                CombatTextManager.combatTextManager.ManageText(target.theName + " takes " + damageTwo + " damage!");
                 CombatTextManager.combatTextManager.enemyDamageText.text = "-" + damageTwo.ToString();
                 CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.enemyDamageText));
                 CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
@@ -87,7 +87,7 @@ public class Monster {
         }
         else if (whichAttack == 3) {
             if (damageThree > 0 && CombatTextManager.combatTextManager.textIsFinished) {
-                CombatTextManager.combatTextManager.ManageText(target.theName + " takes " + damageThree + " damage");
+                CombatTextManager.combatTextManager.ManageText(target.theName + " takes " + damageThree + " damage!");
                 CombatTextManager.combatTextManager.enemyDamageText.text = "-" + damageThree.ToString();
                 CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.enemyDamageText));
                 CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
@@ -95,7 +95,7 @@ public class Monster {
         }
         else if (whichAttack == 4) {
             if (damageFour > 0 && CombatTextManager.combatTextManager.textIsFinished) {
-                CombatTextManager.combatTextManager.ManageText(target.theName + " takes " + damageFour + " damage");
+                CombatTextManager.combatTextManager.ManageText(target.theName + " takes " + damageFour + " damage!");
                 CombatTextManager.combatTextManager.enemyDamageText.text = "-" + damageFour.ToString();
                 CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.enemyDamageText));
                 CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());

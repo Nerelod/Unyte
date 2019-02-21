@@ -457,7 +457,12 @@ PrefabInstance:
     - target: {fileID: 503760104495064909, guid: de989f27c7a6c8c4da23f3f50456acc5,
         type: 3}
       propertyPath: qDamage
-      value: 0
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 503760104495064909, guid: de989f27c7a6c8c4da23f3f50456acc5,
+        type: 3}
+      propertyPath: theName
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de989f27c7a6c8c4da23f3f50456acc5, type: 3}
@@ -16529,5 +16534,10 @@ PrefabInstance:
       propertyPath: pointTwo
       value: 
       objectReference: {fileID: 2018987176}
+    - target: {fileID: 9178842440792351147, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: health
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29759f4f2cd0e5d43b11785e40507882, type: 3}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum CombatStates {PlayerOneAttacking, EnemyAttacking, ResetValues}
+public enum CombatStates {PlayerOneAttacking, EnemyAttacking, ResetValues, PlayerWon, EnemyWon}
 public enum CombatOptions { Attack, Ability, Item, Run, HasNotChosen}
 
 public class CombatManager : MonoBehaviour { 
@@ -37,7 +37,7 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
-    private void GetPlayerAction(int player) {    
+    private void GetPlayerAction(int player) {
         if (CombatTextManager.combatTextManager.textIsFinished && !CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.pressedSpace) {         
             CombatTextManager.combatTextManager.ManageText("Choose an Action");
             CombatTextManager.combatTextManager.textHasBeenPrompt = true;
@@ -105,10 +105,12 @@ public class CombatManager : MonoBehaviour {
 
                 HandleOrder(1);
                 
-                if(order == EnemyDataManager.EnemyManager.assignedOrderInCombat) {              
+                if(order == EnemyDataManager.EnemyManager.assignedOrderInCombat) {                  
                     combatState = CombatStates.EnemyAttacking;
                 }
-
+                if(EnemyDataManager.EnemyManager.health <= 0) {
+                    combatState = CombatStates.PlayerWon;
+                }
                 break;
             case CombatStates.EnemyAttacking:
                 if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !enemyOneHasAttacked) {              
@@ -121,11 +123,30 @@ public class CombatManager : MonoBehaviour {
                 if(CombatTextManager.combatTextManager.pressedSpace && CombatTextManager.combatTextManager.textIsFinished) {
                     combatState = CombatStates.ResetValues;
                 }
+                if(DataManager.manager.health <= 0) {
+                    combatState = CombatStates.EnemyWon;
+                }
+                HandleOrder(1);
                 break;
             case CombatStates.ResetValues:
-                Debug.LogWarning("ResetValues");
                 playerOneOption = CombatOptions.HasNotChosen;
                 playerOneChosenOrder = 0;
+                order = 1;
+                enemyOneHasAttacked = false;
+                combatState = CombatStates.PlayerOneAttacking;
+                CombatTextManager.combatTextManager.textHasBeenPrompt = false;
+                EnemyDataManager.EnemyManager.theMonster.displayedDamage = false;
+                combatState = CombatStates.PlayerOneAttacking;               
+                break;
+            case CombatStates.PlayerWon:
+                if (CombatTextManager.combatTextManager.textIsFinished) {
+                    CombatTextManager.combatTextManager.ManageText("You Win!");
+                }
+                break;
+            case CombatStates.EnemyWon:
+                if (CombatTextManager.combatTextManager.textIsFinished) {
+                    CombatTextManager.combatTextManager.ManageText("You Lost!");
+                }
                 break;
             default:
                 break;
