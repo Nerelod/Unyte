@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum CombatStates {PlayerOneAttacking, EnemyAttacking, ResetValues, PlayerWon, EnemyWon}
 public enum CombatOptions { Attack, Ability, Item, Run, HasNotChosen}
@@ -15,7 +16,9 @@ public class CombatManager : MonoBehaviour {
     private int order;
     private int playerOneChosenOrder;
     private bool enemyOneHasAttacked;
-    void Start() {    
+    private bool winTextHasBeenPrompt;
+    void Start() {
+        winTextHasBeenPrompt = false;
         CombatTextManager.combatTextManager.damageText.text = "";
         order = 1;
         CombatTextManager.combatTextManager.textHasBeenPrompt = false;
@@ -139,8 +142,14 @@ public class CombatManager : MonoBehaviour {
                 combatState = CombatStates.PlayerOneAttacking;               
                 break;
             case CombatStates.PlayerWon:
-                if (CombatTextManager.combatTextManager.textIsFinished) {
+                if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !winTextHasBeenPrompt) {
                     CombatTextManager.combatTextManager.ManageText("You Win!");
+                    CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+                    winTextHasBeenPrompt = true;
+                }
+                if(CombatTextManager.combatTextManager.pressedSpace && winTextHasBeenPrompt) {
+                    DataManager.manager.isBeingLoaded = true;
+                    SceneManager.LoadScene(EnemyDataManager.EnemyManager.theScene);
                 }
                 break;
             case CombatStates.EnemyWon:

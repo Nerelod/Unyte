@@ -43,8 +43,10 @@ public class DataManager : MonoBehaviour {
         health = health + healthToAdd;
     }
 
-    private void Update() {    
+    private void Update() {
+     
         currentScene = SceneManager.GetActiveScene().name;
+        
     }
 }
 

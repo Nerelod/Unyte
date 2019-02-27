@@ -22,6 +22,7 @@ public class MonsterController : MonoBehaviour {
     public int health;
     public int experienceToGive;
     public Sprite combatSprite;
+    public string scene;
 
     public string kindOfMonster;
 
@@ -33,13 +34,17 @@ public class MonsterController : MonoBehaviour {
         }
     }
 
-    void Start() { 
-    
+    void Start() {
+        scene = SceneManager.GetActiveScene().name;
         determineMonster();
         inRange = false;
         pointA = true;
         anim = GetComponent<Animator>();
         player = FindObjectOfType<PlayerController>();
+        if(EnemyDataManager.EnemyManager.currentName == monsterName && EnemyDataManager.EnemyManager.health <= 0) {
+            this.gameObject.SetActive(false);
+        }
+            
     }
 
     void Update() {    
@@ -92,12 +97,13 @@ public class MonsterController : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision) { 
     
-        if (collision.gameObject.tag == "Player") { 
+        if (collision.gameObject.tag == "Player") {
+            EnemyDataManager.EnemyManager.theScene = scene;
             EnemyDataManager.EnemyManager.currentSprite = combatSprite;
             EnemyDataManager.EnemyManager.currentName = monsterName;
             EnemyDataManager.EnemyManager.health = health;
             EnemyDataManager.EnemyManager.experienceGives = experienceToGive;
-            EnemyDataManager.EnemyManager.theMonster = monster;
+            EnemyDataManager.EnemyManager.theMonster = monster;            
             SceneManager.LoadScene("CombatScene");
         }
     }

@@ -14,6 +14,7 @@ public class EnemyDataManager : MonoBehaviour
     public Sprite currentSprite = null;
     public string currentName;
     public Monster theMonster;
+    public string theScene;
 
     private void Awake() { 
     

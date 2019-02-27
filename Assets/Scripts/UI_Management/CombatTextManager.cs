@@ -57,8 +57,10 @@ public class CombatTextManager : MonoBehaviour {
         Text text = theText;
         text.color = Color.red;
         Color originalColor = text.color;
-        for (float t = 0.01f; t < textFadeTime; t += Time.deltaTime) { 
-            text.color = Color.Lerp(originalColor, Color.clear, Mathf.Min(1, t / textFadeTime));
+        for (float t = 0.01f; t < textFadeTime; t += Time.deltaTime) {
+            if (text != null) {
+                text.color = Color.Lerp(originalColor, Color.clear, Mathf.Min(1, t / textFadeTime));
+            }
             yield return null;
         }
     }
