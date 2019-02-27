@@ -5,7 +5,7 @@ using UnityEngine;
 public class Monster { 
 
 
-    public static Monster Slime = new Monster(2, 3, "Slime launches itself at you!", "Slime jumps menancingly!", "", "", 0);
+    public static Monster Slime = new Monster(2, 2, "Slime launches itself at you!", "Slime jumps menancingly!", "", "", 0);
 
     private int damage;
     private int damageTwo;

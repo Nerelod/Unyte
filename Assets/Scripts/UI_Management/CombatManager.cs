@@ -120,7 +120,7 @@ public class CombatManager : MonoBehaviour {
                     EnemyDataManager.EnemyManager.theMonster.Attack(DataManager.manager);
                     enemyOneHasAttacked = true;
                 }
-                if(CombatTextManager.combatTextManager.pressedSpace && CombatTextManager.combatTextManager.textIsFinished && !EnemyDataManager.EnemyManager.theMonster.displayedDamage) {
+                if(CombatTextManager.combatTextManager.pressedSpace && CombatTextManager.combatTextManager.textIsFinished && !EnemyDataManager.EnemyManager.theMonster.displayedDamage) {                    
                     EnemyDataManager.EnemyManager.theMonster.DisplayDamage(DataManager.manager);
                 }
                 if(CombatTextManager.combatTextManager.pressedSpace && CombatTextManager.combatTextManager.textIsFinished) {
@@ -139,6 +139,7 @@ public class CombatManager : MonoBehaviour {
                 combatState = CombatStates.PlayerOneAttacking;
                 CombatTextManager.combatTextManager.textHasBeenPrompt = false;
                 EnemyDataManager.EnemyManager.theMonster.displayedDamage = false;
+                EnemyDataManager.EnemyManager.theMonster.textWasPrompt = false;
                 combatState = CombatStates.PlayerOneAttacking;               
                 break;
             case CombatStates.PlayerWon:
@@ -153,10 +154,15 @@ public class CombatManager : MonoBehaviour {
                 }
                 break;
             case CombatStates.EnemyWon:
-                if (CombatTextManager.combatTextManager.textIsFinished) {
+                if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !winTextHasBeenPrompt) {
                     CombatTextManager.combatTextManager.ManageText("You Lost!");
+                    CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+                    winTextHasBeenPrompt = true;
                 }
-                break;
+                if (CombatTextManager.combatTextManager.pressedSpace && winTextHasBeenPrompt) {
+                    //SaveAndLoadData.saveAndLoad.load();
+                }
+                    break;
             default:
                 break;
 
