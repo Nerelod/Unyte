@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class CombatTextManager : MonoBehaviour { 
 
 
@@ -18,16 +19,7 @@ public class CombatTextManager : MonoBehaviour {
     public float textFadeTime = 2;
 
 
-    private void Awake() {    
-        if (combatTextManager == null) {         
-            DontDestroyOnLoad(gameObject);
-            combatTextManager = this;
-        }
-        else if (combatTextManager != this) { 
-            Destroy(gameObject);
-        }
-    }
-
+    
 
     public void ManageText(string txt) { 
         combattext = txt;

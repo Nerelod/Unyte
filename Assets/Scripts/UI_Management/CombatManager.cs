@@ -17,6 +17,9 @@ public class CombatManager : MonoBehaviour {
     private int playerOneChosenOrder;
     private bool enemyOneHasAttacked;
     private bool winTextHasBeenPrompt;
+    private void Awake() {
+        CombatTextManager.combatTextManager = GameObject.Find("CombatTextManager").GetComponent<CombatTextManager>();
+    }
     void Start() {
         winTextHasBeenPrompt = false;
         CombatTextManager.combatTextManager.damageText.text = "";
@@ -160,7 +163,8 @@ public class CombatManager : MonoBehaviour {
                     winTextHasBeenPrompt = true;
                 }
                 if (CombatTextManager.combatTextManager.pressedSpace && winTextHasBeenPrompt) {
-                    //SaveAndLoadData.saveAndLoad.load();
+                    //Destroy(CombatTextManager.combatTextManager);
+                    SceneManager.LoadScene("MainMenu");
                 }
                     break;
             default:

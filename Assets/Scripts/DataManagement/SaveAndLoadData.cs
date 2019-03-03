@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class SaveAndLoadData : MonoBehaviour
 {
-    public static SaveAndLoadData saveAndLoad;
+    
     private void Start() {     
     }
     public void save() {   
