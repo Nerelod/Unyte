@@ -41,10 +41,9 @@ public class MonsterController : MonoBehaviour {
         pointA = true;
         anim = GetComponent<Animator>();
         player = FindObjectOfType<PlayerController>();
-        if(EnemyDataManager.EnemyManager.currentName == monsterName && EnemyDataManager.EnemyManager.health <= 0) {
+        if(EnemyDataManager.EnemyManager.defeatedEnemies.Contains(monsterName)) {
             this.gameObject.SetActive(false);
         }
-            
     }
 
     void Update() {    

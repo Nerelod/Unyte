@@ -15,6 +15,7 @@ public class SaveAndLoadData : MonoBehaviour
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/UnyteGameData.dat");
         PlayerData data = new PlayerData();
+        data.deadEnemies = EnemyDataManager.EnemyManager.defeatedEnemies;
         data.health = DataManager.manager.health;
         data.experience = DataManager.manager.experience;
         data.xpos = DataManager.manager.xpos;
@@ -30,6 +31,7 @@ public class SaveAndLoadData : MonoBehaviour
             FileStream file = File.Open(Application.persistentDataPath + "/UnyteGameData.dat", FileMode.Open);
             PlayerData data = (PlayerData)bf.Deserialize(file);
             file.Close();
+            EnemyDataManager.EnemyManager.defeatedEnemies = data.deadEnemies;
             DataManager.manager.health = data.health;
             DataManager.manager.experience = data.experience;
             DataManager.manager.xpos = data.xpos;
@@ -48,5 +50,6 @@ class PlayerData {
     public int health;
     public float xpos, ypos;
     public string currentScene;
+    public List<string> deadEnemies = new List<string>();
 }
 

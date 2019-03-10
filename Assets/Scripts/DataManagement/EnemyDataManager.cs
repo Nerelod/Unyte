@@ -16,6 +16,8 @@ public class EnemyDataManager : MonoBehaviour
     public Monster theMonster;
     public string theScene;
 
+    public List<string> defeatedEnemies = new List<string>();
+
     private void Awake() { 
     
         if (EnemyManager == null) {         
