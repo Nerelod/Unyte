@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":9.56498908996582,"y":1.626989722251892,"z":466.6623840332031},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":59.612205505371097,"orthographic":true}
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":744.5027465820313,"y":417.0622863769531,"z":1794.1566162109375},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":1350.0526123046875,"orthographic":true}
+>>>>>>> parent of 8470483... Saving and loading after defeating a monster works

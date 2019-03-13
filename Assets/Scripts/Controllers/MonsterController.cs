@@ -44,6 +44,7 @@ public class MonsterController : MonoBehaviour {
         if(EnemyDataManager.EnemyManager.defeatedEnemies.Contains(monsterName)) {
             this.gameObject.SetActive(false);
         }
+            
     }
 
     void Update() {    

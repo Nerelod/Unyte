@@ -154,6 +154,7 @@ public class CombatManager : MonoBehaviour {
                 if(CombatTextManager.combatTextManager.pressedSpace && winTextHasBeenPrompt) {
                     DataManager.manager.isBeingLoaded = true;
                     EnemyDataManager.EnemyManager.defeatedEnemies.Add(EnemyDataManager.EnemyManager.currentName);
+                    DataManager.manager.addExperience(EnemyDataManager.EnemyManager.experienceGives);
                     SceneManager.LoadScene(EnemyDataManager.EnemyManager.theScene);
                 }
                 break;

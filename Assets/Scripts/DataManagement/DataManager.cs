@@ -12,6 +12,7 @@ public class DataManager : MonoBehaviour {
 
 
     public static DataManager manager;
+
     public int experience;
     public int health;
     public int speed = 5;
@@ -33,13 +34,13 @@ public class DataManager : MonoBehaviour {
     private void Start() {
         theName = "Player One";
     }
-    void addExperience(int experienceToAdd) {    
+    public void addExperience(int experienceToAdd) {    
         experience = experience + experienceToAdd;
     }
-    void resetExperience() {    
+    public void resetExperience() {    
         experience = 0;
     }
-    void manageHealth(int healthToAdd) {     
+    public void manageHealth(int healthToAdd) {     
         health = health + healthToAdd;
     }
 
