@@ -20,6 +20,7 @@ public class DataManager : MonoBehaviour {
     public string currentScene;
     public float xpos, ypos;
     public string theName;
+    public int assignedOrderInCombat;
     public Boolean isBeingLoaded = false;
 
     private void Awake() {    

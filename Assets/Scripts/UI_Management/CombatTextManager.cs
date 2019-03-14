@@ -12,6 +12,7 @@ public class CombatTextManager : MonoBehaviour {
     public Text combatText;
     public Text damageText;
     public Text enemyDamageText;
+    public Text playerOneHealthText;
     public string combattext;
     public bool textIsFinished;
     public bool pressedSpace;

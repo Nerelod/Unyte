@@ -33,13 +33,20 @@ public class CombatManager : MonoBehaviour {
         enemySprite = GameObject.Find("Enemy");
         enemySprite.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
         enemyOneHasAttacked = false;
-        if(DataManager.manager.speed > EnemyDataManager.EnemyManager.speed) {        
+
+        determineOrder(); 
+    }
+
+    private void determineOrder() {
+        if (DataManager.manager.speed > EnemyDataManager.EnemyManager.speed) {
             combatState = CombatStates.PlayerOneAttacking;
             EnemyDataManager.EnemyManager.assignedOrderInCombat = 2;
+            DataManager.manager.assignedOrderInCombat = 1;
         }
-        else {        
+        else {
             combatState = CombatStates.EnemyAttacking;
             EnemyDataManager.EnemyManager.assignedOrderInCombat = 1;
+            DataManager.manager.assignedOrderInCombat = 2;
         }
     }
 
@@ -98,8 +105,9 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
-    void Update() { 
-    
+    void Update() {
+
+        
         switch (combatState) {        
             case CombatStates.PlayerOneAttacking:
                 if (playerOneOption == CombatOptions.HasNotChosen) {                 
@@ -173,5 +181,6 @@ public class CombatManager : MonoBehaviour {
                 break;
 
         }
+        CombatTextManager.combatTextManager.playerOneHealthText.text = DataManager.manager.health.ToString();
     }
 }
