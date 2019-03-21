@@ -9,10 +9,15 @@ public class CombatTextManager : MonoBehaviour {
 
     public static CombatTextManager combatTextManager;
 
+    // The text shown in the text box
     public Text combatText;
+    // The text that fades and shows how much player does
     public Text damageText;
+    // Text that fades and shows how much damage enemy does
     public Text enemyDamageText;
+    // Displays health of playerOne
     public Text playerOneHealthText;
+    // Variables used to make text work and display when needed
     public string combattext;
     public bool textIsFinished;
     public bool pressedSpace;
@@ -21,13 +26,13 @@ public class CombatTextManager : MonoBehaviour {
 
 
     
-
+    // Text used for displaying text in textbox
     public void ManageText(string txt) { 
         combattext = txt;
         combatText.text = "";
         StartCoroutine(PlayText());
     }
-
+    // Called in ManageText, plays the text in a typewriter way
     public IEnumerator PlayText() { 
         textIsFinished = false;
         foreach (char c in combattext) { 
@@ -36,16 +41,19 @@ public class CombatTextManager : MonoBehaviour {
         }
         textIsFinished = true;
     }
+    // Waits a few seconds
     public IEnumerator Wait(int seconds) { 
         textIsFinished = false;
         yield return new WaitForSeconds(seconds);
         textIsFinished = true;
     }
+    // Waits until the user presses space
     public IEnumerator WaitForKeyDown() { 
         pressedSpace = false;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         pressedSpace = true;
     }
+    // Makes the text fade, used for damage
     public IEnumerator FadeText(Text theText) { 
         Text text = theText;
         text.color = Color.red;

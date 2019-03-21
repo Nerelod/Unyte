@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyDataManager : MonoBehaviour
 {
-
+    // Reference to EnemyDataManager
     public static EnemyDataManager EnemyManager;
 
     public int health;
@@ -16,6 +16,7 @@ public class EnemyDataManager : MonoBehaviour
     public Monster theMonster;
     public string theScene;
 
+    //List of enemies that were defeated in combat
     public List<string> defeatedEnemies = new List<string>();
 
     private void Awake() { 

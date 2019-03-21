@@ -11,6 +11,9 @@ public class SaveAndLoadData : MonoBehaviour
     
     private void Start() {     
     }
+
+    // Save data here. Use the data instance of the PlayerData class
+    // to store what needs to be saved.
     public void save() {   
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/UnyteGameData.dat");
@@ -25,6 +28,8 @@ public class SaveAndLoadData : MonoBehaviour
         bf.Serialize(file, data);
         file.Close();
     }
+    // Load data here. Use the data instance of PlayerData to 
+    // set equal what needs to be loaded.
     public void load() {    
         if (File.Exists(Application.persistentDataPath + "/UnyteGameData.dat")) { 
             BinaryFormatter bf = new BinaryFormatter();
@@ -43,7 +48,9 @@ public class SaveAndLoadData : MonoBehaviour
         }
     }
 }
-
+/* PlayerData class. This is the class that stores the data 
+ * when saving and loading. Add variables to be saved here and 
+ * set them in the save and load methods. */
 [Serializable]
 class PlayerData { 
     public int experience;

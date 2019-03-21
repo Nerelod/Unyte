@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class MainHouseController : MonoBehaviour {
-
-
-   
+    
     SpriteRenderer render;
     Rigidbody2D rigid;
 
@@ -19,8 +18,7 @@ public class MainHouseController : MonoBehaviour {
     
 
     private void OnTriggerEnter2D(Collider2D collision) {   
-        if (collision.CompareTag("Player")) { 
-        
+        if (collision.CompareTag("Player")) {        
             anim.Play("ClosedDoortoMainHouse");
         }
     }

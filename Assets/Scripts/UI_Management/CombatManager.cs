@@ -4,39 +4,64 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+// The states of combat, the phases
 public enum CombatStates {PlayerOneAttacking, EnemyAttacking, ResetValues, PlayerWon, EnemyWon}
+// The actions a player can take on their turn/order of combat
 public enum CombatOptions { Attack, Ability, Item, Run, HasNotChosen}
 
 public class CombatManager : MonoBehaviour { 
 
-
+    // Reference to the enemy sprite
     public GameObject enemySprite;
+    // Reference to the CombatStates enum, used for deciding what part of combat it is
     CombatStates combatState;
+    // Reference to the playerOneOption enum, used for assigning the chosen option
     CombatOptions playerOneOption;
+    // The current order or turn of the combat
     private int order;
+    // The order playerOne chose to act
     private int playerOneChosenOrder;
+    // Boolean that represents whether the enemy has attacked
     private bool enemyOneHasAttacked;
+    // Boolean that represents whether the win text was prompt
     private bool winTextHasBeenPrompt;
+
+    // Runs before Awake
     private void Awake() {
+        // Get a reference to the CombatTextManager, so it exists
         CombatTextManager.combatTextManager = GameObject.Find("CombatTextManager").GetComponent<CombatTextManager>();
     }
+
+    // Used to set all the values to default at the start of combat
     void Start() {
+        // Win text is false, has not been displayed
         winTextHasBeenPrompt = false;
+        // Make the damage text empty
         CombatTextManager.combatTextManager.damageText.text = "";
+        // Begin the order at 1
         order = 1;
+        // No text has been prompt
         CombatTextManager.combatTextManager.textHasBeenPrompt = false;
+        // Space has not been pressed
         CombatTextManager.combatTextManager.pressedSpace = false;
+        // PlayerOne has not chosen an order to act
         playerOneChosenOrder = 0;
+        // PlayerOne has not chosen an action
         playerOneOption = CombatOptions.HasNotChosen;
+        // Display the text that is shown at the beginning of an encounter and wait for key press to continue
         CombatTextManager.combatTextManager.ManageText("A " + EnemyDataManager.EnemyManager.currentName + " appeared!");
         CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+        // Assign the enemySprite
         enemySprite = GameObject.Find("Enemy");
         enemySprite.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
+        // The enemy has not attacked
         enemyOneHasAttacked = false;
-
+        
+        // Get the order that combtatants will act on
         determineOrder(); 
     }
 
+    // Order is determined by speed
     private void determineOrder() {
         if (DataManager.manager.speed > EnemyDataManager.EnemyManager.speed) {
             combatState = CombatStates.PlayerOneAttacking;
@@ -50,12 +75,15 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
+    // Gets the player's chosen action 
     private void GetPlayerAction(int player) {
+        // If the previous text is finished, the text has not been prompt, and the user pressed space, display "Choose an Action" 
         if (CombatTextManager.combatTextManager.textIsFinished && !CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.pressedSpace) {         
             CombatTextManager.combatTextManager.ManageText("Choose an Action");
             CombatTextManager.combatTextManager.textHasBeenPrompt = true;
         }
-        if(player == 1 && CombatTextManager.combatTextManager.textHasBeenPrompt) {         
+        // Assign playerOneOption if it is HasNotChosen based on input, followed by displaying "Choose Order To Act"
+        if (player == 1 && CombatTextManager.combatTextManager.textHasBeenPrompt) {         
             if (Input.GetKeyDown(KeyCode.Q) && playerOneOption == CombatOptions.HasNotChosen) {              
                 playerOneOption = CombatOptions.Attack;
                 CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
@@ -63,15 +91,17 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
+    // Method for subtracting enemy health
     private void Attack(EnemyDataManager enemy, DataManager character) {     
         CombatTextManager.combatTextManager.ManageText("Player does " + character.qDamage.ToString() + " damage!");
-        //play enemy sprite damaged animation
+        //TODO: play enemy sprite damaged animation
         CombatTextManager.combatTextManager.damageText.text = "-" + character.qDamage.ToString();
         CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.damageText));
         CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
         enemy.health -= character.qDamage;
     }
 
+    // Method for getting the player's chosen order to act
     private void GetOrder(int player) {    
         int theOrder = 0;
         
@@ -90,7 +120,9 @@ public class CombatManager : MonoBehaviour {
         }
     }
         
-    //Get Target Method
+    // TODO: Get Target Method
+
+    // Handles all actions that happen on the order
     private void HandleOrder(int player) {    
         if (player == 1) {        
             if (playerOneChosenOrder != order && CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0) { 
@@ -181,6 +213,7 @@ public class CombatManager : MonoBehaviour {
                 break;
 
         }
+        // Show player's health 
         CombatTextManager.combatTextManager.playerOneHealthText.text = DataManager.manager.health.ToString();
     }
 }
