@@ -31,6 +31,7 @@ public class MonsterController : MonoBehaviour {
     public string monsterName;
     // reference to the monster class
     public Monster monster;
+    public int monsterIdentifier;
     // The Monster's health 
     public int health;
     // The amount of experience the monster gives when defeated 
@@ -39,18 +40,10 @@ public class MonsterController : MonoBehaviour {
     public Sprite combatSprite;
     // The scene the monster is in
     public string scene;
-    
-    //The kind of monster it is
-    public string kindOfMonster;
 
     //determines what kind of monster it is
-    void determineMonster() { 
-        // If the kindOfMonster is Slime, 
-        // assign the Slime properties to monster 
-        if (kindOfMonster == "Slime") { 
-        
-            monster = Monster.Slime;
-        }
+    void determineMonster() {        
+        monster = EnemyDataManager.EnemyManager.monsterTypes[monsterIdentifier];
     }
 
     void Start() {

@@ -18,7 +18,7 @@ public class Monster {
     public bool textWasPrompt = false;
     public bool displayedDamage = false;
     private int range;
-    private int whichAttack;
+    private int whichAttack;    
 
     public Monster(int numberOfAttacks, int dmg, string message, string messageTwo = "", string messageThree = "", string messageFour = "", int dmgTwo = 0, int dmgThree = 0, int dmgFour = 0) {
         range = numberOfAttacks + 1;

@@ -26,6 +26,14 @@ public class CombatManager : MonoBehaviour {
     // Boolean that represents whether the win text was prompt
     private bool winTextHasBeenPrompt;
 
+    // IconOne image
+    public GameObject iconOne;
+    // IconTwo image
+    public GameObject iconTwo;
+    // Icon sprites
+    public Sprite playerOneIcon;
+    public Sprite enemyIcon;
+
     // Runs before Awake
     private void Awake() {
         // Get a reference to the CombatTextManager, so it exists
@@ -54,6 +62,10 @@ public class CombatManager : MonoBehaviour {
         // Assign the enemySprite
         enemySprite = GameObject.Find("Enemy");
         enemySprite.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
+
+        // Assign the icons
+        iconOne = GameObject.Find("IconOne");
+        iconTwo = GameObject.Find("IconTwo");
         // The enemy has not attacked
         enemyOneHasAttacked = false;
         
@@ -67,11 +79,15 @@ public class CombatManager : MonoBehaviour {
             combatState = CombatStates.PlayerOneAttacking;
             EnemyDataManager.EnemyManager.assignedOrderInCombat = 2;
             DataManager.manager.assignedOrderInCombat = 1;
+            iconOne.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
+            iconTwo.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
         }
         else {
             combatState = CombatStates.EnemyAttacking;
             EnemyDataManager.EnemyManager.assignedOrderInCombat = 1;
             DataManager.manager.assignedOrderInCombat = 2;
+            iconOne.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
+            iconTwo.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
         }
     }
 

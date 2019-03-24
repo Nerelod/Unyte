@@ -11,10 +11,13 @@ public class EnemyDataManager : MonoBehaviour
     public int experienceGives;
     public int speed = 3;
     public int assignedOrderInCombat;
+    // Sprite of enemy in combat scene
     public Sprite currentSprite = null;
     public string currentName;
     public Monster theMonster;
     public string theScene;
+
+    public List<Monster> monsterTypes = new List<Monster>();
 
     //List of enemies that were defeated in combat
     public List<string> defeatedEnemies = new List<string>();
@@ -29,8 +32,8 @@ public class EnemyDataManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    void Start() { 
-    
+    void Start() {
+        monsterTypes.Add(Monster.Slime); // Slime is 0
         
     }
 

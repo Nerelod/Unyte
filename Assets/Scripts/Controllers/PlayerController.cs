@@ -154,6 +154,7 @@ public class PlayerController : MonoBehaviour {
             State = States.CanMove; // Resume motion after resuming the game
             gameMenuIsActive = false;
             gameMenu.SetActive(gameMenuIsActive);
+            
         }
         // If the gameMenu is unactive, pressing X turns it on   
         else if (Input.GetKeyDown(KeyCode.X) && gameMenuIsActive == false) {     

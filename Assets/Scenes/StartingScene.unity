@@ -14808,7 +14808,7 @@ PrefabInstance:
     - target: {fileID: 4343058050188759345, guid: bb4c7fe1e083a7f4e85abd7828b2f6fd,
         type: 3}
       propertyPath: isFullScreen
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb4c7fe1e083a7f4e85abd7828b2f6fd, type: 3}
