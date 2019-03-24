@@ -89,6 +89,15 @@ public class CombatManager : MonoBehaviour {
                 CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
             }
         }
+        if (player == 1 && CombatTextManager.combatTextManager.textHasBeenPrompt) {
+            if (Input.GetKeyDown(KeyCode.W) && playerOneOption == CombatOptions.HasNotChosen) {
+                CombatTextManager.combatTextManager.ManageText("You do not have any abilities");
+                CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+                CombatTextManager.combatTextManager.textHasBeenPrompt = false;
+                // playerOneOption = CombatOptions.Ability;
+                //CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
+            }
+        }
     }
 
     // Method for subtracting enemy health
