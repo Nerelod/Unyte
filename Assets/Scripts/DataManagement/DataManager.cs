@@ -33,7 +33,7 @@ public class DataManager : MonoBehaviour {
     // game is being loaded
     public Boolean isBeingLoaded = false;
 
-    // List of all abilities
+    
 
 
     // Happens before start, makes sure there is only one instance of DataManager
