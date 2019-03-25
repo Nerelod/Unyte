@@ -99,7 +99,7 @@ public class CombatManager : MonoBehaviour {
             CombatTextManager.combatTextManager.textHasBeenPrompt = true;
         }
         // Assign playerOneOption if it is HasNotChosen based on input, followed by displaying "Choose Order To Act"
-        if (player == 1 && CombatTextManager.combatTextManager.textHasBeenPrompt) {         
+        if (player == 1 && CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.textIsFinished) {         
             if (Input.GetKeyDown(KeyCode.Q) && playerOneOption == CombatOptions.HasNotChosen) {              
                 playerOneOption = CombatOptions.Attack;
                 CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
@@ -216,7 +216,7 @@ public class CombatManager : MonoBehaviour {
                     CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
                     winTextHasBeenPrompt = true;
                 }
-                if(CombatTextManager.combatTextManager.pressedSpace && winTextHasBeenPrompt) {
+                if(CombatTextManager.combatTextManager.pressedSpace && winTextHasBeenPrompt && CombatTextManager.combatTextManager.textIsFinished) {
                     DataManager.manager.isBeingLoaded = true;
                     EnemyDataManager.EnemyManager.defeatedEnemies.Add(EnemyDataManager.EnemyManager.currentName);
                     DataManager.manager.addExperience(EnemyDataManager.EnemyManager.experienceGives);
