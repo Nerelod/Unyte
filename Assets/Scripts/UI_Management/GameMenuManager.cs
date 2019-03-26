@@ -13,10 +13,14 @@ public class GameMenuManager : MonoBehaviour {
     public Text experienceText;
 
     public GameObject AbilityPanel;
+    public GameObject ItemPanel;
     public GameObject mainPanel;
 
-    public Button returnButton;
+    public Button abilityReturnButton;
+    public Button itemReturnButton;
     public Button abilitiesButton;
+    public Button itemsButton;
+    public Button loadButton;
 
     void Start() {
         // Set the gameMenu to not activate at the start
@@ -25,6 +29,12 @@ public class GameMenuManager : MonoBehaviour {
         AbilityPanel.SetActive(false);
         // Make the mainPanel Active
         mainPanel.SetActive(true);
+
+    }
+
+
+    public void whenTurnedOn(){
+
     }
 
     public void showAbilities() {
@@ -34,7 +44,7 @@ public class GameMenuManager : MonoBehaviour {
         mainPanel.SetActive(false);
         
         // Make Return the default Button 
-        returnButton.Select();      
+        abilityReturnButton.Select();      
     }
     public void hideAbilities() {
         // Deactivate Abilities Panel
@@ -46,9 +56,36 @@ public class GameMenuManager : MonoBehaviour {
         abilitiesButton.Select();
     }
 
+    public void showItems(){
+        // Show Item Panel
+        ItemPanel.SetActive(true);
+        // Deactivate mainPanel
+        mainPanel.SetActive(false);
+        
+        // make Return default button
+        itemReturnButton.Select();
+    }
+    public void hideItems(){
+        //Deactivate item panel
+        ItemPanel.SetActive(false);
+        // activate mainPanel
+        mainPanel.SetActive(true);
+
+        // Make Items default button
+        itemsButton.Select();
+    }
+
     void Update() {
         healthText.text = "Health: " + DataManager.manager.health;
         experienceText.text = "Experience: " + DataManager.manager.experience;
+        /* 
+        if(gameMenu.activeSelf){
+            if(mainPanel.activeSelf){
+                loadButton.Select();
+            }
+            else if(AbilityPanel.activeSelf){
+                abilityReturnButton.Select();
+            }
+        }*/
     }
-
 }

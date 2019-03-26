@@ -161,6 +161,7 @@ public class PlayerController : MonoBehaviour {
             State = States.CannotMove; // Player cannot move when in-game menu is on
             gameMenuIsActive = true;
             gameMenu.SetActive(gameMenuIsActive);
+            
         }
     }
 
