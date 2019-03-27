@@ -78,14 +78,5 @@ public class GameMenuManager : MonoBehaviour {
     void Update() {
         healthText.text = "Health: " + DataManager.manager.health;
         experienceText.text = "Experience: " + DataManager.manager.experience;
-        /* 
-        if(gameMenu.activeSelf){
-            if(mainPanel.activeSelf){
-                loadButton.Select();
-            }
-            else if(AbilityPanel.activeSelf){
-                abilityReturnButton.Select();
-            }
-        }*/
     }
 }
