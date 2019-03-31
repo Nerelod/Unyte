@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class GameMenuManager : MonoBehaviour {
 
+    public static GameMenuManager gameMenuManager;
+
     public GameObject gameMenu;
 
 
@@ -22,9 +24,19 @@ public class GameMenuManager : MonoBehaviour {
     public Button itemsButton;
     public Button loadButton;
 
+    private void Awake() {
+        if (gameMenuManager == null) {
+            DontDestroyOnLoad(gameObject);
+            gameMenuManager = this;
+        }
+        else if (gameMenuManager != this) {
+            Destroy(gameObject);
+        }
+    }
+
     void Start() {
         // Set the gameMenu to not activate at the start
-        gameMenu.SetActive(false);
+        gameMenuManager.gameMenu.SetActive(false);
         // Make the AbilityPanel not active at the start
         AbilityPanel.SetActive(false);
         // Make the mainPanel Active
@@ -34,7 +46,10 @@ public class GameMenuManager : MonoBehaviour {
 
 
     public void whenTurnedOn(){
-
+        AbilityPanel.SetActive(false);
+        ItemPanel.SetActive(false);
+        mainPanel.SetActive(true);
+        loadButton.Select();
     }
 
     public void showAbilities() {

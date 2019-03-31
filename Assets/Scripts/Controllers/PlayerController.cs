@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour {
     // An instance of the enum States
     public States State;
     // The in-game menu
-    public GameObject gameMenu;
+    //public GameObject gameMenu;
     // Boolean that determines when the in-game menu is open
     private bool gameMenuIsActive;
 
@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour {
         if (DataManager.manager.isBeingLoaded == true) {        
             transform.position = new Vector2(DataManager.manager.xpos, DataManager.manager.ypos);
             DataManager.manager.isBeingLoaded = false;
+            GameMenuManager.gameMenuManager.gameMenu.SetActive(false);
         }
         // if not switching scenes, start at the starting location
         else { 
@@ -153,14 +154,15 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.X) && gameMenuIsActive) {       
             State = States.CanMove; // Resume motion after resuming the game
             gameMenuIsActive = false;
-            gameMenu.SetActive(gameMenuIsActive);
+            GameMenuManager.gameMenuManager.gameMenu.SetActive(gameMenuIsActive);
             
         }
         // If the gameMenu is unactive, pressing X turns it on   
         else if (Input.GetKeyDown(KeyCode.X) && gameMenuIsActive == false) {     
             State = States.CannotMove; // Player cannot move when in-game menu is on
             gameMenuIsActive = true;
-            gameMenu.SetActive(gameMenuIsActive);
+            GameMenuManager.gameMenuManager.gameMenu.SetActive(gameMenuIsActive);
+            GameMenuManager.gameMenuManager.whenTurnedOn();
             
         }
     }

@@ -35,6 +35,7 @@ public class SaveAndLoadData : MonoBehaviour {
             FileStream file = File.Open(Application.persistentDataPath + "/UnyteGameData.dat", FileMode.Open);
             PlayerData data = (PlayerData)bf.Deserialize(file);
             file.Close();
+
             EnemyDataManager.EnemyManager.defeatedEnemies = data.deadEnemies;
             DataManager.manager.health = data.health;
             DataManager.manager.experience = data.experience;
@@ -42,7 +43,8 @@ public class SaveAndLoadData : MonoBehaviour {
             DataManager.manager.ypos = data.ypos;
             DataManager.manager.currentScene = data.currentScene;
 
-            SceneManager.LoadScene(DataManager.manager.currentScene);
+            SceneManager.LoadScene(DataManager.manager.currentScene);           
+
             DataManager.manager.isBeingLoaded = true;
         }
     }
@@ -56,6 +58,7 @@ public class SaveAndLoadData : MonoBehaviour {
         DataManager.manager.ypos = 0;
 
         SceneManager.LoadScene("Player'sHouseScene");
+        
         DataManager.manager.isBeingLoaded = true;
 
     }
