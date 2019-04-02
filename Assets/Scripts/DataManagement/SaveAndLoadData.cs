@@ -12,14 +12,14 @@ public class SaveAndLoadData : MonoBehaviour {
     public GameObject loadButton;
     
     private void Start() {
-        if(loadButton != null){
+        /* if(loadButton != null){
             if(DataManager.playerOne.hasSaved){
                 loadButton.SetActive(true);
             }
             else{
                 loadButton.SetActive(false);
             }
-        }
+        }*/
     }
 
 
@@ -27,6 +27,7 @@ public class SaveAndLoadData : MonoBehaviour {
     // Save data here. Use the data instance of the PlayerData class
     // to store what needs to be saved.
     public void save() {
+        DataManager.playerOne.hasSaved = true;
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/UnyteGameData.dat");
         PlayerData data = new PlayerData();
@@ -36,11 +37,9 @@ public class SaveAndLoadData : MonoBehaviour {
         data.xpos = DataManager.playerOne.xpos;
         data.ypos = DataManager.playerOne.ypos;
         data.currentScene = DataManager.playerOne.currentScene;
-
+        data.saved = DataManager.playerOne.hasSaved;
         bf.Serialize(file, data);
         file.Close();
-
-        DataManager.playerOne.hasSaved = true;
     }
     // Load data here. Use the data instance of PlayerData to 
     // set equal what needs to be loaded.
@@ -57,6 +56,7 @@ public class SaveAndLoadData : MonoBehaviour {
             DataManager.playerOne.xpos = data.xpos;
             DataManager.playerOne.ypos = data.ypos;
             DataManager.playerOne.currentScene = data.currentScene;
+            DataManager.playerOne.hasSaved = data.saved;
 
             SceneManager.LoadScene(DataManager.playerOne.currentScene);           
 
@@ -86,6 +86,8 @@ public class SaveAndLoadData : MonoBehaviour {
         public int health;
         public float xpos, ypos;
         public string currentScene;
+
+        public bool saved; 
         public List<string> deadEnemies = new List<string>();
     }
 }

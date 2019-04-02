@@ -10,7 +10,6 @@ public class GameMenuManager : MonoBehaviour {
 
     public GameObject gameMenu;
 
-
     public Text healthText;
     public Text experienceText;
 
