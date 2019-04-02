@@ -5,11 +5,24 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SaveAndLoadData : MonoBehaviour {
 
+    public GameObject loadButton;
+    
     private void Start() {
+        if(loadButton != null){
+            if(DataManager.manager.hasSaved){
+                loadButton.SetActive(true);
+            }
+            else{
+                loadButton.SetActive(false);
+            }
+        }
     }
+
+
 
     // Save data here. Use the data instance of the PlayerData class
     // to store what needs to be saved.
@@ -26,6 +39,8 @@ public class SaveAndLoadData : MonoBehaviour {
 
         bf.Serialize(file, data);
         file.Close();
+
+        DataManager.manager.hasSaved = true;
     }
     // Load data here. Use the data instance of PlayerData to 
     // set equal what needs to be loaded.

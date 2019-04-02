@@ -32,7 +32,8 @@ public class DataManager : MonoBehaviour {
     // Boolean for if there is a scene change or the 
     // game is being loaded
     public Boolean isBeingLoaded = false;
-
+    // If the character has ever saved before
+    public Boolean hasSaved = false;
     
 
 

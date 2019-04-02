@@ -49,7 +49,13 @@ public class GameMenuManager : MonoBehaviour {
         AbilityPanel.SetActive(false);
         ItemPanel.SetActive(false);
         mainPanel.SetActive(true);
-        loadButton.Select();
+        if(DataManager.manager.hasSaved){
+            loadButton.interactable = true; 
+            loadButton.Select();
+        }
+        else{
+            loadButton.interactable = false;
+        }
     }
 
     public void showAbilities() {
@@ -93,5 +99,6 @@ public class GameMenuManager : MonoBehaviour {
     void Update() {
         healthText.text = "Health: " + DataManager.manager.health;
         experienceText.text = "Experience: " + DataManager.manager.experience;
+        
     }
 }
