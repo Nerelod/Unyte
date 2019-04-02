@@ -5,7 +5,7 @@ using UnityEngine;
 public class AbilityManager : MonoBehaviour
 {
 
-    private List<Ability> abilities = new List<Ability>();
+    private List<string> abilities = new List<string>();
 
     void Start()
     {
