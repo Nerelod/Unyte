@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ability { 
+public class Ability {
+    private string abilityName;
 
-    
-    
+    public Ability(string name) {
+        abilityName = name;
+    }
 }

@@ -13,7 +13,7 @@ public class SaveAndLoadData : MonoBehaviour {
     
     private void Start() {
         if(loadButton != null){
-            if(DataManager.manager.hasSaved){
+            if(DataManager.playerOne.hasSaved){
                 loadButton.SetActive(true);
             }
             else{
@@ -31,16 +31,16 @@ public class SaveAndLoadData : MonoBehaviour {
         FileStream file = File.Create(Application.persistentDataPath + "/UnyteGameData.dat");
         PlayerData data = new PlayerData();
         data.deadEnemies = EnemyDataManager.EnemyManager.defeatedEnemies;
-        data.health = DataManager.manager.health;
-        data.experience = DataManager.manager.experience;
-        data.xpos = DataManager.manager.xpos;
-        data.ypos = DataManager.manager.ypos;
-        data.currentScene = DataManager.manager.currentScene;
+        data.health = DataManager.playerOne.health;
+        data.experience = DataManager.playerOne.experience;
+        data.xpos = DataManager.playerOne.xpos;
+        data.ypos = DataManager.playerOne.ypos;
+        data.currentScene = DataManager.playerOne.currentScene;
 
         bf.Serialize(file, data);
         file.Close();
 
-        DataManager.manager.hasSaved = true;
+        DataManager.playerOne.hasSaved = true;
     }
     // Load data here. Use the data instance of PlayerData to 
     // set equal what needs to be loaded.
@@ -52,29 +52,29 @@ public class SaveAndLoadData : MonoBehaviour {
             file.Close();
 
             EnemyDataManager.EnemyManager.defeatedEnemies = data.deadEnemies;
-            DataManager.manager.health = data.health;
-            DataManager.manager.experience = data.experience;
-            DataManager.manager.xpos = data.xpos;
-            DataManager.manager.ypos = data.ypos;
-            DataManager.manager.currentScene = data.currentScene;
+            DataManager.playerOne.health = data.health;
+            DataManager.playerOne.experience = data.experience;
+            DataManager.playerOne.xpos = data.xpos;
+            DataManager.playerOne.ypos = data.ypos;
+            DataManager.playerOne.currentScene = data.currentScene;
 
-            SceneManager.LoadScene(DataManager.manager.currentScene);           
+            SceneManager.LoadScene(DataManager.playerOne.currentScene);           
 
-            DataManager.manager.isBeingLoaded = true;
+            DataManager.playerOne.isBeingLoaded = true;
         }
     }
     // Called when making a new game
     public void newGame() {
 
         EnemyDataManager.EnemyManager.defeatedEnemies.Clear();
-        DataManager.manager.health = 10;
-        DataManager.manager.experience = 0;
-        DataManager.manager.xpos = 0;
-        DataManager.manager.ypos = 0;
+        DataManager.playerOne.health = 10;
+        DataManager.playerOne.experience = 0;
+        DataManager.playerOne.xpos = 0;
+        DataManager.playerOne.ypos = 0;
 
         SceneManager.LoadScene("Player'sHouseScene");
         
-        DataManager.manager.isBeingLoaded = true;
+        DataManager.playerOne.isBeingLoaded = true;
 
     }
     /* PlayerData class. This is the class that stores the data 

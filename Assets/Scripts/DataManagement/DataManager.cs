@@ -11,8 +11,9 @@ using UnityEngine.SceneManagement;
 public class DataManager : MonoBehaviour { 
 
     // reference to itself
-    public static DataManager manager;
+    public static DataManager playerOne;
 
+    public AbilityManager abilityManager;
     // amount of experience
     public int experience;
     // amount of health
@@ -31,19 +32,19 @@ public class DataManager : MonoBehaviour {
     public int assignedOrderInCombat;
     // Boolean for if there is a scene change or the 
     // game is being loaded
-    public Boolean isBeingLoaded = false;
+    public bool isBeingLoaded = false;
     // If the character has ever saved before
-    public Boolean hasSaved = false;
+    public bool hasSaved = false;
     
 
 
     // Happens before start, makes sure there is only one instance of DataManager
     private void Awake() {    
-        if (manager == null) {        
+        if (playerOne == null) {        
             DontDestroyOnLoad(gameObject);
-            manager = this;
+            playerOne = this;
         }
-        else if (manager != this) {       
+        else if (playerOne != this) {       
             Destroy(gameObject);
         }      
     }

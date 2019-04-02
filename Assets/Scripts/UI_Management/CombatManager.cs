@@ -75,17 +75,17 @@ public class CombatManager : MonoBehaviour {
 
     // Order is determined by speed
     private void determineOrder() {
-        if (DataManager.manager.speed > EnemyDataManager.EnemyManager.speed) {
+        if (DataManager.playerOne.speed > EnemyDataManager.EnemyManager.speed) {
             combatState = CombatStates.PlayerOneAttacking;
             EnemyDataManager.EnemyManager.assignedOrderInCombat = 2;
-            DataManager.manager.assignedOrderInCombat = 1;
+            DataManager.playerOne.assignedOrderInCombat = 1;
             iconOne.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
             iconTwo.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
         }
         else {
             combatState = CombatStates.EnemyAttacking;
             EnemyDataManager.EnemyManager.assignedOrderInCombat = 1;
-            DataManager.manager.assignedOrderInCombat = 2;
+            DataManager.playerOne.assignedOrderInCombat = 2;
             iconOne.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
             iconTwo.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
         }
@@ -155,7 +155,7 @@ public class CombatManager : MonoBehaviour {
             }
             else if (playerOneChosenOrder == order && CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0) {            
                 if (playerOneOption == CombatOptions.Attack) {            
-                    Attack(EnemyDataManager.EnemyManager, DataManager.manager);
+                    Attack(EnemyDataManager.EnemyManager, DataManager.playerOne);
                 }
                 order += 1;
             }
@@ -185,16 +185,16 @@ public class CombatManager : MonoBehaviour {
                 break;
             case CombatStates.EnemyAttacking:
                 if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !enemyOneHasAttacked) {              
-                    EnemyDataManager.EnemyManager.theMonster.Attack(DataManager.manager);
+                    EnemyDataManager.EnemyManager.theMonster.Attack(DataManager.playerOne);
                     enemyOneHasAttacked = true;
                 }
                 if(CombatTextManager.combatTextManager.pressedSpace && CombatTextManager.combatTextManager.textIsFinished && !EnemyDataManager.EnemyManager.theMonster.displayedDamage) {                    
-                    EnemyDataManager.EnemyManager.theMonster.DisplayDamage(DataManager.manager);
+                    EnemyDataManager.EnemyManager.theMonster.DisplayDamage(DataManager.playerOne);
                 }
                 if(CombatTextManager.combatTextManager.pressedSpace && CombatTextManager.combatTextManager.textIsFinished) {
                     combatState = CombatStates.ResetValues;
                 }
-                if(DataManager.manager.health <= 0) {
+                if(DataManager.playerOne.health <= 0) {
                     combatState = CombatStates.EnemyWon;
                 }
                 HandleOrder(1);
@@ -217,9 +217,9 @@ public class CombatManager : MonoBehaviour {
                     winTextHasBeenPrompt = true;
                 }
                 if(CombatTextManager.combatTextManager.pressedSpace && winTextHasBeenPrompt && CombatTextManager.combatTextManager.textIsFinished) {
-                    DataManager.manager.isBeingLoaded = true;
+                    DataManager.playerOne.isBeingLoaded = true;
                     EnemyDataManager.EnemyManager.defeatedEnemies.Add(EnemyDataManager.EnemyManager.currentName);
-                    DataManager.manager.addExperience(EnemyDataManager.EnemyManager.experienceGives);
+                    DataManager.playerOne.addExperience(EnemyDataManager.EnemyManager.experienceGives);
                     SceneManager.LoadScene(EnemyDataManager.EnemyManager.theScene);
                 }
                 break;
@@ -239,6 +239,6 @@ public class CombatManager : MonoBehaviour {
 
         }
         // Show player's health 
-        CombatTextManager.combatTextManager.playerOneHealthText.text = DataManager.manager.health.ToString();
+        CombatTextManager.combatTextManager.playerOneHealthText.text = DataManager.playerOne.health.ToString();
     }
 }

@@ -49,7 +49,7 @@ public class GameMenuManager : MonoBehaviour {
         AbilityPanel.SetActive(false);
         ItemPanel.SetActive(false);
         mainPanel.SetActive(true);
-        if(DataManager.manager.hasSaved){
+        if(DataManager.playerOne.hasSaved){
             loadButton.interactable = true; 
             loadButton.Select();
         }
@@ -97,8 +97,8 @@ public class GameMenuManager : MonoBehaviour {
     }
 
     void Update() {
-        healthText.text = "Health: " + DataManager.manager.health;
-        experienceText.text = "Experience: " + DataManager.manager.experience;
+        healthText.text = "Health: " + DataManager.playerOne.health;
+        experienceText.text = "Experience: " + DataManager.playerOne.experience;
         
     }
 }

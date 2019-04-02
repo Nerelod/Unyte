@@ -45,9 +45,9 @@ public class PlayerController : MonoBehaviour {
         rigid.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         rigid.interpolation = RigidbodyInterpolation2D.Extrapolate;
         // if switching scenes, change the player position so it makes sense
-        if (DataManager.manager.isBeingLoaded == true) {        
-            transform.position = new Vector2(DataManager.manager.xpos, DataManager.manager.ypos);
-            DataManager.manager.isBeingLoaded = false;
+        if (DataManager.playerOne.isBeingLoaded == true) {        
+            transform.position = new Vector2(DataManager.playerOne.xpos, DataManager.playerOne.ypos);
+            DataManager.playerOne.isBeingLoaded = false;
             GameMenuManager.gameMenuManager.gameMenu.SetActive(false);
         }
         // if not switching scenes, start at the starting location
@@ -142,8 +142,8 @@ public class PlayerController : MonoBehaviour {
         rigid.MovePosition(new Vector2((transform.position.x + moveVector.x * moveSpeed * Time.fixedDeltaTime),
                    transform.position.y + moveVector.y * moveSpeed * Time.fixedDeltaTime));
 
-        DataManager.manager.xpos = transform.position.x;
-        DataManager.manager.ypos = transform.position.y;
+        DataManager.playerOne.xpos = transform.position.x;
+        DataManager.playerOne.ypos = transform.position.y;
 
         // Determine when to trigger the in-game menu
         controlGameMenu();
