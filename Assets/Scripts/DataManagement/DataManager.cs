@@ -49,7 +49,8 @@ public class DataManager : MonoBehaviour {
         }      
     }
     private void Start() {
-        theName = "Player One";
+        playerOne.theName = "Player One";
+        playerOne.abilityManager.abilities.Add("Investigate");
     }
     // Method for adding experience to total experience
     public void addExperience(int experienceToAdd) {    
