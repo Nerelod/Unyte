@@ -49,8 +49,10 @@ public class DataManager : MonoBehaviour {
         }      
     }
     private void Start() {
+        abilityManager = gameObject.AddComponent<AbilityManager>() as AbilityManager;
+
         playerOne.theName = "Player One";
-        playerOne.abilityManager.abilities.Add("Investigate");
+        playerOne.abilityManager.abilities.Add( () => abilityManager.Ivestigate(EnemyDataManager.EnemyManager));
     }
     // Method for adding experience to total experience
     public void addExperience(int experienceToAdd) {    

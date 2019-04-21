@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class AbilityManager : MonoBehaviour
 {
-
-    public List<string> abilities = new List<string>();
+    public List<System.Action> abilities = new List<System.Action>();
 
     void Start()
     {
         
     }
 
+    public void Ivestigate(EnemyDataManager enemy){
+
+    }
     void Update()
     {
         
