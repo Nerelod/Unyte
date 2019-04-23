@@ -118,6 +118,7 @@ MonoBehaviour:
   gameMenu: {fileID: 1115213049}
   healthText: {fileID: 6410802045908283779}
   experienceText: {fileID: 4437915132607680864}
+  investigateText: {fileID: 3702730590878310825}
   AbilityPanel: {fileID: 4690281474558419129}
   ItemPanel: {fileID: 5749811880415082390}
   mainPanel: {fileID: 5122366748426734099}

@@ -305,12 +305,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76af13939d528c444886d54d8dc33515, type: 3}
---- !u!1 &195224126 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1115213049, guid: f070131028b67dc49884626b9be15324,
-    type: 3}
-  m_PrefabInstance: {fileID: 1359397707}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &234570832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1177,7 +1171,7 @@ PrefabInstance:
     - target: {fileID: 212183971273755678, guid: 76af13939d528c444886d54d8dc33515,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76af13939d528c444886d54d8dc33515, type: 3}
@@ -14505,7 +14499,6 @@ MonoBehaviour:
   moveSpeed: 2.5
   startingPosition: {fileID: 11400000, guid: 78567ad5f0fc84f4295d09ccbbb046af, type: 2}
   State: 0
-  gameMenu: {fileID: 195224126}
   direction: 1
 --- !u!212 &1018483065
 SpriteRenderer:
@@ -14922,7 +14915,7 @@ PrefabInstance:
     - target: {fileID: 7188358355703538149, guid: f070131028b67dc49884626b9be15324,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f070131028b67dc49884626b9be15324, type: 3}

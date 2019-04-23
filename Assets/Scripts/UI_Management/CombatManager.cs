@@ -92,29 +92,26 @@ public class CombatManager : MonoBehaviour {
     }
 
     // Gets the player's chosen action 
-    private void GetPlayerAction(int player) {
+    private void GetPlayerAction(DataManager player) {
         // If the previous text is finished, the text has not been prompt, and the user pressed space, display "Choose an Action" 
         if (CombatTextManager.combatTextManager.textIsFinished && !CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.pressedSpace) {         
             CombatTextManager.combatTextManager.ManageText("Choose an Action");
             CombatTextManager.combatTextManager.textHasBeenPrompt = true;
         }
         // Assign playerOneOption if it is HasNotChosen based on input, followed by displaying "Choose Order To Act"
-        if (player == 1 && CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.textIsFinished) {         
-            if (Input.GetKeyDown(KeyCode.Q) && playerOneOption == CombatOptions.HasNotChosen) {              
+        if (player == DataManager.playerOne && CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.textIsFinished) {
+            if (Input.GetKeyDown(KeyCode.Q) && playerOneOption == CombatOptions.HasNotChosen) {
                 playerOneOption = CombatOptions.Attack;
                 CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
             }
-        }
-        if (player == 1 && CombatTextManager.combatTextManager.textHasBeenPrompt) {
             if (Input.GetKeyDown(KeyCode.W) && playerOneOption == CombatOptions.HasNotChosen) {
                 CombatTextManager.combatTextManager.ManageText("You do not have any abilities");
                 CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
                 CombatTextManager.combatTextManager.textHasBeenPrompt = false;
-                // playerOneOption = CombatOptions.Ability;
-                //CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
             }
         }
     }
+        
 
     // Method for subtracting enemy health
     private void Attack(EnemyDataManager enemy, DataManager character) {     
@@ -168,7 +165,7 @@ public class CombatManager : MonoBehaviour {
         switch (combatState) {        
             case CombatStates.PlayerOneAttacking:
                 if (playerOneOption == CombatOptions.HasNotChosen) {                 
-                    GetPlayerAction(1);
+                    GetPlayerAction(DataManager.playerOne);
                 }
                 if (playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder == 0) {                 
                     GetOrder(1);

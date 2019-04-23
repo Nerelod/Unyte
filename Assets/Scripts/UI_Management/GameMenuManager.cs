@@ -13,6 +13,8 @@ public class GameMenuManager : MonoBehaviour {
     public Text healthText;
     public Text experienceText;
 
+    public Text investigateText;
+
     public GameObject AbilityPanel;
     public GameObject ItemPanel;
     public GameObject mainPanel;
@@ -43,6 +45,11 @@ public class GameMenuManager : MonoBehaviour {
 
     }
 
+    private void checkPlayerOneAbilities() {
+        if (DataManager.playerOne.abilityManager.aquiredAbilities.Contains("Investigate")) { investigateText.text = "Investigate"; } else { investigateText.text = ""; }
+            
+        
+    }
 
     public void whenTurnedOn(){
         AbilityPanel.SetActive(false);
@@ -55,6 +62,8 @@ public class GameMenuManager : MonoBehaviour {
         else{
             loadButton.interactable = false;
         }
+
+        checkPlayerOneAbilities();
     }
 
     public void showAbilities() {
