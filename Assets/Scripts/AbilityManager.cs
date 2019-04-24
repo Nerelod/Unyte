@@ -20,6 +20,7 @@ public class AbilityManager : MonoBehaviour
     public void playerOneSelectAbility(string selectedAbility){
         if(DataManager.playerOne.abilityManager.aquiredAbilities.Contains(selectedAbility)){
             DataManager.playerOne.abilityManager.abilityToUse = selectedAbility;
+            CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(false);
 
         }
     }

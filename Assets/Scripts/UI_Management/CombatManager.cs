@@ -27,7 +27,7 @@ public class CombatManager : MonoBehaviour {
     private bool winTextHasBeenPrompt;
 
     // Ability Select Panel
-    public GameObject abilitySelectPanel;
+    
     // IconOne image
     public GameObject iconOne;
     // IconTwo image
@@ -40,13 +40,15 @@ public class CombatManager : MonoBehaviour {
     private void Awake() {
         // Get a reference to the CombatTextManager, so it exists
         CombatTextManager.combatTextManager = GameObject.Find("CombatTextManager").GetComponent<CombatTextManager>();
+        // Get a reference to the combatMenuManager
+        CombatMenuManager.combatMenuManager = GameObject.Find("CombatMenuManager").GetComponent<CombatMenuManager>();
     }
 
     // Used to set all the values to default at the start of combat
     void Start() {
 
         // Set the abilityselectpanel off
-        abilitySelectPanel.SetActive(false);
+        CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(false);
         // Win text is false, has not been displayed
         winTextHasBeenPrompt = false;
         // Make the damage text empty
@@ -110,7 +112,8 @@ public class CombatManager : MonoBehaviour {
                 CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
             }
             if (Input.GetKeyDown(KeyCode.W) && playerOneOption == CombatOptions.HasNotChosen) {
-                abilitySelectPanel.SetActive(true);
+                CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(true);
+                CombatMenuManager.combatMenuManager.abilityReturnButton.Select();
                 playerOneOption = CombatOptions.Ability;
                 CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
                 //CombatTextManager.combatTextManager.ManageText("You do not have any abilities");

@@ -2285,6 +2285,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919110710}
   m_CullTransparentMesh: 0
+--- !u!1 &1922625808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1922625810}
+  - component: {fileID: 1922625809}
+  m_Layer: 0
+  m_Name: CombatMenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1922625809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922625808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c910b1f7a56414e49a4483fd28524962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilitySelectPanel: {fileID: 553985325}
+  abilityReturnButton: {fileID: 1373801300}
+--- !u!4 &1922625810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922625808}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 589.8237, y: 369.91055, z: -1152.2972}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1963898403
 GameObject:
   m_ObjectHideFlags: 0
@@ -2648,7 +2693,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySprite: {fileID: 0}
-  abilitySelectPanel: {fileID: 553985325}
   iconOne: {fileID: 402646126}
   iconTwo: {fileID: 1984592337}
   playerOneIcon: {fileID: 21300000, guid: 1a2a01a0eb68e3d4e95437880d9ba966, type: 3}
