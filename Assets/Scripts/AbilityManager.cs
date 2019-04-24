@@ -4,16 +4,33 @@ using UnityEngine;
 
 public class AbilityManager : MonoBehaviour
 {
-    public List<System.Action> abilities = new List<System.Action>();
     public List<string> aquiredAbilities = new List<string>();
+
+    public string abilityToUse;
 
     void Start()
     {
         
     }
 
-    public void Ivestigate(EnemyDataManager enemy){
-        CombatTextManager.combatTextManager.ManageText(enemy.health.ToString());
+    public void Investigate(){
+        CombatTextManager.combatTextManager.ManageText("Investigate Reveals The Enemy Has " + EnemyDataManager.EnemyManager.health.ToString() + " health");
+    }
+
+    public void playerOneSelectAbility(string selectedAbility){
+        if(DataManager.playerOne.abilityManager.aquiredAbilities.Contains(selectedAbility)){
+            DataManager.playerOne.abilityManager.abilityToUse = selectedAbility;
+
+        }
+    }
+
+    public void useAbility(){
+        if(abilityToUse == "Investigate"){
+            Investigate();
+        }
+    }
+    public void turnOffAbilitySelect(GameObject panel){
+        panel.SetActive(false);
     }
     void Update()
     {

@@ -26,6 +26,8 @@ public class CombatManager : MonoBehaviour {
     // Boolean that represents whether the win text was prompt
     private bool winTextHasBeenPrompt;
 
+    // Ability Select Panel
+    public GameObject abilitySelectPanel;
     // IconOne image
     public GameObject iconOne;
     // IconTwo image
@@ -42,6 +44,9 @@ public class CombatManager : MonoBehaviour {
 
     // Used to set all the values to default at the start of combat
     void Start() {
+
+        // Set the abilityselectpanel off
+        abilitySelectPanel.SetActive(false);
         // Win text is false, has not been displayed
         winTextHasBeenPrompt = false;
         // Make the damage text empty
@@ -105,9 +110,12 @@ public class CombatManager : MonoBehaviour {
                 CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
             }
             if (Input.GetKeyDown(KeyCode.W) && playerOneOption == CombatOptions.HasNotChosen) {
-                CombatTextManager.combatTextManager.ManageText("You do not have any abilities");
-                CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
-                CombatTextManager.combatTextManager.textHasBeenPrompt = false;
+                abilitySelectPanel.SetActive(true);
+                playerOneOption = CombatOptions.Ability;
+                CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
+                //CombatTextManager.combatTextManager.ManageText("You do not have any abilities");
+                //CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+                //CombatTextManager.combatTextManager.textHasBeenPrompt = false;
             }
         }
     }
@@ -124,7 +132,7 @@ public class CombatManager : MonoBehaviour {
     }
 
     // Method for getting the player's chosen order to act
-    private void GetOrder(int player) {    
+    private void GetOrder(DataManager player) {    
         int theOrder = 0;
         
         if (Input.GetKeyDown(KeyCode.Alpha1) && CombatTextManager.combatTextManager.textIsFinished) {        
@@ -137,7 +145,7 @@ public class CombatManager : MonoBehaviour {
             CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
             theOrder = 2;
         }
-        if(player == 1) {        
+        if(player == DataManager.playerOne) {        
             playerOneChosenOrder = theOrder;
         }
     }
@@ -145,14 +153,18 @@ public class CombatManager : MonoBehaviour {
     // TODO: Get Target Method
 
     // Handles all actions that happen on the order
-    private void HandleOrder(int player) {    
-        if (player == 1) {        
+    private void HandleOrder(DataManager player) {    
+        if (player == DataManager.playerOne) {        
             if (playerOneChosenOrder != order && CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0) { 
                 order += 1;
             }
             else if (playerOneChosenOrder == order && CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0) {            
                 if (playerOneOption == CombatOptions.Attack) {            
                     Attack(EnemyDataManager.EnemyManager, DataManager.playerOne);
+                }
+                else if (playerOneOption == CombatOptions.Ability){ 
+                    DataManager.playerOne.abilityManager.useAbility();
+                    CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
                 }
                 order += 1;
             }
@@ -168,10 +180,10 @@ public class CombatManager : MonoBehaviour {
                     GetPlayerAction(DataManager.playerOne);
                 }
                 if (playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder == 0) {                 
-                    GetOrder(1);
+                    GetOrder(DataManager.playerOne);
                 }
 
-                HandleOrder(1);
+                HandleOrder(DataManager.playerOne);
                 
                 if(order == EnemyDataManager.EnemyManager.assignedOrderInCombat) {                  
                     combatState = CombatStates.EnemyAttacking;
@@ -194,9 +206,12 @@ public class CombatManager : MonoBehaviour {
                 if(DataManager.playerOne.health <= 0) {
                     combatState = CombatStates.EnemyWon;
                 }
-                HandleOrder(1);
+                
+                HandleOrder(DataManager.playerOne);
+
                 break;
             case CombatStates.ResetValues:
+                DataManager.playerOne.abilityManager.abilityToUse = "";
                 playerOneOption = CombatOptions.HasNotChosen;
                 playerOneChosenOrder = 0;
                 order = 1;
