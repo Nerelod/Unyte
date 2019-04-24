@@ -14,10 +14,13 @@ public class DataManager : MonoBehaviour {
     public static DataManager playerOne;
 
     public AbilityManager abilityManager;
+    public ItemManager itemManager;
     // amount of experience
     public int experience;
     // amount of health
     public int health;
+    // total amount of health possible
+    public int totalHealth;
     // amount of speed
     public int speed = 5;
     // the damage dealt with basic attack Q
@@ -50,10 +53,13 @@ public class DataManager : MonoBehaviour {
     }
     private void Start() {
         abilityManager = gameObject.AddComponent<AbilityManager>() as AbilityManager;
+        itemManager = gameObject.AddComponent<ItemManager>() as ItemManager;
 
         playerOne.theName = "Player One";
 
         playerOne.abilityManager.aquiredAbilities.Add("Investigate");
+
+        playerOne.itemManager.aquiredItems.Add("Health_Potion");
     }
     // Method for adding experience to total experience
     public void addExperience(int experienceToAdd) {    

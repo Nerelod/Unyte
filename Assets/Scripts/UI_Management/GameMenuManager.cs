@@ -12,13 +12,15 @@ public class GameMenuManager : MonoBehaviour {
 
     public Text healthText;
     public Text experienceText;
-
+    // Ability Texts
     public Text investigateText;
-
+    // Item Texts
+    public Text healthPotionText;
+    // Panels
     public GameObject AbilityPanel;
     public GameObject ItemPanel;
     public GameObject mainPanel;
-
+    // Buttons
     public Button abilityReturnButton;
     public Button itemReturnButton;
     public Button abilitiesButton;
@@ -46,11 +48,11 @@ public class GameMenuManager : MonoBehaviour {
     }
 
     private void checkPlayerOneAbilities() {
-        if (DataManager.playerOne.abilityManager.aquiredAbilities.Contains("Investigate")) { investigateText.text = "Investigate"; } else { investigateText.text = ""; }
-            
-        
+        if (DataManager.playerOne.abilityManager.aquiredAbilities.Contains("Investigate")) { investigateText.text = "Investigate"; } else { investigateText.text = ""; }    
     }
-
+    private void checkPlayerOneItems(){
+        if (DataManager.playerOne.itemManager.aquiredItems.Contains("Health_Potion")){ healthPotionText.text = "Health Potion"; } else { healthPotionText.text = ""; }
+    }
     public void whenTurnedOn(){
         AbilityPanel.SetActive(false);
         ItemPanel.SetActive(false);
@@ -64,6 +66,7 @@ public class GameMenuManager : MonoBehaviour {
         }
 
         checkPlayerOneAbilities();
+        checkPlayerOneItems();
     }
 
     public void showAbilities() {

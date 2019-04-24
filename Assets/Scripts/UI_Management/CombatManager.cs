@@ -116,10 +116,15 @@ public class CombatManager : MonoBehaviour {
                 CombatMenuManager.combatMenuManager.abilityReturnButton.Select();
                 playerOneOption = CombatOptions.Ability;
                 CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
-                //CombatTextManager.combatTextManager.ManageText("You do not have any abilities");
-                //CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
-                //CombatTextManager.combatTextManager.textHasBeenPrompt = false;
+                
             }
+            if (Input.GetKeyDown(KeyCode.E) && playerOneOption == CombatOptions.HasNotChosen){
+                CombatMenuManager.combatMenuManager.itemSelectPanel.SetActive(true);
+                CombatMenuManager.combatMenuManager.itemReturnButton.Select();
+                playerOneOption = CombatOptions.Item;
+                CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
+            }
+            
         }
     }
         
@@ -169,6 +174,10 @@ public class CombatManager : MonoBehaviour {
                     DataManager.playerOne.abilityManager.useAbility();
                     CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
                 }
+                else if(playerOneOption == CombatOptions.Item){
+                    DataManager.playerOne.itemManager.useItem(DataManager.playerOne);
+                    CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+                }
                 order += 1;
             }
         }
@@ -215,6 +224,7 @@ public class CombatManager : MonoBehaviour {
                 break;
             case CombatStates.ResetValues:
                 DataManager.playerOne.abilityManager.abilityToUse = "";
+                DataManager.playerOne.itemManager.itemToUse = "";
                 playerOneOption = CombatOptions.HasNotChosen;
                 playerOneChosenOrder = 0;
                 order = 1;
