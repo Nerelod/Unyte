@@ -1675,10 +1675,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1373801299}
         m_MethodName: turnOffAbilitySelect
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 553985325}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1784,11 +1784,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1377941718}
-        m_MethodName: turnOffAbilitySelect
-        m_Mode: 2
+        m_MethodName: turnOffItemSelect
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 2124525826}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1805,11 +1805,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1377941716}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 246c0498f31253c4da28dade03336686, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fac7067c28a54e5ab3054c1d22771a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aquiredAbilities: []
-  abilityToUse: 
+  aquiredItems: []
+  itemToUse: 
 --- !u!114 &1377941719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2764,6 +2764,7 @@ MonoBehaviour:
   abilityReturnButton: {fileID: 1373801300}
   itemSelectPanel: {fileID: 2124525826}
   itemReturnButton: {fileID: 1377941717}
+  healthPotionButton: {fileID: 704889896}
 --- !u!4 &1922625810
 Transform:
   m_ObjectHideFlags: 0

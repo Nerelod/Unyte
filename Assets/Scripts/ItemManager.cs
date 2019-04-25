@@ -29,6 +29,11 @@ public class ItemManager : MonoBehaviour
             healthPotion(player);
         }
     }
+
+    public void turnOffItemSelect(){
+        CombatMenuManager.combatMenuManager.itemSelectPanel.SetActive(false);
+        CombatTextManager.combatTextManager.textHasBeenPrompt = false;
+    }
     void Update()
     {
         

@@ -47,6 +47,8 @@ public class CombatManager : MonoBehaviour {
     // Used to set all the values to default at the start of combat
     void Start() {
 
+        DataManager.playerOne.abilityManager.abilityToUse = "";
+        DataManager.playerOne.itemManager.itemToUse = "";
         // Set the abilityselectpanel off
         CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(false);
         // Win text is false, has not been displayed
@@ -113,16 +115,19 @@ public class CombatManager : MonoBehaviour {
             }
             if (Input.GetKeyDown(KeyCode.W) && playerOneOption == CombatOptions.HasNotChosen) {
                 CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(true);
-                CombatMenuManager.combatMenuManager.abilityReturnButton.Select();
-                playerOneOption = CombatOptions.Ability;
-                CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
-                
+                CombatMenuManager.combatMenuManager.abilityReturnButton.Select();           
+                CombatTextManager.combatTextManager.ManageText("Choose Order To Act");                               
             }
             if (Input.GetKeyDown(KeyCode.E) && playerOneOption == CombatOptions.HasNotChosen){
-                CombatMenuManager.combatMenuManager.itemSelectPanel.SetActive(true);
-                CombatMenuManager.combatMenuManager.itemReturnButton.Select();
-                playerOneOption = CombatOptions.Item;
+                CombatMenuManager.combatMenuManager.whenTurnedOn();
                 CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
+            }
+
+            if (DataManager.playerOne.abilityManager.abilityToUse != ""){
+                playerOneOption = CombatOptions.Ability;
+            }
+            if (DataManager.playerOne.itemManager.itemToUse != ""){
+                playerOneOption = CombatOptions.Item;
             }
             
         }

@@ -30,8 +30,9 @@ public class AbilityManager : MonoBehaviour
             Investigate();
         }
     }
-    public void turnOffAbilitySelect(GameObject panel){
-        panel.SetActive(false);
+    public void turnOffAbilitySelect(){
+        CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(false);
+        CombatTextManager.combatTextManager.textHasBeenPrompt = false;
     }
     void Update()
     {
