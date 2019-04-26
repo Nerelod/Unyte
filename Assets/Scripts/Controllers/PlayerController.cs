@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour {
     //public GameObject gameMenu;
     // Boolean that determines when the in-game menu is open
     private bool gameMenuIsActive;
-
+    public bool isInvincible;
     
 
     [SerializeField]
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour {
     int direction; //1 =  down, 2 = up, 3 = left, 4 = right, 5 = up left, 6 = up right, 7 = down left, 8 = down right
 
     void Start () {
+        isInvincible = false;
         // Make the in-game menu hidden at the start
         gameMenuIsActive = false;
         // Assign the animator
@@ -49,6 +50,10 @@ public class PlayerController : MonoBehaviour {
             transform.position = new Vector2(DataManager.playerOne.xpos, DataManager.playerOne.ypos);
             DataManager.playerOne.isBeingLoaded = false;
             GameMenuManager.gameMenuManager.gameMenu.SetActive(false);
+            if(DataManager.playerOne.ranFromCombat){
+                StartCoroutine(invincibilityTimer());
+                DataManager.playerOne.ranFromCombat = false;
+            }
         }
         // if not switching scenes, start at the starting location
         else { 
@@ -167,6 +172,11 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    public IEnumerator invincibilityTimer() { 
+        isInvincible = true;
+        yield return new WaitForSeconds(3);
+        isInvincible = false;
+    }
     void Update() {
         // State controller
         if (State == States.CanMove) {       

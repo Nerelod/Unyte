@@ -19,6 +19,8 @@ public class CombatManager : MonoBehaviour {
     CombatOptions playerOneOption;
     // The current order or turn of the combat
     private int order;
+    // order to reset values
+    private int orderToReset;
     // The order playerOne chose to act
     private int playerOneChosenOrder;
     // Boolean that represents whether the enemy has attacked
@@ -66,7 +68,7 @@ public class CombatManager : MonoBehaviour {
         // PlayerOne has not chosen an action
         playerOneOption = CombatOptions.HasNotChosen;
         // Display the text that is shown at the beginning of an encounter and wait for key press to continue
-        CombatTextManager.combatTextManager.ManageText("A " + EnemyDataManager.EnemyManager.currentName + " appeared!");
+        CombatTextManager.combatTextManager.ManageText("A " + EnemyDataManager.EnemyManager.currentType + " appeared!");
         CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
         // Assign the enemySprite
         enemySprite = GameObject.Find("Enemy");
@@ -81,7 +83,18 @@ public class CombatManager : MonoBehaviour {
         // Get the order that combtatants will act on
         determineOrder(); 
     }
-
+    // Method for the Run option
+    private void Run(DataManager player){
+        // run away animation
+        if(player.speed > EnemyDataManager.EnemyManager.speed){
+            DataManager.playerOne.isBeingLoaded = true;
+            DataManager.playerOne.ranFromCombat = true;
+            SceneManager.LoadScene(EnemyDataManager.EnemyManager.theScene);
+        }
+        else{
+            CombatTextManager.combatTextManager.ManageText("Failed to run");
+        }
+    }
     // Order is determined by speed
     private void determineOrder() {
         if (DataManager.playerOne.speed > EnemyDataManager.EnemyManager.speed) {
@@ -98,6 +111,7 @@ public class CombatManager : MonoBehaviour {
             iconOne.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
             iconTwo.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
         }
+        orderToReset = 3;
     }
 
     // Gets the player's chosen action 
@@ -108,26 +122,31 @@ public class CombatManager : MonoBehaviour {
             CombatTextManager.combatTextManager.textHasBeenPrompt = true;
         }
         // Assign playerOneOption if it is HasNotChosen based on input, followed by displaying "Choose Order To Act"
-        if (player == DataManager.playerOne && CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.textIsFinished) {
-            if (Input.GetKeyDown(KeyCode.Q) && playerOneOption == CombatOptions.HasNotChosen) {
-                playerOneOption = CombatOptions.Attack;
-                CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
-            }
-            if (Input.GetKeyDown(KeyCode.W) && playerOneOption == CombatOptions.HasNotChosen) {
-                CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(true);
-                CombatMenuManager.combatMenuManager.abilityReturnButton.Select();           
-                CombatTextManager.combatTextManager.ManageText("Choose Order To Act");                               
-            }
-            if (Input.GetKeyDown(KeyCode.E) && playerOneOption == CombatOptions.HasNotChosen){
-                CombatMenuManager.combatMenuManager.whenTurnedOn();
-                CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
-            }
+        if (CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.textIsFinished) {
+            if(player = DataManager.playerOne){
+                if (Input.GetKeyDown(KeyCode.Q) && playerOneOption == CombatOptions.HasNotChosen) {
+                    playerOneOption = CombatOptions.Attack;
+                    CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
+                }
+                if (Input.GetKeyDown(KeyCode.W) && playerOneOption == CombatOptions.HasNotChosen) {
+                    CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(true);
+                    CombatMenuManager.combatMenuManager.abilityReturnButton.Select();           
+                    CombatTextManager.combatTextManager.ManageText("Choose Order To Act");                               
+                }
+                if (Input.GetKeyDown(KeyCode.E) && playerOneOption == CombatOptions.HasNotChosen){
+                    CombatMenuManager.combatMenuManager.whenTurnedOn();
+                    CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
+                }
+                if (Input.GetKeyDown(KeyCode.R) && playerOneOption == CombatOptions.HasNotChosen){
+                    Run(DataManager.playerOne);
+                }
 
-            if (DataManager.playerOne.abilityManager.abilityToUse != ""){
-                playerOneOption = CombatOptions.Ability;
-            }
-            if (DataManager.playerOne.itemManager.itemToUse != ""){
-                playerOneOption = CombatOptions.Item;
+                if (DataManager.playerOne.abilityManager.abilityToUse != ""){
+                    playerOneOption = CombatOptions.Ability;
+                }
+                if (DataManager.playerOne.itemManager.itemToUse != ""){
+                    playerOneOption = CombatOptions.Item;
+                }
             }
             
         }
@@ -170,6 +189,7 @@ public class CombatManager : MonoBehaviour {
         if (player == DataManager.playerOne) {        
             if (playerOneChosenOrder != order && CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0) { 
                 order += 1;
+                Debug.Log("handle order " + order.ToString());
             }
             else if (playerOneChosenOrder == order && CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0) {            
                 if (playerOneOption == CombatOptions.Attack) {            
@@ -183,6 +203,11 @@ public class CombatManager : MonoBehaviour {
                     DataManager.playerOne.itemManager.useItem(DataManager.playerOne);
                     CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
                 }
+                order += 1;
+                Debug.Log("execute order" + order.ToString());
+            }
+            else if (playerOneChosenOrder != order && CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && playerOneOption == CombatOptions.HasNotChosen && playerOneChosenOrder == 0){
+                Debug.Log("has not had a turn");
                 order += 1;
             }
         }
@@ -199,11 +224,18 @@ public class CombatManager : MonoBehaviour {
                 if (playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder == 0) {                 
                     GetOrder(DataManager.playerOne);
                 }
-
-                HandleOrder(DataManager.playerOne);
+                if (playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0){
+                    HandleOrder(DataManager.playerOne);
+                }
                 
-                if(order == EnemyDataManager.EnemyManager.assignedOrderInCombat) {                  
+                if(order == EnemyDataManager.EnemyManager.assignedOrderInCombat) { 
+                    Debug.Log("enemy turn " + order.ToString() + EnemyDataManager.EnemyManager.assignedOrderInCombat.ToString());               
                     combatState = CombatStates.EnemyAttacking;
+
+                }
+                else if (order == orderToReset){
+                    Debug.Log("reset time" + order.ToString() + orderToReset.ToString());
+                    combatState = CombatStates.ResetValues;
                 }
                 if(EnemyDataManager.EnemyManager.health <= 0) {
                     combatState = CombatStates.PlayerWon;
@@ -216,29 +248,40 @@ public class CombatManager : MonoBehaviour {
                 }
                 if(CombatTextManager.combatTextManager.pressedSpace && CombatTextManager.combatTextManager.textIsFinished && !EnemyDataManager.EnemyManager.theMonster.displayedDamage) {                    
                     EnemyDataManager.EnemyManager.theMonster.DisplayDamage(DataManager.playerOne);
+                    Debug.Log("damageDisplay " + order.ToString());
                 }
-                if(CombatTextManager.combatTextManager.pressedSpace && CombatTextManager.combatTextManager.textIsFinished) {
+
+                HandleOrder(DataManager.playerOne);
+
+                if(order == DataManager.playerOne.assignedOrderInCombat && CombatTextManager.combatTextManager.pressedSpace && CombatTextManager.combatTextManager.textIsFinished){
+                    Debug.Log("player turn");
+                    combatState = CombatStates.PlayerOneAttacking;
+                }
+                else if(order == orderToReset) {
+                    Debug.Log("reset time");
                     combatState = CombatStates.ResetValues;
                 }
                 if(DataManager.playerOne.health <= 0) {
                     combatState = CombatStates.EnemyWon;
                 }
-                
-                HandleOrder(DataManager.playerOne);
 
                 break;
             case CombatStates.ResetValues:
                 DataManager.playerOne.abilityManager.abilityToUse = "";
                 DataManager.playerOne.itemManager.itemToUse = "";
-                playerOneOption = CombatOptions.HasNotChosen;
-                playerOneChosenOrder = 0;
                 order = 1;
                 enemyOneHasAttacked = false;
-                combatState = CombatStates.PlayerOneAttacking;
                 CombatTextManager.combatTextManager.textHasBeenPrompt = false;
                 EnemyDataManager.EnemyManager.theMonster.displayedDamage = false;
                 EnemyDataManager.EnemyManager.theMonster.textWasPrompt = false;
-                combatState = CombatStates.PlayerOneAttacking;               
+                if(order == DataManager.playerOne.assignedOrderInCombat){ 
+                    playerOneOption = CombatOptions.HasNotChosen;
+                    playerOneChosenOrder = 0;
+                    combatState = CombatStates.PlayerOneAttacking; 
+                }
+                else if(order == EnemyDataManager.EnemyManager.assignedOrderInCombat){ 
+                    combatState = CombatStates.EnemyAttacking; 
+                }             
                 break;
             case CombatStates.PlayerWon:
                 if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !winTextHasBeenPrompt) {

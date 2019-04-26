@@ -20,6 +20,8 @@ public class MonsterController : MonoBehaviour {
     private bool pointA;
     // Boolean for if the monster is traveling to the right
     private bool goingRight;
+
+    public string monsterType;
     
     private Animator anim;
     // Reference to the player
@@ -114,12 +116,16 @@ public class MonsterController : MonoBehaviour {
 
     // If something collides in trigegrbox, set inRange true and move toward 
     private void OnTriggerEnter2D(Collider2D other) { 
-        inRange = true;      
-        transform.position = Vector2.MoveTowards(transform.position, target.position, chaseSpeed * Time.deltaTime);
+        if(!player.isInvincible){
+            inRange = true;      
+            transform.position = Vector2.MoveTowards(transform.position, target.position, chaseSpeed * Time.deltaTime);
+        }
     }
     // If something leaves the triggerbox, set inRange false
     private void OnTriggerExit2D(Collider2D collision) { 
-        inRange = false;
+        if(!player.isInvincible){
+            inRange = false;
+        }
     }
 
     // If player collides with the monster, 
@@ -127,13 +133,14 @@ public class MonsterController : MonoBehaviour {
     // and load the combat scene
     private void OnCollisionEnter2D(Collision2D collision) { 
     
-        if (collision.gameObject.tag == "Player") {
+        if (collision.gameObject.tag == "Player" && !player.isInvincible) {
             EnemyDataManager.EnemyManager.theScene = scene;
             EnemyDataManager.EnemyManager.currentSprite = combatSprite;
             EnemyDataManager.EnemyManager.currentName = monsterName;
             EnemyDataManager.EnemyManager.health = health;
             EnemyDataManager.EnemyManager.experienceGives = experienceToGive;
-            EnemyDataManager.EnemyManager.theMonster = monster;            
+            EnemyDataManager.EnemyManager.theMonster = monster;    
+            EnemyDataManager.EnemyManager.currentType = monsterType;       
             SceneManager.LoadScene("CombatScene");
         }
     }

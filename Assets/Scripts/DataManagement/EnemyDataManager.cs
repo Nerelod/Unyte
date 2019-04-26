@@ -14,6 +14,7 @@ public class EnemyDataManager : MonoBehaviour
     // Sprite of enemy in combat scene
     public Sprite currentSprite = null;
     public string currentName;
+    public string currentType;
     public Monster theMonster;
     public string theScene;
 

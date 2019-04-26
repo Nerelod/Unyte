@@ -38,6 +38,8 @@ public class DataManager : MonoBehaviour {
     public bool isBeingLoaded = false;
     // If the character has ever saved before
     public bool hasSaved = false;
+
+    public bool ranFromCombat = false;
     
 
 
