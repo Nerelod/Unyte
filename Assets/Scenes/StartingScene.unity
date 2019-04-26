@@ -14509,6 +14509,11 @@ PrefabInstance:
       propertyPath: monsterType
       value: Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 9178842440792351147, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29759f4f2cd0e5d43b11785e40507882, type: 3}
 --- !u!1001 &985138670
@@ -14633,6 +14638,7 @@ MonoBehaviour:
   moveSpeed: 2.5
   startingPosition: {fileID: 11400000, guid: 78567ad5f0fc84f4295d09ccbbb046af, type: 2}
   State: 0
+  isInvincible: 0
   direction: 1
 --- !u!212 &1018483065
 SpriteRenderer:
@@ -16633,6 +16639,11 @@ PrefabInstance:
         type: 3}
       propertyPath: monsterType
       value: Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178842440792351147, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: speed
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29759f4f2cd0e5d43b11785e40507882, type: 3}

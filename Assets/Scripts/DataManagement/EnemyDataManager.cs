@@ -34,13 +34,10 @@ public class EnemyDataManager : MonoBehaviour
         }
     }
     void Start() {
-        monsterTypes.Add(Monster.Slime); // Slime is 0
-        
+        monsterTypes.Add(Monster.Slime); // Slime is 0       
     }
 
     
-    void Update() { 
-    
-        
+    void Update() {       
     }
 }

@@ -11,7 +11,7 @@ public class MonsterController : MonoBehaviour {
     public Transform pointOne;
     public Transform pointTwo;
     // Speed of the monster when traveling to points. Can be changed in editor
-    public float speed;
+    public int speed;
     // Speed when monster chases player. Can be changed in editor
     public float chaseSpeed;
     // Determines if the player is in the range of the monsters rangeBox
@@ -140,6 +140,7 @@ public class MonsterController : MonoBehaviour {
             EnemyDataManager.EnemyManager.health = health;
             EnemyDataManager.EnemyManager.experienceGives = experienceToGive;
             EnemyDataManager.EnemyManager.theMonster = monster;    
+            EnemyDataManager.EnemyManager.speed = speed;
             EnemyDataManager.EnemyManager.currentType = monsterType;       
             SceneManager.LoadScene("CombatScene");
         }

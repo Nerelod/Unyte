@@ -12,7 +12,8 @@ public class ItemManager : MonoBehaviour
         
     }
 
-    public void healthPotion(DataManager player){       
+    public void healthPotion(DataManager player){
+        Debug.Log("used health potion actually");       
         player.health = player.health + 5;
         if(player.health > player.totalHealth){ player.health = player.totalHealth; }
         CombatTextManager.combatTextManager.ManageText("Used Health Potion!");
