@@ -51,7 +51,12 @@ public class GameMenuManager : MonoBehaviour {
         if (DataManager.playerOne.abilityManager.aquiredAbilities.Contains("Investigate")) { investigateText.text = "Investigate"; } else { investigateText.text = ""; }    
     }
     private void checkPlayerOneItems(){
-        if (DataManager.playerOne.itemManager.aquiredItems.Contains("Health_Potion")){ healthPotionText.text = "Health Potion"; } else { healthPotionText.text = ""; }
+        if (DataManager.playerOne.itemManager.aquiredItems.Contains("Health_Potion")){ 
+            healthPotionText.text = "Health Potion"; 
+        } 
+        else { 
+            healthPotionText.text = ""; 
+        }
     }
     public void whenTurnedOn(){
         AbilityPanel.SetActive(false);

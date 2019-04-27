@@ -12,14 +12,6 @@ public class SaveAndLoadData : MonoBehaviour {
     public GameObject loadButton;
     
     private void Start() {
-        /* if(loadButton != null){
-            if(DataManager.playerOne.hasSaved){
-                loadButton.SetActive(true);
-            }
-            else{
-                loadButton.SetActive(false);
-            }
-        }*/
     }
 
 
@@ -31,6 +23,8 @@ public class SaveAndLoadData : MonoBehaviour {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/UnyteGameData.dat");
         PlayerData data = new PlayerData();
+        data.items = DataManager.playerOne.itemManager.aquiredItems;
+        data.abilities = DataManager.playerOne.abilityManager.aquiredAbilities;
         data.deadEnemies = EnemyDataManager.EnemyManager.defeatedEnemies;
         data.health = DataManager.playerOne.health;
         data.experience = DataManager.playerOne.experience;
@@ -56,6 +50,8 @@ public class SaveAndLoadData : MonoBehaviour {
             DataManager.playerOne.xpos = data.xpos;
             DataManager.playerOne.ypos = data.ypos;
             DataManager.playerOne.currentScene = data.currentScene;
+            DataManager.playerOne.itemManager.aquiredItems = data.items;
+            DataManager.playerOne.abilityManager.aquiredAbilities = data.abilities;
             DataManager.playerOne.hasSaved = data.saved;
 
             SceneManager.LoadScene(DataManager.playerOne.currentScene);           
@@ -71,6 +67,9 @@ public class SaveAndLoadData : MonoBehaviour {
         DataManager.playerOne.experience = 0;
         DataManager.playerOne.xpos = 0;
         DataManager.playerOne.ypos = 0;
+        DataManager.playerOne.theName = "Player One";
+        DataManager.playerOne.abilityManager.aquiredAbilities.Add("Investigate");
+        DataManager.playerOne.itemManager.aquiredItems.Add("Health_Potion");
 
         SceneManager.LoadScene("Player'sHouseScene");
         
@@ -89,5 +88,7 @@ public class SaveAndLoadData : MonoBehaviour {
 
         public bool saved; 
         public List<string> deadEnemies = new List<string>();
+        public List<string> items = new List<string>();
+        public List<string> abilities = new List<string>();
     }
 }
