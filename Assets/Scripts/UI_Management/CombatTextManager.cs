@@ -17,6 +17,8 @@ public class CombatTextManager : MonoBehaviour {
     public Text enemyDamageText;
     // Displays health of playerOne
     public Text playerOneHealthText;
+    // Text showing the current order in combat
+    public Text orderText;
     // Variables used to make text work and display when needed
     public string combattext;
     public bool textIsFinished;

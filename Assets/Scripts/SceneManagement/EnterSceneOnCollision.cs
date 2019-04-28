@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class EnterSceneOnCollision : MonoBehaviour {
 
+
+    public static EnterSceneOnCollision enterSceneOnCollision;
     public string scene;
 
     public PlayerController player;

@@ -314,5 +314,6 @@ public class CombatManager : MonoBehaviour {
         }
         // Show player's health 
         CombatTextManager.combatTextManager.playerOneHealthText.text = DataManager.playerOne.health.ToString();
+        CombatTextManager.combatTextManager.orderText.text = order.ToString();
     }
 }

@@ -23,6 +23,7 @@ public class GameMenuManager : MonoBehaviour {
     // Buttons
     public Button abilityReturnButton;
     public Button itemReturnButton;
+    private Button healthPotionButton;
     public Button abilitiesButton;
     public Button itemsButton;
     public Button loadButton;
@@ -35,6 +36,7 @@ public class GameMenuManager : MonoBehaviour {
         else if (gameMenuManager != this) {
             Destroy(gameObject);
         }
+        healthPotionButton = GameObject.Find("HealthPotionButton").GetComponent<Button>();
     }
 
     void Start() {
@@ -44,7 +46,6 @@ public class GameMenuManager : MonoBehaviour {
         AbilityPanel.SetActive(false);
         // Make the mainPanel Active
         mainPanel.SetActive(true);
-
     }
 
     private void checkPlayerOneAbilities() {
@@ -53,9 +54,12 @@ public class GameMenuManager : MonoBehaviour {
     private void checkPlayerOneItems(){
         if (DataManager.playerOne.itemManager.aquiredItems.Contains("Health_Potion")){ 
             healthPotionText.text = "Health Potion"; 
+            healthPotionButton.interactable = true;
         } 
         else { 
             healthPotionText.text = ""; 
+            healthPotionButton.interactable = false;
+            if(ItemPanel.activeSelf){ itemReturnButton.Select(); }         
         }
     }
     public void whenTurnedOn(){
@@ -69,9 +73,7 @@ public class GameMenuManager : MonoBehaviour {
         else{
             loadButton.interactable = false;
         }
-
         checkPlayerOneAbilities();
-        checkPlayerOneItems();
     }
 
     public void showAbilities() {
@@ -115,6 +117,6 @@ public class GameMenuManager : MonoBehaviour {
     void Update() {
         healthText.text = "Health: " + DataManager.playerOne.health;
         experienceText.text = "Experience: " + DataManager.playerOne.experience;
-        
+        checkPlayerOneItems();
     }
 }

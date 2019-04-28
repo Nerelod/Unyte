@@ -15,7 +15,6 @@ public class AbilityManager : MonoBehaviour
 
     public void Investigate(){
         CombatTextManager.combatTextManager.ManageText("Investigate Reveals The Enemy Has " + EnemyDataManager.EnemyManager.health.ToString() + " health");
-        Debug.Log("using ability");
         CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
     }
 
