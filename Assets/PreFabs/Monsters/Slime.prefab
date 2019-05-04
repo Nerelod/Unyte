@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 1cf54dd041ebe4147b66fbde3f859331, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea975ecad8f78d0499e700289b6642f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,18 +96,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0013413429, y: 0.004024029}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.82, y: 0.44}
+    oldSize: {x: 1, y: 0.53125}
     newSize: {x: 0.82, y: 0.44}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.82, y: 0.44}
+  m_Size: {x: 1.005105, y: 0.5553551}
   m_EdgeRadius: 0
 --- !u!61 &3724162726329334479
 BoxCollider2D:
@@ -126,7 +126,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.82, y: 0.44}
+    oldSize: {x: 1, y: 0.53125}
     newSize: {x: 0.82, y: 0.44}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -152,14 +152,15 @@ MonoBehaviour:
   pointTwo: {fileID: 0}
   speed: 4
   chaseSpeed: 12
+  monsterType: 
   animLeft: SlimeLeft
   animRight: SlimeRight
   monsterName: Slime
-  monster: {fileID: 0}
+  monsterIdentifier: 0
   health: 0
   experienceToGive: 0
-  combatSprite: {fileID: 21300004, guid: 1cf54dd041ebe4147b66fbde3f859331, type: 3}
-  kindOfMonster: Slime
+  combatSprite: {fileID: 21300002, guid: ea975ecad8f78d0499e700289b6642f9, type: 3}
+  scene: 
 --- !u!95 &4093016404696125231
 Animator:
   serializedVersion: 3

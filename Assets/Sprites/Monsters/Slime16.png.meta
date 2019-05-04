@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 652604ce4ad0b0948b61965802c75772
+guid: a0be44e8b43f2e3468e7675db89ea674
 TextureImporter:
   fileIDToRecycleName:
-    21300000: PawnGuy(Sal)_0
-    21300002: PawnGuy(Sal)_1
-    21300004: PawnGuy(Sal)_2
-    21300006: PawnGuy(Sal)_3
-    21300008: PawnGuy(Sal)_4
-    21300010: PawnGuy(Sal)_5
+    21300000: Slime16_0
+    21300002: Slime16_1
+    21300004: Slime16_2
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -51,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -66,10 +63,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -77,32 +74,10 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Standalone
-    maxTextureSize: 8192
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: iPhone
-    maxTextureSize: 8192
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: Android
-    maxTextureSize: 8192
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -112,93 +87,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PawnGuy(Sal)_0
+      name: Slime16_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 86
-        width: 40
-        height: 76
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9265f2e66fbbd214daec4f692aa05b1d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PawnGuy(Sal)_1
-      rect:
-        serializedVersion: 2
-        x: 47
-        y: 86
-        width: 40
-        height: 76
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c200a23e82e70f344abdb3555486d4f4
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PawnGuy(Sal)_2
-      rect:
-        serializedVersion: 2
-        x: 94
-        y: 86
-        width: 40
-        height: 76
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2d692082f6379944492927977ab1a373
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PawnGuy(Sal)_3
-      rect:
-        serializedVersion: 2
-        x: 141
-        y: 86
-        width: 40
-        height: 76
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b8bcf993da9167e46b478e293a91d6de
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PawnGuy(Sal)_4
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 3
         y: 0
-        width: 40
-        height: 76
+        width: 16
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,19 +101,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26dbd95086eaa9c459b068896b4f1808
+      spriteID: 53c385231367048479a815b022ee5f0a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PawnGuy(Sal)_5
+      name: Slime16_1
       rect:
         serializedVersion: 2
-        x: 47
+        x: 22
         y: 0
-        width: 40
-        height: 76
+        width: 16
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,7 +121,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b442669a921297b4da258b748e56f6a2
+      spriteID: 1f3147aacb5f7e7448502a41a42208dd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime16_2
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 0
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4a3a4cb172ba2044bf43398c1f52995
       vertices: []
       indices: 
       edges: []
@@ -234,7 +149,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 2699e19e3a10f4045b141622e962b945
+    spriteID: bca496162048f56458fdf0da9d936053
     vertices: []
     indices: 
     edges: []

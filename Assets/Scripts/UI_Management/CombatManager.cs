@@ -28,6 +28,9 @@ public class CombatManager : MonoBehaviour {
     // Boolean that represents whether the win text was prompt
     private bool winTextHasBeenPrompt;
 
+    public Text textIconOne;
+    public Text textIconTwo;
+
     // Ability Select Panel
     
     // IconOne image
@@ -112,6 +115,9 @@ public class CombatManager : MonoBehaviour {
             DataManager.playerOne.assignedOrderInCombat = 1;
             iconOne.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
             iconTwo.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
+            CombatTextManager.combatTextManager.playerOneHealthText = textIconOne;
+            CombatTextManager.combatTextManager.enemyHealthText = textIconTwo;
+            CombatTextManager.combatTextManager.enemyHealthText.text = "?";
         }
         else {
             combatState = CombatStates.EnemyAttacking;
@@ -119,6 +125,10 @@ public class CombatManager : MonoBehaviour {
             DataManager.playerOne.assignedOrderInCombat = 2;
             iconOne.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
             iconTwo.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
+            CombatTextManager.combatTextManager.playerOneHealthText = textIconTwo;
+            CombatTextManager.combatTextManager.enemyHealthText = textIconOne;
+            CombatTextManager.combatTextManager.enemyHealthText.text = "?";
+
         }
         orderToReset = 3;
     }

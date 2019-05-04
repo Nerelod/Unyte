@@ -512,6 +512,7 @@ MonoBehaviour:
   moveSpeed: 1.5
   startingPosition: {fileID: 11400000, guid: 78567ad5f0fc84f4295d09ccbbb046af, type: 2}
   State: 0
+  isInvincible: 0
   direction: 2
 --- !u!212 &156540845
 SpriteRenderer:
@@ -1147,6 +1148,7 @@ MonoBehaviour:
   assignedOrderInCombat: 0
   currentSprite: {fileID: 0}
   currentName: 
+  currentType: 
   theScene: 
   defeatedEnemies: []
 --- !u!4 &1313605770
