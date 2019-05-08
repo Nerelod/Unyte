@@ -2130,7 +2130,7 @@ MonoBehaviour:
   damageText: {fileID: 326583202}
   enemyDamageText: {fileID: 1168047084}
   playerOneHealthText: {fileID: 0}
-  IconTwoText: {fileID: 0}
+  enemyHealthText: {fileID: 0}
   orderText: {fileID: 1673800269}
   combattext: 
   textIsFinished: 0
@@ -3176,7 +3176,7 @@ Transform:
   m_GameObject: {fileID: 1996142309}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.02, y: -3.49, z: -0.06594336}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
