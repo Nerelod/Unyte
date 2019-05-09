@@ -25,14 +25,13 @@ public class MonsterController : MonoBehaviour {
     
     private Animator anim;
     // Reference to the player
-    PlayerController player;
+    public PlayerController player;
     // The files for the animation sprites
     public string animLeft;
     public string animRight;
     // the name of the monster
     public string monsterName;
     // reference to the monster class
-    public Monster monster;
     public int monsterIdentifier;
     // The Monster's health 
     public int health;
@@ -44,15 +43,11 @@ public class MonsterController : MonoBehaviour {
     public string scene;
 
     //determines what kind of monster it is
-    void determineMonster() {        
-        monster = EnemyDataManager.EnemyManager.monsterTypes[monsterIdentifier];
-    }
 
     void Start() {
         // Get the scene the monster is in
         scene = SceneManager.GetActiveScene().name;
         // Get the kind of monster
-        determineMonster();
         // Make inRange false so the monster does not immediatley chase
         inRange = false;
         // Start moving to pointA
@@ -131,18 +126,6 @@ public class MonsterController : MonoBehaviour {
     // If player collides with the monster, 
     // store all data in EnemyManager to prepare for combat
     // and load the combat scene
-    private void OnCollisionEnter2D(Collision2D collision) { 
     
-        if (collision.gameObject.tag == "Player" && !player.isInvincible) {
-            EnemyDataManager.EnemyManager.theScene = scene;
-            EnemyDataManager.EnemyManager.currentSprite = combatSprite;
-            EnemyDataManager.EnemyManager.currentName = monsterName;
-            EnemyDataManager.EnemyManager.health = health;
-            EnemyDataManager.EnemyManager.experienceGives = experienceToGive;
-            EnemyDataManager.EnemyManager.theMonster = monster;    
-            EnemyDataManager.EnemyManager.speed = speed;
-            EnemyDataManager.EnemyManager.currentType = monsterType;       
-            SceneManager.LoadScene("CombatScene");
-        }
-    }
+    
 }

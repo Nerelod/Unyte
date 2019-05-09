@@ -18,8 +18,6 @@ public class EnemyDataManager : MonoBehaviour
     public Monster theMonster;
     public string theScene;
 
-    public List<Monster> monsterTypes = new List<Monster>();
-
     //List of enemies that were defeated in combat
     public List<string> defeatedEnemies = new List<string>();
 
@@ -33,8 +31,7 @@ public class EnemyDataManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    void Start() {
-        monsterTypes.Add(Monster.Slime); // Slime is 0       
+    void Start() {    
     }
 
     
