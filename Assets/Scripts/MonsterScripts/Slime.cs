@@ -58,8 +58,10 @@ public class Slime : Monster
             EnemyDataManager.EnemyManager.experienceGives = monsterController.experienceToGive;    
             EnemyDataManager.EnemyManager.speed = monsterController.speed;
             EnemyDataManager.EnemyManager.currentType = monsterController.monsterType;
-            EnemyDataManager.EnemyManager.theMonster = this;      
-            SceneManager.LoadScene("CombatScene");
+            EnemyDataManager.EnemyManager.theMonster = this;  
+            monsterController.canMove = false;
+            monsterController.player.State = States.CannotMove;
+            Transitions.screenTransition.StartCoroutine(Transitions.screenTransition.FadeOut("CombatScene", .33f));
         }    
     }
 

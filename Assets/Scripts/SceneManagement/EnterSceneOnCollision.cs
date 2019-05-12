@@ -5,37 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class EnterSceneOnCollision : MonoBehaviour {
 
-
-    public static EnterSceneOnCollision enterSceneOnCollision;
     public string scene;
 
     public PlayerController player;
     public Vector2 playerPosition;
     public VectorValue playerStorage;
-    public GameObject fadeInPanel;
-    public GameObject fadeOutPanel;
-    public float fadeWait;
-
 
     private void Start() {     
         player = FindObjectOfType<PlayerController>();
-    }
-
-    private void Awake() {     
-        if(fadeInPanel != null) {       
-            GameObject panel = Instantiate(fadeInPanel, Vector3.zero, Quaternion.identity) as GameObject;
-            Destroy(panel, 1);
-        }
-    }
-
-
-    public IEnumerator FadeCo() {   
-        if (fadeOutPanel != null) {         
-            Instantiate(fadeOutPanel, Vector3.zero, Quaternion.identity);
-        }
-        yield return new WaitForSeconds(fadeWait);
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(scene);
-        while (!asyncOperation.isDone) { yield return null; }
     }
 
 
@@ -43,7 +20,7 @@ public class EnterSceneOnCollision : MonoBehaviour {
         if (collision.CompareTag("Player")) {        
             playerStorage.initialValue = playerPosition;
             player.State = States.CannotMove;
-            StartCoroutine(FadeCo());            
+            Transitions.screenTransition.StartCoroutine(Transitions.screenTransition.FadeOut(scene, 0.33f));            
         }       
     }
 

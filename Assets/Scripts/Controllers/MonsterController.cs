@@ -21,6 +21,8 @@ public class MonsterController : MonoBehaviour {
     // Boolean for if the monster is traveling to the right
     private bool goingRight;
 
+    public bool canMove;
+
     public string monsterType;
     
     private Animator anim;
@@ -45,6 +47,7 @@ public class MonsterController : MonoBehaviour {
     //determines what kind of monster it is
 
     void Start() {
+        canMove = true;
         // Get the scene the monster is in
         scene = SceneManager.GetActiveScene().name;
         // Get the kind of monster
@@ -62,8 +65,7 @@ public class MonsterController : MonoBehaviour {
         }
             
     }
-
-    void Update() {    
+    private void move(){
         // Chase the player if inRange is true
         if (inRange) {         
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
@@ -108,6 +110,9 @@ public class MonsterController : MonoBehaviour {
             anim.Play(animLeft);
         }
     }
+    void Update() {   
+        if(canMove){ move(); }
+    }
 
     // If something collides in trigegrbox, set inRange true and move toward 
     private void OnTriggerEnter2D(Collider2D other) { 
@@ -122,10 +127,4 @@ public class MonsterController : MonoBehaviour {
             inRange = false;
         }
     }
-
-    // If player collides with the monster, 
-    // store all data in EnemyManager to prepare for combat
-    // and load the combat scene
-    
-    
 }
