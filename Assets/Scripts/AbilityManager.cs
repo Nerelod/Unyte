@@ -6,15 +6,18 @@ public class AbilityManager : MonoBehaviour
 {
     public List<string> aquiredAbilities = new List<string>();
 
+    public int investigateExperience;
+
     public string abilityToUse;
 
-    void Start()
-    {
-        
+    void Start() { 
+    
+        investigateExperience = 0;
     }
 
     public void Investigate(){
         CombatTextManager.combatTextManager.ManageText("Investigate Reveals The Enemy Has " + EnemyDataManager.EnemyManager.health.ToString() + " health");
+        investigateExperience++;
         CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
     }
 
