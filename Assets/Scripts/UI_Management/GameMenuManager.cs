@@ -53,7 +53,7 @@ public class GameMenuManager : MonoBehaviour {
     }
     private void checkPlayerOneItems(){
         if (DataManager.playerOne.itemManager.aquiredItems.Contains("Health_Potion")){ 
-            healthPotionText.text = "Health Potion"; 
+            healthPotionText.text = "Health Potion " + DataManager.playerOne.itemManager.getAmountOfItem("Health_Potion"); 
             healthPotionButton.interactable = true;
         } 
         else { 

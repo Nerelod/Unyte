@@ -43,6 +43,15 @@ public class ItemManager : MonoBehaviour
         CombatMenuManager.combatMenuManager.itemSelectPanel.SetActive(false);
         CombatTextManager.combatTextManager.textHasBeenPrompt = false;
     }
+    public int getAmountOfItem(string itemToCount){
+        int amount = 0;
+        foreach(string item in aquiredItems){
+            if(item == itemToCount){
+                amount++;
+            }
+        }
+        return amount;
+    }
     void Update()
     {
         
