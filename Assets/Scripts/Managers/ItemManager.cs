@@ -22,6 +22,13 @@ public class ItemManager : MonoBehaviour
         }
         player.itemManager.aquiredItems.Remove("Health_Potion");
     }
+    public void stone(DataManager player){
+        if(player.itemManager.isInCombat){
+            CombatTextManager.combatTextManager.ManageText("Used Stone!");
+            EnemyDataManager.EnemyManager.health -= 2;
+        }
+
+    }
     public void playerOneSelectItem(string selectedItem){
         if(DataManager.playerOne.itemManager.aquiredItems.Contains(selectedItem)){
             DataManager.playerOne.itemManager.itemToUse = selectedItem;
@@ -37,6 +44,9 @@ public class ItemManager : MonoBehaviour
     public void useItem(DataManager player){
         if(itemToUse == "Health_Potion"){
             healthPotion(player);
+        }
+        else if(itemToUse == "Stone"){
+            stone(player);
         }
     }
     public void turnOffItemSelect(){
