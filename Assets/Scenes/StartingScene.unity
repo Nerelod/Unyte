@@ -2634,7 +2634,7 @@ MonoBehaviour:
   startLine: 0
   endLine: 0
   theTextManager: {fileID: 513089534}
-  destroyWhenActivated: 0
+  destroyWhenActivated: 1
   requireButtonPress: 1
 --- !u!61 &1424370741
 BoxCollider2D:
