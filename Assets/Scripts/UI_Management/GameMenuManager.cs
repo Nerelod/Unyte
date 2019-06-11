@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public class GameMenuManager : MonoBehaviour {
 
@@ -23,7 +24,7 @@ public class GameMenuManager : MonoBehaviour {
     // Buttons
     public Button abilityReturnButton;
     public Button itemReturnButton;
-    private Button healthPotionButton;
+    public Button healthPotionButton;
     public Button abilitiesButton;
     public Button itemsButton;
     public Button loadButton;
@@ -36,7 +37,6 @@ public class GameMenuManager : MonoBehaviour {
         else if (gameMenuManager != this) {
             Destroy(gameObject);
         }
-        healthPotionButton = GameObject.Find("HealthPotionButton").GetComponent<Button>();
     }
 
     void Start() {
@@ -52,14 +52,10 @@ public class GameMenuManager : MonoBehaviour {
         if (DataManager.playerOne.abilityManager.aquiredAbilities.Contains("Investigate")) { investigateText.text = "Investigate"; } else { investigateText.text = ""; }    
     }
     private void checkPlayerOneItems(){
-        if (DataManager.playerOne.itemManager.aquiredItems.Contains("Health_Potion")){ 
-            healthPotionText.text = "Health Potion " + DataManager.playerOne.itemManager.getAmountOfItem("Health_Potion"); 
-            healthPotionButton.interactable = true;
-        } 
-        else { 
-            healthPotionText.text = ""; 
-            healthPotionButton.interactable = false;
-            if(ItemPanel.activeSelf){ itemReturnButton.Select(); }         
+        healthPotionText.text = "Health Potion " + DataManager.playerOne.itemManager.getAmountOfItem("Health Potion"); 
+        
+        if(!DataManager.playerOne.itemManager.aquiredItems.Any() && ItemPanel.activeSelf){
+            itemReturnButton.Select();
         }
     }
     public void whenTurnedOn(){

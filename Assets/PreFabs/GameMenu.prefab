@@ -125,6 +125,7 @@ MonoBehaviour:
   mainPanel: {fileID: 5122366748426734099}
   abilityReturnButton: {fileID: 2823580066464310421}
   itemReturnButton: {fileID: 1407591364652410040}
+  healthPotionButton: {fileID: 8763054060720835751}
   abilitiesButton: {fileID: 1435594392062038060}
   itemsButton: {fileID: 5697142973023561504}
   loadButton: {fileID: 6696444201430093718}
@@ -1189,7 +1190,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Health_Potion
+          m_StringArgument: Health Potion
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
