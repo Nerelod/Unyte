@@ -68,10 +68,11 @@ public class SaveAndLoadData : MonoBehaviour {
         DataManager.playerOne.xpos = 0;
         DataManager.playerOne.ypos = 0;
         DataManager.playerOne.theName = "Player One";
+        DataManager.playerOne.abilityManager.aquiredAbilities.Clear();
+        DataManager.playerOne.itemManager.aquiredItems.Clear();
+        DataManager.playerOne.itemManager.itemsThatWereRemoved.Clear();
         DataManager.playerOne.abilityManager.aquiredAbilities.Add("Investigate");
-        if(!DataManager.playerOne.itemManager.aquiredItems.Contains("Health_Potion")){
-            DataManager.playerOne.itemManager.aquiredItems.Add("Health_Potion");
-        }
+        DataManager.playerOne.itemManager.aquiredItems.Add("Health Potion");
 
         SceneManager.LoadScene("Player'sHouseScene");
         

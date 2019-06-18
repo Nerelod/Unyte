@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour
 {
     public List<string> aquiredItems = new List<string>();
+    public List<string> itemsThatWereRemoved = new List<string>();
 
     public string itemToUse;
     

@@ -957,6 +957,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: TextBoxManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8621298658727458823, guid: 0204b1d01193f4df29730a41db5b21b7,
+        type: 3}
+      propertyPath: theBox
+      value: 
+      objectReference: {fileID: 835354225}
+    - target: {fileID: 8621298658727458823, guid: 0204b1d01193f4df29730a41db5b21b7,
+        type: 3}
+      propertyPath: theText
+      value: 
+      objectReference: {fileID: 835354224}
     - target: {fileID: 8621298658727458820, guid: 0204b1d01193f4df29730a41db5b21b7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1012,16 +1022,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8621298658727458823, guid: 0204b1d01193f4df29730a41db5b21b7,
-        type: 3}
-      propertyPath: theBox
-      value: 
-      objectReference: {fileID: 835354225}
-    - target: {fileID: 8621298658727458823, guid: 0204b1d01193f4df29730a41db5b21b7,
-        type: 3}
-      propertyPath: theText
-      value: 
-      objectReference: {fileID: 835354224}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0204b1d01193f4df29730a41db5b21b7, type: 3}
 --- !u!114 &513089534 stripped
@@ -2549,6 +2549,7 @@ GameObject:
   - component: {fileID: 1424370738}
   - component: {fileID: 1424370740}
   - component: {fileID: 1424370741}
+  - component: {fileID: 1424370742}
   m_Layer: 0
   m_Name: Stone
   m_TagString: Untagged
@@ -2662,6 +2663,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.84135437, y: 0.5817528}
   m_EdgeRadius: 0
+--- !u!114 &1424370742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424370737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5187180959ba14bae9071bc5ee8e41f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemString: Stone
+  identifier: Stone1
 --- !u!1001 &1469508599
 PrefabInstance:
   m_ObjectHideFlags: 0

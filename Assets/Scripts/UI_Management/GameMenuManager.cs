@@ -17,6 +17,7 @@ public class GameMenuManager : MonoBehaviour {
     public Text investigateText;
     // Item Texts
     public Text healthPotionText;
+    public Text stoneText;
     // Panels
     public GameObject AbilityPanel;
     public GameObject ItemPanel;
@@ -53,7 +54,11 @@ public class GameMenuManager : MonoBehaviour {
     }
     private void checkPlayerOneItems(){
         healthPotionText.text = "Health Potion " + DataManager.playerOne.itemManager.getAmountOfItem("Health Potion"); 
-        
+        if(DataManager.playerOne.itemManager.aquiredItems.Contains("Stone")){
+            stoneText.text = "Stone " + DataManager.playerOne.itemManager.getAmountOfItem("Stone");
+        }
+        else{stoneText.text = "";}
+
         if(!DataManager.playerOne.itemManager.aquiredItems.Any() && ItemPanel.activeSelf){
             itemReturnButton.Select();
         }

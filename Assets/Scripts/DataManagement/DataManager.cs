@@ -61,7 +61,6 @@ public class DataManager : MonoBehaviour {
 
         playerOne.abilityManager.aquiredAbilities.Add("Investigate");
 
-        playerOne.itemManager.aquiredItems.Add("Health Potion");
     }
     // Method for adding experience to total experience
     public void addExperience(int experienceToAdd) {    
