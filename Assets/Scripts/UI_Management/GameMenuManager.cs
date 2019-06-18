@@ -30,6 +30,8 @@ public class GameMenuManager : MonoBehaviour {
     public Button itemsButton;
     public Button loadButton;
 
+    private bool itemMode;
+
     private void Awake() {
         if (gameMenuManager == null) {
             DontDestroyOnLoad(gameObject);
@@ -47,6 +49,8 @@ public class GameMenuManager : MonoBehaviour {
         AbilityPanel.SetActive(false);
         // Make the mainPanel Active
         mainPanel.SetActive(true);
+
+        itemMode = false;
     }
 
     private void checkPlayerOneAbilities() {
@@ -113,6 +117,10 @@ public class GameMenuManager : MonoBehaviour {
 
         // Make Items default button
         itemsButton.Select();
+    }
+    // Activate drop mode, where the user can drop items instead of use them
+    public void dropMode(){
+        itemMode = !itemMode;
     }
 
     void Update() {
