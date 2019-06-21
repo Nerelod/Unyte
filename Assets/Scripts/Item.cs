@@ -17,7 +17,6 @@ public class Item : MonoBehaviour
         if (collision.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.Space)) {         
             DataManager.playerOne.itemManager.aquiredItems.Add(itemString);
             DataManager.playerOne.itemManager.itemsThatWereRemoved.Add(identifier);
-            Debug.Log(itemString);
         }
     }
     // Update is called once per frame

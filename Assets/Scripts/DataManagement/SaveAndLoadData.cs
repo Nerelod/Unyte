@@ -32,6 +32,7 @@ public class SaveAndLoadData : MonoBehaviour {
         data.ypos = DataManager.playerOne.ypos;
         data.currentScene = DataManager.playerOne.currentScene;
         data.saved = DataManager.playerOne.hasSaved;
+        data.removedItems = DataManager.playerOne.itemManager.itemsThatWereRemoved;
         bf.Serialize(file, data);
         file.Close();
     }
@@ -53,6 +54,7 @@ public class SaveAndLoadData : MonoBehaviour {
             DataManager.playerOne.itemManager.aquiredItems = data.items;
             DataManager.playerOne.abilityManager.aquiredAbilities = data.abilities;
             DataManager.playerOne.hasSaved = data.saved;
+            DataManager.playerOne.itemManager.itemsThatWereRemoved = data.removedItems;
 
             SceneManager.LoadScene(DataManager.playerOne.currentScene);           
 
@@ -93,5 +95,6 @@ public class SaveAndLoadData : MonoBehaviour {
         public List<string> deadEnemies = new List<string>();
         public List<string> items = new List<string>();
         public List<string> abilities = new List<string>();
+        public List<string> removedItems = new List<string>();
     }
 }

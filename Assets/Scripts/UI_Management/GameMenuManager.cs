@@ -16,8 +16,7 @@ public class GameMenuManager : MonoBehaviour {
     // Ability Texts
     public Text investigateText;
     // Item Texts
-    public Text healthPotionText;
-    public Text stoneText;
+    public Text healthPotionText, stoneText;
     // Panels
     public GameObject AbilityPanel;
     public GameObject ItemPanel;
@@ -56,12 +55,17 @@ public class GameMenuManager : MonoBehaviour {
     private void checkPlayerOneAbilities() {
         if (DataManager.playerOne.abilityManager.aquiredAbilities.Contains("Investigate")) { investigateText.text = "Investigate"; } else { investigateText.text = ""; }    
     }
-    private void checkPlayerOneItems(){
-        healthPotionText.text = "Health Potion " + DataManager.playerOne.itemManager.getAmountOfItem("Health Potion"); 
-        if(DataManager.playerOne.itemManager.aquiredItems.Contains("Stone")){
-            stoneText.text = "Stone " + DataManager.playerOne.itemManager.getAmountOfItem("Stone");
+    private void checkContainedItems(string itemName, Text textBox) {
+        if (DataManager.playerOne.itemManager.aquiredItems.Contains(itemName)){
+            textBox.text = itemName + " " + DataManager.playerOne.itemManager.getAmountOfItem(itemName);
         }
-        else{stoneText.text = "";}
+        else {
+            textBox.text = "";
+        }
+    }
+    private void checkPlayerOneItems(){
+        healthPotionText.text = "Health Potion " + DataManager.playerOne.itemManager.getAmountOfItem("Health Potion");
+        checkContainedItems("Stone", stoneText);
 
         if(!DataManager.playerOne.itemManager.aquiredItems.Any() && ItemPanel.activeSelf){
             itemReturnButton.Select();
