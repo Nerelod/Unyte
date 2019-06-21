@@ -806,6 +806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aquiredItems: []
+  itemsThatWereRemoved: []
   itemToUse: 
   isInCombat: 0
 --- !u!114 &704889896
@@ -856,7 +857,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Health_Potion
+          m_StringArgument: Health Potion
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1633,6 +1634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aquiredAbilities: []
+  investigateExperience: 0
   abilityToUse: 
 --- !u!114 &1373801300
 MonoBehaviour:
@@ -1810,6 +1812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aquiredItems: []
+  itemsThatWereRemoved: []
   itemToUse: 
   isInCombat: 0
 --- !u!114 &1377941719
@@ -2723,6 +2726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aquiredAbilities: []
+  investigateExperience: 0
   abilityToUse: 
 --- !u!114 &1919110713
 MonoBehaviour:
@@ -2848,6 +2852,7 @@ MonoBehaviour:
   itemSelectPanel: {fileID: 2124525826}
   itemReturnButton: {fileID: 1377941717}
   healthPotionButton: {fileID: 704889896}
+  healthPotionText: {fileID: 1768885024}
 --- !u!4 &1922625810
 Transform:
   m_ObjectHideFlags: 0
