@@ -51,8 +51,6 @@ public class TextBoxManager : MonoBehaviour {
             return;
         }
 
-        //theText.text = textLines[currentLine];
-
         if (Input.GetKeyDown(KeyCode.Space) && boxActive == true) { 
             if (!isTyping) { 
                 currentLine += 1;

@@ -12,8 +12,10 @@ public class CombatMenuManager : MonoBehaviour
     public GameObject itemSelectPanel;
     public Button itemReturnButton;
     public Button healthPotionButton;
+    public Button stoneButton;
 
     public Text healthPotionText;
+    public Text stoneButtonText;
 
     void Start()
     {
@@ -34,8 +36,10 @@ public class CombatMenuManager : MonoBehaviour
     public void whenTurnedOn(){
         itemSelectPanel.SetActive(true);
         itemReturnButton.Select();
-        // activate or deactivate health potion button if there ar/aren't health potions
+        // activate or deactivate x item button if there are/aren't x items
         checkItemInCombat("Health Potion", healthPotionButton, healthPotionText);
+        checkItemInCombat("Stone", stoneButton, stoneButtonText); 
+
     }
 
     void Update()

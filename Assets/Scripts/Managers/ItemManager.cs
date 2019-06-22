@@ -27,6 +27,8 @@ public class ItemManager : MonoBehaviour
         if(player.itemManager.isInCombat){
             CombatTextManager.combatTextManager.ManageText("Used Stone!");
             EnemyDataManager.EnemyManager.health -= 2;
+            CombatTextManager.combatTextManager.damageText.text = "-2";
+            CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.damageText));
             player.itemManager.aquiredItems.Remove("Stone");
         }
 
