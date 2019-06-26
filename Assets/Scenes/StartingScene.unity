@@ -1409,7 +1409,6 @@ GameObject:
   - component: {fileID: 741126071}
   - component: {fileID: 741126070}
   - component: {fileID: 741126069}
-  - component: {fileID: 741126068}
   - component: {fileID: 741126067}
   - component: {fileID: 741126072}
   m_Layer: 0
@@ -1429,7 +1428,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: f7c7bddb65fb7cb46915d3039655865e, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1445,27 +1444,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5625, y: 1}
   m_EdgeRadius: 0
---- !u!50 &741126068
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741126066}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1000
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: f7c7bddb65fb7cb46915d3039655865e, type: 2}
-  m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0
 --- !u!95 &741126069
 Animator:
   serializedVersion: 3
@@ -1561,7 +1539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 999499161}
   target: {fileID: 45965446}
-  moveSpeed: 1
+  moveSpeed: 1.5
 --- !u!1001 &835354223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2222,6 +2200,16 @@ PrefabInstance:
         type: 3}
       propertyPath: isInvincible
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874672489141842326, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618259940218910494, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3303d2a6e0238394a9ed9c2fa57eb61d, type: 3}
