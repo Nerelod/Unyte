@@ -1538,8 +1538,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 999499161}
-  target: {fileID: 45965446}
+  target: {fileID: 999499162}
   moveSpeed: 1.5
+  LeftAnimation: Saralf Left
+  RightAnimation: Saralf Right
+  UpAnimation: Saralf Up
+  DownAnimation: Saralf Down
+  UpLeftAnimation: Saralf Up Left
+  UpRightAnimation: Saralf Up Right
+  DownRightAnimation: Saralf Down Right
+  DownLeftAnimation: Saralf Down Left
+  walkingLeftAnimation: Saralf Walking Left
+  walkingRightAnimation: Saralf Walking Right
+  walkingUpAnimation: Saralf Walking Up
+  walkingDownAnimation: Saralf Walking Down
+  walkingUpLeftAnimation: Saralf Walking Up Left
+  walkingUpRightAnimation: Saralf Walking Up Right
+  walkingDownRightAnimation: Saralf Walking Down Right
+  walkingDownLeftAnimation: Saralf Walking Down Left
 --- !u!1001 &835354223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2211,6 +2227,16 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 782648484641426030, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666393660797844959, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
+        type: 3}
+      propertyPath: distance
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3303d2a6e0238394a9ed9c2fa57eb61d, type: 3}
 --- !u!114 &999499161 stripped
@@ -2225,6 +2251,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b0492662dae1e942b9b1a0b6a36f3a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &999499162 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 782648484641426030, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
+    type: 3}
+  m_PrefabInstance: {fileID: 999499160}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1025505271
 PrefabInstance:
   m_ObjectHideFlags: 0

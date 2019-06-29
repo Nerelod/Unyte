@@ -29,11 +29,11 @@ public class PlayerController : MonoBehaviour {
     // Boolean that determines when the in-game menu is open
     private bool gameMenuIsActive;
     public bool isInvincible;
-
+    public bool isStill;
 
     [SerializeField]
 
-    int direction; //1 =  down, 2 = up, 3 = left, 4 = right, 5 = up left, 6 = up right, 7 = down left, 8 = down right
+    public int direction; //1 =  down, 2 = up, 3 = left, 4 = right, 5 = up left, 6 = up right, 7 = down left, 8 = down right
 
     void Start() {
         isInvincible = false;
@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour {
         // Determine the direction and animation to play 
         // Based on input
         if (Input.GetAxisRaw("Horizontal") > 0) {
+            isStill = false;
             if (Input.GetKey(KeyCode.UpArrow)) {
                 anim.Play("PlayerWalkingUpRight");
                 anim.speed = 1.5f;
@@ -84,6 +85,7 @@ public class PlayerController : MonoBehaviour {
             }
         }
         else if (Input.GetAxisRaw("Horizontal") < 0) {
+            isStill = false;
             if (Input.GetKey(KeyCode.UpArrow)) {
                 anim.Play("PlayerWalkingUpLeft");
                 anim.speed = 1.5f;
@@ -101,11 +103,13 @@ public class PlayerController : MonoBehaviour {
             }
         }
         else if (Input.GetAxisRaw("Vertical") < 0) {
+            isStill = false;
             anim.Play("PlayerWalkingDown");
             anim.speed = 1.5f;
             direction = 1;
         }
         else if (Input.GetAxisRaw("Vertical") > 0) {
+            isStill = false;
             anim.Play("PlayerWalkingUp");
             anim.speed = 1.5f;
             direction = 2;
@@ -113,6 +117,7 @@ public class PlayerController : MonoBehaviour {
         // Determine the sprite animation pose
         // When standing still (no input)
         else {
+            isStill = true;
             anim.speed = 0;
             if (direction == 1) {
                 anim.Play("PlayerDown");
