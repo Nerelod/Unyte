@@ -12,6 +12,7 @@ public class DataManager : MonoBehaviour {
 
     // reference to itself
     public static DataManager playerOne;
+    public static DataManager Saralf;
 
     public AbilityManager abilityManager;
     public ItemManager itemManager;
@@ -38,9 +39,10 @@ public class DataManager : MonoBehaviour {
     public bool isBeingLoaded = false;
     // If the character has ever saved before
     public bool hasSaved = false;
-
+    // if the character just ran from a combat encounter
     public bool ranFromCombat = false;
-    
+    // If the character is present in the gane
+    public bool isPresent;
 
 
     // Happens before start, makes sure there is only one instance of DataManager

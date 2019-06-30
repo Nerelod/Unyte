@@ -29,17 +29,20 @@ public class PartyMemberController : MonoBehaviour
     public string walkingDownLeftAnimation;
 
     private bool goingRight, goingUp, goingLeft, goingDown, trueRight, trueLeft;
+    private bool isInParty;
+    private SpriteRenderer sprite;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         player = FindObjectOfType<PlayerController>();
+        sprite = GetComponent<SpriteRenderer>();
         anim.speed = 1.5f;
 
         trueRight = trueLeft = goingLeft = goingDown = goingRight = goingUp = false;
-
-        
+        isInParty = true; // TODO: Make condition for when to add member to party
     }
+
 
     private void Move() {
         
@@ -91,7 +94,7 @@ public class PartyMemberController : MonoBehaviour
             goingDown = false;
         }
 
-        if (player.isStill && transform.position == oldPos) {
+        if (player.isStill && transform.position == oldPos) { // if still
             if (player.direction == 1) { anim.Play(DownAnimation); }
             else if (player.direction == 2) { anim.Play(UpAnimation); }
             else if (player.direction == 3) { anim.Play(LeftAnimation); }
@@ -103,25 +106,33 @@ public class PartyMemberController : MonoBehaviour
 
         }
 
-        if (transform.position != oldPos) {
-            if (trueRight) { anim.Play(walkingRightAnimation); }
-            else if (trueLeft) { anim.Play(walkingLeftAnimation); }
-            else if (goingUp && !goingLeft && !goingRight) { anim.Play(walkingUpAnimation); }
-            else if (goingDown && !goingLeft && !goingRight) { anim.Play(walkingDownAnimation); }
-            else if (goingLeft && goingUp) { anim.Play(walkingUpLeftAnimation); }
-            else if (goingLeft && goingDown) { anim.Play(walkingDownLeftAnimation); }
-            else if (goingRight && goingUp) { anim.Play(walkingUpRightAnimation); }
-            else if (goingRight && goingDown) { anim.Play(walkingDownRightAnimation); }
+        if(transform.position.y < player.transform.position.y) { // if below
+            sprite.sortingOrder = 2;
+        }
+        else { // if above
+            sprite.sortingOrder = 1; 
+        }
+
+        if (transform.position != oldPos) { // if moving
+            if (trueRight) { anim.Play(walkingRightAnimation); moveSpeed = 1.5f; } // going right
+            else if (trueLeft) { anim.Play(walkingLeftAnimation); moveSpeed = 1.5f; } // going left
+            else if (goingUp && !goingLeft && !goingRight) { anim.Play(walkingUpAnimation); moveSpeed = 1.5f; } // going up
+            else if (goingDown && !goingLeft && !goingRight) { anim.Play(walkingDownAnimation); moveSpeed = 1.5f; } // going down
+            else if (goingLeft && goingUp) { anim.Play(walkingUpLeftAnimation); moveSpeed = 2.0f; } // going up left
+            else if (goingLeft && goingDown) { anim.Play(walkingDownLeftAnimation); moveSpeed = 2.0f; }// going down left
+            else if (goingRight && goingUp) { anim.Play(walkingUpRightAnimation); moveSpeed = 2.0f; } // going up right
+            else if (goingRight && goingDown) { anim.Play(walkingDownRightAnimation); moveSpeed = 2.0f; } // going down right
         }
 
 
     }
 
-   
+    
 
     void Update()
     {
         oldPos = transform.position;
-        Move();
+        if (isInParty) { Move(); Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>()); }
+        else { Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false); }
     }
 }
