@@ -8,6 +8,7 @@ public class PartyMemberController : MonoBehaviour
     public Transform target;
     public float moveSpeed;
     private Animator anim;
+    private Rigidbody2D rigid;
 
     private Vector3 oldPos;
 
@@ -35,20 +36,23 @@ public class PartyMemberController : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        player = FindObjectOfType<PlayerController>();
+        rigid = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        player = FindObjectOfType<PlayerController>();
         anim.speed = 1.5f;
 
         trueRight = trueLeft = goingLeft = goingDown = goingRight = goingUp = false;
         isInParty = true; // TODO: Make condition for when to add member to party
+        rigid.freezeRotation = true;
     }
 
 
     private void Move() {
-        
+
         // Determine the direction and animation to play 
-        transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
-        if(player.transform.position.x - .4 < transform.position.x &&  transform.position.x < player.transform.position.x + .4) {
+        transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.fixedDeltaTime);
+        
+        if (player.transform.position.x - .4 < transform.position.x &&  transform.position.x < player.transform.position.x + .4) {
             goingRight = false;
             goingLeft = false;
             trueRight = false;
