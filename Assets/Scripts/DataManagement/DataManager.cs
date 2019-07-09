@@ -53,7 +53,14 @@ public class DataManager : MonoBehaviour {
         }
         else if (playerOne != this) {       
             Destroy(gameObject);
-        }      
+        }
+        if (Saralf == null) {
+            DontDestroyOnLoad(gameObject);
+            Saralf = this;
+        }
+        else if (Saralf != this) {
+            Destroy(gameObject);
+        }
     }
     private void Start() {
         abilityManager = gameObject.AddComponent<AbilityManager>() as AbilityManager;

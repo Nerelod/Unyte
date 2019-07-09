@@ -2049,16 +2049,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 782648484641426030, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8874672489141842321, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8874672489141842320, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
         type: 3}
       propertyPath: direction
@@ -2068,6 +2058,16 @@ PrefabInstance:
         type: 3}
       propertyPath: isInvincible
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 782648484641426030, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874672489141842321, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8874672489141842326, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
         type: 3}
@@ -8684,6 +8684,16 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 999499162}
+    - target: {fileID: 3721665660575396643, guid: 6db611f0e81c39148baa3f446f416438,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 999499162}
+    - target: {fileID: 3721665660575396643, guid: 6db611f0e81c39148baa3f446f416438,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 999499161}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db611f0e81c39148baa3f446f416438, type: 3}
 --- !u!1001 &7420340760348041075

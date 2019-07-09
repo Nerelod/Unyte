@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1564641778573101313}
   - component: {fileID: 1564641778573101314}
   - component: {fileID: 1564641778573101316}
-  - component: {fileID: 1564641778573101327}
   - component: {fileID: 7620045592012780472}
+  - component: {fileID: 3721665660575396643}
   m_Layer: 0
   m_Name: Saralf
   m_TagString: Untagged
@@ -128,37 +128,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5625, y: 0.9157696}
   m_EdgeRadius: 0
---- !u!114 &1564641778573101327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1564641778573101317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3b1baab3a131d14890205ca0d3fe877, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  target: {fileID: 0}
-  moveSpeed: 1.5
-  LeftAnimation: Saralf Left
-  RightAnimation: Saralf Right
-  UpAnimation: Saralf Up
-  DownAnimation: Saralf Down
-  UpLeftAnimation: Saralf Up Left
-  UpRightAnimation: Saralf Up Right
-  DownRightAnimation: Saralf Down Right
-  DownLeftAnimation: Saralf Down Left
-  walkingLeftAnimation: Saralf Walking Left
-  walkingRightAnimation: Saralf Walking Right
-  walkingUpAnimation: Saralf Walking Up
-  walkingDownAnimation: Saralf Walking Down
-  walkingUpLeftAnimation: Saralf Walking Up Left
-  walkingUpRightAnimation: Saralf Walking Up Right
-  walkingDownRightAnimation: Saralf Walking Down Right
-  walkingDownLeftAnimation: Saralf Walking Down Left
 --- !u!50 &7620045592012780472
 Rigidbody2D:
   serializedVersion: 4
@@ -180,3 +149,45 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &3721665660575396643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564641778573101317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc916d48aeb8bab4e9fa6e1e588fce19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  target: {fileID: 0}
+  moveSpeed: 0
+  anim: {fileID: 0}
+  rigid: {fileID: 0}
+  oldPos: {x: 0, y: 0, z: 0}
+  LeftAnimation: Saralf Left
+  RightAnimation: Saralf Right
+  UpAnimation: Saralf Up
+  DownAnimation: Saralf Down
+  UpLeftAnimation: Saralf Up Left
+  UpRightAnimation: Saralf Up Right
+  DownRightAnimation: Saralf Down Right
+  DownLeftAnimation: Saralf Down Left
+  walkingLeftAnimation: Saralf Walking Left
+  walkingRightAnimation: Saralf Walking Right
+  walkingUpAnimation: Saralf Walking Up
+  walkingDownAnimation: Saralf Walking Down
+  walkingUpLeftAnimation: Saralf Walking Up Left
+  walkingUpRightAnimation: Saralf Walking Up Right
+  walkingDownRightAnimation: Saralf Walking Down Right
+  walkingDownLeftAnimation: Saralf Walking Down Left
+  goingRight: 0
+  goingUp: 0
+  goingLeft: 0
+  goingDown: 0
+  trueRight: 0
+  trueLeft: 0
+  isInParty: 0
+  sprite: {fileID: 0}

@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
     // A reference to the animator, used for animating
     private Animator anim;
     // The sprite image
-    SpriteRenderer render;
+    public SpriteRenderer render;
     // A reference to the sprite's rigid body, used for detecting collision
     Rigidbody2D rigid;
     // The x part of the vector that determines movement
@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour {
     public int direction; //1 =  down, 2 = up, 3 = left, 4 = right, 5 = up left, 6 = up right, 7 = down left, 8 = down right
 
     void Start() {
+
+        render = GetComponent<SpriteRenderer>();
         isInvincible = false;
         // Make the in-game menu hidden at the start
         gameMenuIsActive = false;

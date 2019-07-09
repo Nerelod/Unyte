@@ -2,52 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PartyMemberController : MonoBehaviour
-{
-    public PlayerController player;
+public class PartyMemberController : MonoBehaviour {
+    protected PlayerController player;
     public Transform target;
     public float moveSpeed;
-    private Animator anim;
-    private Rigidbody2D rigid;
+    protected Animator anim;
+    protected Rigidbody2D rigid;
 
-    private Vector3 oldPos;
+    protected Vector3 oldPos;
 
-    public string LeftAnimation;
-    public string RightAnimation;
-    public string UpAnimation;
-    public string DownAnimation;
-    public string UpLeftAnimation;
-    public string UpRightAnimation;
-    public string DownRightAnimation;
-    public string DownLeftAnimation;
-    public string walkingLeftAnimation;
-    public string walkingRightAnimation;
-    public string walkingUpAnimation;
-    public string walkingDownAnimation;
-    public string walkingUpLeftAnimation;
-    public string walkingUpRightAnimation;
-    public string walkingDownRightAnimation;
-    public string walkingDownLeftAnimation;
+    [SerializeField] protected string LeftAnimation;
+    [SerializeField] protected string RightAnimation;
+    [SerializeField] protected string UpAnimation;
+    [SerializeField] protected string DownAnimation;
+    [SerializeField] protected string UpLeftAnimation;
+    [SerializeField] protected string UpRightAnimation;
+    [SerializeField] protected string DownRightAnimation;
+    [SerializeField] protected string DownLeftAnimation;
+    [SerializeField] protected string walkingLeftAnimation;
+    [SerializeField] protected string walkingRightAnimation;
+    [SerializeField] protected string walkingUpAnimation;
+    [SerializeField] protected string walkingDownAnimation;
+    [SerializeField] protected string walkingUpLeftAnimation;
+    [SerializeField] protected string walkingUpRightAnimation;
+    [SerializeField] protected string walkingDownRightAnimation;
+    [SerializeField] protected string walkingDownLeftAnimation;
 
-    private bool goingRight, goingUp, goingLeft, goingDown, trueRight, trueLeft;
-    private bool isInParty;
-    private SpriteRenderer sprite;
+    public bool goingRight, goingUp, goingLeft, goingDown, trueRight, trueLeft;
+    public bool isInParty;
+    public SpriteRenderer sprite;
 
     void Start()
     {
-        anim = GetComponent<Animator>();
-        rigid = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
-        player = FindObjectOfType<PlayerController>();
-        anim.speed = 1.5f;
-
-        trueRight = trueLeft = goingLeft = goingDown = goingRight = goingUp = false;
-        isInParty = true; // TODO: Make condition for when to add member to party
-        rigid.freezeRotation = true;
+        
     }
 
 
-    private void Move() {
+    public void Move() {
 
         // Determine the direction and animation to play 
         transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.fixedDeltaTime);
@@ -111,10 +102,10 @@ public class PartyMemberController : MonoBehaviour
         }
 
         if(transform.position.y < player.transform.position.y) { // if below
-            sprite.sortingOrder = 2;
+            sprite.sortingOrder = player.render.sortingOrder + 1;
         }
         else { // if above
-            sprite.sortingOrder = 1; 
+            sprite.sortingOrder = player.render.sortingOrder - 1; 
         }
 
         if (transform.position != oldPos) { // if moving
@@ -135,8 +126,6 @@ public class PartyMemberController : MonoBehaviour
 
     void Update()
     {
-        oldPos = transform.position;
-        if (isInParty) { Move(); Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>()); }
-        else { Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false); }
+        
     }
 }
