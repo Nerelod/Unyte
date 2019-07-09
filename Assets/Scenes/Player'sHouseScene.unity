@@ -2120,6 +2120,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Saralf
       objectReference: {fileID: 0}
+    - target: {fileID: 1564641778573101317, guid: 6db611f0e81c39148baa3f446f416438,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1564641778573101312, guid: 6db611f0e81c39148baa3f446f416438,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2195,6 +2200,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 8874672488994287165}
+    - target: {fileID: 3721665660575396643, guid: 6db611f0e81c39148baa3f446f416438,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564641778573101316, guid: 6db611f0e81c39148baa3f446f416438,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db611f0e81c39148baa3f446f416438, type: 3}
 --- !u!1001 &5689314215841237787

@@ -2049,6 +2049,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8874672489141842321, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8874672489141842320, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
         type: 3}
       propertyPath: direction
@@ -2063,11 +2068,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8874672489141842321, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8874672489141842326, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
         type: 3}
@@ -8619,6 +8619,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Saralf
       objectReference: {fileID: 0}
+    - target: {fileID: 1564641778573101317, guid: 6db611f0e81c39148baa3f446f416438,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1564641778573101312, guid: 6db611f0e81c39148baa3f446f416438,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8694,6 +8699,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 999499161}
+    - target: {fileID: 3721665660575396643, guid: 6db611f0e81c39148baa3f446f416438,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db611f0e81c39148baa3f446f416438, type: 3}
 --- !u!1001 &7420340760348041075

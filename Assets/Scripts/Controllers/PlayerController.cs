@@ -35,18 +35,7 @@ public class PlayerController : MonoBehaviour {
 
     public int direction; //1 =  down, 2 = up, 3 = left, 4 = right, 5 = up left, 6 = up right, 7 = down left, 8 = down right
 
-    void Start() {
-
-        render = GetComponent<SpriteRenderer>();
-        isInvincible = false;
-        // Make the in-game menu hidden at the start
-        gameMenuIsActive = false;
-        // Assign the animator
-        anim = GetComponent<Animator>();
-        // Assign the rigidbody
-        rigid = GetComponent<Rigidbody2D>();
-        rigid.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        rigid.interpolation = RigidbodyInterpolation2D.Extrapolate;
+    private void Awake() {
         // if switching scenes, change the player position so it makes sense
         if (DataManager.playerOne.isBeingLoaded == true) {
             transform.position = new Vector2(DataManager.playerOne.xpos, DataManager.playerOne.ypos);
@@ -62,6 +51,20 @@ public class PlayerController : MonoBehaviour {
 
             transform.position = startingPosition.initialValue;
         }
+    }
+    void Start() {
+
+        render = GetComponent<SpriteRenderer>();
+        isInvincible = false;
+        // Make the in-game menu hidden at the start
+        gameMenuIsActive = false;
+        // Assign the animator
+        anim = GetComponent<Animator>();
+        // Assign the rigidbody
+        rigid = GetComponent<Rigidbody2D>();
+        rigid.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        rigid.interpolation = RigidbodyInterpolation2D.Extrapolate;
+        
     }
 
     // This method is always run when the player is in the CanMove state
@@ -156,6 +159,8 @@ public class PlayerController : MonoBehaviour {
 
         DataManager.playerOne.xpos = transform.position.x;
         DataManager.playerOne.ypos = transform.position.y;
+
+        
 
         // Determine when to trigger the in-game menu
         controlGameMenu();

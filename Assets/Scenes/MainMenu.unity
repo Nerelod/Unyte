@@ -261,22 +261,27 @@ PrefabInstance:
     - target: {fileID: 503760104495064909, guid: de989f27c7a6c8c4da23f3f50456acc5,
         type: 3}
       propertyPath: qDamage
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 503760104495064909, guid: de989f27c7a6c8c4da23f3f50456acc5,
         type: 3}
       propertyPath: health
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 503760104495064909, guid: de989f27c7a6c8c4da23f3f50456acc5,
         type: 3}
       propertyPath: totalHealth
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 503760104495064909, guid: de989f27c7a6c8c4da23f3f50456acc5,
         type: 3}
       propertyPath: speed
-      value: 5
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 503760104495064909, guid: de989f27c7a6c8c4da23f3f50456acc5,
+        type: 3}
+      propertyPath: ranFromCombat
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de989f27c7a6c8c4da23f3f50456acc5, type: 3}
@@ -767,6 +772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadButton: {fileID: 1297341198}
+  playerc: {fileID: 0}
 --- !u!1 &1218682894
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,6 +908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadButton: {fileID: 1297341198}
+  playerc: {fileID: 0}
 --- !u!114 &1297341202
 MonoBehaviour:
   m_ObjectHideFlags: 0
