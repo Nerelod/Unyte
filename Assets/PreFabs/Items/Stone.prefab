@@ -97,6 +97,7 @@ MonoBehaviour:
   theText: {fileID: 4900000, guid: 180d920ac7c7a46e9b955ef8d7513e5f, type: 3}
   startLine: 0
   endLine: 0
+  ifItem: 1
   theTextManager: {fileID: 0}
   destroyWhenActivated: 1
   requireButtonPress: 1
@@ -140,3 +141,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemString: Stone
   identifier: Stone1
+  player: {fileID: 0}

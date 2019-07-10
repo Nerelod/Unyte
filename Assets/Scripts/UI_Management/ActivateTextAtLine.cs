@@ -8,6 +8,9 @@ public class ActivateTextAtLine : MonoBehaviour {
 
     public int startLine;
     public int endLine;
+    public bool ifItem;
+
+    private Item theItem;
 
     public TextBoxManager theTextManager;
 
@@ -17,6 +20,12 @@ public class ActivateTextAtLine : MonoBehaviour {
 	
 	void Start () {
         theTextManager = FindObjectOfType<TextBoxManager>();
+        if (ifItem) {
+            theItem = this.GetComponent<Item>();
+        }
+        else {
+            theItem = null;
+        }
 	}
 
     void OnTriggerEnter2D(Collider2D collision) { 
@@ -41,6 +50,10 @@ public class ActivateTextAtLine : MonoBehaviour {
     }
     void Update () {
         if (waitForPress && Input.GetKeyDown(KeyCode.Space) && theTextManager.boxActive == false) {
+            if (ifItem) {
+                DataManager.playerOne.itemManager.aquiredItems.Add(theItem.itemString);
+                DataManager.playerOne.itemManager.itemsThatWereRemoved.Add(theItem.identifier);
+            }
             theTextManager.ReloadScript(theText);
             theTextManager.currentLine = startLine;
             theTextManager.endAtLine = endLine;

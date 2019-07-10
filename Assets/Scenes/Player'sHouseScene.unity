@@ -402,12 +402,10 @@ MonoBehaviour:
   theText: {fileID: 4900000, guid: 4582a752f20bc1147b94513d79cdaf83, type: 3}
   startLine: 0
   endLine: 2
+  ifItem: 0
   theTextManager: {fileID: 2046837637}
   destroyWhenActivated: 0
   requireButtonPress: 1
-  isAnItem: 0
-  itemString: 
-  identifier: 
 --- !u!1001 &294202054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -499,6 +497,11 @@ PrefabInstance:
         type: 3}
       propertyPath: identifier
       value: Health Potion 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6853252722291205178, guid: bf6d51ad2b628f74ca01f955d7a85539,
+        type: 3}
+      propertyPath: ifItem
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf6d51ad2b628f74ca01f955d7a85539, type: 3}

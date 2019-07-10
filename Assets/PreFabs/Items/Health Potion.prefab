@@ -97,6 +97,7 @@ MonoBehaviour:
   theText: {fileID: 4900000, guid: 82c492a3e25fe1442b053f281a45e808, type: 3}
   startLine: 0
   endLine: 0
+  ifItem: 1
   theTextManager: {fileID: 0}
   destroyWhenActivated: 1
   requireButtonPress: 1
@@ -140,3 +141,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemString: Health Potion
   identifier: Health Potion1
+  player: {fileID: 0}
