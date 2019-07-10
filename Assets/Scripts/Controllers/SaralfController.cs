@@ -14,7 +14,7 @@ public class SaralfController : PartyMemberController
         anim.speed = 1.5f;
 
         trueRight = trueLeft = goingLeft = goingDown = goingRight = goingUp = false;
-        isInParty = true; // TODO: Make condition for when to add member to party
+        SaralfDataManager.Saralf.isInParty = true; // TODO: Make condition for when to add member to party
         rigid.freezeRotation = true;
 
         transform.position = target.transform.position;
@@ -25,7 +25,7 @@ public class SaralfController : PartyMemberController
     void Update()
     {
         oldPos = transform.position;
-        if (isInParty) { Move(); Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>()); }
+        if (SaralfDataManager.Saralf.isInParty) { Move(); Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>()); }
         else { Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false); }
     }
 }

@@ -2052,7 +2052,7 @@ PrefabInstance:
     - target: {fileID: 8874672489141842321, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8874672489141842320, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
         type: 3}
@@ -8778,5 +8778,10 @@ PrefabInstance:
       propertyPath: theTextManager
       value: 
       objectReference: {fileID: 513089534}
+    - target: {fileID: 7420340758923948871, guid: c0fa5e2d2e508ae4cad3c3b012ec3732,
+        type: 3}
+      propertyPath: destroyWhenActivated
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0fa5e2d2e508ae4cad3c3b012ec3732, type: 3}

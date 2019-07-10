@@ -10,11 +10,8 @@ using UnityEngine.UI;
 public class SaveAndLoadData : MonoBehaviour {
 
     public GameObject loadButton;
-
-    public PlayerController playerc;
     
     private void Start() {
-        playerc = FindObjectOfType<PlayerController>();
     }
 
 
@@ -22,7 +19,6 @@ public class SaveAndLoadData : MonoBehaviour {
     // Save data here. Use the data instance of the PlayerData class
     // to store what needs to be saved.
     public void save() {
-        playerc = FindObjectOfType<PlayerController>();
         DataManager.playerOne.hasSaved = true;
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/UnyteGameData.dat");
@@ -40,12 +36,11 @@ public class SaveAndLoadData : MonoBehaviour {
         bf.Serialize(file, data);
         file.Close();
 
-        Debug.Log(data.xpos.ToString() + " " + playerc.transform.position.x.ToString());
+        
     }
     // Load data here. Use the data instance of PlayerData to 
     // set equal what needs to be loaded.
     public void load() {
-        playerc = FindObjectOfType<PlayerController>();
         if (File.Exists(Application.persistentDataPath + "/UnyteGameData.dat")) {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/UnyteGameData.dat", FileMode.Open);
@@ -66,7 +61,7 @@ public class SaveAndLoadData : MonoBehaviour {
             SceneManager.LoadScene(DataManager.playerOne.currentScene);           
 
             DataManager.playerOne.isBeingLoaded = true;
-            Debug.Log(data.xpos.ToString() + " " + playerc.transform.position.x.ToString());
+            
         }
     }
     // Called when making a new game
@@ -75,6 +70,9 @@ public class SaveAndLoadData : MonoBehaviour {
         EnemyDataManager.EnemyManager.defeatedEnemies.Clear();
         DataManager.playerOne.health = 10;
         DataManager.playerOne.experience = 0;
+        DataManager.playerOne.qDamage = 3;
+        SaralfDataManager.Saralf.health = 12;
+        SaralfDataManager.Saralf.experience = 0; 
         DataManager.playerOne.xpos = 0;
         DataManager.playerOne.ypos = 0;
         DataManager.playerOne.theName = "Player One";

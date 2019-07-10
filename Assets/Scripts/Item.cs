@@ -18,9 +18,11 @@ public class Item : MonoBehaviour
     }
 
     void OnTriggerStay2D(Collider2D collision) {     
-        if (collision.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.Space) && player.State == States.CanMove) {         
+        if (collision.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.Space) && player.State == States.CanMove) {
+            Debug.Log("PickingUpItem");
             DataManager.playerOne.itemManager.aquiredItems.Add(itemString);
             DataManager.playerOne.itemManager.itemsThatWereRemoved.Add(identifier);
+            
         }
     }
     // Update is called once per frame

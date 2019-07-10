@@ -405,6 +405,9 @@ MonoBehaviour:
   theTextManager: {fileID: 2046837637}
   destroyWhenActivated: 0
   requireButtonPress: 1
+  isAnItem: 0
+  itemString: 
+  identifier: 
 --- !u!1001 &294202054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -477,6 +480,26 @@ PrefabInstance:
       propertyPath: theTextManager
       value: 
       objectReference: {fileID: 2046837637}
+    - target: {fileID: 6853252722291205178, guid: bf6d51ad2b628f74ca01f955d7a85539,
+        type: 3}
+      propertyPath: destroyWhenActivated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6853252722291205178, guid: bf6d51ad2b628f74ca01f955d7a85539,
+        type: 3}
+      propertyPath: isAnItem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6853252722291205178, guid: bf6d51ad2b628f74ca01f955d7a85539,
+        type: 3}
+      propertyPath: itemString
+      value: Health Potion
+      objectReference: {fileID: 0}
+    - target: {fileID: 6853252722291205178, guid: bf6d51ad2b628f74ca01f955d7a85539,
+        type: 3}
+      propertyPath: identifier
+      value: Health Potion 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf6d51ad2b628f74ca01f955d7a85539, type: 3}
 --- !u!1 &504581264

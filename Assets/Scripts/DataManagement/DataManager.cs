@@ -12,7 +12,6 @@ public class DataManager : MonoBehaviour {
 
     // reference to itself
     public static DataManager playerOne;
-    public static DataManager Saralf;
 
     public AbilityManager abilityManager;
     public ItemManager itemManager;
@@ -44,6 +43,7 @@ public class DataManager : MonoBehaviour {
     // If the character is present in the gane
     public bool isPresent;
 
+    public bool isInParty;
 
     // Happens before start, makes sure there is only one instance of DataManager
     private void Awake() {    
@@ -52,13 +52,6 @@ public class DataManager : MonoBehaviour {
             playerOne = this;
         }
         else if (playerOne != this) {       
-            Destroy(gameObject);
-        }
-        if (Saralf == null) {
-            DontDestroyOnLoad(gameObject);
-            Saralf = this;
-        }
-        else if (Saralf != this) {
             Destroy(gameObject);
         }
     }

@@ -261,30 +261,70 @@ PrefabInstance:
     - target: {fileID: 503760104495064909, guid: de989f27c7a6c8c4da23f3f50456acc5,
         type: 3}
       propertyPath: qDamage
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 503760104495064909, guid: de989f27c7a6c8c4da23f3f50456acc5,
         type: 3}
       propertyPath: health
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 503760104495064909, guid: de989f27c7a6c8c4da23f3f50456acc5,
         type: 3}
       propertyPath: totalHealth
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 503760104495064909, guid: de989f27c7a6c8c4da23f3f50456acc5,
         type: 3}
       propertyPath: speed
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 503760104495064909, guid: de989f27c7a6c8c4da23f3f50456acc5,
         type: 3}
       propertyPath: ranFromCombat
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 503760104495064909, guid: de989f27c7a6c8c4da23f3f50456acc5,
+        type: 3}
+      propertyPath: isPresent
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de989f27c7a6c8c4da23f3f50456acc5, type: 3}
+--- !u!1 &386988845 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5024840359456801373, guid: de989f27c7a6c8c4da23f3f50456acc5,
+    type: 3}
+  m_PrefabInstance: {fileID: 210080061}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &386988848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386988845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36089630291226743a44e32dd43ce1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityManager: {fileID: 0}
+  itemManager: {fileID: 0}
+  experience: 0
+  health: 0
+  totalHealth: 0
+  speed: 5
+  qDamage: 0
+  currentScene: 
+  xpos: 0
+  ypos: 0
+  theName: 
+  assignedOrderInCombat: 0
+  isBeingLoaded: 0
+  hasSaved: 0
+  ranFromCombat: 0
+  isPresent: 0
+  isInParty: 0
 --- !u!1001 &451864573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -772,7 +812,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadButton: {fileID: 1297341198}
-  playerc: {fileID: 0}
 --- !u!1 &1218682894
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,7 +947,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadButton: {fileID: 1297341198}
-  playerc: {fileID: 0}
 --- !u!114 &1297341202
 MonoBehaviour:
   m_ObjectHideFlags: 0

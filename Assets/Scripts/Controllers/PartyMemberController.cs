@@ -29,7 +29,6 @@ public class PartyMemberController : MonoBehaviour {
     [SerializeField] protected string walkingDownLeftAnimation;
 
     public bool goingRight, goingUp, goingLeft, goingDown, trueRight, trueLeft;
-    public bool isInParty;
     public SpriteRenderer sprite;
 
     void Start()

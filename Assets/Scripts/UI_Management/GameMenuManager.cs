@@ -10,9 +10,11 @@ public class GameMenuManager : MonoBehaviour {
     public static GameMenuManager gameMenuManager;
 
     public GameObject gameMenu;
-
+    // Main Panel Texts
     public Text healthText;
     public Text experienceText;
+    public Text saralfHealthText;
+    public Text saralfExperienceText;
     // Ability Texts
     public Text investigateText;
     // Item Texts
@@ -28,6 +30,8 @@ public class GameMenuManager : MonoBehaviour {
     public Button abilitiesButton;
     public Button itemsButton;
     public Button loadButton;
+    // Images
+    public GameObject saralfImage;
 
     private bool itemMode;
 
@@ -83,6 +87,7 @@ public class GameMenuManager : MonoBehaviour {
             loadButton.interactable = false;
         }
         checkPlayerOneAbilities();
+        checkParty();
     }
 
     public void showAbilities() {
@@ -126,10 +131,25 @@ public class GameMenuManager : MonoBehaviour {
     public void dropMode(){
         itemMode = !itemMode;
     }
+    private void checkParty() {
+        if (SaralfDataManager.Saralf.isInParty) {
+            saralfImage.SetActive(true);
+        }
+        else {
+            saralfImage.SetActive(false);
+            saralfHealthText.text = "";
+            saralfExperienceText.text = "";
+        }
+    }
 
     void Update() {
+        // Things that can change while in the gameMenu
         healthText.text = "Health: " + DataManager.playerOne.health;
         experienceText.text = "Experience: " + DataManager.playerOne.experience;
         checkPlayerOneItems();
+        if (SaralfDataManager.Saralf.isInParty) {
+            saralfHealthText.text = "Health: " + SaralfDataManager.Saralf.health;
+            saralfExperienceText.text = "Experience: " + SaralfDataManager.Saralf.experience;
+        }
     }
 }
