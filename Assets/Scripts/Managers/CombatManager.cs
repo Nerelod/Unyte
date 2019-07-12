@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -30,15 +31,17 @@ public class CombatManager : MonoBehaviour {
 
     public Text textIconOne;
     public Text textIconTwo;
-
-    // Ability Select Panel
+    public Text textIconThree;
     
     // IconOne image
     public GameObject iconOne;
     // IconTwo image
     public GameObject iconTwo;
+    //Icon Three image
+    public GameObject iconThree;
     // Icon sprites
     public Sprite playerOneIcon;
+    public Sprite saralfIcon;
     public Sprite enemyIcon;
 
     // Runs before Awake
@@ -81,6 +84,7 @@ public class CombatManager : MonoBehaviour {
         // Assign the icons
         iconOne = GameObject.Find("IconOne");
         iconTwo = GameObject.Find("IconTwo");
+        iconThree = GameObject.Find("IconThree");
         // The enemy has not attacked
         enemyOneHasAttacked = false;
         
@@ -107,30 +111,95 @@ public class CombatManager : MonoBehaviour {
         DataManager.playerOne.abilityManager.abilityToUse = "";
         DataManager.playerOne.itemManager.itemToUse = "";
     }
+    private int getCombatMembers() {
+        int members = 2;
+        if (SaralfDataManager.Saralf.isInParty) {
+            members += 1;
+        }
+        return members;
+    }
     // Order is determined by speed
     private void determineOrder() {
-        if (DataManager.playerOne.speed > EnemyDataManager.EnemyManager.speed) {
-            combatState = CombatStates.PlayerOneAttacking;
-            EnemyDataManager.EnemyManager.assignedOrderInCombat = 2;
-            DataManager.playerOne.assignedOrderInCombat = 1;
-            iconOne.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
-            iconTwo.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
-            CombatTextManager.combatTextManager.playerOneHealthText = textIconOne;
-            CombatTextManager.combatTextManager.enemyHealthText = textIconTwo;
-            CombatTextManager.combatTextManager.enemyHealthText.text = "?";
-        }
-        else {
-            combatState = CombatStates.EnemyAttacking;
-            EnemyDataManager.EnemyManager.assignedOrderInCombat = 1;
-            DataManager.playerOne.assignedOrderInCombat = 2;
-            iconOne.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
-            iconTwo.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
-            CombatTextManager.combatTextManager.playerOneHealthText = textIconTwo;
-            CombatTextManager.combatTextManager.enemyHealthText = textIconOne;
-            CombatTextManager.combatTextManager.enemyHealthText.text = "?";
 
+        int[] speeds = new int[getCombatMembers()];
+        speeds[0] = DataManager.playerOne.speed;
+        speeds[1] = EnemyDataManager.EnemyManager.speed;
+        if (SaralfDataManager.Saralf.isInParty) {
+            speeds[2] = SaralfDataManager.Saralf.speed;
         }
-        orderToReset = 3;
+        Array.Sort(speeds);
+        Array.Reverse(speeds);
+        DataManager.playerOne.assignedOrderInCombat = Array.IndexOf(speeds, DataManager.playerOne.speed) + 1;
+        SaralfDataManager.Saralf.assignedOrderInCombat = Array.IndexOf(speeds, SaralfDataManager.Saralf.speed) + 1;
+        EnemyDataManager.EnemyManager.assignedOrderInCombat = Array.IndexOf(speeds, EnemyDataManager.EnemyManager.speed) + 1;
+
+        Debug.Log(DataManager.playerOne.assignedOrderInCombat + " " + SaralfDataManager.Saralf.assignedOrderInCombat + " " + EnemyDataManager.EnemyManager.assignedOrderInCombat);
+
+        if (DataManager.playerOne.assignedOrderInCombat == 1) { // if playerOne is first
+            combatState = CombatStates.PlayerOneAttacking;
+            iconOne.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
+            CombatTextManager.combatTextManager.playerOneHealthText = textIconOne;
+            if (EnemyDataManager.EnemyManager.assignedOrderInCombat == 2) {
+                iconTwo.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
+                CombatTextManager.combatTextManager.enemyHealthText = textIconTwo;
+            }
+            else if(EnemyDataManager.EnemyManager.assignedOrderInCombat == 3) {
+                iconThree.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
+                CombatTextManager.combatTextManager.enemyHealthText = textIconThree;
+            }
+            if (SaralfDataManager.Saralf.assignedOrderInCombat == 2) {
+                iconTwo.GetComponent<SpriteRenderer>().sprite = saralfIcon;
+                CombatTextManager.combatTextManager.saralfHealthText = textIconTwo;
+            }
+            else if(SaralfDataManager.Saralf.assignedOrderInCombat == 3) {
+                iconThree.GetComponent<SpriteRenderer>().sprite = saralfIcon;
+                CombatTextManager.combatTextManager.saralfHealthText = textIconThree;
+            }
+        }
+        else if(EnemyDataManager.EnemyManager.assignedOrderInCombat == 1){ // if enemy is first
+            combatState = CombatStates.EnemyAttacking;
+            iconOne.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
+            CombatTextManager.combatTextManager.enemyHealthText = textIconOne;
+            if (DataManager.playerOne.assignedOrderInCombat == 2) {
+                iconTwo.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
+                CombatTextManager.combatTextManager.playerOneHealthText = textIconTwo;
+            }
+            else if(DataManager.playerOne.assignedOrderInCombat == 3) {
+                iconThree.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
+                CombatTextManager.combatTextManager.playerOneHealthText = textIconThree;
+            }
+            if(SaralfDataManager.Saralf.assignedOrderInCombat == 2) {
+                iconTwo.GetComponent<SpriteRenderer>().sprite = saralfIcon;
+                CombatTextManager.combatTextManager.saralfHealthText = textIconTwo;
+            }
+            else if (SaralfDataManager.Saralf.assignedOrderInCombat == 3) {
+                iconThree.GetComponent<SpriteRenderer>().sprite = saralfIcon;
+                CombatTextManager.combatTextManager.saralfHealthText = textIconThree;
+            }
+        }
+        else if(SaralfDataManager.Saralf.assignedOrderInCombat == 1) {
+            // TODO: CombatState = SaralfAttacking
+            iconOne.GetComponent<SpriteRenderer>().sprite = saralfIcon;
+            CombatTextManager.combatTextManager.saralfHealthText = textIconOne;
+            if (DataManager.playerOne.assignedOrderInCombat == 2) {
+                iconTwo.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
+                CombatTextManager.combatTextManager.playerOneHealthText = textIconTwo;
+            }
+            else if (DataManager.playerOne.assignedOrderInCombat == 3) {
+                iconThree.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
+                CombatTextManager.combatTextManager.playerOneHealthText = textIconThree;
+            }
+            if (EnemyDataManager.EnemyManager.assignedOrderInCombat == 2) {
+                iconTwo.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
+                CombatTextManager.combatTextManager.enemyHealthText = textIconTwo;
+            }
+            else if (EnemyDataManager.EnemyManager.assignedOrderInCombat == 3) {
+                iconThree.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
+                CombatTextManager.combatTextManager.enemyHealthText = textIconThree;
+            }
+        }
+        CombatTextManager.combatTextManager.enemyHealthText.text = "?";
+        orderToReset = getCombatMembers() + 1;
     }
 
     // Gets the player's chosen action 

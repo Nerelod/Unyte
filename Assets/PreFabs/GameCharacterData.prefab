@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1414370546112543641}
   - component: {fileID: 503760104495064909}
+  - component: {fileID: 7375679996483487708}
   m_Layer: 0
   m_Name: GameCharacterData
   m_TagString: Untagged
@@ -43,6 +44,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f78cfc656344fb5428489d56bad54903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityManager: {fileID: 0}
+  itemManager: {fileID: 0}
   experience: 0
   health: 0
+  totalHealth: 0
+  speed: 5
+  qDamage: 0
   currentScene: 
+  xpos: 0
+  ypos: 0
+  theName: 
+  assignedOrderInCombat: 0
+  isBeingLoaded: 0
+  hasSaved: 0
+  ranFromCombat: 0
+  isPresent: 0
+  isInParty: 0
+--- !u!114 &7375679996483487708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5024840359456801373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36089630291226743a44e32dd43ce1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityManager: {fileID: 0}
+  itemManager: {fileID: 0}
+  experience: 0
+  health: 12
+  totalHealth: 12
+  speed: 5
+  qDamage: 2
+  currentScene: 
+  xpos: 0
+  ypos: 0
+  theName: 
+  assignedOrderInCombat: 0
+  isBeingLoaded: 0
+  hasSaved: 0
+  ranFromCombat: 0
+  isPresent: 0
+  isInParty: 0
