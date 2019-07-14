@@ -3615,6 +3615,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 884c29f91cbcb0b4e932afd6ed260455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combatCharSprite: {fileID: 1996142309}
+  playerOneCombatantSprite: {fileID: 21300016, guid: 8a13557e64e0494449bbd2f3558c1114,
+    type: 3}
+  SaralfCombatantSprite: {fileID: 21300014, guid: 7c43705d9eb3f064a97c68beda72fb4c,
+    type: 3}
   enemySprite: {fileID: 0}
   textIconOne: {fileID: 1125754454}
   textIconTwo: {fileID: 214137627}

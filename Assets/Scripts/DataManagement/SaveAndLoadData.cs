@@ -75,7 +75,7 @@ public class SaveAndLoadData : MonoBehaviour {
         SaralfDataManager.Saralf.experience = 0; 
         DataManager.playerOne.xpos = 0;
         DataManager.playerOne.ypos = 0;
-        DataManager.playerOne.theName = "Player One";
+        DataManager.playerOne.theName = "Junak";
         DataManager.playerOne.abilityManager.aquiredAbilities.Clear();
         DataManager.playerOne.itemManager.aquiredItems.Clear();
         DataManager.playerOne.itemManager.itemsThatWereRemoved.Clear();

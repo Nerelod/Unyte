@@ -17,7 +17,7 @@ public class SaralfDataManager : DataManager
     }
     void Start()
     {
-        
+        Saralf.theName = "Saralf";
     }
 
     

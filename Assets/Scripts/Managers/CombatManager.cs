@@ -6,26 +6,37 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 // The states of combat, the phases
-public enum CombatStates {PlayerOneAttacking, EnemyAttacking, ResetValues, PlayerWon, EnemyWon}
+public enum CombatStates {PlayerOneAttacking, SaralfAttacking, EnemyAttacking, ResetValues, PlayerWon, EnemyWon}
 // The actions a player can take on their turn/order of combat
 public enum CombatOptions { Attack, Ability, Item, Run, HasNotChosen}
 
-public class CombatManager : MonoBehaviour { 
+public class CombatManager : MonoBehaviour {
 
+    // Reference to sprite representing who is going in combat
+    public GameObject combatCharSprite;
+    // Combatant Sprites                              
+    public Sprite playerOneCombatantSprite;
+    public Sprite SaralfCombatantSprite;
     // Reference to the enemy sprite
     public GameObject enemySprite;
     // Reference to the CombatStates enum, used for deciding what part of combat it is
     CombatStates combatState;
     // Reference to the playerOneOption enum, used for assigning the chosen option
     CombatOptions playerOneOption;
+    // Saralf's Option
+    CombatOptions SaralfOption;
     // The current order or turn of the combat
     private int order;
     // order to reset values
     private int orderToReset;
     // The order playerOne chose to act
     private int playerOneChosenOrder;
-    // Boolean that represents whether the enemy has attacked
+    // The Order Saralf will act
+    private int SaralfChosenOrder;
+    // Boolean that represents whether the combatant has attacked/been handled
     private bool enemyOneHasAttacked;
+    private bool playerOneHandled;
+    private bool SaralfHandled;
     // Boolean that represents whether the win text was prompt
     private bool winTextHasBeenPrompt;
 
@@ -55,6 +66,7 @@ public class CombatManager : MonoBehaviour {
     // Used to set all the values to default at the start of combat
     void Start() {
 
+        playerOneHandled = SaralfHandled = false;
         DataManager.playerOne.itemManager.isInCombat = true;
         DataManager.playerOne.abilityManager.abilityToUse = "";
         DataManager.playerOne.itemManager.itemToUse = "";
@@ -72,8 +84,10 @@ public class CombatManager : MonoBehaviour {
         CombatTextManager.combatTextManager.pressedSpace = false;
         // PlayerOne has not chosen an order to act
         playerOneChosenOrder = 0;
+        SaralfChosenOrder = 0;
         // PlayerOne has not chosen an action
         playerOneOption = CombatOptions.HasNotChosen;
+        SaralfOption = CombatOptions.HasNotChosen;
         // Display the text that is shown at the beginning of an encounter and wait for key press to continue
         CombatTextManager.combatTextManager.ManageText("A " + EnemyDataManager.EnemyManager.currentType + " appeared!");
         CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
@@ -91,6 +105,15 @@ public class CombatManager : MonoBehaviour {
         // Get the order that combtatants will act on
         determineOrder(); 
     }
+    // Method for checking if CombatTextManager finished what it does
+    private bool isTextManagerDone() {
+        if(CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
     // Method for the Run option
     private void Run(DataManager player){
         // run away animation
@@ -107,9 +130,21 @@ public class CombatManager : MonoBehaviour {
     }
     private void resetPlayerOneValues(){
         playerOneOption = CombatOptions.HasNotChosen;
+        CombatTextManager.combatTextManager.textHasBeenPrompt = false;
         playerOneChosenOrder = 0;
+        playerOneHandled = false;
+        SaralfHandled = false;
         DataManager.playerOne.abilityManager.abilityToUse = "";
         DataManager.playerOne.itemManager.itemToUse = "";
+    }
+    private void resetSaralfOptions() {
+        SaralfOption = CombatOptions.HasNotChosen;
+        CombatTextManager.combatTextManager.textHasBeenPrompt = false;
+        SaralfChosenOrder = 0;
+        SaralfHandled = false;
+        playerOneHandled = false;
+        //SaralfDataManager.Saralf.abilityManager.abilityToUse = "";
+        //SaralfDataManager.Saralf.itemManager.itemToUse = "";
     }
     private int getCombatMembers() {
         int members = 2;
@@ -132,8 +167,6 @@ public class CombatManager : MonoBehaviour {
         DataManager.playerOne.assignedOrderInCombat = Array.IndexOf(speeds, DataManager.playerOne.speed) + 1;
         SaralfDataManager.Saralf.assignedOrderInCombat = Array.IndexOf(speeds, SaralfDataManager.Saralf.speed) + 1;
         EnemyDataManager.EnemyManager.assignedOrderInCombat = Array.IndexOf(speeds, EnemyDataManager.EnemyManager.speed) + 1;
-
-        Debug.Log(DataManager.playerOne.assignedOrderInCombat + " " + SaralfDataManager.Saralf.assignedOrderInCombat + " " + EnemyDataManager.EnemyManager.assignedOrderInCombat);
 
         if (DataManager.playerOne.assignedOrderInCombat == 1) { // if playerOne is first
             combatState = CombatStates.PlayerOneAttacking;
@@ -177,8 +210,8 @@ public class CombatManager : MonoBehaviour {
                 CombatTextManager.combatTextManager.saralfHealthText = textIconThree;
             }
         }
-        else if(SaralfDataManager.Saralf.assignedOrderInCombat == 1) {
-            // TODO: CombatState = SaralfAttacking
+        else if(SaralfDataManager.Saralf.assignedOrderInCombat == 1) { // if Saralf is first
+            combatState = CombatStates.SaralfAttacking;
             iconOne.GetComponent<SpriteRenderer>().sprite = saralfIcon;
             CombatTextManager.combatTextManager.saralfHealthText = textIconOne;
             if (DataManager.playerOne.assignedOrderInCombat == 2) {
@@ -205,13 +238,13 @@ public class CombatManager : MonoBehaviour {
     // Gets the player's chosen action 
     private void GetPlayerAction(DataManager player) {
         // If the previous text is finished, the text has not been prompt, and the user pressed space, display "Choose an Action" 
-        if (CombatTextManager.combatTextManager.textIsFinished && !CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.pressedSpace) {         
+        if (CombatTextManager.combatTextManager.textIsFinished && !CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.pressedSpace) {
             CombatTextManager.combatTextManager.ManageText("Choose an Action");
             CombatTextManager.combatTextManager.textHasBeenPrompt = true;
         }
         // Assign playerOneOption if it is HasNotChosen based on input, followed by displaying "Choose Order To Act"
         if (CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.textIsFinished) {
-            if(player = DataManager.playerOne){
+            if(player == DataManager.playerOne){
                 if (Input.GetKeyDown(KeyCode.Q) && playerOneOption == CombatOptions.HasNotChosen) {
                     playerOneOption = CombatOptions.Attack;
                     CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
@@ -236,14 +269,44 @@ public class CombatManager : MonoBehaviour {
                     playerOneOption = CombatOptions.Item;
                 }
             }
-            
+            else if(player == SaralfDataManager.Saralf) {
+                if (Input.GetKeyDown(KeyCode.Q) && SaralfOption == CombatOptions.HasNotChosen) {
+                    SaralfOption = CombatOptions.Attack;
+                    CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
+                }
+                /*if (Input.GetKeyDown(KeyCode.W) && SaralfOption == CombatOptions.HasNotChosen) {
+                    CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(true);
+                    CombatMenuManager.combatMenuManager.abilityReturnButton.Select();
+                    CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
+                }*/                                                                                                         
+                /*if (Input.GetKeyDown(KeyCode.E) && SaralfOption == CombatOptions.HasNotChosen) {
+                    CombatMenuManager.combatMenuManager.whenTurnedOn();
+                    CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
+                }*/
+                if (Input.GetKeyDown(KeyCode.R) && SaralfOption == CombatOptions.HasNotChosen) {
+                    Run(SaralfDataManager.Saralf);
+                }
+
+                if (DataManager.playerOne.abilityManager.abilityToUse != "") {
+                    playerOneOption = CombatOptions.Ability;
+                }
+                if (DataManager.playerOne.itemManager.itemToUse != "") {
+                    playerOneOption = CombatOptions.Item;
+                }
+                /*if (SaralfDataManager.Saralf.abilityManager.abilityToUse != "") {
+                    SaralfOption = CombatOptions.Ability;
+                }
+                if (SaralfDataManager.Saralf.itemManager.itemToUse != "") {
+                    SaralfOption = CombatOptions.Item;
+                }*/
+            }
         }
     }
         
 
     // Method for subtracting enemy health
     private void Attack(EnemyDataManager enemy, DataManager character) {     
-        CombatTextManager.combatTextManager.ManageText("Player does " + character.qDamage.ToString() + " damage!");
+        CombatTextManager.combatTextManager.ManageText( character.theName + " does " + character.qDamage.ToString() + " damage!");
         //TODO: play enemy sprite damaged animation
         CombatTextManager.combatTextManager.damageText.text = "-" + character.qDamage.ToString();
         CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.damageText));
@@ -265,8 +328,16 @@ public class CombatManager : MonoBehaviour {
             CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
             theOrder = 2;
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && CombatTextManager.combatTextManager.textIsFinished) {
+            CombatTextManager.combatTextManager.ManageText("Order is Three");
+            CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+            theOrder = 3;
+        }
         if(player == DataManager.playerOne) {        
             playerOneChosenOrder = theOrder;
+        }
+        else if (player == SaralfDataManager.Saralf) {
+            SaralfChosenOrder = theOrder;
         }
     }
         
@@ -274,13 +345,9 @@ public class CombatManager : MonoBehaviour {
 
     // Handles all actions that happen on the order
     private void HandleOrder(DataManager player) { 
-
-        //Debug.Log("Handling Order " + order.ToString() + " player selected order is " + playerOneChosenOrder.ToString());   
-        if (player == DataManager.playerOne) {        
-            if (playerOneChosenOrder != order && CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0) { 
-                order += 1;
-            }
-            else if (playerOneChosenOrder == order && CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0) {            
+ 
+        if (player == DataManager.playerOne && isTextManagerDone()) {
+            if (playerOneChosenOrder == order && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0) {
                 if (playerOneOption == CombatOptions.Attack) {          
                     Attack(EnemyDataManager.EnemyManager, DataManager.playerOne);
                 }
@@ -291,12 +358,28 @@ public class CombatManager : MonoBehaviour {
                     DataManager.playerOne.itemManager.useItem(DataManager.playerOne);
                     CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
                 }
-                order += 1;
+                
             }
-            else if (playerOneChosenOrder != order && CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && playerOneOption == CombatOptions.HasNotChosen && playerOneChosenOrder == 0){
-                order += 1;
-            }
+            playerOneHandled = true;
         }
+        else if(player == SaralfDataManager.Saralf && isTextManagerDone()) {
+            if (SaralfChosenOrder == order && isTextManagerDone() && SaralfOption != CombatOptions.HasNotChosen && SaralfChosenOrder != 0) {
+                if (SaralfOption == CombatOptions.Attack) {
+                    Attack(EnemyDataManager.EnemyManager, SaralfDataManager.Saralf);
+                }
+                /*else if (SaralfOption == CombatOptions.Ability) {
+                    SaralfDataManager.Saralf.abilityManager.useAbility();
+                }
+                else if (SaralfOption == CombatOptions.Item) {
+                    SaralfDataManager.Saralf.itemManager.useItem(SaralfDataManager.Saralf);
+                    CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+                }*/
+                
+            }
+            SaralfHandled = true;
+            
+        }
+        if(SaralfHandled && playerOneHandled) { order += 1; Debug.Log("Adding to Order"); }
     }
 
     void Update() {
@@ -304,19 +387,29 @@ public class CombatManager : MonoBehaviour {
         
         switch (combatState) {        
             case CombatStates.PlayerOneAttacking:
+                combatCharSprite.GetComponent<SpriteRenderer>().sprite = playerOneCombatantSprite;
                 if (playerOneOption == CombatOptions.HasNotChosen ) {                 
                     GetPlayerAction(DataManager.playerOne);
                 }
                 if (playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder == 0) {                 
                     GetOrder(DataManager.playerOne);
                 }
-                if (playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0){
+                if (playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0 && !playerOneHandled && isTextManagerDone()){
                     HandleOrder(DataManager.playerOne);
                 }
+                if (!SaralfHandled && isTextManagerDone() && playerOneHandled) {
+                    HandleOrder(SaralfDataManager.Saralf);
+                    
+                }
                 
-                if(order == EnemyDataManager.EnemyManager.assignedOrderInCombat) {                
+                if(order == EnemyDataManager.EnemyManager.assignedOrderInCombat) {
+                    playerOneHandled = false;
+                    SaralfHandled = false;
                     combatState = CombatStates.EnemyAttacking;
-
+                }
+                else if(order == SaralfDataManager.Saralf.assignedOrderInCombat) {
+                    resetSaralfOptions();
+                    combatState = CombatStates.SaralfAttacking;
                 }
                 else if (order == orderToReset){
                     combatState = CombatStates.ResetValues;
@@ -326,21 +419,30 @@ public class CombatManager : MonoBehaviour {
                 }
                 break;
             case CombatStates.EnemyAttacking:
-                if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !enemyOneHasAttacked) {           
+                if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !enemyOneHasAttacked) {
                     EnemyDataManager.EnemyManager.theMonster.Attack(DataManager.playerOne);
                     enemyOneHasAttacked = true;
+                    
                 }
-                if(CombatTextManager.combatTextManager.pressedSpace && CombatTextManager.combatTextManager.textIsFinished && !EnemyDataManager.EnemyManager.theMonster.displayedDamage) {                    
+                if(isTextManagerDone() && !EnemyDataManager.EnemyManager.theMonster.displayedDamage) {                    
                     EnemyDataManager.EnemyManager.theMonster.DisplayDamage(DataManager.playerOne);
                 }
 
-                HandleOrder(DataManager.playerOne);
+                if (enemyOneHasAttacked) {
+                    if (!playerOneHandled) { HandleOrder(DataManager.playerOne); }
+                    if (!SaralfHandled) { HandleOrder(SaralfDataManager.Saralf); }
+                }
 
-                if(order == DataManager.playerOne.assignedOrderInCombat && CombatTextManager.combatTextManager.textIsFinished){
+
+                if (order == DataManager.playerOne.assignedOrderInCombat && CombatTextManager.combatTextManager.textIsFinished) {
                     resetPlayerOneValues();
                     combatState = CombatStates.PlayerOneAttacking;
                 }
-                else if(order == orderToReset) {
+                else if (order == SaralfDataManager.Saralf.assignedOrderInCombat && CombatTextManager.combatTextManager.textIsFinished) {
+                    resetSaralfOptions();
+                    combatState = CombatStates.SaralfAttacking;
+                }
+                else if (order == orderToReset) {
                     combatState = CombatStates.ResetValues;
                 }
                 if(DataManager.playerOne.health <= 0) {
@@ -348,18 +450,53 @@ public class CombatManager : MonoBehaviour {
                 }
 
                 break;
+            case CombatStates.SaralfAttacking:
+                combatCharSprite.GetComponent<SpriteRenderer>().sprite = SaralfCombatantSprite;
+                if(SaralfOption == CombatOptions.HasNotChosen) {
+                    GetPlayerAction(SaralfDataManager.Saralf);
+                }
+                if (SaralfOption != CombatOptions.HasNotChosen && SaralfChosenOrder == 0) {
+                    GetOrder(SaralfDataManager.Saralf);
+                }
+                if (SaralfOption != CombatOptions.HasNotChosen && SaralfChosenOrder != 0 && !SaralfHandled && isTextManagerDone()) {
+                    HandleOrder(SaralfDataManager.Saralf);
+                }
+                if (!playerOneHandled && isTextManagerDone() && SaralfHandled) {
+                    Debug.Log("Handling playerOne on Saralf's turn");
+                    HandleOrder(DataManager.playerOne);
+                }
+                if (order == EnemyDataManager.EnemyManager.assignedOrderInCombat) {
+                    playerOneHandled = false;
+                    SaralfHandled = false;
+                    combatState = CombatStates.EnemyAttacking;
+
+                }
+                else if (order == orderToReset) {
+                    combatState = CombatStates.ResetValues;
+                }
+                else if (order == DataManager.playerOne.assignedOrderInCombat) {
+                    combatState = CombatStates.PlayerOneAttacking;
+                }
+                if (EnemyDataManager.EnemyManager.health <= 0) {
+                    combatState = CombatStates.PlayerWon;
+                }
+                break;
             case CombatStates.ResetValues:
                 order = 1;
                 enemyOneHasAttacked = false;
                 CombatTextManager.combatTextManager.textHasBeenPrompt = false;
                 EnemyDataManager.EnemyManager.theMonster.displayedDamage = false;
                 EnemyDataManager.EnemyManager.theMonster.textWasPrompt = false;
-                if(order == DataManager.playerOne.assignedOrderInCombat){ 
+                if (order == DataManager.playerOne.assignedOrderInCombat) {
                     resetPlayerOneValues();
-                    combatState = CombatStates.PlayerOneAttacking; 
+                    combatState = CombatStates.PlayerOneAttacking;
                 }
-                else if(order == EnemyDataManager.EnemyManager.assignedOrderInCombat){ 
-                    combatState = CombatStates.EnemyAttacking; 
+                else if (order == SaralfDataManager.Saralf.assignedOrderInCombat) {
+                    resetSaralfOptions();
+                    combatState = CombatStates.SaralfAttacking;
+                }
+                else if (order == EnemyDataManager.EnemyManager.assignedOrderInCombat) {
+                    combatState = CombatStates.EnemyAttacking;
                 }             
                 break;
             case CombatStates.PlayerWon:
@@ -393,6 +530,7 @@ public class CombatManager : MonoBehaviour {
         }
         // Show player's health 
         CombatTextManager.combatTextManager.playerOneHealthText.text = DataManager.playerOne.health.ToString();
+        CombatTextManager.combatTextManager.saralfHealthText.text = SaralfDataManager.Saralf.health.ToString();
         CombatTextManager.combatTextManager.orderText.text = order.ToString();
     }
 }

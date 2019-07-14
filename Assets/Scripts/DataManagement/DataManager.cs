@@ -59,7 +59,7 @@ public class DataManager : MonoBehaviour {
         abilityManager = gameObject.AddComponent<AbilityManager>() as AbilityManager;
         itemManager = gameObject.AddComponent<ItemManager>() as ItemManager;
 
-        playerOne.theName = "Player One";
+        playerOne.theName = "Junak";
 
         playerOne.abilityManager.aquiredAbilities.Add("Investigate");
 
