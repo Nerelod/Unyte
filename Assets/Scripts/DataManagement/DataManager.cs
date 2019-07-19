@@ -40,8 +40,6 @@ public class DataManager : MonoBehaviour {
     public bool hasSaved = false;
     // if the character just ran from a combat encounter
     public bool ranFromCombat = false;
-    // If the character is present in the gane
-    public bool isPresent;
 
     public bool isInParty;
 
