@@ -73,18 +73,18 @@ public class SaveAndLoadData : MonoBehaviour {
         DataManager.playerOne.qDamage = 3;
         SaralfDataManager.Saralf.health = 12;
         SaralfDataManager.Saralf.experience = 0; 
-        DataManager.playerOne.xpos = 0;
-        DataManager.playerOne.ypos = 0;
         DataManager.playerOne.theName = "Junak";
         DataManager.playerOne.abilityManager.aquiredAbilities.Clear();
         DataManager.playerOne.itemManager.aquiredItems.Clear();
         DataManager.playerOne.itemManager.itemsThatWereRemoved.Clear();
         DataManager.playerOne.abilityManager.aquiredAbilities.Add("Investigate");
         DataManager.playerOne.itemManager.aquiredItems.Add("Health Potion");
-
-        SceneManager.LoadScene("Player'sHouseScene");
-        
         DataManager.playerOne.isBeingLoaded = true;
+        DataManager.playerOne.xpos = 1.4f;
+        DataManager.playerOne.ypos = .39f;
+        SceneManager.LoadScene("Cutscene_1");
+        
+        
 
     }
     /* PlayerData class. This is the class that stores the data 

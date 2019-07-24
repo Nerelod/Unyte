@@ -144,10 +144,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1.5
+  render: {fileID: 0}
   startingPosition: {fileID: 11400000, guid: 78567ad5f0fc84f4295d09ccbbb046af, type: 2}
   State: 0
   isInvincible: 0
-  direction: 2
+  isStill: 0
+  direction: 1
 --- !u!95 &8874672489141842327
 Animator:
   serializedVersion: 3

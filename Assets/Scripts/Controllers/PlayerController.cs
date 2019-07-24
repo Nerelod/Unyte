@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     // The player movement speed, can be changed in the editor
     public float moveSpeed = 3;
     // A reference to the animator, used for animating
-    private Animator anim;
+    public Animator anim;
     // The sprite image
     public SpriteRenderer render;
     // A reference to the sprite's rigid body, used for detecting collision
@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour {
         }
         // if not switching scenes, start at the starting location
         else {
-
+            Debug.Log("Starting Value");
             transform.position = startingPosition.initialValue;
         }
     }

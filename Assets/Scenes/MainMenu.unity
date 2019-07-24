@@ -288,6 +288,16 @@ PrefabInstance:
       propertyPath: isPresent
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 503760104495064909, guid: de989f27c7a6c8c4da23f3f50456acc5,
+        type: 3}
+      propertyPath: xpos
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 503760104495064909, guid: de989f27c7a6c8c4da23f3f50456acc5,
+        type: 3}
+      propertyPath: ypos
+      value: 0.39
+      objectReference: {fileID: 0}
     - target: {fileID: 7375679996483487708, guid: de989f27c7a6c8c4da23f3f50456acc5,
         type: 3}
       propertyPath: speed

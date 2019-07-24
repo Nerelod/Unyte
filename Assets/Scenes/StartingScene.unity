@@ -2069,15 +2069,15 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 8874672489141842326, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
-        type: 3}
-      propertyPath: m_Mass
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 3666393660797844959, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
         type: 3}
       propertyPath: distance
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874672489141842326, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 3618259940218910494, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
         type: 3}
@@ -8622,7 +8622,7 @@ PrefabInstance:
     - target: {fileID: 1564641778573101317, guid: 6db611f0e81c39148baa3f446f416438,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1564641778573101312, guid: 6db611f0e81c39148baa3f446f416438,
         type: 3}

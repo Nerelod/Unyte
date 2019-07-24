@@ -39,7 +39,8 @@ public class TextBoxManager : MonoBehaviour {
         if (boxActive) { 
             EnableTextBox();
         }
-        else { 
+        else {
+            Debug.Log("Disabeling TextBox");
             DisableTextBox();
         }
     }
