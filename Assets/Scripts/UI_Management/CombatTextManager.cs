@@ -45,12 +45,6 @@ public class CombatTextManager : MonoBehaviour {
         }
         textIsFinished = true;
     }
-    // Waits a few seconds
-    public IEnumerator Wait(int seconds) { 
-        textIsFinished = false;
-        yield return new WaitForSeconds(seconds);
-        textIsFinished = true;
-    }
     // Waits until the user presses space
     public IEnumerator WaitForKeyDown() { 
         pressedSpace = false;

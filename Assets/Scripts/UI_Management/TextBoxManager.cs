@@ -40,7 +40,6 @@ public class TextBoxManager : MonoBehaviour {
             EnableTextBox();
         }
         else {
-            Debug.Log("Disabeling TextBox");
             DisableTextBox();
         }
     }

@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour {
         }
         // if not switching scenes, start at the starting location
         else {
-            Debug.Log("Starting Value");
             transform.position = startingPosition.initialValue;
         }
     }
