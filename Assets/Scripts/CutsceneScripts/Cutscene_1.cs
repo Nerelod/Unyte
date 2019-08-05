@@ -12,12 +12,14 @@ public class Cutscene_1 : CutsceneManager
 
     private bool reachedTargetOne;
     private bool textHasEnded;
+    private bool readyToSwitchScenes;
 
     void Start()
     {
         playerController.State = States.CannotMove;
         playerController.anim.Play("PlayerDown");
 
+        readyToSwitchScenes = false;
         reachedTargetOne = false;
         waitIsFinished = false;
         textHasEnded = false;
@@ -31,11 +33,16 @@ public class Cutscene_1 : CutsceneManager
             if (player.transform.position == targetOne.transform.position && !textHasEnded) {
                 reachedTargetOne = true;
                 playerController.anim.Play("PlayerDown");
-                textManager.ManageText("What Now");
+                textManager.ManageText("Junak: *It's already noon.*");
                 StartCoroutine(textManager.WaitForKeyDown());
                 textHasEnded = true;
             }
-            if (textManager.pressedSpace) {
+            if(textManager.pressedSpace && textManager.textIsFinished && !readyToSwitchScenes && textHasEnded) {
+                textManager.ManageText("Junak: *I should go visit Paul in town.*");
+                StartCoroutine(textManager.WaitForKeyDown());
+                readyToSwitchScenes = true;
+            }
+            if (textManager.pressedSpace && textManager.textIsFinished && readyToSwitchScenes) {
                 DataManager.playerOne.xpos = -0.3f;
                 DataManager.playerOne.ypos = -1.07f;
                 DataManager.playerOne.isBeingLoaded = true;

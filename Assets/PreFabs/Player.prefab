@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1.5
+  anim: {fileID: 0}
   render: {fileID: 0}
   startingPosition: {fileID: 11400000, guid: 78567ad5f0fc84f4295d09ccbbb046af, type: 2}
   State: 0
