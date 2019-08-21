@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour {
             GameMenuManager.gameMenuManager.gameMenu.SetActive(false);
             if (DataManager.playerOne.ranFromCombat) {
                 StartCoroutine(invincibilityTimer());
+                Debug.Log("ran away");
                 DataManager.playerOne.ranFromCombat = false;
             }
         }
@@ -185,7 +186,9 @@ public class PlayerController : MonoBehaviour {
 
     public IEnumerator invincibilityTimer() {
         isInvincible = true;
+        Debug.Log("invincible");
         yield return new WaitForSeconds(3);
+        Debug.Log("Not invincible");
         isInvincible = false;
     }
     void Update() {

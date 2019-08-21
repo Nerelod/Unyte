@@ -2704,6 +2704,11 @@ PrefabInstance:
       propertyPath: monsterName
       value: Slime2
       objectReference: {fileID: 0}
+    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 999499161}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29759f4f2cd0e5d43b11785e40507882, type: 3}
 --- !u!1001 &577234299
@@ -3562,7 +3567,7 @@ PrefabInstance:
     - target: {fileID: 5689314215297217154, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5689314215894988661, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
         type: 3}
@@ -4131,6 +4136,11 @@ PrefabInstance:
       propertyPath: pointTwo
       value: 
       objectReference: {fileID: 2018987176}
+    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 999499161}
     - target: {fileID: 3702520463104611409, guid: 29759f4f2cd0e5d43b11785e40507882,
         type: 3}
       propertyPath: m_Name
@@ -4321,20 +4331,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8874672489141842320, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
-        type: 3}
-      propertyPath: direction
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8874672489141842320, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
-        type: 3}
-      propertyPath: isInvincible
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8874672489141842322, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.32
+      value: -0.46
       objectReference: {fileID: 0}
     - target: {fileID: 8874672489141842322, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
         type: 3}
@@ -4384,6 +4384,16 @@ PrefabInstance:
     - target: {fileID: 8874672489141842322, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874672489141842320, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
+        type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874672489141842320, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
+        type: 3}
+      propertyPath: isInvincible
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8874672489141842321, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
@@ -12777,6 +12787,7 @@ GameObject:
   - component: {fileID: 2015161533}
   - component: {fileID: 2015161532}
   - component: {fileID: 2015161531}
+  - component: {fileID: 2015161534}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -12792,11 +12803,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015161529}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.02, y: -0.1, z: -8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1, y: -0.3, z: -12}
+  m_LocalScale: {x: 1, y: 1, z: 1.5}
   m_Children: []
-  m_Father: {fileID: 45965446}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2015161531
 MonoBehaviour:
@@ -12868,6 +12879,22 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &2015161534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015161529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ab75febde8fb94ca639757146cb0d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 45965446}
+  smoothing: 1
+  maxPosition: {x: 3.5, y: 13.3}
+  minPosition: {x: -3.5, y: -1.2}
 --- !u!1 &2018987175
 GameObject:
   m_ObjectHideFlags: 0
@@ -13587,7 +13614,7 @@ PrefabInstance:
     - target: {fileID: 1564641778573101317, guid: 6db611f0e81c39148baa3f446f416438,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1564641778573101312, guid: 6db611f0e81c39148baa3f446f416438,
         type: 3}
