@@ -450,6 +450,7 @@ public class CombatManager : MonoBehaviour {
             case CombatStates.EnemyAttacking: // On enemy's turn
                 checkWinner();
                 if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !enemyOneHasAttacked) {
+                    //TODO: Choose Target
                     EnemyDataManager.EnemyManager.theMonster.Attack(DataManager.playerOne);
                     enemyOneHasAttacked = true;
                 }

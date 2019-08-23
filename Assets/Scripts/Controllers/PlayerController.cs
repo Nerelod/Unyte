@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour {
     public int direction; //1 =  down, 2 = up, 3 = left, 4 = right, 5 = up left, 6 = up right, 7 = down left, 8 = down right
 
     private void Awake() {
+        isInvincible = false;
         // if switching scenes, change the player position so it makes sense
         if (DataManager.playerOne.isBeingLoaded == true) {
             transform.position = new Vector2(DataManager.playerOne.xpos, DataManager.playerOne.ypos);
@@ -55,7 +56,6 @@ public class PlayerController : MonoBehaviour {
     void Start() {
 
         render = GetComponent<SpriteRenderer>();
-        isInvincible = false;
         // Make the in-game menu hidden at the start
         gameMenuIsActive = false;
         // Assign the animator

@@ -30,7 +30,7 @@ public class Slime : Monster
                 textWasPrompt = true;
             }
     }
-
+    //TODO: Choose Target
     public override void Attack(DataManager target) {
         whichAttack = Random.Range(1, 3);
         if (whichAttack == 1) {
