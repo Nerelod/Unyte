@@ -40,6 +40,9 @@ public class CombatManager : MonoBehaviour {
     // Boolean that represents whether the win text was prompt
     private bool winTextHasBeenPrompt;
 
+    private List<DataManager> partymembers = new List<DataManager>();
+    private int whichtarget;
+
     public Text textIconOne;
     public Text textIconTwo;
     public Text textIconThree;
@@ -110,7 +113,8 @@ public class CombatManager : MonoBehaviour {
         enemyOneHasAttacked = false;
         
         // Get the order that combtatants will act on
-        determineOrder(); 
+        determineOrder();
+        getPartyMembers();
     }
     // Method for checking if CombatTextManager finished what it does
     private bool isTextManagerDone() {
@@ -153,12 +157,21 @@ public class CombatManager : MonoBehaviour {
         //SaralfDataManager.Saralf.abilityManager.abilityToUse = "";
         //SaralfDataManager.Saralf.itemManager.itemToUse = "";
     }
+    // Returns amount of combat Members
     private int getCombatMembers() {
         int members = 2;
         if (SaralfDataManager.Saralf.isInParty) {
+
             members += 1;
         }
         return members;
+    }
+    private void getPartyMembers() {
+        partymembers.Add(DataManager.playerOne);
+        if (SaralfDataManager.Saralf.isInParty) {
+            partymembers.Add(SaralfDataManager.Saralf);
+        }
+        Debug.Log(partymembers);
     }
     // Order is determined by speed
     private void determineOrder() {
@@ -451,11 +464,12 @@ public class CombatManager : MonoBehaviour {
                 checkWinner();
                 if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !enemyOneHasAttacked) {
                     //TODO: Choose Target
-                    EnemyDataManager.EnemyManager.theMonster.Attack(DataManager.playerOne);
+                    whichtarget = UnityEngine.Random.Range(0, getCombatMembers() - 1);
+                    EnemyDataManager.EnemyManager.theMonster.Attack(partymembers[whichtarget]);
                     enemyOneHasAttacked = true;
                 }
                 if(isTextManagerDone() && !EnemyDataManager.EnemyManager.theMonster.displayedDamage) {                    
-                    EnemyDataManager.EnemyManager.theMonster.DisplayDamage(DataManager.playerOne);
+                    EnemyDataManager.EnemyManager.theMonster.DisplayDamage(partymembers[whichtarget]);
                 }
 
                 if (enemyOneHasAttacked) {

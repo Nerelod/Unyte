@@ -17,7 +17,7 @@ public class Slime : Monster
 
     private void Launch(DataManager target){
         if (textWasPrompt == false) {
-                CombatTextManager.combatTextManager.ManageText("Slime launches itself at you!");
+                CombatTextManager.combatTextManager.ManageText("Slime launches itself at " + target.theName + "!");
                 CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
                 target.health = target.health - damage;
                 textWasPrompt = true;
