@@ -306,13 +306,6 @@ public class CombatManager : MonoBehaviour {
                 if (Input.GetKeyDown(KeyCode.R) && SaralfOption == CombatOptions.HasNotChosen) {
                     Run(SaralfDataManager.Saralf);
                 }
-
-                if (DataManager.playerOne.abilityManager.abilityToUse != "") {
-                    playerOneOption = CombatOptions.Ability;
-                }
-                if (DataManager.playerOne.itemManager.itemToUse != "") {
-                    playerOneOption = CombatOptions.Item;
-                }
                 /*if (SaralfDataManager.Saralf.abilityManager.abilityToUse != "") {
                     SaralfOption = CombatOptions.Ability;
                 }
@@ -550,6 +543,7 @@ public class CombatManager : MonoBehaviour {
                     DataManager.playerOne.isBeingLoaded = true;
                     EnemyDataManager.EnemyManager.defeatedEnemies.Add(EnemyDataManager.EnemyManager.currentName);
                     DataManager.playerOne.addExperience(EnemyDataManager.EnemyManager.experienceGives);
+                    if (SaralfDataManager.Saralf.isInParty) { SaralfDataManager.Saralf.addExperience(EnemyDataManager.EnemyManager.experienceGives); }
                     DataManager.playerOne.itemManager.isInCombat = false;
                     SceneManager.LoadScene(EnemyDataManager.EnemyManager.theScene);
                 }
