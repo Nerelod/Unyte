@@ -51,8 +51,8 @@ public class ActivateTextAtLine : MonoBehaviour {
     void Update () {
         if (waitForPress && Input.GetKeyDown(KeyCode.Space) && theTextManager.boxActive == false) {
             if (ifItem) {
-                DataManager.playerOne.itemManager.aquiredItems.Add(theItem.itemString);
-                DataManager.playerOne.itemManager.itemsThatWereRemoved.Add(theItem.identifier);
+                DataManager.Junak.itemManager.aquiredItems.Add(theItem.itemString);
+                DataManager.Junak.itemManager.itemsThatWereRemoved.Add(theItem.identifier);
             }
             theTextManager.ReloadScript(theText);
             theTextManager.currentLine = startLine;

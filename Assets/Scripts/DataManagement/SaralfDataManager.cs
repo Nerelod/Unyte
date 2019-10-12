@@ -18,6 +18,7 @@ public class SaralfDataManager : DataManager
     void Start()
     {
         Saralf.theName = "Saralf";
+        itemManager = gameObject.AddComponent<ItemManager>() as ItemManager;
     }
 
     

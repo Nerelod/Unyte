@@ -24,9 +24,9 @@ public class CombatMenuManager : MonoBehaviour
     }
 
     private void checkItemInCombat(string itemName, Button button, Text textBox) {
-        if (DataManager.playerOne.itemManager.aquiredItems.Contains(itemName)) {
+        if (DataManager.Junak.itemManager.aquiredItems.Contains(itemName)) {
             button.gameObject.SetActive(true);
-            textBox.text = itemName + " " + DataManager.playerOne.itemManager.getAmountOfItem(itemName);
+            textBox.text = itemName + " " + DataManager.Junak.itemManager.getAmountOfItem(itemName);
         }
         else {
             button.gameObject.SetActive(false);

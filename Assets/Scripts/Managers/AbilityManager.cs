@@ -22,8 +22,8 @@ public class AbilityManager : MonoBehaviour
     }
 
     public void playerOneSelectAbility(string selectedAbility){
-        if(DataManager.playerOne.abilityManager.aquiredAbilities.Contains(selectedAbility)){
-            DataManager.playerOne.abilityManager.abilityToUse = selectedAbility;
+        if(DataManager.Junak.abilityManager.aquiredAbilities.Contains(selectedAbility)){
+            DataManager.Junak.abilityManager.abilityToUse = selectedAbility;
             CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(false);
 
         }

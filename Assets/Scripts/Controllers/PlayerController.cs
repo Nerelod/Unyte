@@ -38,13 +38,13 @@ public class PlayerController : MonoBehaviour {
     private void Awake() {
         isInvincible = false;
         // if switching scenes, change the player position so it makes sense
-        if (DataManager.playerOne.isBeingLoaded == true) {
-            transform.position = new Vector2(DataManager.playerOne.xpos, DataManager.playerOne.ypos);
-            DataManager.playerOne.isBeingLoaded = false;
+        if (DataManager.Junak.isBeingLoaded == true) {
+            transform.position = new Vector2(DataManager.Junak.xpos, DataManager.Junak.ypos);
+            DataManager.Junak.isBeingLoaded = false;
             GameMenuManager.gameMenuManager.gameMenu.SetActive(false);
-            if (DataManager.playerOne.ranFromCombat) {
+            if (DataManager.Junak.ranFromCombat) {
                 StartCoroutine(invincibilityTimer());
-                DataManager.playerOne.ranFromCombat = false;
+                DataManager.Junak.ranFromCombat = false;
             }
         }
         // if not switching scenes, start at the starting location
@@ -156,8 +156,8 @@ public class PlayerController : MonoBehaviour {
         rigid.MovePosition(new Vector2((transform.position.x + moveVector.x * moveSpeed * Time.fixedDeltaTime),
                    transform.position.y + moveVector.y * moveSpeed * Time.fixedDeltaTime));
 
-        DataManager.playerOne.xpos = transform.position.x;
-        DataManager.playerOne.ypos = transform.position.y;
+        DataManager.Junak.xpos = transform.position.x;
+        DataManager.Junak.ypos = transform.position.y;
 
         
 

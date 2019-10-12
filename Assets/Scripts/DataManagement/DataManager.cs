@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 public class DataManager : MonoBehaviour { 
 
     // reference to itself
-    public static DataManager playerOne;
+    public static DataManager Junak;
 
     public AbilityManager abilityManager;
     public ItemManager itemManager;
@@ -41,15 +41,17 @@ public class DataManager : MonoBehaviour {
     // if the character just ran from a combat encounter
     public bool ranFromCombat = false;
 
+    public bool isTurnInCombat = false;
+
     public bool isInParty;
 
     // Happens before start, makes sure there is only one instance of DataManager
     private void Awake() {    
-        if (playerOne == null) {        
+        if (Junak == null) {        
             DontDestroyOnLoad(gameObject);
-            playerOne = this;
+            Junak = this;
         }
-        else if (playerOne != this) {       
+        else if (Junak != this) {       
             Destroy(gameObject);
         }
     }
@@ -57,9 +59,9 @@ public class DataManager : MonoBehaviour {
         abilityManager = gameObject.AddComponent<AbilityManager>() as AbilityManager;
         itemManager = gameObject.AddComponent<ItemManager>() as ItemManager;
 
-        playerOne.theName = "Junak";
+        Junak.theName = "Junak";
 
-        playerOne.abilityManager.aquiredAbilities.Add("Investigate");
+        Junak.abilityManager.aquiredAbilities.Add("Investigate");
 
     }
     // Method for adding experience to total experience

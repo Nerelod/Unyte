@@ -1008,7 +1008,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 704889895}
-        m_MethodName: playerOneSelectItem
+        m_MethodName: selectItemInCombat
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1191,7 +1191,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 775065654}
-        m_MethodName: playerOneSelectItem
+        m_MethodName: selectItemInCombat
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3621,6 +3621,7 @@ MonoBehaviour:
   SaralfCombatantSprite: {fileID: 21300014, guid: 7c43705d9eb3f064a97c68beda72fb4c,
     type: 3}
   enemySprite: {fileID: 0}
+  playerOneHandled: 0
   textIconOne: {fileID: 1125754454}
   textIconTwo: {fileID: 214137627}
   textIconThree: {fileID: 215590199}

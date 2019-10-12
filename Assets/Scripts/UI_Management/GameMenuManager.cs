@@ -57,21 +57,21 @@ public class GameMenuManager : MonoBehaviour {
     }
 
     private void checkPlayerOneAbilities() {
-        if (DataManager.playerOne.abilityManager.aquiredAbilities.Contains("Investigate")) { investigateText.text = "Investigate"; } else { investigateText.text = ""; }    
+        if (DataManager.Junak.abilityManager.aquiredAbilities.Contains("Investigate")) { investigateText.text = "Investigate"; } else { investigateText.text = ""; }    
     }
     private void checkContainedItems(string itemName, Text textBox) {
-        if (DataManager.playerOne.itemManager.aquiredItems.Contains(itemName)){
-            textBox.text = itemName + " " + DataManager.playerOne.itemManager.getAmountOfItem(itemName);
+        if (DataManager.Junak.itemManager.aquiredItems.Contains(itemName)){
+            textBox.text = itemName + " " + DataManager.Junak.itemManager.getAmountOfItem(itemName);
         }
         else {
             textBox.text = "";
         }
     }
     private void checkPlayerOneItems(){
-        healthPotionText.text = "Health Potion " + DataManager.playerOne.itemManager.getAmountOfItem("Health Potion");
+        healthPotionText.text = "Health Potion " + DataManager.Junak.itemManager.getAmountOfItem("Health Potion");
         checkContainedItems("Stone", stoneText);
 
-        if(!DataManager.playerOne.itemManager.aquiredItems.Any() && ItemPanel.activeSelf){
+        if(!DataManager.Junak.itemManager.aquiredItems.Any() && ItemPanel.activeSelf){
             itemReturnButton.Select();
         }
     }
@@ -79,7 +79,7 @@ public class GameMenuManager : MonoBehaviour {
         AbilityPanel.SetActive(false);
         ItemPanel.SetActive(false);
         mainPanel.SetActive(true);
-        if(DataManager.playerOne.hasSaved){
+        if(DataManager.Junak.hasSaved){
             loadButton.interactable = true; 
             loadButton.Select();
         }
@@ -144,8 +144,8 @@ public class GameMenuManager : MonoBehaviour {
 
     void Update() {
         // Things that can change while in the gameMenu
-        healthText.text = "Health: " + DataManager.playerOne.health;
-        experienceText.text = "Experience: " + DataManager.playerOne.experience;
+        healthText.text = "Health: " + DataManager.Junak.health;
+        experienceText.text = "Experience: " + DataManager.Junak.experience;
         checkPlayerOneItems();
         if (SaralfDataManager.Saralf.isInParty) {
             saralfHealthText.text = "Health: " + SaralfDataManager.Saralf.health;

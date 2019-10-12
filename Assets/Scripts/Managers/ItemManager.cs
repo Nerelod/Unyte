@@ -33,16 +33,30 @@ public class ItemManager : MonoBehaviour
         }
 
     }
-    public void playerOneSelectItem(string selectedItem){
-        if(DataManager.playerOne.itemManager.aquiredItems.Contains(selectedItem)){
-            DataManager.playerOne.itemManager.itemToUse = selectedItem;
+    public void JunakSelectItem(string selectedItem){
+        if(DataManager.Junak.itemManager.aquiredItems.Contains(selectedItem)){
+            DataManager.Junak.itemManager.itemToUse = selectedItem;
             CombatMenuManager.combatMenuManager.itemSelectPanel.SetActive(false);         
         }
     }
-    public void playerOneSelectItemOutsideCombat(string selectedItem){
-        if(DataManager.playerOne.itemManager.aquiredItems.Contains(selectedItem)){
-            DataManager.playerOne.itemManager.itemToUse = selectedItem;
-            DataManager.playerOne.itemManager.useItem(DataManager.playerOne);        
+    public void JunakSelectItemOutsideCombat(string selectedItem){
+        if(DataManager.Junak.itemManager.aquiredItems.Contains(selectedItem)){
+            DataManager.Junak.itemManager.itemToUse = selectedItem;
+            DataManager.Junak.itemManager.useItem(DataManager.Junak);        
+        }
+    }
+    public void selectItemInCombat(string selectedItem) {
+        if (DataManager.Junak.isTurnInCombat) {
+            if (DataManager.Junak.itemManager.aquiredItems.Contains(selectedItem)) {
+                DataManager.Junak.itemManager.itemToUse = selectedItem;
+                CombatMenuManager.combatMenuManager.itemSelectPanel.SetActive(false);
+            }
+        }
+        else if (SaralfDataManager.Saralf.isTurnInCombat) {
+            if (DataManager.Junak.itemManager.aquiredItems.Contains(selectedItem)) {
+                SaralfDataManager.Saralf.itemManager.itemToUse = selectedItem;
+                CombatMenuManager.combatMenuManager.itemSelectPanel.SetActive(false);
+            }
         }
     }
     public void useItem(DataManager player){

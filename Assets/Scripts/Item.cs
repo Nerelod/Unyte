@@ -12,7 +12,7 @@ public class Item : MonoBehaviour
     {
         player = FindObjectOfType<PlayerController>();
         // Set item to false if it was aquired by the player
-        if (DataManager.playerOne.itemManager.itemsThatWereRemoved.Contains(identifier)){
+        if (DataManager.Junak.itemManager.itemsThatWereRemoved.Contains(identifier)){
             this.gameObject.SetActive(false);
         }
     }
