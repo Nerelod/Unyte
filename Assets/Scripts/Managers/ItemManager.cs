@@ -21,7 +21,7 @@ public class ItemManager : MonoBehaviour
         if(player.itemManager.isInCombat){
             CombatTextManager.combatTextManager.ManageText(player.theName + " Used Health Potion!");
         }
-        player.itemManager.aquiredItems.Remove("Health Potion");
+        DataManager.Junak.itemManager.aquiredItems.Remove("Health Potion");
     }
     public void stone(DataManager player){
         if(player.itemManager.isInCombat){
@@ -29,7 +29,7 @@ public class ItemManager : MonoBehaviour
             EnemyDataManager.EnemyManager.health -= 2;
             CombatTextManager.combatTextManager.damageText.text = "-2";
             CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.damageText));
-            player.itemManager.aquiredItems.Remove("Stone");
+            DataManager.Junak.itemManager.aquiredItems.Remove("Stone");
         }
 
     }
