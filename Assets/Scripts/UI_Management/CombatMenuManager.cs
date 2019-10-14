@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class CombatMenuManager : MonoBehaviour
 {
     public static CombatMenuManager combatMenuManager;
+    // Ability Panel shenanigans
     public GameObject abilitySelectPanel;
     public Button abilityReturnButton;
-
+    // Item Panel shenanigans
     public GameObject itemSelectPanel;
     public Button itemReturnButton;
     public Button healthPotionButton;
@@ -16,11 +17,16 @@ public class CombatMenuManager : MonoBehaviour
 
     public Text healthPotionText;
     public Text stoneButtonText;
+    // Ally Select Panel shenanigans
+    public GameObject allySelectPanel;
+    public Button junakButton;
+    public Button saralfButton;
 
     void Start()
     {
         abilitySelectPanel.SetActive(false);
         itemSelectPanel.SetActive(false);
+        allySelectPanel.SetActive(false);
     }
 
     private void checkItemInCombat(string itemName, Button button, Text textBox) {
@@ -33,13 +39,18 @@ public class CombatMenuManager : MonoBehaviour
         }
     }
 
-    public void whenTurnedOn(){
+    public void itemPanelWhenTurnedOn(){
         itemSelectPanel.SetActive(true);
         itemReturnButton.Select();
         // activate or deactivate x item button if there are/aren't x items
         checkItemInCombat("Health Potion", healthPotionButton, healthPotionText);
         checkItemInCombat("Stone", stoneButton, stoneButtonText); 
 
+    }
+    public void abilityPanelWhenTurnedOn()
+    {
+        abilitySelectPanel.SetActive(true);
+        abilityReturnButton.Select();
     }
 
     void Update()

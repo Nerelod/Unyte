@@ -273,12 +273,11 @@ public class CombatManager : MonoBehaviour {
                     CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
                 }
                 if (Input.GetKeyDown(KeyCode.W) && playerOneOption == CombatOptions.HasNotChosen) {
-                    CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(true);
-                    CombatMenuManager.combatMenuManager.abilityReturnButton.Select();           
+                    CombatMenuManager.combatMenuManager.abilityPanelWhenTurnedOn();      
                     CombatTextManager.combatTextManager.ManageText("Choose Order To Act");                               
                 }
                 if (Input.GetKeyDown(KeyCode.E) && playerOneOption == CombatOptions.HasNotChosen){
-                    CombatMenuManager.combatMenuManager.whenTurnedOn();
+                    CombatMenuManager.combatMenuManager.itemPanelWhenTurnedOn();
                     CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
                 }
                 if (Input.GetKeyDown(KeyCode.R) && playerOneOption == CombatOptions.HasNotChosen){
@@ -303,7 +302,7 @@ public class CombatManager : MonoBehaviour {
                     CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
                 }*/                                                                                                         
                 if (Input.GetKeyDown(KeyCode.E) && SaralfOption == CombatOptions.HasNotChosen) {
-                    CombatMenuManager.combatMenuManager.whenTurnedOn();
+                    CombatMenuManager.combatMenuManager.itemPanelWhenTurnedOn();
                     CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
                 }
                 if (Input.GetKeyDown(KeyCode.R) && SaralfOption == CombatOptions.HasNotChosen) {

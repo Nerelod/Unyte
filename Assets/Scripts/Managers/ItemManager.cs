@@ -19,13 +19,13 @@ public class ItemManager : MonoBehaviour
         player.health = player.health + 5;
         if(player.health > player.totalHealth){ player.health = player.totalHealth; }
         if(player.itemManager.isInCombat){
-            CombatTextManager.combatTextManager.ManageText("Used Health Potion!");
+            CombatTextManager.combatTextManager.ManageText(player.theName + " Used Health Potion!");
         }
         player.itemManager.aquiredItems.Remove("Health Potion");
     }
     public void stone(DataManager player){
         if(player.itemManager.isInCombat){
-            CombatTextManager.combatTextManager.ManageText("Used Stone!");
+            CombatTextManager.combatTextManager.ManageText(player.theName + " Used Stone!");
             EnemyDataManager.EnemyManager.health -= 2;
             CombatTextManager.combatTextManager.damageText.text = "-2";
             CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.damageText));
