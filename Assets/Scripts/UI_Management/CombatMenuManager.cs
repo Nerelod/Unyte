@@ -52,6 +52,10 @@ public class CombatMenuManager : MonoBehaviour
         abilitySelectPanel.SetActive(true);
         abilityReturnButton.Select();
     }
+    public void allySelectPanelWhenTurnedOn() {
+        allySelectPanel.SetActive(true);
+        junakButton.Select();
+    }
 
     void Update()
     {

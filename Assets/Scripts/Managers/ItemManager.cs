@@ -33,12 +33,6 @@ public class ItemManager : MonoBehaviour
         }
 
     }
-    public void JunakSelectItem(string selectedItem){
-        if(DataManager.Junak.itemManager.aquiredItems.Contains(selectedItem)){
-            DataManager.Junak.itemManager.itemToUse = selectedItem;
-            CombatMenuManager.combatMenuManager.itemSelectPanel.SetActive(false);         
-        }
-    }
     public void JunakSelectItemOutsideCombat(string selectedItem){
         if(DataManager.Junak.itemManager.aquiredItems.Contains(selectedItem)){
             DataManager.Junak.itemManager.itemToUse = selectedItem;
