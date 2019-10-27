@@ -6,16 +6,19 @@ public class ItemManager : MonoBehaviour
 {
     public List<string> aquiredItems = new List<string>();
     public List<string> itemsThatWereRemoved = new List<string>();
+    // Items that require an ally to be chosen
+    public List<string> allyItems = new List<string>();
 
     public string itemToUse;
-    
+    public DataManager allyToTarget;
     public bool isInCombat;
     void Start()
     {
         isInCombat = false;
+        allyItems.Add("Health Potion");
     }
 
-    public void healthPotion(DataManager player){     
+    public void healthPotion(DataManager player){
         player.health = player.health + 5;
         if(player.health > player.totalHealth){ player.health = player.totalHealth; }
         if(player.itemManager.isInCombat){
@@ -52,15 +55,30 @@ public class ItemManager : MonoBehaviour
                 CombatMenuManager.combatMenuManager.itemSelectPanel.SetActive(false);
             }
         }
+        if (DataManager.Junak.itemManager.aquiredItems.Contains(selectedItem) && allyItems.Contains(selectedItem)) {
+            CombatMenuManager.combatMenuManager.allySelectPanelWhenTurnedOn();
+        }
+    }
+    public void selectAlly(string allyName) {
+        if(allyName == "Junak") {
+            if (DataManager.Junak.isTurnInCombat) { DataManager.Junak.itemManager.allyToTarget = DataManager.Junak; }
+            else if (SaralfDataManager.Saralf.isTurnInCombat) { SaralfDataManager.Saralf.itemManager.allyToTarget = DataManager.Junak; }
+        }
+        else if (allyName == "Saralf") {
+            if (DataManager.Junak.isTurnInCombat) { DataManager.Junak.itemManager.allyToTarget = SaralfDataManager.Saralf; }
+            else if (SaralfDataManager.Saralf.isTurnInCombat) { SaralfDataManager.Saralf.itemManager.allyToTarget = SaralfDataManager.Saralf; }
+        }
+        CombatMenuManager.combatMenuManager.allySelectPanel.SetActive(false);
     }
     public void useItem(DataManager player){
         if(itemToUse == "Health Potion"){
-            healthPotion(player);
+            healthPotion(allyToTarget);
         }
         else if(itemToUse == "Stone"){
             stone(player);
         }
     }
+
     public void turnOffItemSelect(){
         CombatMenuManager.combatMenuManager.itemSelectPanel.SetActive(false);
         CombatTextManager.combatTextManager.textHasBeenPrompt = false;
