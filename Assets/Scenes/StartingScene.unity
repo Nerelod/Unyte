@@ -4331,16 +4331,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8874672489141842320, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
-        type: 3}
-      propertyPath: direction
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8874672489141842320, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
-        type: 3}
-      propertyPath: isInvincible
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8874672489141842322, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4394,6 +4384,16 @@ PrefabInstance:
     - target: {fileID: 8874672489141842322, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874672489141842320, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
+        type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874672489141842320, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
+        type: 3}
+      propertyPath: isInvincible
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8874672489141842321, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,

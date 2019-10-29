@@ -1044,7 +1044,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aquiredItems: []
   itemsThatWereRemoved: []
+  allyItems: []
   itemToUse: 
+  allyToTarget: {fileID: 0}
   isInCombat: 0
 --- !u!114 &704889896
 MonoBehaviour:
@@ -1190,7 +1192,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aquiredItems: []
   itemsThatWereRemoved: []
+  allyItems: []
   itemToUse: 
+  allyToTarget: {fileID: 0}
   isInCombat: 0
 --- !u!114 &775065655
 MonoBehaviour:
@@ -1619,11 +1623,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 987.4
       objectReference: {fileID: 0}
-    - target: {fileID: 5689314215297217159, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
-        type: 3}
-      propertyPath: m_PixelPerfect
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5689314216210822837, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1633,6 +1632,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -44.935
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689314215297217159, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
+        type: 3}
+      propertyPath: m_PixelPerfect
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5689314215894988663, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
         type: 3}
@@ -1701,7 +1705,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aquiredItems: []
   itemsThatWereRemoved: []
+  allyItems: []
   itemToUse: 
+  allyToTarget: {fileID: 0}
   isInCombat: 0
 --- !u!114 &965132961
 MonoBehaviour:
@@ -2421,7 +2427,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aquiredItems: []
   itemsThatWereRemoved: []
+  allyItems: []
   itemToUse: 
+  allyToTarget: {fileID: 0}
   isInCombat: 0
 --- !u!114 &1377941719
 MonoBehaviour:
@@ -3093,7 +3101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aquiredItems: []
   itemsThatWereRemoved: []
+  allyItems: []
   itemToUse: 
+  allyToTarget: {fileID: 0}
   isInCombat: 0
 --- !u!114 &1675497900
 MonoBehaviour:

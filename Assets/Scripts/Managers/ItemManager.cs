@@ -36,10 +36,12 @@ public class ItemManager : MonoBehaviour
         }
 
     }
-    public void JunakSelectItemOutsideCombat(string selectedItem){
+    public void selectItemOutsideCombat(string selectedItem){
         if(DataManager.Junak.itemManager.aquiredItems.Contains(selectedItem)){
-            DataManager.Junak.itemManager.itemToUse = selectedItem;
-            DataManager.Junak.itemManager.useItem(DataManager.Junak);        
+            if (allyItems.Contains(selectedItem)) {
+                GameMenuManager.gameMenuManager.allySelectPanelWhenTurnedOn();
+            }
+            DataManager.Junak.itemManager.itemToUse = selectedItem;      
         }
     }
     public void selectItemInCombat(string selectedItem) {
@@ -73,10 +75,18 @@ public class ItemManager : MonoBehaviour
     public void useItem(DataManager player){
         if(itemToUse == "Health Potion"){
             healthPotion(allyToTarget);
+            // Select Health Potion Button after ally select panel
+            GameMenuManager.gameMenuManager.healthPotionButton.Select();
         }
         else if(itemToUse == "Stone"){
             stone(player);
         }
+        if (!DataManager.Junak.itemManager.isInCombat) {
+            if (!DataManager.Junak.itemManager.aquiredItems.Contains(itemToUse)) {
+                GameMenuManager.gameMenuManager.itemReturnButton.Select();
+            }
+        }
+
     }
 
     public void turnOffItemSelect(){

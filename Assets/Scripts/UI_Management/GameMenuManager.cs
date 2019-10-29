@@ -23,6 +23,7 @@ public class GameMenuManager : MonoBehaviour {
     public GameObject AbilityPanel;
     public GameObject ItemPanel;
     public GameObject mainPanel;
+    public GameObject allySelectOutsideCombatPanel;
     // Buttons
     public Button abilityReturnButton;
     public Button itemReturnButton;
@@ -30,6 +31,8 @@ public class GameMenuManager : MonoBehaviour {
     public Button abilitiesButton;
     public Button itemsButton;
     public Button loadButton;
+    public Button JunakButton;
+    public Button SaralfButton;
     // Images
     public GameObject saralfImage;
 
@@ -140,6 +143,21 @@ public class GameMenuManager : MonoBehaviour {
             saralfHealthText.text = "";
             saralfExperienceText.text = "";
         }
+    }
+
+    public void allySelectPanelWhenTurnedOn() {
+        allySelectOutsideCombatPanel.SetActive(true);
+        JunakButton.Select();
+    }
+    public void selectAllyOutsideCombat(string allyName) {
+        if(allyName == "Junak") {
+            DataManager.Junak.itemManager.allyToTarget = DataManager.Junak;
+        }
+        else if(allyName == "Saralf") {
+            DataManager.Junak.itemManager.allyToTarget = SaralfDataManager.Saralf;
+        }
+        DataManager.Junak.itemManager.useItem(DataManager.Junak);
+        allySelectOutsideCombatPanel.SetActive(false);
     }
 
     void Update() {
