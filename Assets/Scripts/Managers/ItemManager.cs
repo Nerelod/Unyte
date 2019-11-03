@@ -24,7 +24,7 @@ public class ItemManager : MonoBehaviour
         if(player.itemManager.isInCombat){
             CombatTextManager.combatTextManager.ManageText(player.theName + " Used Health Potion!");
         }
-        DataManager.Junak.itemManager.aquiredItems.Remove("Health Potion");
+        //DataManager.Junak.itemManager.aquiredItems.Remove("Health Potion");
     }
     public void stone(DataManager player){
         if(player.itemManager.isInCombat){
@@ -32,7 +32,7 @@ public class ItemManager : MonoBehaviour
             EnemyDataManager.EnemyManager.health -= 2;
             CombatTextManager.combatTextManager.damageText.text = "-2";
             CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.damageText));
-            DataManager.Junak.itemManager.aquiredItems.Remove("Stone");
+            //DataManager.Junak.itemManager.aquiredItems.Remove("Stone");
         }
 
     }
@@ -41,7 +41,8 @@ public class ItemManager : MonoBehaviour
             if (allyItems.Contains(selectedItem)) {
                 GameMenuManager.gameMenuManager.allySelectPanelWhenTurnedOn();
             }
-            DataManager.Junak.itemManager.itemToUse = selectedItem;      
+            DataManager.Junak.itemManager.itemToUse = selectedItem;
+            DataManager.Junak.itemManager.aquiredItems.Remove(selectedItem);
         }
     }
     public void selectItemInCombat(string selectedItem) {
@@ -57,9 +58,12 @@ public class ItemManager : MonoBehaviour
                 CombatMenuManager.combatMenuManager.itemSelectPanel.SetActive(false);
             }
         }
-        if (DataManager.Junak.itemManager.aquiredItems.Contains(selectedItem) && allyItems.Contains(selectedItem)) {
-            CombatMenuManager.combatMenuManager.allySelectPanelWhenTurnedOn();
+        if (DataManager.Junak.itemManager.aquiredItems.Contains(selectedItem)) {
+            if (allyItems.Contains(selectedItem)) {
+                CombatMenuManager.combatMenuManager.allySelectPanelWhenTurnedOn();
+            }
         }
+        DataManager.Junak.itemManager.aquiredItems.Remove(selectedItem);
     }
     public void selectAlly(string allyName) {
         if(allyName == "Junak") {
