@@ -19,6 +19,7 @@ public class SaralfDataManager : DataManager
     {
         Saralf.theName = "Saralf";
         itemManager = gameObject.AddComponent<ItemManager>() as ItemManager;
+        experienceNeeded = 10;
     }
 
     

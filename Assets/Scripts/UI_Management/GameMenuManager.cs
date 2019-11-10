@@ -13,8 +13,10 @@ public class GameMenuManager : MonoBehaviour {
     // Main Panel Texts
     public Text healthText;
     public Text experienceText;
+    public Text junakLevelText;
     public Text saralfHealthText;
     public Text saralfExperienceText;
+    public Text saralfLevelText;
     // Ability Texts
     public Text investigateText;
     // Item Texts
@@ -164,10 +166,12 @@ public class GameMenuManager : MonoBehaviour {
         // Things that can change while in the gameMenu
         healthText.text = "Health: " + DataManager.Junak.health;
         experienceText.text = "Experience: " + DataManager.Junak.experience;
+        junakLevelText.text = "Level: " + DataManager.Junak.level.ToString();
         checkPlayerOneItems();
         if (SaralfDataManager.Saralf.isInParty) {
             saralfHealthText.text = "Health: " + SaralfDataManager.Saralf.health;
             saralfExperienceText.text = "Experience: " + SaralfDataManager.Saralf.experience;
+            saralfLevelText.text = "Level: " + SaralfDataManager.Saralf.level.ToString();
         }
     }
 }

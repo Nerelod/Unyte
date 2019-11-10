@@ -17,6 +17,8 @@ public class DataManager : MonoBehaviour {
     public ItemManager itemManager;
     // amount of experience
     public int experience;
+    public int experienceNeeded;
+    public int level;
     // amount of health
     public int health;
     // total amount of health possible
@@ -62,11 +64,20 @@ public class DataManager : MonoBehaviour {
         Junak.theName = "Junak";
 
         Junak.abilityManager.aquiredAbilities.Add("Investigate");
+        experienceNeeded = 10;
 
     }
     // Method for adding experience to total experience
     public void addExperience(int experienceToAdd) {    
         experience = experience + experienceToAdd;
+        if (experience >= experienceNeeded) {
+            levelUp();
+        }
+    }
+    public void levelUp() {
+        level += 1;
+        experience = experience - experienceNeeded;
+        experienceNeeded = (experienceNeeded * 2) - (experienceNeeded/2);
     }
     // Resets the experience back to 0
     public void resetExperience() {    

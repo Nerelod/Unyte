@@ -28,6 +28,7 @@ public class SaveAndLoadData : MonoBehaviour {
         data.deadEnemies = EnemyDataManager.EnemyManager.defeatedEnemies;
         data.health = DataManager.Junak.health;
         data.experience = DataManager.Junak.experience;
+        data.level = DataManager.Junak.level;
         data.xpos = DataManager.Junak.xpos;
         data.ypos = DataManager.Junak.ypos;
         data.currentScene = DataManager.Junak.currentScene;
@@ -50,6 +51,7 @@ public class SaveAndLoadData : MonoBehaviour {
             EnemyDataManager.EnemyManager.defeatedEnemies = data.deadEnemies;
             DataManager.Junak.health = data.health;
             DataManager.Junak.experience = data.experience;
+            DataManager.Junak.level = data.level;
             DataManager.Junak.xpos = data.xpos;
             DataManager.Junak.ypos = data.ypos;
             DataManager.Junak.currentScene = data.currentScene;
@@ -93,6 +95,7 @@ public class SaveAndLoadData : MonoBehaviour {
     [Serializable]
     class PlayerData {
         public int experience;
+        public int level;
         public int health;
         public float xpos, ypos;
         public string currentScene;
