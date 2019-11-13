@@ -166,20 +166,25 @@ public class PlayerController : MonoBehaviour {
     }
     // Called in the Move method
     void controlGameMenu() {
-        // If the gameMenu is active, pressing X turns it off  
-        if (Input.GetKeyDown(KeyCode.X) && gameMenuIsActive) {
-            State = States.CanMove; // Resume motion after resuming the game
-            gameMenuIsActive = false;
-            GameMenuManager.gameMenuManager.gameMenu.SetActive(gameMenuIsActive);
+        // If the gameMenu is active, pressing X turns it off
+        if (GameMenuManager.gameMenuManager.canInteractWith)
+        {
+            if (Input.GetKeyDown(KeyCode.X) && gameMenuIsActive)
+            {
+                State = States.CanMove; // Resume motion after resuming the game
+                gameMenuIsActive = false;
+                GameMenuManager.gameMenuManager.gameMenu.SetActive(gameMenuIsActive);
 
-        }
-        // If the gameMenu is unactive, pressing X turns it on   
-        else if (Input.GetKeyDown(KeyCode.X) && gameMenuIsActive == false) {
-            State = States.CannotMove; // Player cannot move when in-game menu is on
-            gameMenuIsActive = true;
-            GameMenuManager.gameMenuManager.gameMenu.SetActive(gameMenuIsActive);
-            GameMenuManager.gameMenuManager.whenTurnedOn();
+            }
+            // If the gameMenu is unactive, pressing X turns it on   
+            else if (Input.GetKeyDown(KeyCode.X) && gameMenuIsActive == false)
+            {
+                State = States.CannotMove; // Player cannot move when in-game menu is on
+                gameMenuIsActive = true;
+                GameMenuManager.gameMenuManager.gameMenu.SetActive(gameMenuIsActive);
+                GameMenuManager.gameMenuManager.whenTurnedOn();
 
+            }
         }
     }
 

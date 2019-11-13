@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,6 +39,7 @@ public class ItemManager : MonoBehaviour
     public void selectItemOutsideCombat(string selectedItem){
         if(DataManager.Junak.itemManager.aquiredItems.Contains(selectedItem)){
             if (allyItems.Contains(selectedItem)) {
+                GameMenuManager.gameMenuManager.canInteractWith = false;
                 GameMenuManager.gameMenuManager.allySelectPanelWhenTurnedOn();
             }
             DataManager.Junak.itemManager.itemToUse = selectedItem;

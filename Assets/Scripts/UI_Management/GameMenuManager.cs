@@ -8,6 +8,7 @@ using System.Linq;
 public class GameMenuManager : MonoBehaviour {
 
     public static GameMenuManager gameMenuManager;
+    public bool canInteractWith;
 
     public GameObject gameMenu;
     // Main Panel Texts
@@ -57,7 +58,7 @@ public class GameMenuManager : MonoBehaviour {
         AbilityPanel.SetActive(false);
         // Make the mainPanel Active
         mainPanel.SetActive(true);
-
+        canInteractWith = true;
         itemMode = false;
     }
 
@@ -160,6 +161,7 @@ public class GameMenuManager : MonoBehaviour {
         }
         DataManager.Junak.itemManager.useItem(DataManager.Junak);
         allySelectOutsideCombatPanel.SetActive(false);
+        canInteractWith = true;
     }
 
     void Update() {
