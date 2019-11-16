@@ -145,6 +145,7 @@ public class GameMenuManager : MonoBehaviour {
             saralfImage.SetActive(false);
             saralfHealthText.text = "";
             saralfExperienceText.text = "";
+            saralfLevelText.text = "";
         }
     }
 

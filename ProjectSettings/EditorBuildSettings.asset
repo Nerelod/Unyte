@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cutscenes/Cutscene_1.unity
     guid: b50aa98f77364d04d8d1d5c672793e25
+  - enabled: 1
+    path: Assets/Scenes/RoadToVillage.unity
+    guid: 2cd4d70eaac40a14b8adcbaf7fcee250
   m_configObjects: {}
