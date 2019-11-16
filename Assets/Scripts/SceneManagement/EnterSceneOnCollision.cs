@@ -20,6 +20,7 @@ public class EnterSceneOnCollision : MonoBehaviour {
         if (collision.CompareTag("Player")) {        
             playerStorage.initialValue = playerPosition;
             player.State = States.CannotMove;
+            DataManager.Junak.directionHolder = player.direction;
             Transitions.screenTransition.StartCoroutine(Transitions.screenTransition.FadeOut(scene, 0.33f));            
         }       
     }

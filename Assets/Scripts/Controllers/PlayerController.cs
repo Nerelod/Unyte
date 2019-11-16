@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Awake() {
         isInvincible = false;
-        // if switching scenes, change the player position so it makes sense
+        
         if (DataManager.Junak.isBeingLoaded == true) {
             transform.position = new Vector2(DataManager.Junak.xpos, DataManager.Junak.ypos);
             DataManager.Junak.isBeingLoaded = false;
@@ -46,10 +46,10 @@ public class PlayerController : MonoBehaviour {
                 StartCoroutine(invincibilityTimer());
                 DataManager.Junak.ranFromCombat = false;
             }
-        }
-        // if not switching scenes, start at the starting location
+        }    
         else {
             transform.position = startingPosition.initialValue;
+            direction = DataManager.Junak.directionHolder;
         }
     }
     void Start() {

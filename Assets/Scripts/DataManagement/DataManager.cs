@@ -47,6 +47,8 @@ public class DataManager : MonoBehaviour {
 
     public bool isInParty;
 
+    public int directionHolder;
+
     // Happens before start, makes sure there is only one instance of DataManager
     private void Awake() {    
         if (Junak == null) {        

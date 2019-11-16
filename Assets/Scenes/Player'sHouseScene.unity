@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: StartingScene
   player: {fileID: 0}
-  playerPosition: {x: -0.92, y: 11.3}
+  playerPosition: {x: -0.47, y: 11.3}
   playerStorage: {fileID: 11400000, guid: 78567ad5f0fc84f4295d09ccbbb046af, type: 2}
 --- !u!61 &21322397
 BoxCollider2D:
@@ -2154,7 +2154,7 @@ PrefabInstance:
     - target: {fileID: 1564641778573101317, guid: 6db611f0e81c39148baa3f446f416438,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1564641778573101312, guid: 6db611f0e81c39148baa3f446f416438,
         type: 3}
