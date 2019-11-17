@@ -85,9 +85,7 @@ public class MonsterController : MonoBehaviour {
                 // if reaches pointOne, set pointA false
                 if (transform.position == pointOne.transform.position) {  
                     pointA = false;
-                    Debug.Log("switching direction");
                 }
-                Debug.Log("going towards point A");
                 transform.position = Vector2.MoveTowards(transform.position, pointOne.position, speed * Time.deltaTime);
                 goingRight = true;
 

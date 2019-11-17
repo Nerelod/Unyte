@@ -184,11 +184,12 @@ public class CombatManager : MonoBehaviour {
         speeds[1] = EnemyDataManager.EnemyManager.speed;
         if (SaralfDataManager.Saralf.isInParty) {
             speeds[2] = SaralfDataManager.Saralf.speed;
+            Debug.Log("Saralf in Party");
         }
         Array.Sort(speeds);
         Array.Reverse(speeds);
         DataManager.Junak.assignedOrderInCombat = Array.IndexOf(speeds, DataManager.Junak.speed) + 1;
-        SaralfDataManager.Saralf.assignedOrderInCombat = Array.IndexOf(speeds, SaralfDataManager.Saralf.speed) + 1;
+        if (SaralfDataManager.Saralf.isInParty) { SaralfDataManager.Saralf.assignedOrderInCombat = Array.IndexOf(speeds, SaralfDataManager.Saralf.speed) + 1; }
         EnemyDataManager.EnemyManager.assignedOrderInCombat = Array.IndexOf(speeds, EnemyDataManager.EnemyManager.speed) + 1;
 
         if (DataManager.Junak.assignedOrderInCombat == 1) { // if playerOne is first
