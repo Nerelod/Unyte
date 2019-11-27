@@ -47,12 +47,13 @@ public class CombatMenuManager : MonoBehaviour
         checkItemInCombat("Stone", stoneButton, stoneButtonText); 
 
     }
-    public void abilityPanelWhenTurnedOn()
-    {
+    public void abilityPanelWhenTurnedOn() { 
+    
         abilitySelectPanel.SetActive(true);
         abilityReturnButton.Select();
     }
     public void allySelectPanelWhenTurnedOn() {
+        saralfButton.gameObject.SetActive(SaralfDataManager.Saralf.isInParty);
         allySelectPanel.SetActive(true);
         junakButton.Select();
     }

@@ -150,8 +150,10 @@ public class GameMenuManager : MonoBehaviour {
     }
 
     public void allySelectPanelWhenTurnedOn() {
+        SaralfButton.gameObject.SetActive(SaralfDataManager.Saralf.isInParty);
         allySelectOutsideCombatPanel.SetActive(true);
         JunakButton.Select();
+
     }
     public void selectAllyOutsideCombat(string allyName) {
         if(allyName == "Junak") {
@@ -160,6 +162,7 @@ public class GameMenuManager : MonoBehaviour {
         else if(allyName == "Saralf") {
             DataManager.Junak.itemManager.allyToTarget = SaralfDataManager.Saralf;
         }
+        DataManager.Junak.itemManager.aquiredItems.Remove(DataManager.Junak.itemManager.itemToUse);
         DataManager.Junak.itemManager.useItem(DataManager.Junak);
         allySelectOutsideCombatPanel.SetActive(false);
         canInteractWith = true;

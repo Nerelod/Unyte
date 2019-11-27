@@ -43,7 +43,7 @@ public class ItemManager : MonoBehaviour
                 GameMenuManager.gameMenuManager.allySelectPanelWhenTurnedOn();
             }
             DataManager.Junak.itemManager.itemToUse = selectedItem;
-            DataManager.Junak.itemManager.aquiredItems.Remove(selectedItem);
+            //DataManager.Junak.itemManager.aquiredItems.Remove(selectedItem);
         }
     }
     public void selectItemInCombat(string selectedItem) {
