@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RoadToVillage.unity
     guid: 2cd4d70eaac40a14b8adcbaf7fcee250
+  - enabled: 1
+    path: Assets/Scenes/Village.unity
+    guid: 31efb09d626813b4c9cb0db2a40d876b
   m_configObjects: {}

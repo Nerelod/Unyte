@@ -47,10 +47,12 @@ MonoBehaviour:
   abilityManager: {fileID: 0}
   itemManager: {fileID: 0}
   experience: 0
-  health: 0
-  totalHealth: 0
+  experienceNeeded: 0
+  level: 0
+  health: 10
+  totalHealth: 10
   speed: 5
-  qDamage: 0
+  qDamage: 3
   currentScene: 
   xpos: 0
   ypos: 0
@@ -59,8 +61,9 @@ MonoBehaviour:
   isBeingLoaded: 0
   hasSaved: 0
   ranFromCombat: 0
-  isPresent: 0
+  isTurnInCombat: 0
   isInParty: 0
+  directionHolder: 0
 --- !u!114 &7375679996483487708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,6 +79,8 @@ MonoBehaviour:
   abilityManager: {fileID: 0}
   itemManager: {fileID: 0}
   experience: 0
+  experienceNeeded: 0
+  level: 0
   health: 12
   totalHealth: 12
   speed: 5
@@ -88,5 +93,6 @@ MonoBehaviour:
   isBeingLoaded: 0
   hasSaved: 0
   ranFromCombat: 0
-  isPresent: 0
+  isTurnInCombat: 0
   isInParty: 0
+  directionHolder: 0
