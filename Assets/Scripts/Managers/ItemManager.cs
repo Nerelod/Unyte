@@ -18,24 +18,6 @@ public class ItemManager : MonoBehaviour
         allyItems.Add("Health Potion");
     }
 
-    public void healthPotion(DataManager player){
-        player.health = player.health + 5;
-        if(player.health > player.totalHealth){ player.health = player.totalHealth; }
-        if(player.itemManager.isInCombat){
-            CombatTextManager.combatTextManager.ManageText(player.theName + " Used Health Potion!");
-        }
-        //DataManager.Junak.itemManager.aquiredItems.Remove("Health Potion");
-    }
-    public void stone(DataManager player){
-        if(player.itemManager.isInCombat){
-            CombatTextManager.combatTextManager.ManageText(player.theName + " Used Stone!");
-            EnemyDataManager.EnemyManager.health -= 2;
-            CombatTextManager.combatTextManager.damageText.text = "-2";
-            CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.damageText));
-            //DataManager.Junak.itemManager.aquiredItems.Remove("Stone");
-        }
-
-    }
     public void selectItemOutsideCombat(string selectedItem){
         if(DataManager.Junak.itemManager.aquiredItems.Contains(selectedItem)){
             if (allyItems.Contains(selectedItem)) {
@@ -43,7 +25,6 @@ public class ItemManager : MonoBehaviour
                 GameMenuManager.gameMenuManager.allySelectPanelWhenTurnedOn();
             }
             DataManager.Junak.itemManager.itemToUse = selectedItem;
-            //DataManager.Junak.itemManager.aquiredItems.Remove(selectedItem);
         }
     }
     public void selectItemInCombat(string selectedItem) {
@@ -79,12 +60,13 @@ public class ItemManager : MonoBehaviour
     }
     public void useItem(DataManager player){
         if(itemToUse == "Health Potion"){
-            healthPotion(allyToTarget);
+            HealthPotionItem.healthPotionItem.execute(allyToTarget);
             // Select Health Potion Button after ally select panel
             GameMenuManager.gameMenuManager.healthPotionButton.Select();
         }
         else if(itemToUse == "Stone"){
-            stone(player);
+            //stone(player);
+            StoneItem.stoneItem.execute(player);
         }
         if (!DataManager.Junak.itemManager.isInCombat) {
             if (!DataManager.Junak.itemManager.aquiredItems.Contains(itemToUse)) {
