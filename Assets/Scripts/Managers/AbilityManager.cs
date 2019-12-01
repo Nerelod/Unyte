@@ -6,19 +6,10 @@ public class AbilityManager : MonoBehaviour
 {
     public List<string> aquiredAbilities = new List<string>();
 
-    public int investigateExperience;
-
     public string abilityToUse;
 
     void Start() { 
-    
-        investigateExperience = 0;
-    }
 
-    public void Investigate(){
-        CombatTextManager.combatTextManager.ManageText("Investigate Reveals The Enemy Has " + EnemyDataManager.EnemyManager.health.ToString() + " health");
-        investigateExperience++;
-        CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
     }
 
     public void playerOneSelectAbility(string selectedAbility){
@@ -31,7 +22,7 @@ public class AbilityManager : MonoBehaviour
 
     public void useAbility(){
         if(abilityToUse == "Investigate"){
-            Investigate();
+            InvestigateAbility.investigateAbility.execute();
         }
     }
     public void turnOffAbilitySelect(){
