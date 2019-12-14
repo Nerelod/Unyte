@@ -9,6 +9,8 @@ public class CombatMenuManager : MonoBehaviour
     // Ability Panel shenanigans
     public GameObject abilitySelectPanel;
     public Button abilityReturnButton;
+    public GameObject saralfAbilitySelectPanel;
+    public Button saralfAbilityReturnButton;
     // Item Panel shenanigans
     public GameObject itemSelectPanel;
     public Button itemReturnButton;
@@ -25,6 +27,7 @@ public class CombatMenuManager : MonoBehaviour
     void Start()
     {
         abilitySelectPanel.SetActive(false);
+        saralfAbilitySelectPanel.SetActive(false);
         itemSelectPanel.SetActive(false);
         allySelectPanel.SetActive(false);
     }

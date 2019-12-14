@@ -14,7 +14,7 @@ public class SaralfController : PartyMemberController
         anim.speed = 1.5f;
 
         trueRight = trueLeft = goingLeft = goingDown = goingRight = goingUp = false;
-        SaralfDataManager.Saralf.isInParty = false; // TODO: Make condition for when to add member to party
+        SaralfDataManager.Saralf.isInParty = true; // TODO: Make condition for when to add member to party
         rigid.freezeRotation = true;
 
         transform.position = target.transform.position;

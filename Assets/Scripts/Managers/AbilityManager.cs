@@ -19,6 +19,12 @@ public class AbilityManager : MonoBehaviour
 
         }
     }
+    public void saralfSelectAbility(string selectedAbility) {
+        if (SaralfDataManager.Saralf.abilityManager.aquiredAbilities.Contains(selectedAbility)) {
+            SaralfDataManager.Saralf.abilityManager.abilityToUse = selectedAbility;
+            CombatMenuManager.combatMenuManager.saralfAbilitySelectPanel.SetActive(false);
+        }
+    }
 
     public void useAbility(){
         if(abilityToUse == "Investigate"){
@@ -27,6 +33,7 @@ public class AbilityManager : MonoBehaviour
     }
     public void turnOffAbilitySelect(){
         CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(false);
+        CombatMenuManager.combatMenuManager.saralfAbilitySelectPanel.SetActive(false);
         CombatTextManager.combatTextManager.textHasBeenPrompt = false;
     }
     void Update()

@@ -297,11 +297,11 @@ public class CombatManager : MonoBehaviour {
                     SaralfOption = CombatOptions.Attack;
                     CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
                 }
-                /*if (Input.GetKeyDown(KeyCode.W) && SaralfOption == CombatOptions.HasNotChosen) {
-                    CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(true);
-                    CombatMenuManager.combatMenuManager.abilityReturnButton.Select();
+                if (Input.GetKeyDown(KeyCode.W) && SaralfOption == CombatOptions.HasNotChosen) {
+                    CombatMenuManager.combatMenuManager.saralfAbilitySelectPanel.SetActive(true);
+                    CombatMenuManager.combatMenuManager.saralfAbilityReturnButton.Select();
                     CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
-                }*/                                                                                                         
+                }                                                                                                       
                 if (Input.GetKeyDown(KeyCode.E) && SaralfOption == CombatOptions.HasNotChosen) {
                     CombatMenuManager.combatMenuManager.itemPanelWhenTurnedOn();
                     CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
@@ -368,6 +368,11 @@ public class CombatManager : MonoBehaviour {
                     Attack(EnemyDataManager.EnemyManager, DataManager.Junak);
                 }
                 else if (playerOneOption == CombatOptions.Ability){
+                    if(SaralfOption == CombatOptions.Ability) {
+                        if(SaralfChosenOrder == playerOneChosenOrder) {
+                            //checkForCombo
+                        }
+                    }
                     DataManager.Junak.abilityManager.useAbility();
                 }
                 else if(playerOneOption == CombatOptions.Item){
