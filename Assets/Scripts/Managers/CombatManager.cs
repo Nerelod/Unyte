@@ -401,7 +401,7 @@ public class CombatManager : MonoBehaviour {
             
         }
         if (SaralfDataManager.Saralf.isInParty) {
-            if (SaralfHandled && playerOneHandled) { order += 1; }
+            if (SaralfHandled && playerOneHandled) { order += 1; Debug.Log("Both Handled"); }
         }
         else {
             if (playerOneHandled) { order += 1; }
