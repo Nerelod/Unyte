@@ -368,10 +368,8 @@ public class CombatManager : MonoBehaviour {
                     Attack(EnemyDataManager.EnemyManager, DataManager.Junak);
                 }
                 else if (playerOneOption == CombatOptions.Ability){
-                    if(SaralfOption == CombatOptions.Ability) {
-                        if(SaralfChosenOrder == playerOneChosenOrder) {
-                            //checkForCombo
-                        }
+                    if(SaralfOption == CombatOptions.Ability && SaralfChosenOrder == playerOneChosenOrder) {
+                        //checkCombo
                     }
                     DataManager.Junak.abilityManager.useAbility();
                 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class AbilityManager : MonoBehaviour
 {
     public List<string> aquiredAbilities = new List<string>();
+    public List<string> aquiredComboAbilities = new List<string>();
 
     public string abilityToUse;
 
