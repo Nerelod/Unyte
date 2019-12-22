@@ -5,7 +5,7 @@ using UnityEngine;
 public class AbilityManager : MonoBehaviour
 {
     public List<string> aquiredAbilities = new List<string>();
-    public List<string> aquiredComboAbilities = new List<string>();
+    public List<ComboAbility> aquiredComboAbilities = new List<ComboAbility>();
 
     public string abilityToUse;
 
@@ -36,6 +36,10 @@ public class AbilityManager : MonoBehaviour
         CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(false);
         CombatMenuManager.combatMenuManager.saralfAbilitySelectPanel.SetActive(false);
         CombatTextManager.combatTextManager.textHasBeenPrompt = false;
+    }
+
+    public void CheckForComboAbility(DataManager player) {
+
     }
     void Update()
     {

@@ -66,6 +66,7 @@ public class DataManager : MonoBehaviour {
         Junak.theName = "Junak";
 
         Junak.abilityManager.aquiredAbilities.Add("Investigate");
+        Junak.abilityManager.aquiredComboAbilities.Add(ScrutinizeAbility.scrutinizeAbility);
         experienceNeeded = 10;
 
     }

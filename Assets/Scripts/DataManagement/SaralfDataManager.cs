@@ -21,6 +21,7 @@ public class SaralfDataManager : DataManager
         itemManager = gameObject.AddComponent<ItemManager>() as ItemManager;
         abilityManager = gameObject.AddComponent<AbilityManager>() as AbilityManager;
         Saralf.abilityManager.aquiredAbilities.Add("Analyze");
+        Saralf.abilityManager.aquiredComboAbilities.Add(ScrutinizeAbility.scrutinizeAbility);
         experienceNeeded = 10;
     }
 

@@ -24,7 +24,10 @@ public class SaveAndLoadData : MonoBehaviour {
         FileStream file = File.Create(Application.persistentDataPath + "/UnyteGameData.dat");
         PlayerData data = new PlayerData();
         data.items = DataManager.Junak.itemManager.aquiredItems;
-        data.abilities = DataManager.Junak.abilityManager.aquiredAbilities;
+        data.JuankAbilities = DataManager.Junak.abilityManager.aquiredAbilities;
+        data.SaralfAbilities = SaralfDataManager.Saralf.abilityManager.aquiredAbilities;
+        data.JunakComboAbilities = DataManager.Junak.abilityManager.aquiredComboAbilities;
+        data.SaralfComboAbilities = SaralfDataManager.Saralf.abilityManager.aquiredComboAbilities;
         data.deadEnemies = EnemyDataManager.EnemyManager.defeatedEnemies;
         data.health = DataManager.Junak.health;
         data.experience = DataManager.Junak.experience;
@@ -56,7 +59,10 @@ public class SaveAndLoadData : MonoBehaviour {
             DataManager.Junak.ypos = data.ypos;
             DataManager.Junak.currentScene = data.currentScene;
             DataManager.Junak.itemManager.aquiredItems = data.items;
-            DataManager.Junak.abilityManager.aquiredAbilities = data.abilities;
+            DataManager.Junak.abilityManager.aquiredAbilities = data.JuankAbilities;
+            DataManager.Junak.abilityManager.aquiredComboAbilities = data.JunakComboAbilities;
+            SaralfDataManager.Saralf.abilityManager.aquiredAbilities = data.SaralfAbilities;
+            SaralfDataManager.Saralf.abilityManager.aquiredComboAbilities = data.SaralfComboAbilities;
             DataManager.Junak.hasSaved = data.saved;
             DataManager.Junak.itemManager.itemsThatWereRemoved = data.removedItems;
 
@@ -77,6 +83,9 @@ public class SaveAndLoadData : MonoBehaviour {
         SaralfDataManager.Saralf.experience = 0; 
         DataManager.Junak.theName = "Junak";
         DataManager.Junak.abilityManager.aquiredAbilities.Clear();
+        DataManager.Junak.abilityManager.aquiredComboAbilities.Clear();
+        SaralfDataManager.Saralf.abilityManager.aquiredAbilities.Clear();
+        SaralfDataManager.Saralf.abilityManager.aquiredComboAbilities.Clear();
         DataManager.Junak.itemManager.aquiredItems.Clear();
         DataManager.Junak.itemManager.itemsThatWereRemoved.Clear();
         DataManager.Junak.abilityManager.aquiredAbilities.Add("Investigate");
@@ -103,8 +112,11 @@ public class SaveAndLoadData : MonoBehaviour {
         public bool saved; 
         public List<string> deadEnemies = new List<string>();
         public List<string> items = new List<string>();
-        public List<string> abilities = new List<string>();
+        public List<string> JuankAbilities = new List<string>();
+        public List<string> SaralfAbilities = new List<string>();
         public List<string> removedItems = new List<string>();
+        public List<ComboAbility> JunakComboAbilities = new List<ComboAbility>();
+        public List<ComboAbility> SaralfComboAbilities = new List<ComboAbility>();
     }
     
 }
