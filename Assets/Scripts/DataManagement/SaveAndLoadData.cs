@@ -7,18 +7,21 @@ using System.IO;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SaveAndLoadData : MonoBehaviour {
+public class SaveAndLoadData : MonoBehaviour
+{
 
     public GameObject loadButton;
-    
-    private void Start() {
+
+    private void Start()
+    {
     }
 
 
 
     // Save data here. Use the data instance of the PlayerData class
     // to store what needs to be saved.
-    public void save() {
+    public void save()
+    {
         DataManager.Junak.hasSaved = true;
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/UnyteGameData.dat");
@@ -40,12 +43,14 @@ public class SaveAndLoadData : MonoBehaviour {
         bf.Serialize(file, data);
         file.Close();
 
-        
+
     }
     // Load data here. Use the data instance of PlayerData to 
     // set equal what needs to be loaded.
-    public void load() {
-        if (File.Exists(Application.persistentDataPath + "/UnyteGameData.dat")) {
+    public void load()
+    {
+        if (File.Exists(Application.persistentDataPath + "/UnyteGameData.dat"))
+        {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/UnyteGameData.dat", FileMode.Open);
             PlayerData data = (PlayerData)bf.Deserialize(file);
@@ -66,21 +71,22 @@ public class SaveAndLoadData : MonoBehaviour {
             DataManager.Junak.hasSaved = data.saved;
             DataManager.Junak.itemManager.itemsThatWereRemoved = data.removedItems;
 
-            SceneManager.LoadScene(DataManager.Junak.currentScene);           
+            SceneManager.LoadScene(DataManager.Junak.currentScene);
 
             DataManager.Junak.isBeingLoaded = true;
-            
+
         }
     }
     // Called when making a new game
-    public void newGame() {
+    public void newGame()
+    {
 
         EnemyDataManager.EnemyManager.defeatedEnemies.Clear();
         DataManager.Junak.health = 10;
         DataManager.Junak.experience = 0;
         DataManager.Junak.qDamage = 3;
         SaralfDataManager.Saralf.health = 12;
-        SaralfDataManager.Saralf.experience = 0; 
+        SaralfDataManager.Saralf.experience = 0;
         DataManager.Junak.theName = "Junak";
         DataManager.Junak.abilityManager.aquiredAbilities.Clear();
         DataManager.Junak.abilityManager.aquiredComboAbilities.Clear();
@@ -89,27 +95,29 @@ public class SaveAndLoadData : MonoBehaviour {
         DataManager.Junak.itemManager.aquiredItems.Clear();
         DataManager.Junak.itemManager.itemsThatWereRemoved.Clear();
         DataManager.Junak.abilityManager.aquiredAbilities.Add("Investigate");
+        SaralfDataManager.Saralf.abilityManager.aquiredAbilities.Add("Analyze");
         DataManager.Junak.itemManager.aquiredItems.Add("Health Potion");
         DataManager.Junak.isBeingLoaded = true;
         DataManager.Junak.xpos = 1.4f;
         DataManager.Junak.ypos = .39f;
         SceneManager.LoadScene("Cutscene_1");
-        
-        
+
+
 
     }
     /* PlayerData class. This is the class that stores the data 
      * when saving and loading. Add variables to be saved here and 
      * set them in the save and load methods. */
     [Serializable]
-    class PlayerData {
+    class PlayerData
+    {
         public int experience;
         public int level;
         public int health;
         public float xpos, ypos;
         public string currentScene;
 
-        public bool saved; 
+        public bool saved;
         public List<string> deadEnemies = new List<string>();
         public List<string> items = new List<string>();
         public List<string> JuankAbilities = new List<string>();
@@ -118,5 +126,5 @@ public class SaveAndLoadData : MonoBehaviour {
         public List<ComboAbility> JunakComboAbilities = new List<ComboAbility>();
         public List<ComboAbility> SaralfComboAbilities = new List<ComboAbility>();
     }
-    
+
 }

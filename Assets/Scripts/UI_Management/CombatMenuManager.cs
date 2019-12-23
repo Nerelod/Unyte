@@ -32,30 +32,40 @@ public class CombatMenuManager : MonoBehaviour
         allySelectPanel.SetActive(false);
     }
 
-    private void checkItemInCombat(string itemName, Button button, Text textBox) {
-        if (DataManager.Junak.itemManager.aquiredItems.Contains(itemName)) {
+    private void checkItemInCombat(string itemName, Button button, Text textBox)
+    {
+        if (DataManager.Junak.itemManager.aquiredItems.Contains(itemName))
+        {
             button.gameObject.SetActive(true);
             textBox.text = itemName + " " + DataManager.Junak.itemManager.getAmountOfItem(itemName);
         }
-        else {
+        else
+        {
             button.gameObject.SetActive(false);
         }
     }
 
-    public void itemPanelWhenTurnedOn(){
+    public void itemPanelWhenTurnedOn()
+    {
         itemSelectPanel.SetActive(true);
         itemReturnButton.Select();
         // activate or deactivate x item button if there are/aren't x items
         checkItemInCombat("Health Potion", healthPotionButton, healthPotionText);
-        checkItemInCombat("Stone", stoneButton, stoneButtonText); 
+        checkItemInCombat("Stone", stoneButton, stoneButtonText);
 
     }
-    public void abilityPanelWhenTurnedOn() { 
-    
+    public void junakAbilityPanelWhenTurnedOn()
+    {
         abilitySelectPanel.SetActive(true);
         abilityReturnButton.Select();
     }
-    public void allySelectPanelWhenTurnedOn() {
+    public void saralfAbilityPanelWhenTurnedOn()
+    {
+        saralfAbilitySelectPanel.SetActive(true);
+        saralfAbilityReturnButton.Select();
+    }
+    public void allySelectPanelWhenTurnedOn()
+    {
         saralfButton.gameObject.SetActive(SaralfDataManager.Saralf.isInParty);
         allySelectPanel.SetActive(true);
         junakButton.Select();
@@ -63,6 +73,6 @@ public class CombatMenuManager : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 }

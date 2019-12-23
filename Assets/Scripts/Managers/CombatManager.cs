@@ -6,11 +6,12 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 // The states of combat, the phases
-public enum CombatStates {PlayerOneAttacking, SaralfAttacking, EnemyAttacking, ResetValues, PlayerWon, EnemyWon}
+public enum CombatStates { PlayerOneAttacking, SaralfAttacking, EnemyAttacking, ResetValues, PlayerWon, EnemyWon }
 // The actions a player can take on their turn/order of combat
-public enum CombatOptions { Attack, Ability, Item, Run, HasNotChosen}
+public enum CombatOptions { Attack, Ability, Item, Run, HasNotChosen }
 
-public class CombatManager : MonoBehaviour {
+public class CombatManager : MonoBehaviour
+{
 
     // Reference to sprite representing who is going in combat
     public GameObject combatCharSprite;
@@ -46,7 +47,7 @@ public class CombatManager : MonoBehaviour {
     public Text textIconOne;
     public Text textIconTwo;
     public Text textIconThree;
-    
+
     // IconOne image
     public GameObject iconOne;
     // IconTwo image
@@ -61,7 +62,8 @@ public class CombatManager : MonoBehaviour {
     private int amountDead;
 
     // Runs before Awake
-    private void Awake() {
+    private void Awake()
+    {
         // Get a reference to the CombatTextManager, so it exists
         CombatTextManager.combatTextManager = GameObject.Find("CombatTextManager").GetComponent<CombatTextManager>();
         // Get a reference to the combatMenuManager
@@ -69,7 +71,8 @@ public class CombatManager : MonoBehaviour {
     }
 
     // Used to set all the values to default at the start of combat
-    void Start() {
+    void Start()
+    {
 
         amountDead = 0;
         DataManager.Junak.isTurnInCombat = false;
@@ -114,35 +117,42 @@ public class CombatManager : MonoBehaviour {
         textIconThree.text = "";
         // The enemy has not attacked
         enemyOneHasAttacked = false;
-        
+
         // Get the order that combtatants will act on
         determineOrder();
         getPartyMembers();
     }
     // Method for checking if CombatTextManager finished what it does
-    private bool isTextManagerDone() {
-        if(CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace) {
+    private bool isTextManagerDone()
+    {
+        if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace)
+        {
             return true;
         }
-        else {
+        else
+        {
             return false;
         }
     }
     // Method for the Run option
-    private void Run(DataManager player){
+    private void Run(DataManager player)
+    {
         // run away animation
-        if(player.speed > EnemyDataManager.EnemyManager.speed){
+        if (player.speed > EnemyDataManager.EnemyManager.speed)
+        {
             DataManager.Junak.isBeingLoaded = true;
             DataManager.Junak.ranFromCombat = true;
             SceneManager.LoadScene(EnemyDataManager.EnemyManager.theScene);
         }
-        else{
+        else
+        {
             CombatTextManager.combatTextManager.ManageText("Failed to run");
             CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
             order += 1;
         }
     }
-    private void resetPlayerOneValues(){
+    private void resetJunakValues()
+    {
         playerOneOption = CombatOptions.HasNotChosen;
         CombatTextManager.combatTextManager.textHasBeenPrompt = false;
         playerOneChosenOrder = 0;
@@ -151,40 +161,46 @@ public class CombatManager : MonoBehaviour {
         DataManager.Junak.abilityManager.abilityToUse = "";
         DataManager.Junak.itemManager.itemToUse = "";
     }
-    private void resetSaralfOptions() {
+    private void resetSaralfOptions()
+    {
         SaralfOption = CombatOptions.HasNotChosen;
         CombatTextManager.combatTextManager.textHasBeenPrompt = false;
         SaralfChosenOrder = 0;
         SaralfHandled = false;
         playerOneHandled = false;
-        //SaralfDataManager.Saralf.abilityManager.abilityToUse = "";
+        SaralfDataManager.Saralf.abilityManager.abilityToUse = "";
         SaralfDataManager.Saralf.itemManager.itemToUse = "";
     }
     // Returns amount of combat Members
-    private int getCombatMembers() {
+    private int getCombatMembers()
+    {
         int members = 2;
-        if (SaralfDataManager.Saralf.isInParty) {
+        if (SaralfDataManager.Saralf.isInParty)
+        {
 
             members += 1;
         }
         return members;
     }
-    private void getPartyMembers() {
+    private void getPartyMembers()
+    {
         partymembers.Add(DataManager.Junak);
-        if (SaralfDataManager.Saralf.isInParty) {
+        if (SaralfDataManager.Saralf.isInParty)
+        {
             partymembers.Add(SaralfDataManager.Saralf);
         }
         Debug.Log(partymembers);
     }
     // Order is determined by speed
-    private void determineOrder() {
+    private void determineOrder()
+    {
 
         int[] speeds = new int[getCombatMembers()];
         speeds[0] = DataManager.Junak.speed;
         speeds[1] = EnemyDataManager.EnemyManager.speed;
-        if (SaralfDataManager.Saralf.isInParty) {
+        if (SaralfDataManager.Saralf.isInParty)
+        {
             speeds[2] = SaralfDataManager.Saralf.speed;
-            Debug.Log("Saralf in Party");
         }
         Array.Sort(speeds);
         Array.Reverse(speeds);
@@ -192,65 +208,80 @@ public class CombatManager : MonoBehaviour {
         if (SaralfDataManager.Saralf.isInParty) { SaralfDataManager.Saralf.assignedOrderInCombat = Array.IndexOf(speeds, SaralfDataManager.Saralf.speed) + 1; }
         EnemyDataManager.EnemyManager.assignedOrderInCombat = Array.IndexOf(speeds, EnemyDataManager.EnemyManager.speed) + 1;
 
-        if (DataManager.Junak.assignedOrderInCombat == 1) { // if playerOne is first
+        if (DataManager.Junak.assignedOrderInCombat == 1)
+        { // if playerOne is first
             combatState = CombatStates.PlayerOneAttacking;
             iconOne.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
             CombatTextManager.combatTextManager.playerOneHealthText = textIconOne;
-            if (EnemyDataManager.EnemyManager.assignedOrderInCombat == 2) {
+            if (EnemyDataManager.EnemyManager.assignedOrderInCombat == 2)
+            {
                 iconTwo.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
                 CombatTextManager.combatTextManager.enemyHealthText = textIconTwo;
             }
-            else if(EnemyDataManager.EnemyManager.assignedOrderInCombat == 3) {
+            else if (EnemyDataManager.EnemyManager.assignedOrderInCombat == 3)
+            {
                 iconThree.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
                 CombatTextManager.combatTextManager.enemyHealthText = textIconThree;
             }
-            if (SaralfDataManager.Saralf.assignedOrderInCombat == 2) {
+            if (SaralfDataManager.Saralf.assignedOrderInCombat == 2)
+            {
                 iconTwo.GetComponent<SpriteRenderer>().sprite = saralfIcon;
                 CombatTextManager.combatTextManager.saralfHealthText = textIconTwo;
             }
-            else if(SaralfDataManager.Saralf.assignedOrderInCombat == 3) {
+            else if (SaralfDataManager.Saralf.assignedOrderInCombat == 3)
+            {
                 iconThree.GetComponent<SpriteRenderer>().sprite = saralfIcon;
                 CombatTextManager.combatTextManager.saralfHealthText = textIconThree;
             }
         }
-        else if(EnemyDataManager.EnemyManager.assignedOrderInCombat == 1){ // if enemy is first
+        else if (EnemyDataManager.EnemyManager.assignedOrderInCombat == 1)
+        { // if enemy is first
             combatState = CombatStates.EnemyAttacking;
             iconOne.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
             CombatTextManager.combatTextManager.enemyHealthText = textIconOne;
-            if (DataManager.Junak.assignedOrderInCombat == 2) {
+            if (DataManager.Junak.assignedOrderInCombat == 2)
+            {
                 iconTwo.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
                 CombatTextManager.combatTextManager.playerOneHealthText = textIconTwo;
             }
-            else if(DataManager.Junak.assignedOrderInCombat == 3) {
+            else if (DataManager.Junak.assignedOrderInCombat == 3)
+            {
                 iconThree.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
                 CombatTextManager.combatTextManager.playerOneHealthText = textIconThree;
             }
-            if(SaralfDataManager.Saralf.assignedOrderInCombat == 2) {
+            if (SaralfDataManager.Saralf.assignedOrderInCombat == 2)
+            {
                 iconTwo.GetComponent<SpriteRenderer>().sprite = saralfIcon;
                 CombatTextManager.combatTextManager.saralfHealthText = textIconTwo;
             }
-            else if (SaralfDataManager.Saralf.assignedOrderInCombat == 3) {
+            else if (SaralfDataManager.Saralf.assignedOrderInCombat == 3)
+            {
                 iconThree.GetComponent<SpriteRenderer>().sprite = saralfIcon;
                 CombatTextManager.combatTextManager.saralfHealthText = textIconThree;
             }
         }
-        else if(SaralfDataManager.Saralf.assignedOrderInCombat == 1) { // if Saralf is first
+        else if (SaralfDataManager.Saralf.assignedOrderInCombat == 1)
+        { // if Saralf is first
             combatState = CombatStates.SaralfAttacking;
             iconOne.GetComponent<SpriteRenderer>().sprite = saralfIcon;
             CombatTextManager.combatTextManager.saralfHealthText = textIconOne;
-            if (DataManager.Junak.assignedOrderInCombat == 2) {
+            if (DataManager.Junak.assignedOrderInCombat == 2)
+            {
                 iconTwo.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
                 CombatTextManager.combatTextManager.playerOneHealthText = textIconTwo;
             }
-            else if (DataManager.Junak.assignedOrderInCombat == 3) {
+            else if (DataManager.Junak.assignedOrderInCombat == 3)
+            {
                 iconThree.GetComponent<SpriteRenderer>().sprite = playerOneIcon;
                 CombatTextManager.combatTextManager.playerOneHealthText = textIconThree;
             }
-            if (EnemyDataManager.EnemyManager.assignedOrderInCombat == 2) {
+            if (EnemyDataManager.EnemyManager.assignedOrderInCombat == 2)
+            {
                 iconTwo.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
                 CombatTextManager.combatTextManager.enemyHealthText = textIconTwo;
             }
-            else if (EnemyDataManager.EnemyManager.assignedOrderInCombat == 3) {
+            else if (EnemyDataManager.EnemyManager.assignedOrderInCombat == 3)
+            {
                 iconThree.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSprite;
                 CombatTextManager.combatTextManager.enemyHealthText = textIconThree;
             }
@@ -260,70 +291,87 @@ public class CombatManager : MonoBehaviour {
     }
 
     // Gets the player's chosen action 
-    private void GetPlayerAction(DataManager player) {
+    private void GetPlayerAction(DataManager player)
+    {
         // If the previous text is finished, the text has not been prompt, and the user pressed space, display "Choose an Action" 
-        if (CombatTextManager.combatTextManager.textIsFinished && !CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.pressedSpace) {
+        if (CombatTextManager.combatTextManager.textIsFinished && !CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.pressedSpace)
+        {
             CombatTextManager.combatTextManager.ManageText("Choose an Action");
             CombatTextManager.combatTextManager.textHasBeenPrompt = true;
         }
         // Assign playerOneOption if it is HasNotChosen based on input, followed by displaying "Choose Order To Act"
-        if (CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.textIsFinished) {
-            if(player == DataManager.Junak){
-                if (Input.GetKeyDown(KeyCode.Q) && playerOneOption == CombatOptions.HasNotChosen) {
+        if (CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.textIsFinished)
+        {
+            if (player == DataManager.Junak)
+            {
+                if (Input.GetKeyDown(KeyCode.Q) && playerOneOption == CombatOptions.HasNotChosen)
+                {
                     playerOneOption = CombatOptions.Attack;
                     CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
                 }
-                if (Input.GetKeyDown(KeyCode.W) && playerOneOption == CombatOptions.HasNotChosen) {
-                    CombatMenuManager.combatMenuManager.abilityPanelWhenTurnedOn();      
-                    CombatTextManager.combatTextManager.ManageText("Choose Order To Act");                               
+                if (Input.GetKeyDown(KeyCode.W) && playerOneOption == CombatOptions.HasNotChosen)
+                {
+                    CombatMenuManager.combatMenuManager.junakAbilityPanelWhenTurnedOn();
+                    CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
                 }
-                if (Input.GetKeyDown(KeyCode.E) && playerOneOption == CombatOptions.HasNotChosen){
+                if (Input.GetKeyDown(KeyCode.E) && playerOneOption == CombatOptions.HasNotChosen)
+                {
                     CombatMenuManager.combatMenuManager.itemPanelWhenTurnedOn();
                     CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
                 }
-                if (Input.GetKeyDown(KeyCode.R) && playerOneOption == CombatOptions.HasNotChosen){
+                if (Input.GetKeyDown(KeyCode.R) && playerOneOption == CombatOptions.HasNotChosen)
+                {
                     Run(DataManager.Junak);
                 }
 
-                if (DataManager.Junak.abilityManager.abilityToUse != ""){
+                if (DataManager.Junak.abilityManager.abilityToUse != "")
+                {
                     playerOneOption = CombatOptions.Ability;
                 }
-                if (DataManager.Junak.itemManager.itemToUse != ""){
+                if (DataManager.Junak.itemManager.itemToUse != "")
+                {
                     playerOneOption = CombatOptions.Item;
                 }
             }
-            else if(player == SaralfDataManager.Saralf) {
-                if (Input.GetKeyDown(KeyCode.Q) && SaralfOption == CombatOptions.HasNotChosen) {
+            else if (player == SaralfDataManager.Saralf)
+            {
+                if (Input.GetKeyDown(KeyCode.Q) && SaralfOption == CombatOptions.HasNotChosen)
+                {
                     SaralfOption = CombatOptions.Attack;
                     CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
                 }
-                if (Input.GetKeyDown(KeyCode.W) && SaralfOption == CombatOptions.HasNotChosen) {
-                    CombatMenuManager.combatMenuManager.saralfAbilitySelectPanel.SetActive(true);
-                    CombatMenuManager.combatMenuManager.saralfAbilityReturnButton.Select();
+                if (Input.GetKeyDown(KeyCode.W) && SaralfOption == CombatOptions.HasNotChosen)
+                {
+                    CombatMenuManager.combatMenuManager.saralfAbilityPanelWhenTurnedOn();
                     CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
-                }                                                                                                       
-                if (Input.GetKeyDown(KeyCode.E) && SaralfOption == CombatOptions.HasNotChosen) {
+                }
+                if (Input.GetKeyDown(KeyCode.E) && SaralfOption == CombatOptions.HasNotChosen)
+                {
                     CombatMenuManager.combatMenuManager.itemPanelWhenTurnedOn();
                     CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
                 }
-                if (Input.GetKeyDown(KeyCode.R) && SaralfOption == CombatOptions.HasNotChosen) {
+                if (Input.GetKeyDown(KeyCode.R) && SaralfOption == CombatOptions.HasNotChosen)
+                {
                     Run(SaralfDataManager.Saralf);
                 }
-                /*if (SaralfDataManager.Saralf.abilityManager.abilityToUse != "") {
+                if (SaralfDataManager.Saralf.abilityManager.abilityToUse != "")
+                {
                     SaralfOption = CombatOptions.Ability;
-                }*/
-                
-                if (SaralfDataManager.Saralf.itemManager.itemToUse != "") {
+                }
+
+                if (SaralfDataManager.Saralf.itemManager.itemToUse != "")
+                {
                     SaralfOption = CombatOptions.Item;
                 }
             }
         }
     }
-        
+
 
     // Method for subtracting enemy health
-    private void Attack(EnemyDataManager enemy, DataManager character) {     
-        CombatTextManager.combatTextManager.ManageText( character.theName + " does " + character.qDamage.ToString() + " damage!");
+    private void Attack(EnemyDataManager enemy, DataManager character)
+    {
+        CombatTextManager.combatTextManager.ManageText(character.theName + " does " + character.qDamage.ToString() + " damage!");
         //TODO: play enemy sprite damaged animation
         CombatTextManager.combatTextManager.damageText.text = "-" + character.qDamage.ToString();
         CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.damageText));
@@ -332,165 +380,204 @@ public class CombatManager : MonoBehaviour {
     }
 
     // Method for getting the player's chosen order to act
-    private void GetOrder(DataManager player) {    
+    private void GetOrder(DataManager player)
+    {
         int theOrder = 0;
-        
-        if (Input.GetKeyDown(KeyCode.Alpha1) && CombatTextManager.combatTextManager.textIsFinished) {        
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) && CombatTextManager.combatTextManager.textIsFinished)
+        {
             CombatTextManager.combatTextManager.ManageText("Order is One");
             CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
-            theOrder = 1;                       
+            theOrder = 1;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && CombatTextManager.combatTextManager.textIsFinished) {       
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && CombatTextManager.combatTextManager.textIsFinished)
+        {
             CombatTextManager.combatTextManager.ManageText("Order is Two");
             CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
             theOrder = 2;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && CombatTextManager.combatTextManager.textIsFinished && getCombatMembers() >= 3) {
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && CombatTextManager.combatTextManager.textIsFinished && getCombatMembers() >= 3)
+        {
             CombatTextManager.combatTextManager.ManageText("Order is Three");
             CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
             theOrder = 3;
         }
-        if(player == DataManager.Junak) {        
+        if (player == DataManager.Junak)
+        {
             playerOneChosenOrder = theOrder;
         }
-        else if (player == SaralfDataManager.Saralf) {
+        else if (player == SaralfDataManager.Saralf)
+        {
             SaralfChosenOrder = theOrder;
         }
     }
-        
+
     // TODO: Get Target Method
 
     // Handles all actions that happen on the order
-    private void HandleOrder(DataManager player) {
-        if (player == DataManager.Junak && isTextManagerDone()) {
-            if (playerOneChosenOrder == order && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0) {
-                if (playerOneOption == CombatOptions.Attack) {          
+    private void HandleOrder(DataManager player)
+    {
+        if (player == DataManager.Junak && isTextManagerDone())
+        {
+            if (playerOneChosenOrder == order && playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0)
+            {
+                if (playerOneOption == CombatOptions.Attack)
+                {
                     Attack(EnemyDataManager.EnemyManager, DataManager.Junak);
                 }
-                else if (playerOneOption == CombatOptions.Ability){
-                    if(SaralfOption == CombatOptions.Ability && SaralfChosenOrder == playerOneChosenOrder) {
+                else if (playerOneOption == CombatOptions.Ability)
+                {
+                    if (SaralfOption == CombatOptions.Ability && SaralfChosenOrder == playerOneChosenOrder)
+                    {
                         //checkCombo
                     }
                     DataManager.Junak.abilityManager.useAbility();
                 }
-                else if(playerOneOption == CombatOptions.Item){
+                else if (playerOneOption == CombatOptions.Item)
+                {
                     DataManager.Junak.itemManager.useItem(DataManager.Junak);
                     CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
                 }
-                
+
             }
             playerOneHandled = true;
         }
-        else if(player == SaralfDataManager.Saralf && isTextManagerDone()) {
-            if (SaralfChosenOrder == order && isTextManagerDone() && SaralfOption != CombatOptions.HasNotChosen && SaralfChosenOrder != 0) {
-                if (SaralfOption == CombatOptions.Attack) {
+        else if (player == SaralfDataManager.Saralf && isTextManagerDone())
+        {
+            if (SaralfChosenOrder == order && isTextManagerDone() && SaralfOption != CombatOptions.HasNotChosen && SaralfChosenOrder != 0)
+            {
+                if (SaralfOption == CombatOptions.Attack)
+                {
                     Attack(EnemyDataManager.EnemyManager, SaralfDataManager.Saralf);
                 }
-                /*else if (SaralfOption == CombatOptions.Ability) {
+                else if (SaralfOption == CombatOptions.Ability)
+                {
                     SaralfDataManager.Saralf.abilityManager.useAbility();
-                }*/
-                else if (SaralfOption == CombatOptions.Item) {
+                }
+                else if (SaralfOption == CombatOptions.Item)
+                {
                     SaralfDataManager.Saralf.itemManager.useItem(SaralfDataManager.Saralf);
                     CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
                 }
-                
+
             }
             SaralfHandled = true;
-            
+
         }
-        if (SaralfDataManager.Saralf.isInParty) {
-            if (SaralfHandled && playerOneHandled) { order += 1; Debug.Log("Both Handled"); }
+        if (SaralfDataManager.Saralf.isInParty)
+        {
+            if (SaralfHandled && playerOneHandled) { order += 1; }
         }
-        else {
+        else
+        {
             if (playerOneHandled) { order += 1; }
         }
     }
-    private void checkWinner() {
+    private void checkWinner()
+    {
         List<DataManager> partyFolk = new List<DataManager>();
         partyFolk.Add(DataManager.Junak);
-        if (SaralfDataManager.Saralf.isInParty) {
+        if (SaralfDataManager.Saralf.isInParty)
+        {
             partyFolk.Add(SaralfDataManager.Saralf);
         }
-        
-        foreach(DataManager member in partyFolk){
-            if(member.health <= 0) {
+
+        foreach (DataManager member in partyFolk)
+        {
+            if (member.health <= 0)
+            {
                 amountDead += 1;
             }
         }
-        
-        if(amountDead == (getCombatMembers() - 1)) {
+
+        if (amountDead == (getCombatMembers() - 1))
+        {
             combatState = CombatStates.EnemyWon;
         }
-        if(EnemyDataManager.EnemyManager.health <= 0) {
+        if (EnemyDataManager.EnemyManager.health <= 0)
+        {
             combatState = CombatStates.PlayerWon;
         }
     }
 
-    void Update() {
-
-        
-        switch (combatState) {        
+    void Update()
+    {
+        switch (combatState)
+        {
             case CombatStates.PlayerOneAttacking: // On Junak's turn
                 combatCharSprite.GetComponent<SpriteRenderer>().sprite = playerOneCombatantSprite;
                 DataManager.Junak.isTurnInCombat = true;
                 checkWinner();
-                if (playerOneOption == CombatOptions.HasNotChosen ) {                 
+                if (playerOneOption == CombatOptions.HasNotChosen)
+                {
                     GetPlayerAction(DataManager.Junak);
                 }
-                if (playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder == 0) {                 
+                if (playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder == 0)
+                {
                     GetOrder(DataManager.Junak);
                 }
-                if (playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0 && !playerOneHandled && isTextManagerDone()){
+                if (playerOneOption != CombatOptions.HasNotChosen && playerOneChosenOrder != 0 && !playerOneHandled && isTextManagerDone())
+                {
                     HandleOrder(DataManager.Junak);
                 }
-                if (!SaralfHandled && isTextManagerDone() && playerOneHandled && SaralfDataManager.Saralf.isInParty) {
-                    HandleOrder(SaralfDataManager.Saralf);   
+                if (!SaralfHandled && isTextManagerDone() && playerOneHandled && SaralfDataManager.Saralf.isInParty)
+                {
+                    HandleOrder(SaralfDataManager.Saralf);
                 }
-                
-                if(order == EnemyDataManager.EnemyManager.assignedOrderInCombat) {
+
+                if (order == EnemyDataManager.EnemyManager.assignedOrderInCombat)
+                {
                     playerOneHandled = false;
                     SaralfHandled = false;
                     DataManager.Junak.isTurnInCombat = false;
                     combatState = CombatStates.EnemyAttacking;
                 }
-                else if(order == SaralfDataManager.Saralf.assignedOrderInCombat) {
+                else if (order == SaralfDataManager.Saralf.assignedOrderInCombat)
+                {
                     resetSaralfOptions();
                     DataManager.Junak.isTurnInCombat = false;
                     combatState = CombatStates.SaralfAttacking;
                 }
-                else if (order == orderToReset){
+                else if (order == orderToReset)
+                {
                     DataManager.Junak.isTurnInCombat = false;
                     combatState = CombatStates.ResetValues;
                 }
-                
+
                 break;
             case CombatStates.EnemyAttacking: // On enemy's turn
                 checkWinner();
-                if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !enemyOneHasAttacked) {
+                if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !enemyOneHasAttacked)
+                {
                     //TODO: Choose Target
                     whichtarget = UnityEngine.Random.Range(0, getCombatMembers() - 1);
                     EnemyDataManager.EnemyManager.theMonster.Attack(partymembers[whichtarget]);
                     enemyOneHasAttacked = true;
                 }
-                if(isTextManagerDone() && !EnemyDataManager.EnemyManager.theMonster.displayedDamage) {                    
+                if (isTextManagerDone() && !EnemyDataManager.EnemyManager.theMonster.displayedDamage)
+                {
                     EnemyDataManager.EnemyManager.theMonster.DisplayDamage(partymembers[whichtarget]);
                 }
 
-                if (enemyOneHasAttacked) {
+                if (enemyOneHasAttacked)
+                {
                     if (!playerOneHandled) { HandleOrder(DataManager.Junak); }
                     if (!SaralfHandled && SaralfDataManager.Saralf.isInParty) { HandleOrder(SaralfDataManager.Saralf); }
                 }
 
 
-                if (order == DataManager.Junak.assignedOrderInCombat && CombatTextManager.combatTextManager.textIsFinished) {
-                    resetPlayerOneValues();
+                if (order == DataManager.Junak.assignedOrderInCombat && CombatTextManager.combatTextManager.textIsFinished)
+                {
+                    resetJunakValues();
                     combatState = CombatStates.PlayerOneAttacking;
                 }
-                else if (order == SaralfDataManager.Saralf.assignedOrderInCombat && CombatTextManager.combatTextManager.textIsFinished) {
+                else if (order == SaralfDataManager.Saralf.assignedOrderInCombat && CombatTextManager.combatTextManager.textIsFinished)
+                {
                     resetSaralfOptions();
                     combatState = CombatStates.SaralfAttacking;
                 }
-                else if (order == orderToReset) {
+                else if (order == orderToReset)
+                {
                     combatState = CombatStates.ResetValues;
                 }
 
@@ -499,30 +586,37 @@ public class CombatManager : MonoBehaviour {
                 checkWinner();
                 combatCharSprite.GetComponent<SpriteRenderer>().sprite = SaralfCombatantSprite;
                 SaralfDataManager.Saralf.isTurnInCombat = true;
-                if(SaralfOption == CombatOptions.HasNotChosen) {
+                if (SaralfOption == CombatOptions.HasNotChosen)
+                {
                     GetPlayerAction(SaralfDataManager.Saralf);
                 }
-                if (SaralfOption != CombatOptions.HasNotChosen && SaralfChosenOrder == 0) {
+                if (SaralfOption != CombatOptions.HasNotChosen && SaralfChosenOrder == 0)
+                {
                     GetOrder(SaralfDataManager.Saralf);
                 }
-                if (SaralfOption != CombatOptions.HasNotChosen && SaralfChosenOrder != 0 && !SaralfHandled && isTextManagerDone()) {
+                if (SaralfOption != CombatOptions.HasNotChosen && SaralfChosenOrder != 0 && !SaralfHandled && isTextManagerDone())
+                {
                     HandleOrder(SaralfDataManager.Saralf);
                 }
-                if (!playerOneHandled && isTextManagerDone() && SaralfHandled) {
+                if (!playerOneHandled && isTextManagerDone() && SaralfHandled)
+                {
                     HandleOrder(DataManager.Junak);
                 }
-                if (order == EnemyDataManager.EnemyManager.assignedOrderInCombat) {
+                if (order == EnemyDataManager.EnemyManager.assignedOrderInCombat)
+                {
                     playerOneHandled = false;
                     SaralfHandled = false;
                     SaralfDataManager.Saralf.isTurnInCombat = false;
                     combatState = CombatStates.EnemyAttacking;
 
                 }
-                else if (order == orderToReset) {
+                else if (order == orderToReset)
+                {
                     SaralfDataManager.Saralf.isTurnInCombat = false;
                     combatState = CombatStates.ResetValues;
                 }
-                else if (order == DataManager.Junak.assignedOrderInCombat) {
+                else if (order == DataManager.Junak.assignedOrderInCombat)
+                {
                     SaralfDataManager.Saralf.isTurnInCombat = false;
                     combatState = CombatStates.PlayerOneAttacking;
                 }
@@ -536,25 +630,30 @@ public class CombatManager : MonoBehaviour {
                 CombatTextManager.combatTextManager.textHasBeenPrompt = false;
                 EnemyDataManager.EnemyManager.theMonster.displayedDamage = false;
                 EnemyDataManager.EnemyManager.theMonster.textWasPrompt = false;
-                if (order == DataManager.Junak.assignedOrderInCombat) {
-                    resetPlayerOneValues();
+                if (order == DataManager.Junak.assignedOrderInCombat)
+                {
+                    resetJunakValues();
                     combatState = CombatStates.PlayerOneAttacking;
                 }
-                else if (order == SaralfDataManager.Saralf.assignedOrderInCombat) {
+                else if (order == SaralfDataManager.Saralf.assignedOrderInCombat)
+                {
                     resetSaralfOptions();
                     combatState = CombatStates.SaralfAttacking;
                 }
-                else if (order == EnemyDataManager.EnemyManager.assignedOrderInCombat) {
+                else if (order == EnemyDataManager.EnemyManager.assignedOrderInCombat)
+                {
                     combatState = CombatStates.EnemyAttacking;
-                }             
+                }
                 break;
             case CombatStates.PlayerWon:
-                if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !winTextHasBeenPrompt) {
+                if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !winTextHasBeenPrompt)
+                {
                     CombatTextManager.combatTextManager.ManageText("You Win!");
                     CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
                     winTextHasBeenPrompt = true;
                 }
-                if(CombatTextManager.combatTextManager.pressedSpace && winTextHasBeenPrompt && CombatTextManager.combatTextManager.textIsFinished) {
+                if (CombatTextManager.combatTextManager.pressedSpace && winTextHasBeenPrompt && CombatTextManager.combatTextManager.textIsFinished)
+                {
                     DataManager.Junak.isBeingLoaded = true;
                     EnemyDataManager.EnemyManager.defeatedEnemies.Add(EnemyDataManager.EnemyManager.currentName);
                     DataManager.Junak.addExperience(EnemyDataManager.EnemyManager.experienceGives);
@@ -565,24 +664,27 @@ public class CombatManager : MonoBehaviour {
                 }
                 break;
             case CombatStates.EnemyWon:
-                if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !winTextHasBeenPrompt) {
+                if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !winTextHasBeenPrompt)
+                {
                     CombatTextManager.combatTextManager.ManageText("You Lost!");
                     CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
                     winTextHasBeenPrompt = true;
                 }
-                if (CombatTextManager.combatTextManager.pressedSpace && winTextHasBeenPrompt) {
+                if (CombatTextManager.combatTextManager.pressedSpace && winTextHasBeenPrompt)
+                {
                     DataManager.Junak.itemManager.isInCombat = false;
                     SaralfDataManager.Saralf.itemManager.isInCombat = false;
                     SceneManager.LoadScene("MainMenu");
                 }
-                    break;
+                break;
             default:
                 break;
 
         }
         // Show player's health 
         CombatTextManager.combatTextManager.playerOneHealthText.text = DataManager.Junak.health.ToString();
-        if (SaralfDataManager.Saralf.isInParty) {
+        if (SaralfDataManager.Saralf.isInParty)
+        {
             CombatTextManager.combatTextManager.saralfHealthText.text = SaralfDataManager.Saralf.health.ToString();
         }
         CombatTextManager.combatTextManager.orderText.text = order.ToString();

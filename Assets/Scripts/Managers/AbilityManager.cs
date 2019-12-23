@@ -9,40 +9,53 @@ public class AbilityManager : MonoBehaviour
 
     public string abilityToUse;
 
-    void Start() { 
+    void Start()
+    {
 
     }
 
-    public void playerOneSelectAbility(string selectedAbility){
-        if(DataManager.Junak.abilityManager.aquiredAbilities.Contains(selectedAbility)){
+    public void playerOneSelectAbility(string selectedAbility)
+    {
+        if (DataManager.Junak.abilityManager.aquiredAbilities.Contains(selectedAbility))
+        {
             DataManager.Junak.abilityManager.abilityToUse = selectedAbility;
             CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(false);
 
         }
     }
-    public void saralfSelectAbility(string selectedAbility) {
-        if (SaralfDataManager.Saralf.abilityManager.aquiredAbilities.Contains(selectedAbility)) {
+    public void saralfSelectAbility(string selectedAbility)
+    {
+        if (SaralfDataManager.Saralf.abilityManager.aquiredAbilities.Contains(selectedAbility))
+        {
             SaralfDataManager.Saralf.abilityManager.abilityToUse = selectedAbility;
             CombatMenuManager.combatMenuManager.saralfAbilitySelectPanel.SetActive(false);
         }
     }
 
-    public void useAbility(){
-        if(abilityToUse == "Investigate"){
+    public void useAbility()
+    {
+        if (abilityToUse == "Investigate")
+        {
             InvestigateAbility.investigateAbility.execute();
         }
+        if (abilityToUse == "Analyze")
+        {
+            AnalyzeAbility.analyzeAbility.execute();
+        }
     }
-    public void turnOffAbilitySelect(){
+    public void turnOffAbilitySelect()
+    {
         CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(false);
         CombatMenuManager.combatMenuManager.saralfAbilitySelectPanel.SetActive(false);
         CombatTextManager.combatTextManager.textHasBeenPrompt = false;
     }
 
-    public void CheckForComboAbility(DataManager player) {
+    public void CheckForComboAbility(DataManager player)
+    {
 
     }
     void Update()
     {
-        
+
     }
 }
