@@ -188,7 +188,7 @@ public class GameMenuManager : MonoBehaviour
         {
             DataManager.Junak.itemManager.allyToTarget = SaralfDataManager.Saralf;
         }
-        DataManager.Junak.itemManager.aquiredItems.Remove(DataManager.Junak.itemManager.itemToUse);
+        DataManager.Junak.itemManager.aquiredItems.Remove(DataManager.Junak.itemManager.itemToUse.name);
         DataManager.Junak.itemManager.useItem(DataManager.Junak);
         allySelectOutsideCombatPanel.SetActive(false);
         canInteractWith = true;

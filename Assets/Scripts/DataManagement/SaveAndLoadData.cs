@@ -27,6 +27,7 @@ public class SaveAndLoadData : MonoBehaviour
         FileStream file = File.Create(Application.persistentDataPath + "/UnyteGameData.dat");
         PlayerData data = new PlayerData();
         data.items = DataManager.Junak.itemManager.aquiredItems;
+        data.itemScripts = DataManager.Junak.itemManager.itemScripts;
         data.JuankAbilities = DataManager.Junak.abilityManager.aquiredAbilities;
         data.SaralfAbilities = SaralfDataManager.Saralf.abilityManager.aquiredAbilities;
         data.JunakComboAbilities = DataManager.Junak.abilityManager.aquiredComboAbilities;
@@ -64,6 +65,7 @@ public class SaveAndLoadData : MonoBehaviour
             DataManager.Junak.ypos = data.ypos;
             DataManager.Junak.currentScene = data.currentScene;
             DataManager.Junak.itemManager.aquiredItems = data.items;
+            DataManager.Junak.itemManager.itemScripts = data.itemScripts;
             DataManager.Junak.abilityManager.aquiredAbilities = data.JuankAbilities;
             DataManager.Junak.abilityManager.aquiredComboAbilities = data.JunakComboAbilities;
             SaralfDataManager.Saralf.abilityManager.aquiredAbilities = data.SaralfAbilities;
@@ -93,7 +95,9 @@ public class SaveAndLoadData : MonoBehaviour
         SaralfDataManager.Saralf.abilityManager.aquiredAbilities.Clear();
         SaralfDataManager.Saralf.abilityManager.aquiredComboAbilities.Clear();
         DataManager.Junak.itemManager.aquiredItems.Clear();
+        DataManager.Junak.itemManager.itemScripts.Clear();
         DataManager.Junak.itemManager.itemsThatWereRemoved.Clear();
+        DataManager.Junak.itemManager.itemScripts.Add(HealthPotionItem.healthPotionItem);
         DataManager.Junak.abilityManager.aquiredAbilities.Add(InvestigateAbility.investigateAbility);
         SaralfDataManager.Saralf.abilityManager.aquiredAbilities.Add(AnalyzeAbility.analyzeAbility);
         DataManager.Junak.itemManager.aquiredItems.Add("Health Potion");
@@ -120,6 +124,7 @@ public class SaveAndLoadData : MonoBehaviour
         public bool saved;
         public List<string> deadEnemies = new List<string>();
         public List<string> items = new List<string>();
+        public List<ItemScript> itemScripts = new List<ItemScript>();
         public List<Ability> JuankAbilities = new List<Ability>();
         public List<Ability> SaralfAbilities = new List<Ability>();
         public List<string> removedItems = new List<string>();

@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemScript {
+[System.Serializable]
+public class ItemScript
+{
+    public string name;
     public virtual void execute() { }
     public virtual void execute(DataManager player) { }
 }

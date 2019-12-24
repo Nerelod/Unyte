@@ -80,10 +80,12 @@ public class CombatManager : MonoBehaviour
         playerOneHandled = SaralfHandled = false;
         DataManager.Junak.itemManager.isInCombat = true;
         DataManager.Junak.abilityManager.choseAbilityInCombat = false;
-        DataManager.Junak.itemManager.itemToUse = "";
+        DataManager.Junak.itemManager.itemToUse = null;
+        DataManager.Junak.itemManager.choseItemInCombat = false;
         SaralfDataManager.Saralf.itemManager.isInCombat = true;
         SaralfDataManager.Saralf.abilityManager.choseAbilityInCombat = false;
-        SaralfDataManager.Saralf.itemManager.itemToUse = "";
+        SaralfDataManager.Saralf.itemManager.itemToUse = null;
+        SaralfDataManager.Saralf.itemManager.choseItemInCombat = false;
         // Set the abilityselectpanel off
         CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(false);
         // Win text is false, has not been displayed
@@ -161,7 +163,8 @@ public class CombatManager : MonoBehaviour
         SaralfHandled = false;
         DataManager.Junak.abilityManager.abilityToUse = null;
         DataManager.Junak.abilityManager.choseAbilityInCombat = false;
-        DataManager.Junak.itemManager.itemToUse = "";
+        DataManager.Junak.itemManager.itemToUse = null;
+        DataManager.Junak.itemManager.choseItemInCombat = false;
     }
     private void resetSaralfOptions()
     {
@@ -171,7 +174,8 @@ public class CombatManager : MonoBehaviour
         SaralfHandled = false;
         playerOneHandled = false;
         SaralfDataManager.Saralf.abilityManager.choseAbilityInCombat = false;
-        SaralfDataManager.Saralf.itemManager.itemToUse = "";
+        SaralfDataManager.Saralf.itemManager.itemToUse = null;
+        SaralfDataManager.Saralf.itemManager.choseItemInCombat = false;
     }
     // Returns amount of combat Members
     private int getCombatMembers()
@@ -331,7 +335,7 @@ public class CombatManager : MonoBehaviour
                 {
                     playerOneOption = CombatOptions.Ability;
                 }
-                if (DataManager.Junak.itemManager.itemToUse != "")
+                if (DataManager.Junak.itemManager.choseItemInCombat == true)
                 {
                     playerOneOption = CombatOptions.Item;
                 }
@@ -362,7 +366,7 @@ public class CombatManager : MonoBehaviour
                     SaralfOption = CombatOptions.Ability;
                 }
 
-                if (SaralfDataManager.Saralf.itemManager.itemToUse != "")
+                if (SaralfDataManager.Saralf.itemManager.choseItemInCombat == true)
                 {
                     SaralfOption = CombatOptions.Item;
                 }

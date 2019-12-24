@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActivateTextAtLine : MonoBehaviour {
+public class ActivateTextAtLine : MonoBehaviour
+{
 
     public TextAsset theText;
 
@@ -17,20 +18,26 @@ public class ActivateTextAtLine : MonoBehaviour {
     public bool destroyWhenActivated;
     public bool requireButtonPress;
     private bool waitForPress;
-	
-	void Start () {
+
+    void Start()
+    {
         theTextManager = FindObjectOfType<TextBoxManager>();
-        if (ifItem) {
+        if (ifItem)
+        {
             theItem = this.GetComponent<Item>();
         }
-        else {
+        else
+        {
             theItem = null;
         }
-	}
+    }
 
-    void OnTriggerEnter2D(Collider2D collision) { 
-        if(collision.name == "Player") {
-            if (requireButtonPress) {
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == "Player")
+        {
+            if (requireButtonPress)
+            {
                 waitForPress = true;
                 return;
             }
@@ -38,29 +45,40 @@ public class ActivateTextAtLine : MonoBehaviour {
             theTextManager.currentLine = startLine;
             theTextManager.endAtLine = endLine;
             theTextManager.EnableTextBox();
-            if (destroyWhenActivated) {
+            if (destroyWhenActivated)
+            {
                 Destroy(gameObject);
             }
         }
     }
-    void OnTriggerExit2D(Collider2D collision) { 
-        if(collision.name == "Player") {
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.name == "Player")
+        {
             waitForPress = false;
         }
     }
-    void Update () {
-        if (waitForPress && Input.GetKeyDown(KeyCode.Space) && theTextManager.boxActive == false) {
-            if (ifItem) {
+    void Update()
+    {
+        if (waitForPress && Input.GetKeyDown(KeyCode.Space) && theTextManager.boxActive == false)
+        {
+            if (ifItem)
+            {
                 DataManager.Junak.itemManager.aquiredItems.Add(theItem.itemString);
                 DataManager.Junak.itemManager.itemsThatWereRemoved.Add(theItem.identifier);
+                /*if (!DataManager.Junak.itemManager.itemScripts.Contains(theItem.itemScript))
+                {
+                    DataManager.Junak.itemManager.itemScripts.Add(theItem.itemScript);
+                }*/
             }
             theTextManager.ReloadScript(theText);
             theTextManager.currentLine = startLine;
             theTextManager.endAtLine = endLine;
             theTextManager.EnableTextBox();
-            if (destroyWhenActivated) { 
+            if (destroyWhenActivated)
+            {
                 Destroy(gameObject);
             }
         }
-	}  
+    }
 }
