@@ -94,8 +94,8 @@ public class SaveAndLoadData : MonoBehaviour
         SaralfDataManager.Saralf.abilityManager.aquiredComboAbilities.Clear();
         DataManager.Junak.itemManager.aquiredItems.Clear();
         DataManager.Junak.itemManager.itemsThatWereRemoved.Clear();
-        DataManager.Junak.abilityManager.aquiredAbilities.Add("Investigate");
-        SaralfDataManager.Saralf.abilityManager.aquiredAbilities.Add("Analyze");
+        DataManager.Junak.abilityManager.aquiredAbilities.Add(InvestigateAbility.investigateAbility);
+        SaralfDataManager.Saralf.abilityManager.aquiredAbilities.Add(AnalyzeAbility.analyzeAbility);
         DataManager.Junak.itemManager.aquiredItems.Add("Health Potion");
         DataManager.Junak.isBeingLoaded = true;
         DataManager.Junak.xpos = 1.4f;
@@ -120,8 +120,8 @@ public class SaveAndLoadData : MonoBehaviour
         public bool saved;
         public List<string> deadEnemies = new List<string>();
         public List<string> items = new List<string>();
-        public List<string> JuankAbilities = new List<string>();
-        public List<string> SaralfAbilities = new List<string>();
+        public List<Ability> JuankAbilities = new List<Ability>();
+        public List<Ability> SaralfAbilities = new List<Ability>();
         public List<string> removedItems = new List<string>();
         public List<ComboAbility> JunakComboAbilities = new List<ComboAbility>();
         public List<ComboAbility> SaralfComboAbilities = new List<ComboAbility>();

@@ -4,44 +4,34 @@ using UnityEngine;
 
 public class AbilityManager : MonoBehaviour
 {
-    public List<string> aquiredAbilities = new List<string>();
+    public List<Ability> aquiredAbilities = new List<Ability>();
     public List<ComboAbility> aquiredComboAbilities = new List<ComboAbility>();
+    public Ability abilityToUse;
 
-    public string abilityToUse;
+    public bool choseAbilityInCombat;
 
     void Start()
     {
 
     }
-
-    public void playerOneSelectAbility(string selectedAbility)
+    public void junakSelectAbility(string abilityName)
     {
-        if (DataManager.Junak.abilityManager.aquiredAbilities.Contains(selectedAbility))
-        {
-            DataManager.Junak.abilityManager.abilityToUse = selectedAbility;
-            CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(false);
-
-        }
+        int abilityIndex = DataManager.Junak.abilityManager.aquiredAbilities.FindIndex(a => a.name == abilityName);
+        DataManager.Junak.abilityManager.abilityToUse = DataManager.Junak.abilityManager.aquiredAbilities[abilityIndex];
+        DataManager.Junak.abilityManager.choseAbilityInCombat = true;
+        CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(false);
     }
-    public void saralfSelectAbility(string selectedAbility)
+    public void saralfSelectAbility(string abilityName)
     {
-        if (SaralfDataManager.Saralf.abilityManager.aquiredAbilities.Contains(selectedAbility))
-        {
-            SaralfDataManager.Saralf.abilityManager.abilityToUse = selectedAbility;
-            CombatMenuManager.combatMenuManager.saralfAbilitySelectPanel.SetActive(false);
-        }
+        int abilityIndex = SaralfDataManager.Saralf.abilityManager.aquiredAbilities.FindIndex(a => a.name == abilityName);
+        SaralfDataManager.Saralf.abilityManager.abilityToUse = SaralfDataManager.Saralf.abilityManager.aquiredAbilities[abilityIndex];
+        SaralfDataManager.Saralf.abilityManager.choseAbilityInCombat = true;
+        CombatMenuManager.combatMenuManager.saralfAbilitySelectPanel.SetActive(false);
     }
 
     public void useAbility()
     {
-        if (abilityToUse == "Investigate")
-        {
-            InvestigateAbility.investigateAbility.execute();
-        }
-        if (abilityToUse == "Analyze")
-        {
-            AnalyzeAbility.analyzeAbility.execute();
-        }
+        abilityToUse.execute();
     }
     public void turnOffAbilitySelect()
     {

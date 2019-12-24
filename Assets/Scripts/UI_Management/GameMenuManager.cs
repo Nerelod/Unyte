@@ -5,7 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Linq;
 
-public class GameMenuManager : MonoBehaviour {
+public class GameMenuManager : MonoBehaviour
+{
 
     public static GameMenuManager gameMenuManager;
     public bool canInteractWith;
@@ -41,17 +42,21 @@ public class GameMenuManager : MonoBehaviour {
 
     private bool itemMode;
 
-    private void Awake() {
-        if (gameMenuManager == null) {
+    private void Awake()
+    {
+        if (gameMenuManager == null)
+        {
             DontDestroyOnLoad(gameObject);
             gameMenuManager = this;
         }
-        else if (gameMenuManager != this) {
+        else if (gameMenuManager != this)
+        {
             Destroy(gameObject);
         }
     }
 
-    void Start() {
+    void Start()
+    {
         // Set the gameMenu to not activate at the start
         gameMenuManager.gameMenu.SetActive(false);
         // Make the AbilityPanel not active at the start
@@ -62,50 +67,61 @@ public class GameMenuManager : MonoBehaviour {
         itemMode = false;
     }
 
-    private void checkPlayerOneAbilities() {
-        if (DataManager.Junak.abilityManager.aquiredAbilities.Contains("Investigate")) { investigateText.text = "Investigate"; } else { investigateText.text = ""; }    
+    private void checkPlayerOneAbilities()
+    {
+        if (DataManager.Junak.abilityManager.aquiredAbilities.Contains(InvestigateAbility.investigateAbility)) { investigateText.text = "Investigate"; } else { investigateText.text = ""; }
     }
-    private void checkContainedItems(string itemName, Text textBox) {
-        if (DataManager.Junak.itemManager.aquiredItems.Contains(itemName)){
+    private void checkContainedItems(string itemName, Text textBox)
+    {
+        if (DataManager.Junak.itemManager.aquiredItems.Contains(itemName))
+        {
             textBox.text = itemName + " " + DataManager.Junak.itemManager.getAmountOfItem(itemName);
         }
-        else {
+        else
+        {
             textBox.text = "";
         }
     }
-    private void checkPlayerOneItems(){
+    private void checkPlayerOneItems()
+    {
         healthPotionText.text = "Health Potion " + DataManager.Junak.itemManager.getAmountOfItem("Health Potion");
         checkContainedItems("Stone", stoneText);
 
-        if(!DataManager.Junak.itemManager.aquiredItems.Any() && ItemPanel.activeSelf){
+        if (!DataManager.Junak.itemManager.aquiredItems.Any() && ItemPanel.activeSelf)
+        {
             itemReturnButton.Select();
         }
     }
-    public void whenTurnedOn(){
+    public void whenTurnedOn()
+    {
         AbilityPanel.SetActive(false);
         ItemPanel.SetActive(false);
         mainPanel.SetActive(true);
-        if(DataManager.Junak.hasSaved){
-            loadButton.interactable = true; 
+        if (DataManager.Junak.hasSaved)
+        {
+            loadButton.interactable = true;
             loadButton.Select();
         }
-        else{
+        else
+        {
             loadButton.interactable = false;
         }
         checkPlayerOneAbilities();
         checkParty();
     }
 
-    public void showAbilities() {
+    public void showAbilities()
+    {
         // Show AbilityPanel
         AbilityPanel.SetActive(true);
         // Deactivate mainPanel
         mainPanel.SetActive(false);
-        
+
         // Make Return the default Button 
-        abilityReturnButton.Select();      
+        abilityReturnButton.Select();
     }
-    public void hideAbilities() {
+    public void hideAbilities()
+    {
         // Deactivate Abilities Panel
         AbilityPanel.SetActive(false);
         // Activate mainPanel
@@ -115,16 +131,18 @@ public class GameMenuManager : MonoBehaviour {
         abilitiesButton.Select();
     }
 
-    public void showItems(){
+    public void showItems()
+    {
         // Show Item Panel
         ItemPanel.SetActive(true);
         // Deactivate mainPanel
         mainPanel.SetActive(false);
-        
+
         // make Return default button
         itemReturnButton.Select();
     }
-    public void hideItems(){
+    public void hideItems()
+    {
         //Deactivate item panel
         ItemPanel.SetActive(false);
         // activate mainPanel
@@ -134,14 +152,18 @@ public class GameMenuManager : MonoBehaviour {
         itemsButton.Select();
     }
     // Activate drop mode, where the user can drop items instead of use them
-    public void dropMode(){
+    public void dropMode()
+    {
         itemMode = !itemMode;
     }
-    private void checkParty() {
-        if (SaralfDataManager.Saralf.isInParty) {
+    private void checkParty()
+    {
+        if (SaralfDataManager.Saralf.isInParty)
+        {
             saralfImage.SetActive(true);
         }
-        else {
+        else
+        {
             saralfImage.SetActive(false);
             saralfHealthText.text = "";
             saralfExperienceText.text = "";
@@ -149,17 +171,21 @@ public class GameMenuManager : MonoBehaviour {
         }
     }
 
-    public void allySelectPanelWhenTurnedOn() {
+    public void allySelectPanelWhenTurnedOn()
+    {
         SaralfButton.gameObject.SetActive(SaralfDataManager.Saralf.isInParty);
         allySelectOutsideCombatPanel.SetActive(true);
         JunakButton.Select();
 
     }
-    public void selectAllyOutsideCombat(string allyName) {
-        if(allyName == "Junak") {
+    public void selectAllyOutsideCombat(string allyName)
+    {
+        if (allyName == "Junak")
+        {
             DataManager.Junak.itemManager.allyToTarget = DataManager.Junak;
         }
-        else if(allyName == "Saralf") {
+        else if (allyName == "Saralf")
+        {
             DataManager.Junak.itemManager.allyToTarget = SaralfDataManager.Saralf;
         }
         DataManager.Junak.itemManager.aquiredItems.Remove(DataManager.Junak.itemManager.itemToUse);
@@ -168,13 +194,15 @@ public class GameMenuManager : MonoBehaviour {
         canInteractWith = true;
     }
 
-    void Update() {
+    void Update()
+    {
         // Things that can change while in the gameMenu
         healthText.text = "Health: " + DataManager.Junak.health;
         experienceText.text = "Experience: " + DataManager.Junak.experience;
         junakLevelText.text = "Level: " + DataManager.Junak.level.ToString();
         checkPlayerOneItems();
-        if (SaralfDataManager.Saralf.isInParty) {
+        if (SaralfDataManager.Saralf.isInParty)
+        {
             saralfHealthText.text = "Health: " + SaralfDataManager.Saralf.health;
             saralfExperienceText.text = "Experience: " + SaralfDataManager.Saralf.experience;
             saralfLevelText.text = "Level: " + SaralfDataManager.Saralf.level.ToString();

@@ -7,7 +7,8 @@ public class Ability
 {
 
     public int experience;
-    public int comboNumber; 
+    public int comboNumber;
+    public string name;
 
     public virtual void execute() { }
 }

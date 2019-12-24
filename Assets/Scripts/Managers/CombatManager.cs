@@ -79,9 +79,10 @@ public class CombatManager : MonoBehaviour
         SaralfDataManager.Saralf.isTurnInCombat = false;
         playerOneHandled = SaralfHandled = false;
         DataManager.Junak.itemManager.isInCombat = true;
-        DataManager.Junak.abilityManager.abilityToUse = "";
+        DataManager.Junak.abilityManager.choseAbilityInCombat = false;
         DataManager.Junak.itemManager.itemToUse = "";
         SaralfDataManager.Saralf.itemManager.isInCombat = true;
+        SaralfDataManager.Saralf.abilityManager.choseAbilityInCombat = false;
         SaralfDataManager.Saralf.itemManager.itemToUse = "";
         // Set the abilityselectpanel off
         CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(false);
@@ -158,7 +159,8 @@ public class CombatManager : MonoBehaviour
         playerOneChosenOrder = 0;
         playerOneHandled = false;
         SaralfHandled = false;
-        DataManager.Junak.abilityManager.abilityToUse = "";
+        DataManager.Junak.abilityManager.abilityToUse = null;
+        DataManager.Junak.abilityManager.choseAbilityInCombat = false;
         DataManager.Junak.itemManager.itemToUse = "";
     }
     private void resetSaralfOptions()
@@ -168,7 +170,7 @@ public class CombatManager : MonoBehaviour
         SaralfChosenOrder = 0;
         SaralfHandled = false;
         playerOneHandled = false;
-        SaralfDataManager.Saralf.abilityManager.abilityToUse = "";
+        SaralfDataManager.Saralf.abilityManager.choseAbilityInCombat = false;
         SaralfDataManager.Saralf.itemManager.itemToUse = "";
     }
     // Returns amount of combat Members
@@ -311,6 +313,7 @@ public class CombatManager : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.W) && playerOneOption == CombatOptions.HasNotChosen)
                 {
+                    Debug.Log("detected w");
                     CombatMenuManager.combatMenuManager.junakAbilityPanelWhenTurnedOn();
                     CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
                 }
@@ -324,7 +327,7 @@ public class CombatManager : MonoBehaviour
                     Run(DataManager.Junak);
                 }
 
-                if (DataManager.Junak.abilityManager.abilityToUse != "")
+                if (DataManager.Junak.abilityManager.choseAbilityInCombat == true)
                 {
                     playerOneOption = CombatOptions.Ability;
                 }
@@ -354,7 +357,7 @@ public class CombatManager : MonoBehaviour
                 {
                     Run(SaralfDataManager.Saralf);
                 }
-                if (SaralfDataManager.Saralf.abilityManager.abilityToUse != "")
+                if (SaralfDataManager.Saralf.abilityManager.choseAbilityInCombat == true)
                 {
                     SaralfOption = CombatOptions.Ability;
                 }
