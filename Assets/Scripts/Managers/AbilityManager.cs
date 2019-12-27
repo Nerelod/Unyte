@@ -29,6 +29,24 @@ public class AbilityManager : MonoBehaviour
         CombatMenuManager.combatMenuManager.saralfAbilitySelectPanel.SetActive(false);
     }
 
+    public bool checkCombo(DataManager primaryMember, DataManager secondaryMember) {
+        Debug.Log("Checking Combo");
+        if (primaryMember.abilityManager.abilityToUse.compatibleAbilities.Contains(secondaryMember.abilityManager.abilityToUse.name)) {
+            Debug.Log("Combo Detected");
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    public void executeCombo(DataManager primaryMember, DataManager secondaryMember) {
+        foreach (ComboAbility comboAbility in primaryMember.abilityManager.aquiredComboAbilities) {
+            if (comboAbility.requiredAbilities.Contains(primaryMember.abilityManager.abilityToUse) && comboAbility.requiredAbilities.Contains(secondaryMember.abilityManager.abilityToUse)) {
+                comboAbility.execute();
+            }
+        }
+    }
+
     public void useAbility()
     {
         abilityToUse.execute();

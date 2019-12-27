@@ -99,7 +99,9 @@ public class SaveAndLoadData : MonoBehaviour
         DataManager.Junak.itemManager.itemsThatWereRemoved.Clear();
         DataManager.Junak.itemManager.itemScripts.Add(HealthPotionItem.healthPotionItem);
         DataManager.Junak.abilityManager.aquiredAbilities.Add(InvestigateAbility.investigateAbility);
+        DataManager.Junak.abilityManager.aquiredComboAbilities.Add(ScrutinizeAbility.scrutinizeAbility);
         SaralfDataManager.Saralf.abilityManager.aquiredAbilities.Add(AnalyzeAbility.analyzeAbility);
+        SaralfDataManager.Saralf.abilityManager.aquiredComboAbilities.Add(ScrutinizeAbility.scrutinizeAbility);
         DataManager.Junak.itemManager.aquiredItems.Add("Health Potion");
         DataManager.Junak.isBeingLoaded = true;
         DataManager.Junak.xpos = 1.4f;

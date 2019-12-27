@@ -8,8 +8,9 @@ public class AnalyzeAbility : Ability
     public static AnalyzeAbility analyzeAbility = new AnalyzeAbility();
     public AnalyzeAbility()
     {
-        comboNumber = 1;
+        Debug.Log("Analyze Constructor");
         name = "Analyze";
+        compatibleAbilities.Add("Investigate");
     }
     public override void execute()
     {

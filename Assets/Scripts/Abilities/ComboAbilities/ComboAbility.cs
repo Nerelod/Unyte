@@ -5,5 +5,5 @@ using UnityEngine;
 [System.Serializable]
 public class ComboAbility : Ability
 {
-    public int comboIdentifier;
+    public List<Ability> requiredAbilities;
 }

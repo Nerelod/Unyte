@@ -10,7 +10,12 @@ public class ScrutinizeAbility : ComboAbility
     public static ScrutinizeAbility scrutinizeAbility = new ScrutinizeAbility();
     public ScrutinizeAbility()
     {
-        comboIdentifier = 1;
+        requiredAbilities = new List<Ability>();
+        requiredAbilities.Add(InvestigateAbility.investigateAbility);
+        requiredAbilities.Add(AnalyzeAbility.analyzeAbility);
         name = "Scrutinize";
+    }
+    public override void execute() {
+        Debug.Log("Yeet");
     }
 }

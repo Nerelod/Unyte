@@ -8,8 +8,9 @@ public class InvestigateAbility : Ability
     public static InvestigateAbility investigateAbility = new InvestigateAbility();
     public InvestigateAbility()
     {
-        comboNumber = 0;
+        Debug.Log("Investigate Constructor");
         name = "Investigate";
+        compatibleAbilities.Add("Analyze");
     }
     public override void execute()
     {
