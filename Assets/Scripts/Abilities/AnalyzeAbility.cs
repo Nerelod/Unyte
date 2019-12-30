@@ -8,7 +8,6 @@ public class AnalyzeAbility : Ability
     public static AnalyzeAbility analyzeAbility = new AnalyzeAbility();
     public AnalyzeAbility()
     {
-        Debug.Log("Analyze Constructor");
         name = "Analyze";
         compatibleAbilities.Add("Investigate");
     }

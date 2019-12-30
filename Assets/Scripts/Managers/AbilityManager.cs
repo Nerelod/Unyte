@@ -30,9 +30,7 @@ public class AbilityManager : MonoBehaviour
     }
 
     public bool checkCombo(DataManager primaryMember, DataManager secondaryMember) {
-        Debug.Log("Checking Combo");
         if (primaryMember.abilityManager.abilityToUse.compatibleAbilities.Contains(secondaryMember.abilityManager.abilityToUse.name)) {
-            Debug.Log("Combo Detected");
             return true;
         }
         else {

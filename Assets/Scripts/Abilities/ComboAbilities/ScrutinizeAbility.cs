@@ -16,6 +16,6 @@ public class ScrutinizeAbility : ComboAbility
         name = "Scrutinize";
     }
     public override void execute() {
-        Debug.Log("Yeet");
+        CombatTextManager.combatTextManager.ManageText("Scrutinized");
     }
 }

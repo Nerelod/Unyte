@@ -23,9 +23,9 @@ public class CombatManager : MonoBehaviour
     // Reference to the CombatStates enum, used for deciding what part of combat it is
     CombatStates combatState;
     // Reference to the playerOneOption enum, used for assigning the chosen option
-    CombatOptions junakOption;
+    //CombatOptions junakOption;
     // Saralf's Option
-    CombatOptions saralfOption;
+    //CombatOptions saralfOption;
     // The current order or turn of the combat
     private int order;
     // order to reset values
@@ -102,8 +102,8 @@ public class CombatManager : MonoBehaviour
         junakChosenOrder = 0;
         saralfChosenOrder = 0;
         // PlayerOne has not chosen an action
-        junakOption = CombatOptions.HasNotChosen;
-        saralfOption = CombatOptions.HasNotChosen;
+        DataManager.Junak.combatOption = CombatOptions.HasNotChosen;
+        SaralfDataManager.Saralf.combatOption = CombatOptions.HasNotChosen;
         // Display the text that is shown at the beginning of an encounter and wait for key press to continue
         CombatTextManager.combatTextManager.ManageText("A " + EnemyDataManager.EnemyManager.currentType + " appeared!");
         CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
@@ -156,7 +156,7 @@ public class CombatManager : MonoBehaviour
     }
     private void resetJunakValues()
     {
-        junakOption = CombatOptions.HasNotChosen;
+        DataManager.Junak.combatOption = CombatOptions.HasNotChosen;
         CombatTextManager.combatTextManager.textHasBeenPrompt = false;
         junakChosenOrder = 0;
         junakHandled = false;
@@ -168,7 +168,7 @@ public class CombatManager : MonoBehaviour
     }
     private void resetSaralfOptions()
     {
-        saralfOption = CombatOptions.HasNotChosen;
+        SaralfDataManager.Saralf.combatOption = CombatOptions.HasNotChosen;
         CombatTextManager.combatTextManager.textHasBeenPrompt = false;
         saralfChosenOrder = 0;
         saralfHandled = false;
@@ -296,80 +296,38 @@ public class CombatManager : MonoBehaviour
     }
 
     // Gets the player's chosen action 
-    private void GetPlayerAction(DataManager player)
-    {
+    private void GetPlayerAction(DataManager player) { 
         // If the previous text is finished, the text has not been prompt, and the user pressed space, display "Choose an Action" 
-        if (CombatTextManager.combatTextManager.textIsFinished && !CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.pressedSpace)
-        {
+        if (CombatTextManager.combatTextManager.textIsFinished && !CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.pressedSpace) { 
             CombatTextManager.combatTextManager.ManageText("Choose an Action");
             CombatTextManager.combatTextManager.textHasBeenPrompt = true;
         }
         // Assign playerOneOption if it is HasNotChosen based on input, followed by displaying "Choose Order To Act"
-        if (CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.textIsFinished)
-        {
-            if (player == DataManager.Junak)
-            {
-                if (Input.GetKeyDown(KeyCode.Q) && junakOption == CombatOptions.HasNotChosen)
-                {
-                    junakOption = CombatOptions.Attack;
-                    CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
-                }
-                if (Input.GetKeyDown(KeyCode.W) && junakOption == CombatOptions.HasNotChosen)
-                {
-                    CombatMenuManager.combatMenuManager.junakAbilityPanelWhenTurnedOn();
-                    CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
-                }
-                if (Input.GetKeyDown(KeyCode.E) && junakOption == CombatOptions.HasNotChosen)
-                {
-                    CombatMenuManager.combatMenuManager.itemPanelWhenTurnedOn();
-                    CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
-                }
-                if (Input.GetKeyDown(KeyCode.R) && junakOption == CombatOptions.HasNotChosen)
-                {
-                    Run(DataManager.Junak);
-                }
-
-                if (DataManager.Junak.abilityManager.choseAbilityInCombat == true)
-                {
-                    junakOption = CombatOptions.Ability;
-                }
-                if (DataManager.Junak.itemManager.choseItemInCombat == true)
-                {
-                    junakOption = CombatOptions.Item;
-                }
+        if (CombatTextManager.combatTextManager.textHasBeenPrompt && CombatTextManager.combatTextManager.textIsFinished) { 
+            if (Input.GetKeyDown(KeyCode.Q) && player.combatOption == CombatOptions.HasNotChosen) { 
+                player.combatOption = CombatOptions.Attack;
+                CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
             }
-            else if (player == SaralfDataManager.Saralf)
-            {
-                if (Input.GetKeyDown(KeyCode.Q) && saralfOption == CombatOptions.HasNotChosen)
-                {
-                    saralfOption = CombatOptions.Attack;
-                    CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
-                }
-                if (Input.GetKeyDown(KeyCode.W) && saralfOption == CombatOptions.HasNotChosen)
-                {
-                    CombatMenuManager.combatMenuManager.saralfAbilityPanelWhenTurnedOn();
-                    CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
-                }
-                if (Input.GetKeyDown(KeyCode.E) && saralfOption == CombatOptions.HasNotChosen)
-                {
-                    CombatMenuManager.combatMenuManager.itemPanelWhenTurnedOn();
-                    CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
-                }
-                if (Input.GetKeyDown(KeyCode.R) && saralfOption == CombatOptions.HasNotChosen)
-                {
-                    Run(SaralfDataManager.Saralf);
-                }
-                if (SaralfDataManager.Saralf.abilityManager.choseAbilityInCombat == true)
-                {
-                    saralfOption = CombatOptions.Ability;
-                }
-
-                if (SaralfDataManager.Saralf.itemManager.choseItemInCombat == true)
-                {
-                    saralfOption = CombatOptions.Item;
-                }
+            if (Input.GetKeyDown(KeyCode.W) && player.combatOption == CombatOptions.HasNotChosen) {
+                if(player == DataManager.Junak) { CombatMenuManager.combatMenuManager.junakAbilityPanelWhenTurnedOn(); }
+                else if(player == SaralfDataManager.Saralf) { CombatMenuManager.combatMenuManager.saralfAbilityPanelWhenTurnedOn(); }
+                CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
             }
-        }
+            if (Input.GetKeyDown(KeyCode.E) && player.combatOption == CombatOptions.HasNotChosen) {
+                CombatMenuManager.combatMenuManager.itemPanelWhenTurnedOn();
+                CombatTextManager.combatTextManager.ManageText("Choose Order To Act");
+            }
+            if (Input.GetKeyDown(KeyCode.R) && player.combatOption == CombatOptions.HasNotChosen) {
+                Run(player);
+            }
+
+            if (player.abilityManager.choseAbilityInCombat == true){
+                player.combatOption = CombatOptions.Ability;
+            }
+            if (player.itemManager.choseItemInCombat == true){
+                player.combatOption = CombatOptions.Item;
+            }
+        }     
     }
 
 
@@ -424,15 +382,15 @@ public class CombatManager : MonoBehaviour
     {
         if (player == DataManager.Junak && isTextManagerDone())
         {
-            if (junakChosenOrder == order && junakOption != CombatOptions.HasNotChosen && junakChosenOrder != 0)
+            if (junakChosenOrder == order && player.combatOption != CombatOptions.HasNotChosen && junakChosenOrder != 0)
             {
-                if (junakOption == CombatOptions.Attack)
+                if (player.combatOption == CombatOptions.Attack)
                 {
                     Attack(EnemyDataManager.EnemyManager, DataManager.Junak);
                 }
-                else if (junakOption == CombatOptions.Ability)
+                else if (player.combatOption == CombatOptions.Ability)
                 {
-                    if (saralfOption == CombatOptions.Ability && saralfChosenOrder == junakChosenOrder)
+                    if (player.combatOption == CombatOptions.Ability && saralfChosenOrder == junakChosenOrder && SaralfDataManager.Saralf.isInParty)
                     {
                         if(DataManager.Junak.abilityManager.checkCombo(DataManager.Junak, SaralfDataManager.Saralf)){
                             DataManager.Junak.abilityManager.executeCombo(DataManager.Junak, SaralfDataManager.Saralf);
@@ -444,7 +402,7 @@ public class CombatManager : MonoBehaviour
                         DataManager.Junak.abilityManager.useAbility();
                     }
                 }
-                else if (junakOption == CombatOptions.Item)
+                else if (player.combatOption == CombatOptions.Item)
                 {
                     DataManager.Junak.itemManager.useItem(DataManager.Junak);
                     CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
@@ -455,16 +413,15 @@ public class CombatManager : MonoBehaviour
         }
         else if (player == SaralfDataManager.Saralf && isTextManagerDone())
         {
-            if (saralfChosenOrder == order && isTextManagerDone() && saralfOption != CombatOptions.HasNotChosen && saralfChosenOrder != 0)
+            if (saralfChosenOrder == order && isTextManagerDone() && player.combatOption != CombatOptions.HasNotChosen && saralfChosenOrder != 0)
             {
-                if (saralfOption == CombatOptions.Attack)
+                if (player.combatOption == CombatOptions.Attack)
                 {
                     Attack(EnemyDataManager.EnemyManager, SaralfDataManager.Saralf);
                 }
-                else if (saralfOption == CombatOptions.Ability)
+                else if (player.combatOption == CombatOptions.Ability)
                 {
-                    if (junakOption == CombatOptions.Ability && junakChosenOrder == saralfChosenOrder) {
-                        Debug.Log("Check Combo");
+                    if (player.combatOption == CombatOptions.Ability && junakChosenOrder == saralfChosenOrder) {
                         if(SaralfDataManager.Saralf.abilityManager.checkCombo(SaralfDataManager.Saralf, DataManager.Junak)) {
                             SaralfDataManager.Saralf.abilityManager.executeCombo(SaralfDataManager.Saralf, DataManager.Junak);
                             junakHandled = true;
@@ -473,7 +430,7 @@ public class CombatManager : MonoBehaviour
                     }
                     else { SaralfDataManager.Saralf.abilityManager.useAbility(); }
                 }
-                else if (saralfOption == CombatOptions.Item)
+                else if (player.combatOption == CombatOptions.Item)
                 {
                     SaralfDataManager.Saralf.itemManager.useItem(SaralfDataManager.Saralf);
                     CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
@@ -527,15 +484,15 @@ public class CombatManager : MonoBehaviour
                 combatCharSprite.GetComponent<SpriteRenderer>().sprite = playerOneCombatantSprite;
                 DataManager.Junak.isTurnInCombat = true;
                 checkWinner();
-                if (junakOption == CombatOptions.HasNotChosen)
+                if (DataManager.Junak.combatOption == CombatOptions.HasNotChosen)
                 {
                     GetPlayerAction(DataManager.Junak);
                 }
-                if (junakOption != CombatOptions.HasNotChosen && junakChosenOrder == 0)
+                if (DataManager.Junak.combatOption != CombatOptions.HasNotChosen && junakChosenOrder == 0)
                 {
                     GetOrder(DataManager.Junak);
                 }
-                if (junakOption != CombatOptions.HasNotChosen && junakChosenOrder != 0 && !junakHandled && isTextManagerDone())
+                if (DataManager.Junak.combatOption != CombatOptions.HasNotChosen && junakChosenOrder != 0 && !junakHandled && isTextManagerDone())
                 {
                     HandleOrder(DataManager.Junak);
                 }
@@ -605,15 +562,15 @@ public class CombatManager : MonoBehaviour
                 checkWinner();
                 combatCharSprite.GetComponent<SpriteRenderer>().sprite = SaralfCombatantSprite;
                 SaralfDataManager.Saralf.isTurnInCombat = true;
-                if (saralfOption == CombatOptions.HasNotChosen)
+                if (SaralfDataManager.Saralf.combatOption == CombatOptions.HasNotChosen)
                 {
                     GetPlayerAction(SaralfDataManager.Saralf);
                 }
-                if (saralfOption != CombatOptions.HasNotChosen && saralfChosenOrder == 0)
+                if (SaralfDataManager.Saralf.combatOption != CombatOptions.HasNotChosen && saralfChosenOrder == 0)
                 {
                     GetOrder(SaralfDataManager.Saralf);
                 }
-                if (saralfOption != CombatOptions.HasNotChosen && saralfChosenOrder != 0 && !saralfHandled && isTextManagerDone())
+                if (SaralfDataManager.Saralf.combatOption != CombatOptions.HasNotChosen && saralfChosenOrder != 0 && !saralfHandled && isTextManagerDone())
                 {
                     HandleOrder(SaralfDataManager.Saralf);
                 }

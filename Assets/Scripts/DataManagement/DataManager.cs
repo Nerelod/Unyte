@@ -47,8 +47,9 @@ public class DataManager : MonoBehaviour
     public bool isTurnInCombat = false;
 
     public bool isInParty;
-
+    // Variable for containing which direction was facing
     public int directionHolder;
+    public CombatOptions combatOption;
 
     // Happens before start, makes sure there is only one instance of DataManager
     private void Awake()
