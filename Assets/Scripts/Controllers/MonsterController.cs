@@ -44,8 +44,6 @@ public class MonsterController : MonoBehaviour {
     // The scene the monster is in
     public string scene;
 
-    //determines what kind of monster it is
-
     void Start() {
         canMove = true;
         // Get the scene the monster is in

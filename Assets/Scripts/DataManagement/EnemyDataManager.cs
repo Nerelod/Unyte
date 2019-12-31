@@ -7,15 +7,15 @@ public class EnemyDataManager : MonoBehaviour
     // Reference to EnemyDataManager
     public static EnemyDataManager EnemyManager;
 
-    public int health;
-    public int experienceGives;
-    public int speed = 3;
-    public int assignedOrderInCombat;
+    public int health, healthTwo;
+    public int experienceGives, experienceGivesTwo;
+    public int speed, speedTwo;
+    public int assignedOrderInCombat, assignedOrderInCombatTwo;
     // Sprite of enemy in combat scene
-    public Sprite currentSprite = null;
-    public string currentName;
-    public string currentType;
-    public Monster theMonster;
+    public Sprite currentSprite, currentSpriteTwo = null;
+    public string currentName, currentNameTwo;
+    public string currentType, currentTypeTwo;
+    public Monster theMonster, theMonsterTwo;
     public string theScene;
 
     //List of enemies that were defeated in combat

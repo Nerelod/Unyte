@@ -8,7 +8,9 @@ public class Monster : MonoBehaviour{
     public bool displayedDamage = false;
     protected MonsterController monsterController;
     
-    public int whichAttack;    
+    public int whichAttack;
+
+    public bool hasSecondMonster;
 
     public Monster() {
 
@@ -28,6 +30,15 @@ public class Monster : MonoBehaviour{
             EnemyDataManager.EnemyManager.theMonster = this;
             monsterController.canMove = false;
             monsterController.player.State = States.CannotMove;
+            if (hasSecondMonster) {
+                SecondaryMonster secondMonster = GetComponent<SecondaryMonster>();
+                EnemyDataManager.EnemyManager.currentSpriteTwo = secondMonster.combatSprite;
+                EnemyDataManager.EnemyManager.currentNameTwo = secondMonster.monsterName;
+                EnemyDataManager.EnemyManager.healthTwo = secondMonster.health;
+                EnemyDataManager.EnemyManager.experienceGivesTwo = secondMonster.experienceToGive;
+                EnemyDataManager.EnemyManager.speedTwo = secondMonster.speed;
+                EnemyDataManager.EnemyManager.theMonsterTwo = this;
+            }
             Transitions.screenTransition.StartCoroutine(Transitions.screenTransition.FadeOut("CombatScene", .33f));
         }
     }
