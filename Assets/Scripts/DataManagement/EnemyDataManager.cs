@@ -18,6 +18,8 @@ public class EnemyDataManager : MonoBehaviour
     public Monster theMonster, theMonsterTwo;
     public string theScene;
 
+    public int amountOfEnemies;
+
     //List of enemies that were defeated in combat
     public List<string> defeatedEnemies = new List<string>();
 

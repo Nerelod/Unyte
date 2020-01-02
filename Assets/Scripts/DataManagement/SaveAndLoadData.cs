@@ -22,25 +22,25 @@ public class SaveAndLoadData : MonoBehaviour
     // to store what needs to be saved.
     public void save()
     {
-        DataManager.Junak.hasSaved = true;
+        JunakDataManager.Junak.hasSaved = true;
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/UnyteGameData.dat");
         PlayerData data = new PlayerData();
-        data.items = DataManager.Junak.itemManager.aquiredItems;
-        data.itemScripts = DataManager.Junak.itemManager.itemScripts;
-        data.JuankAbilities = DataManager.Junak.abilityManager.aquiredAbilities;
+        data.items = JunakDataManager.Junak.itemManager.aquiredItems;
+        data.itemScripts = JunakDataManager.Junak.itemManager.itemScripts;
+        data.JuankAbilities = JunakDataManager.Junak.abilityManager.aquiredAbilities;
         data.SaralfAbilities = SaralfDataManager.Saralf.abilityManager.aquiredAbilities;
-        data.JunakComboAbilities = DataManager.Junak.abilityManager.aquiredComboAbilities;
+        data.JunakComboAbilities = JunakDataManager.Junak.abilityManager.aquiredComboAbilities;
         data.SaralfComboAbilities = SaralfDataManager.Saralf.abilityManager.aquiredComboAbilities;
         data.deadEnemies = EnemyDataManager.EnemyManager.defeatedEnemies;
-        data.health = DataManager.Junak.health;
-        data.experience = DataManager.Junak.experience;
-        data.level = DataManager.Junak.level;
-        data.xpos = DataManager.Junak.xpos;
-        data.ypos = DataManager.Junak.ypos;
-        data.currentScene = DataManager.Junak.currentScene;
-        data.saved = DataManager.Junak.hasSaved;
-        data.removedItems = DataManager.Junak.itemManager.itemsThatWereRemoved;
+        data.health = JunakDataManager.Junak.health;
+        data.experience = JunakDataManager.Junak.experience;
+        data.level = JunakDataManager.Junak.level;
+        data.xpos = JunakDataManager.Junak.xpos;
+        data.ypos = JunakDataManager.Junak.ypos;
+        data.currentScene = JunakDataManager.Junak.currentScene;
+        data.saved = JunakDataManager.Junak.hasSaved;
+        data.removedItems = JunakDataManager.Junak.itemManager.itemsThatWereRemoved;
         bf.Serialize(file, data);
         file.Close();
 
@@ -58,24 +58,24 @@ public class SaveAndLoadData : MonoBehaviour
             file.Close();
 
             EnemyDataManager.EnemyManager.defeatedEnemies = data.deadEnemies;
-            DataManager.Junak.health = data.health;
-            DataManager.Junak.experience = data.experience;
-            DataManager.Junak.level = data.level;
-            DataManager.Junak.xpos = data.xpos;
-            DataManager.Junak.ypos = data.ypos;
-            DataManager.Junak.currentScene = data.currentScene;
-            DataManager.Junak.itemManager.aquiredItems = data.items;
-            DataManager.Junak.itemManager.itemScripts = data.itemScripts;
-            DataManager.Junak.abilityManager.aquiredAbilities = data.JuankAbilities;
-            DataManager.Junak.abilityManager.aquiredComboAbilities = data.JunakComboAbilities;
+            JunakDataManager.Junak.health = data.health;
+            JunakDataManager.Junak.experience = data.experience;
+            JunakDataManager.Junak.level = data.level;
+            JunakDataManager.Junak.xpos = data.xpos;
+            JunakDataManager.Junak.ypos = data.ypos;
+            JunakDataManager.Junak.currentScene = data.currentScene;
+            JunakDataManager.Junak.itemManager.aquiredItems = data.items;
+            JunakDataManager.Junak.itemManager.itemScripts = data.itemScripts;
+            JunakDataManager.Junak.abilityManager.aquiredAbilities = data.JuankAbilities;
+            JunakDataManager.Junak.abilityManager.aquiredComboAbilities = data.JunakComboAbilities;
             SaralfDataManager.Saralf.abilityManager.aquiredAbilities = data.SaralfAbilities;
             SaralfDataManager.Saralf.abilityManager.aquiredComboAbilities = data.SaralfComboAbilities;
-            DataManager.Junak.hasSaved = data.saved;
-            DataManager.Junak.itemManager.itemsThatWereRemoved = data.removedItems;
+            JunakDataManager.Junak.hasSaved = data.saved;
+            JunakDataManager.Junak.itemManager.itemsThatWereRemoved = data.removedItems;
 
-            SceneManager.LoadScene(DataManager.Junak.currentScene);
+            SceneManager.LoadScene(JunakDataManager.Junak.currentScene);
 
-            DataManager.Junak.isBeingLoaded = true;
+            JunakDataManager.Junak.isBeingLoaded = true;
 
         }
     }
@@ -84,28 +84,28 @@ public class SaveAndLoadData : MonoBehaviour
     {
 
         EnemyDataManager.EnemyManager.defeatedEnemies.Clear();
-        DataManager.Junak.health = 10;
-        DataManager.Junak.experience = 0;
-        DataManager.Junak.qDamage = 3;
+        JunakDataManager.Junak.health = 10;
+        JunakDataManager.Junak.experience = 0;
+        JunakDataManager.Junak.qDamage = 3;
         SaralfDataManager.Saralf.health = 12;
         SaralfDataManager.Saralf.experience = 0;
-        DataManager.Junak.theName = "Junak";
-        DataManager.Junak.abilityManager.aquiredAbilities.Clear();
-        DataManager.Junak.abilityManager.aquiredComboAbilities.Clear();
+        JunakDataManager.Junak.theName = "Junak";
+        JunakDataManager.Junak.abilityManager.aquiredAbilities.Clear();
+        JunakDataManager.Junak.abilityManager.aquiredComboAbilities.Clear();
         SaralfDataManager.Saralf.abilityManager.aquiredAbilities.Clear();
         SaralfDataManager.Saralf.abilityManager.aquiredComboAbilities.Clear();
-        DataManager.Junak.itemManager.aquiredItems.Clear();
-        DataManager.Junak.itemManager.itemScripts.Clear();
-        DataManager.Junak.itemManager.itemsThatWereRemoved.Clear();
-        DataManager.Junak.itemManager.itemScripts.Add(HealthPotionItem.healthPotionItem);
-        DataManager.Junak.abilityManager.aquiredAbilities.Add(InvestigateAbility.investigateAbility);
-        DataManager.Junak.abilityManager.aquiredComboAbilities.Add(ScrutinizeAbility.scrutinizeAbility);
+        JunakDataManager.Junak.itemManager.aquiredItems.Clear();
+        JunakDataManager.Junak.itemManager.itemScripts.Clear();
+        JunakDataManager.Junak.itemManager.itemsThatWereRemoved.Clear();
+        JunakDataManager.Junak.itemManager.itemScripts.Add(HealthPotionItem.healthPotionItem);
+        JunakDataManager.Junak.abilityManager.aquiredAbilities.Add(InvestigateAbility.investigateAbility);
+        JunakDataManager.Junak.abilityManager.aquiredComboAbilities.Add(ScrutinizeAbility.scrutinizeAbility);
         SaralfDataManager.Saralf.abilityManager.aquiredAbilities.Add(AnalyzeAbility.analyzeAbility);
         SaralfDataManager.Saralf.abilityManager.aquiredComboAbilities.Add(ScrutinizeAbility.scrutinizeAbility);
-        DataManager.Junak.itemManager.aquiredItems.Add("Health Potion");
-        DataManager.Junak.isBeingLoaded = true;
-        DataManager.Junak.xpos = 1.4f;
-        DataManager.Junak.ypos = .39f;
+        JunakDataManager.Junak.itemManager.aquiredItems.Add("Health Potion");
+        JunakDataManager.Junak.isBeingLoaded = true;
+        JunakDataManager.Junak.xpos = 1.4f;
+        JunakDataManager.Junak.ypos = .39f;
         SceneManager.LoadScene("Cutscene_1");
 
 

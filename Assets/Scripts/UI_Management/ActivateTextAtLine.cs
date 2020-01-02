@@ -64,8 +64,8 @@ public class ActivateTextAtLine : MonoBehaviour
         {
             if (ifItem)
             {
-                DataManager.Junak.itemManager.aquiredItems.Add(theItem.itemString);
-                DataManager.Junak.itemManager.itemsThatWereRemoved.Add(theItem.identifier);
+                JunakDataManager.Junak.itemManager.aquiredItems.Add(theItem.itemString);
+                JunakDataManager.Junak.itemManager.itemsThatWereRemoved.Add(theItem.identifier);
                 /*if (!DataManager.Junak.itemManager.itemScripts.Contains(theItem.itemScript))
                 {
                     DataManager.Junak.itemManager.itemScripts.Add(theItem.itemScript);

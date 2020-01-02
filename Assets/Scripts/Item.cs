@@ -16,7 +16,7 @@ public class Item : MonoBehaviour
         else if (itemString == "Stone") { itemScript = StoneItem.stoneItem; }*/
         player = FindObjectOfType<PlayerController>();
         // Set item to false if it was aquired by the player
-        if (DataManager.Junak.itemManager.itemsThatWereRemoved.Contains(identifier))
+        if (JunakDataManager.Junak.itemManager.itemsThatWereRemoved.Contains(identifier))
         {
             this.gameObject.SetActive(false);
         }

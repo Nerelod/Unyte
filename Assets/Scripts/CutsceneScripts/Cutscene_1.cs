@@ -43,9 +43,9 @@ public class Cutscene_1 : CutsceneManager
                 readyToSwitchScenes = true;
             }
             if (textManager.pressedSpace && textManager.textIsFinished && readyToSwitchScenes) {
-                DataManager.Junak.xpos = -0.3f;
-                DataManager.Junak.ypos = -1.07f;
-                DataManager.Junak.isBeingLoaded = true;
+                JunakDataManager.Junak.xpos = -0.3f;
+                JunakDataManager.Junak.ypos = -1.07f;
+                JunakDataManager.Junak.isBeingLoaded = true;
                 SceneManager.LoadScene("Player'sHouseScene");
             }
         }

@@ -38,18 +38,18 @@ public class PlayerController : MonoBehaviour {
     private void Awake() {
         isInvincible = false;
         
-        if (DataManager.Junak.isBeingLoaded == true) {
-            transform.position = new Vector2(DataManager.Junak.xpos, DataManager.Junak.ypos);
-            DataManager.Junak.isBeingLoaded = false;
+        if (JunakDataManager.Junak.isBeingLoaded == true) {
+            transform.position = new Vector2(JunakDataManager.Junak.xpos, JunakDataManager.Junak.ypos);
+            JunakDataManager.Junak.isBeingLoaded = false;
             GameMenuManager.gameMenuManager.gameMenu.SetActive(false);
-            if (DataManager.Junak.ranFromCombat) {
+            if (JunakDataManager.Junak.ranFromCombat) {
                 StartCoroutine(invincibilityTimer());
-                DataManager.Junak.ranFromCombat = false;
+                JunakDataManager.Junak.ranFromCombat = false;
             }
         }    
         else {
             transform.position = startingPosition.initialValue;
-            direction = DataManager.Junak.directionHolder;
+            direction = JunakDataManager.Junak.directionHolder;
         }
     }
     void Start() {
@@ -156,8 +156,8 @@ public class PlayerController : MonoBehaviour {
         rigid.MovePosition(new Vector2((transform.position.x + moveVector.x * moveSpeed * Time.fixedDeltaTime),
                    transform.position.y + moveVector.y * moveSpeed * Time.fixedDeltaTime));
 
-        DataManager.Junak.xpos = transform.position.x;
-        DataManager.Junak.ypos = transform.position.y;
+        JunakDataManager.Junak.xpos = transform.position.x;
+        JunakDataManager.Junak.ypos = transform.position.y;
 
         
 

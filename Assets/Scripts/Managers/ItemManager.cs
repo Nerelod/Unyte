@@ -18,70 +18,70 @@ public class ItemManager : MonoBehaviour
     {
         isInCombat = false;
         allyItems.Add("Health Potion");
-        DataManager.Junak.itemManager.itemScripts.Add(StoneItem.stoneItem);
-        DataManager.Junak.itemManager.itemScripts.Add(HealthPotionItem.healthPotionItem);
+        JunakDataManager.Junak.itemManager.itemScripts.Add(StoneItem.stoneItem);
+        JunakDataManager.Junak.itemManager.itemScripts.Add(HealthPotionItem.healthPotionItem);
     }
 
     public void selectItemOutsideCombat(string itemName)
     {
-        if (DataManager.Junak.itemManager.aquiredItems.Contains(itemName))
+        if (JunakDataManager.Junak.itemManager.aquiredItems.Contains(itemName))
         {
-            int itemIndex = DataManager.Junak.itemManager.itemScripts.FindIndex(a => a.name == itemName);
+            int itemIndex = JunakDataManager.Junak.itemManager.itemScripts.FindIndex(a => a.name == itemName);
             if (allyItems.Contains(itemName))
             {
                 GameMenuManager.gameMenuManager.canInteractWith = false;
                 GameMenuManager.gameMenuManager.allySelectPanelWhenTurnedOn();
             }
-            DataManager.Junak.itemManager.itemToUse = DataManager.Junak.itemManager.itemScripts[itemIndex];
+            JunakDataManager.Junak.itemManager.itemToUse = JunakDataManager.Junak.itemManager.itemScripts[itemIndex];
         }
     }
     public void selectItemInCombat(string itemName)
     {
-        int itemIndex = DataManager.Junak.itemManager.itemScripts.FindIndex(a => a.name == itemName);
-        if (DataManager.Junak.isTurnInCombat)
+        int itemIndex = JunakDataManager.Junak.itemManager.itemScripts.FindIndex(a => a.name == itemName);
+        if (JunakDataManager.Junak.isTurnInCombat)
         {
-            if (DataManager.Junak.itemManager.aquiredItems.Contains(itemName))
+            if (JunakDataManager.Junak.itemManager.aquiredItems.Contains(itemName))
             {
-                DataManager.Junak.itemManager.itemToUse = DataManager.Junak.itemManager.itemScripts[itemIndex];
-                DataManager.Junak.itemManager.choseItemInCombat = true;
+                JunakDataManager.Junak.itemManager.itemToUse = JunakDataManager.Junak.itemManager.itemScripts[itemIndex];
+                JunakDataManager.Junak.itemManager.choseItemInCombat = true;
                 CombatMenuManager.combatMenuManager.itemSelectPanel.SetActive(false);
             }
         }
         else if (SaralfDataManager.Saralf.isTurnInCombat)
         {
-            if (DataManager.Junak.itemManager.aquiredItems.Contains(itemName))
+            if (JunakDataManager.Junak.itemManager.aquiredItems.Contains(itemName))
             {
-                SaralfDataManager.Saralf.itemManager.itemToUse = DataManager.Junak.itemManager.itemScripts[itemIndex];
+                SaralfDataManager.Saralf.itemManager.itemToUse = JunakDataManager.Junak.itemManager.itemScripts[itemIndex];
                 SaralfDataManager.Saralf.itemManager.choseItemInCombat = true;
                 CombatMenuManager.combatMenuManager.itemSelectPanel.SetActive(false);
             }
         }
-        if (DataManager.Junak.itemManager.aquiredItems.Contains(itemName))
+        if (JunakDataManager.Junak.itemManager.aquiredItems.Contains(itemName))
         {
             if (allyItems.Contains(itemName))
             {
                 CombatMenuManager.combatMenuManager.allySelectPanelWhenTurnedOn();
             }
         }
-        DataManager.Junak.itemManager.aquiredItems.Remove(itemName);
+        JunakDataManager.Junak.itemManager.aquiredItems.Remove(itemName);
     }
     public void selectAlly(string allyName)
     {
         if (allyName == "Junak")
         {
-            if (DataManager.Junak.isTurnInCombat) { DataManager.Junak.itemManager.allyToTarget = DataManager.Junak; }
-            else if (SaralfDataManager.Saralf.isTurnInCombat) { SaralfDataManager.Saralf.itemManager.allyToTarget = DataManager.Junak; }
+            if (JunakDataManager.Junak.isTurnInCombat) { JunakDataManager.Junak.itemManager.allyToTarget = JunakDataManager.Junak; }
+            else if (SaralfDataManager.Saralf.isTurnInCombat) { SaralfDataManager.Saralf.itemManager.allyToTarget = JunakDataManager.Junak; }
         }
         else if (allyName == "Saralf")
         {
-            if (DataManager.Junak.isTurnInCombat) { DataManager.Junak.itemManager.allyToTarget = SaralfDataManager.Saralf; }
+            if (JunakDataManager.Junak.isTurnInCombat) { JunakDataManager.Junak.itemManager.allyToTarget = SaralfDataManager.Saralf; }
             else if (SaralfDataManager.Saralf.isTurnInCombat) { SaralfDataManager.Saralf.itemManager.allyToTarget = SaralfDataManager.Saralf; }
         }
         CombatMenuManager.combatMenuManager.allySelectPanel.SetActive(false);
     }
     public void useItem(DataManager player)
     {
-        if (DataManager.Junak.itemManager.allyItems.Contains(itemToUse.name))
+        if (JunakDataManager.Junak.itemManager.allyItems.Contains(itemToUse.name))
         {
             itemToUse.execute(allyToTarget);
             // Select Health Potion Button after ally select panel
@@ -91,9 +91,9 @@ public class ItemManager : MonoBehaviour
         {
             itemToUse.execute(player);
         }
-        if (!DataManager.Junak.itemManager.isInCombat)
+        if (!JunakDataManager.Junak.itemManager.isInCombat)
         {
-            if (!DataManager.Junak.itemManager.aquiredItems.Contains(itemToUse.name))
+            if (!JunakDataManager.Junak.itemManager.aquiredItems.Contains(itemToUse.name))
             {
                 GameMenuManager.gameMenuManager.itemReturnButton.Select();
             }

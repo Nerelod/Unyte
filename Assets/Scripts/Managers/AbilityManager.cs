@@ -16,9 +16,9 @@ public class AbilityManager : MonoBehaviour
     }
     public void junakSelectAbility(string abilityName)
     {
-        int abilityIndex = DataManager.Junak.abilityManager.aquiredAbilities.FindIndex(a => a.name == abilityName);
-        DataManager.Junak.abilityManager.abilityToUse = DataManager.Junak.abilityManager.aquiredAbilities[abilityIndex];
-        DataManager.Junak.abilityManager.choseAbilityInCombat = true;
+        int abilityIndex = JunakDataManager.Junak.abilityManager.aquiredAbilities.FindIndex(a => a.name == abilityName);
+        JunakDataManager.Junak.abilityManager.abilityToUse = JunakDataManager.Junak.abilityManager.aquiredAbilities[abilityIndex];
+        JunakDataManager.Junak.abilityManager.choseAbilityInCombat = true;
         CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(false);
     }
     public void saralfSelectAbility(string abilityName)

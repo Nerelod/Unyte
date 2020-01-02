@@ -34,10 +34,10 @@ public class CombatMenuManager : MonoBehaviour
 
     private void checkItemInCombat(string itemName, Button button, Text textBox)
     {
-        if (DataManager.Junak.itemManager.aquiredItems.Contains(itemName))
+        if (JunakDataManager.Junak.itemManager.aquiredItems.Contains(itemName))
         {
             button.gameObject.SetActive(true);
-            textBox.text = itemName + " " + DataManager.Junak.itemManager.getAmountOfItem(itemName);
+            textBox.text = itemName + " " + JunakDataManager.Junak.itemManager.getAmountOfItem(itemName);
         }
         else
         {
