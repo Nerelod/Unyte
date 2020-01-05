@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
@@ -35,6 +36,10 @@ public class DataManager : MonoBehaviour
     public bool ranFromCombat = false;
 
     public bool isTurnInCombat = false;
+
+    public Sprite combatSprite;
+    public Sprite combatIcon;
+    public Text combatText;
 
     public bool isInParty;
     // Variable for containing which direction was facing

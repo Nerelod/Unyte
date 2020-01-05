@@ -298,6 +298,18 @@ PrefabInstance:
       propertyPath: ypos
       value: 0.39
       objectReference: {fileID: 0}
+    - target: {fileID: 503760104495064909, guid: de989f27c7a6c8c4da23f3f50456acc5,
+        type: 3}
+      propertyPath: combatSprite
+      value: 
+      objectReference: {fileID: 21300016, guid: 8a13557e64e0494449bbd2f3558c1114,
+        type: 3}
+    - target: {fileID: 503760104495064909, guid: de989f27c7a6c8c4da23f3f50456acc5,
+        type: 3}
+      propertyPath: combatIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a2a01a0eb68e3d4e95437880d9ba966,
+        type: 3}
     - target: {fileID: 7375679996483487708, guid: de989f27c7a6c8c4da23f3f50456acc5,
         type: 3}
       propertyPath: speed
@@ -308,6 +320,18 @@ PrefabInstance:
       propertyPath: isTurnInCombat
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7375679996483487708, guid: de989f27c7a6c8c4da23f3f50456acc5,
+        type: 3}
+      propertyPath: combatSprite
+      value: 
+      objectReference: {fileID: 21300014, guid: 7c43705d9eb3f064a97c68beda72fb4c,
+        type: 3}
+    - target: {fileID: 7375679996483487708, guid: de989f27c7a6c8c4da23f3f50456acc5,
+        type: 3}
+      propertyPath: combatIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: d77d28300fa222745ae138fcf61004fc,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de989f27c7a6c8c4da23f3f50456acc5, type: 3}
 --- !u!1001 &451864573

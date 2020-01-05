@@ -16,7 +16,7 @@ public class CombatTextManager : MonoBehaviour {
     // Text that fades and shows how much damage enemy does
     public Text enemyDamageText;
     // Displays health of combat participants
-    public Text playerOneHealthText;
+    public Text junakHealthText;
     public Text saralfHealthText;
     public Text enemyHealthText;
     // Text showing the current order in combat

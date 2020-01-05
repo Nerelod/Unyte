@@ -21,7 +21,8 @@ public class Monster : MonoBehaviour{
     protected void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "Player" && !monsterController.player.isInvincible) {
             EnemyDataManager.EnemyManager.theScene = monsterController.scene;
-            EnemyDataManager.EnemyManager.currentSprite = monsterController.combatSprite;
+            EnemyDataManager.EnemyManager.combatIcon = monsterController.combatSprite;
+            EnemyDataManager.EnemyManager.combatSprite = monsterController.combatSprite;
             EnemyDataManager.EnemyManager.currentName = monsterController.monsterName;
             EnemyDataManager.EnemyManager.health = monsterController.health;
             EnemyDataManager.EnemyManager.experienceGives = monsterController.experienceToGive;

@@ -2,23 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDataManager : MonoBehaviour
+public class EnemyDataManager : DataManager
 {
     // Reference to EnemyDataManager
     public static EnemyDataManager EnemyManager;
 
-    public int health, healthTwo;
+    public int healthTwo;
     public int experienceGives, experienceGivesTwo;
-    public int speed, speedTwo;
-    public int assignedOrderInCombat, assignedOrderInCombatTwo;
+    public int speedTwo;
+    public int assignedOrderInCombatTwo;
     // Sprite of enemy in combat scene
-    public Sprite currentSprite, currentSpriteTwo = null;
+    public Sprite currentSpriteTwo;
     public string currentName, currentNameTwo;
     public string currentType, currentTypeTwo;
     public Monster theMonster, theMonsterTwo;
     public string theScene;
 
     public int amountOfEnemies;
+
+    
 
     //List of enemies that were defeated in combat
     public List<string> defeatedEnemies = new List<string>();
