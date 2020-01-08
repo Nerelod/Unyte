@@ -19,6 +19,7 @@ public class CombatTextManager : MonoBehaviour {
     public Text junakHealthText;
     public Text saralfHealthText;
     public Text enemyHealthText;
+    public Text enemyHealthTextTwo;
     // Text showing the current order in combat
     public Text orderText;
     // Variables used to make text work and display when needed
@@ -26,7 +27,7 @@ public class CombatTextManager : MonoBehaviour {
     public bool textIsFinished;
     public bool pressedSpace;
     public bool textHasBeenPrompt;
-    public float textFadeTime = 2;
+    public float textFadeTime = 1;
 
 
     

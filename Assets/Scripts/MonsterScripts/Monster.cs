@@ -30,6 +30,7 @@ public class Monster : MonoBehaviour{
             EnemyDataManager.EnemyManager.currentType = monsterController.monsterType;
             EnemyDataManager.EnemyManager.theMonster = this;
             monsterController.canMove = false;
+            EnemyDataManager.EnemyManager.amountOfEnemies = 1;
             monsterController.player.State = States.CannotMove;
             if (hasSecondMonster) {
                 SecondaryMonster secondMonster = GetComponent<SecondaryMonster>();
@@ -38,6 +39,7 @@ public class Monster : MonoBehaviour{
                 EnemyDataManager.EnemyManager.healthTwo = secondMonster.health;
                 EnemyDataManager.EnemyManager.experienceGivesTwo = secondMonster.experienceToGive;
                 EnemyDataManager.EnemyManager.speedTwo = secondMonster.speed;
+                EnemyDataManager.EnemyManager.amountOfEnemies = 2;
                 EnemyDataManager.EnemyManager.theMonsterTwo = this;
             }
             Transitions.screenTransition.StartCoroutine(Transitions.screenTransition.FadeOut("CombatScene", .33f));

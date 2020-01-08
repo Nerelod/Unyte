@@ -6,6 +6,7 @@ public class EnemyDataManager : DataManager
 {
     // Reference to EnemyDataManager
     public static EnemyDataManager EnemyManager;
+    public static EnemyDataManager EnemyManagerTwo;
 
     public int healthTwo;
     public int experienceGives, experienceGivesTwo;
@@ -32,6 +33,14 @@ public class EnemyDataManager : DataManager
             EnemyManager = this;
         }
         else if (EnemyManager != this) {        
+            Destroy(gameObject);
+        }
+
+        if (EnemyManagerTwo == null) {
+            DontDestroyOnLoad(gameObject);
+            EnemyManagerTwo = this;
+        }
+        else if (EnemyManagerTwo != this) {
             Destroy(gameObject);
         }
     }

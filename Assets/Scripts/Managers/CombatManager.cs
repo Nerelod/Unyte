@@ -17,6 +17,7 @@ public class CombatManager : MonoBehaviour
     public GameObject combatCharSprite;              
     // Reference to the enemy sprite
     public GameObject enemySprite;
+    public GameObject enemySpriteTwo;
     // Reference to the CombatStates enum, used for deciding what part of combat it is
     CombatStates combatState;
     // Reference to the playerOneOption enum, used for assigning the chosen option
@@ -44,6 +45,7 @@ public class CombatManager : MonoBehaviour
     public Text textIconOne;
     public Text textIconTwo;
     public Text textIconThree;
+    public Text textIconFour;
 
     // IconOne image
     public GameObject iconOne;
@@ -51,6 +53,8 @@ public class CombatManager : MonoBehaviour
     public GameObject iconTwo;
     //Icon Three image
     public GameObject iconThree;
+    //Icon Four image
+    public GameObject iconFour;
 
     private List<DataManager> combatants = new List<DataManager>();
 
@@ -106,6 +110,8 @@ public class CombatManager : MonoBehaviour
         // Assign the enemySprite
         enemySprite = GameObject.Find("Enemy");
         enemySprite.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.combatSprite;
+        enemySpriteTwo = GameObject.Find("EnemyTwo");
+        enemySpriteTwo.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSpriteTwo;
 
         // Assign the icons
         iconOne = GameObject.Find("IconOne");
@@ -114,6 +120,7 @@ public class CombatManager : MonoBehaviour
         textIconOne.text = "";
         textIconTwo.text = "";
         textIconThree.text = "";
+        textIconFour.text = "";
         // The enemy has not attacked
         enemyOneHasAttacked = false;
 
@@ -177,16 +184,16 @@ public class CombatManager : MonoBehaviour
     // Returns amount of combat Members
     private int getCombatMembersAmount()
     {
-        int members = 2;
+        int members = 1;
         if (SaralfDataManager.Saralf.isInParty){ members += 1; }
-        //members += EnemyDataManager.EnemyManager.amountOfEnemies;
+        members += EnemyDataManager.EnemyManager.amountOfEnemies;
         return members;
     }
     private void getCombatMembers() {
         combatants.Add(JunakDataManager.Junak);
         combatants.Add(EnemyDataManager.EnemyManager);
         if (SaralfDataManager.Saralf.isInParty) { combatants.Add(SaralfDataManager.Saralf); }
-        if (EnemyDataManager.EnemyManager.amountOfEnemies >= 2) { EnemyDataManager EnemyManagerTwo = new EnemyDataManager(); combatants.Add(EnemyManagerTwo); }
+        if (EnemyDataManager.EnemyManager.amountOfEnemies >= 2) { combatants.Add(EnemyDataManager.EnemyManagerTwo); }
     }
     private void getPartyMembers()
     {
@@ -199,19 +206,21 @@ public class CombatManager : MonoBehaviour
     // Order is determined by speed
     private void determineOrder()
     {
-
+        EnemyDataManager.EnemyManagerTwo.speed = EnemyDataManager.EnemyManager.speed;
         int[] speeds = new int[getCombatMembersAmount()];
-        speeds[0] = JunakDataManager.Junak.speed;
-        speeds[1] = EnemyDataManager.EnemyManager.speed;
-        if (SaralfDataManager.Saralf.isInParty)
-        {
-            speeds[2] = SaralfDataManager.Saralf.speed;
+        int i = 0;
+        foreach(DataManager combatant in combatants) {
+            speeds[i] = combatant.speed;
+            i++;
         }
+        
         Array.Sort(speeds);
         Array.Reverse(speeds);
         JunakDataManager.Junak.assignedOrderInCombat = Array.IndexOf(speeds, JunakDataManager.Junak.speed) + 1;
         if (SaralfDataManager.Saralf.isInParty) { SaralfDataManager.Saralf.assignedOrderInCombat = Array.IndexOf(speeds, SaralfDataManager.Saralf.speed) + 1; }
         EnemyDataManager.EnemyManager.assignedOrderInCombat = Array.IndexOf(speeds, EnemyDataManager.EnemyManager.speed) + 1;
+        if(EnemyDataManager.EnemyManager.amountOfEnemies >= 2) { EnemyDataManager.EnemyManager.assignedOrderInCombatTwo = Array.IndexOf(speeds, EnemyDataManager.EnemyManagerTwo.speed) + 1; }
+
         foreach (DataManager combatant in combatants) {
             if(combatant.assignedOrderInCombat == 1) {
                 iconOne.GetComponent<SpriteRenderer>().sprite = combatant.combatIcon;
