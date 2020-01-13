@@ -12,8 +12,6 @@ public enum CombatOptions { Attack, Ability, Item, Run, HasNotChosen }
 
 public class CombatManager : MonoBehaviour
 {
-    public static GameObject enemyTwoContainer;
-    private EnemyDataManager EnemyDataManagerTwo;
     // Reference to sprite representing who is going in combat
     public GameObject combatCharSprite;              
     // Reference to the enemy sprite
@@ -75,8 +73,6 @@ public class CombatManager : MonoBehaviour
     // Used to set all the values to default at the start of combat
     void Start()
     {
-        enemyTwoContainer = GameObject.Find("EnemyTwo");
-        EnemyDataManagerTwo = enemyTwoContainer.AddComponent(typeof(EnemyDataManager)) as EnemyDataManager;
         amountDead = 0;
         deadEnemies = 0;
         JunakDataManager.Junak.isTurnInCombat = false;
@@ -115,7 +111,7 @@ public class CombatManager : MonoBehaviour
         enemySprite = GameObject.Find("Enemy");
         enemySprite.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.combatSprite;
         enemySpriteTwo = GameObject.Find("EnemyTwo");
-        enemySpriteTwo.GetComponent<SpriteRenderer>().sprite = EnemyDataManager.EnemyManager.currentSpriteTwo;
+        enemySpriteTwo.GetComponent<SpriteRenderer>().sprite = EnemyDataManagerTwo.EnemyManager.combatSprite;
 
         // Assign the icons
         iconOne = GameObject.Find("IconOne");
@@ -197,7 +193,7 @@ public class CombatManager : MonoBehaviour
         combatants.Add(JunakDataManager.Junak);
         combatants.Add(EnemyDataManager.EnemyManager);
         if (SaralfDataManager.Saralf.isInParty) { combatants.Add(SaralfDataManager.Saralf); }
-        if (EnemyDataManager.EnemyManager.amountOfEnemies >= 2) { combatants.Add(EnemyDataManagerTwo); }
+        if (EnemyDataManager.EnemyManager.amountOfEnemies >= 2) { combatants.Add(EnemyDataManagerTwo.EnemyManagerTwo); }
     }
     private void getPartyMembers()
     {
@@ -210,9 +206,6 @@ public class CombatManager : MonoBehaviour
     // Order is determined by speed
     private void determineOrder()
     {
-        EnemyDataManagerTwo.speed = EnemyDataManager.EnemyManager.speedTwo;
-        EnemyDataManagerTwo.combatIcon = EnemyDataManager.EnemyManager.combatIconTwo;
-        EnemyDataManagerTwo.combatText = EnemyDataManager.EnemyManager.combatTextTwo;
         int[] speeds = new int[getCombatMembersAmount()];
         int i = 0;
         foreach(DataManager combatant in combatants) {
@@ -225,7 +218,7 @@ public class CombatManager : MonoBehaviour
         JunakDataManager.Junak.assignedOrderInCombat = Array.IndexOf(speeds, JunakDataManager.Junak.speed) + 1;
         if (SaralfDataManager.Saralf.isInParty) { SaralfDataManager.Saralf.assignedOrderInCombat = Array.IndexOf(speeds, SaralfDataManager.Saralf.speed) + 1; }
         EnemyDataManager.EnemyManager.assignedOrderInCombat = Array.IndexOf(speeds, EnemyDataManager.EnemyManager.speed) + 1;
-        if(EnemyDataManager.EnemyManager.amountOfEnemies >= 2) { EnemyDataManagerTwo.assignedOrderInCombat = Array.IndexOf(speeds, EnemyDataManagerTwo.speed) + 1; }
+        if(EnemyDataManager.EnemyManager.amountOfEnemies >= 2) { EnemyDataManagerTwo.EnemyManagerTwo.assignedOrderInCombat = Array.IndexOf(speeds, EnemyDataManagerTwo.EnemyManagerTwo.speed) + 1; }
 
         foreach (DataManager combatant in combatants) {
             if(combatant.assignedOrderInCombat == 1) {
@@ -249,7 +242,7 @@ public class CombatManager : MonoBehaviour
         CombatTextManager.combatTextManager.junakHealthText = JunakDataManager.Junak.combatText;
         CombatTextManager.combatTextManager.enemyHealthText = EnemyDataManager.EnemyManager.combatText;
         if (SaralfDataManager.Saralf.isInParty) { CombatTextManager.combatTextManager.saralfHealthText = SaralfDataManager.Saralf.combatText; }
-        if (EnemyDataManager.EnemyManager.amountOfEnemies >= 2) { CombatTextManager.combatTextManager.enemyHealthTextTwo = EnemyDataManagerTwo.combatText; }
+        if (EnemyDataManager.EnemyManager.amountOfEnemies >= 2) { CombatTextManager.combatTextManager.enemyHealthTextTwo = EnemyDataManagerTwo.EnemyManagerTwo.combatText; }
         
 
 
@@ -419,9 +412,9 @@ public class CombatManager : MonoBehaviour
         partyFolk.Add(JunakDataManager.Junak);
         if (SaralfDataManager.Saralf.isInParty) { partyFolk.Add(SaralfDataManager.Saralf); }
 
-        List<int> enemies = new List<int>();
-        enemies.Add(EnemyDataManager.EnemyManager.health);
-        if(EnemyDataManager.EnemyManager.amountOfEnemies >= 2) { enemies.Add(EnemyDataManager.EnemyManager.healthTwo); }
+        List<EnemyDataManager> enemies = new List<EnemyDataManager>();
+        enemies.Add(EnemyDataManager.EnemyManager);
+        if(EnemyDataManager.EnemyManager.amountOfEnemies >= 2) { enemies.Add(EnemyDataManagerTwo.EnemyManagerTwo); }
 
         foreach (DataManager member in partyFolk)
         {
@@ -430,9 +423,8 @@ public class CombatManager : MonoBehaviour
                 amountDead += 1;
             }
         }
-        int deadEnemies = 0;
-        foreach (int enemy in enemies) {
-            if(enemy <= 0) {
+        foreach (EnemyDataManager enemy in enemies) {
+            if(enemy.health <= 0) {
                 deadEnemies += 1;
             }
         }
@@ -493,11 +485,14 @@ public class CombatManager : MonoBehaviour
 
                 break;
             case CombatStates.EnemyAttacking: // On enemy's turn
+                if(EnemyDataManager.EnemyManager.health <= 0) {
+                    break;
+                }
                 checkWinner();
                 if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !enemyOneHasAttacked)
                 {
                     //TODO: Choose Target
-                    whichtarget = UnityEngine.Random.Range(0, getCombatMembersAmount() - 1);
+                    whichtarget = UnityEngine.Random.Range(0, getCombatMembersAmount() - EnemyDataManager.EnemyManager.amountOfEnemies);
                     EnemyDataManager.EnemyManager.theMonster.Attack(partymembers[whichtarget]);
                     enemyOneHasAttacked = true;
                 }

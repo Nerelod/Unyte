@@ -8,17 +8,11 @@ public class EnemyDataManager : DataManager
     // Reference to EnemyDataManager
     public static EnemyDataManager EnemyManager;
 
-    public int healthTwo;
-    public int experienceGives, experienceGivesTwo;
-    public int speedTwo;
-    public int assignedOrderInCombatTwo;
-    public Text combatTextTwo;
-    // Sprite of enemy in combat scene
-    public Sprite currentSpriteTwo;
-    public Sprite combatIconTwo;
-    public string currentName, currentNameTwo;
-    public string currentType, currentTypeTwo;
-    public Monster theMonster, theMonsterTwo;
+    
+    public int experienceGives;
+    public string currentName;
+    public string currentType;
+    public Monster theMonster;
     public string theScene;
 
     public int amountOfEnemies;

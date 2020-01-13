@@ -34,14 +34,14 @@ public class Monster : MonoBehaviour{
             monsterController.player.State = States.CannotMove;
             if (hasSecondMonster) {
                 SecondaryMonster secondMonster = GetComponent<SecondaryMonster>();
-                EnemyDataManager.EnemyManager.currentSpriteTwo = secondMonster.combatSprite;
-                EnemyDataManager.EnemyManager.combatIconTwo = secondMonster.iconSprite;
-                EnemyDataManager.EnemyManager.currentNameTwo = secondMonster.monsterName;
-                EnemyDataManager.EnemyManager.healthTwo = secondMonster.health;
-                EnemyDataManager.EnemyManager.experienceGivesTwo = secondMonster.experienceToGive;
-                EnemyDataManager.EnemyManager.speedTwo = secondMonster.speed;
-                EnemyDataManager.EnemyManager.amountOfEnemies = 2;
-                EnemyDataManager.EnemyManager.theMonsterTwo = this;
+                EnemyDataManagerTwo.EnemyManagerTwo.combatIcon = secondMonster.iconSprite;
+                EnemyDataManagerTwo.EnemyManagerTwo.combatSprite = secondMonster.combatSprite;
+                EnemyDataManagerTwo.EnemyManagerTwo.currentName = secondMonster.monsterName;
+                EnemyDataManagerTwo.EnemyManagerTwo.health = secondMonster.health;
+                EnemyDataManagerTwo.EnemyManagerTwo.experienceGives = secondMonster.experienceToGive;
+                EnemyDataManagerTwo.EnemyManagerTwo.speed = secondMonster.speed;
+                EnemyDataManagerTwo.EnemyManager.amountOfEnemies = 2;
+                EnemyDataManagerTwo.EnemyManagerTwo.theMonster = this;
             }
             Transitions.screenTransition.StartCoroutine(Transitions.screenTransition.FadeOut("CombatScene", .33f));
         }

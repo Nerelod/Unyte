@@ -1347,6 +1347,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb4c7fe1e083a7f4e85abd7828b2f6fd, type: 3}
+--- !u!1 &1794559398 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3751277611918933327, guid: 2e091d2ccdfa0a142aa1495193716e45,
+    type: 3}
+  m_PrefabInstance: {fileID: 3751277610987570810}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1794559401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794559398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c50df468b45f54ba281c600a5b6761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityManager: {fileID: 0}
+  itemManager: {fileID: 0}
+  experience: 0
+  experienceNeeded: 0
+  level: 0
+  health: 0
+  totalHealth: 0
+  speed: 5
+  qDamage: 0
+  currentScene: 
+  xpos: 0
+  ypos: 0
+  theName: 
+  assignedOrderInCombat: 0
+  isBeingLoaded: 0
+  hasSaved: 0
+  ranFromCombat: 0
+  isTurnInCombat: 0
+  combatSprite: {fileID: 0}
+  combatIcon: {fileID: 0}
+  combatText: {fileID: 0}
+  isInParty: 0
+  directionHolder: 0
+  combatOption: 0
+  experienceGives: 0
+  currentName: 
+  currentType: 
+  theMonster: {fileID: 0}
+  theScene: 
+  amountOfEnemies: 0
+  defeatedEnemies: []
 --- !u!1 &2086269073
 GameObject:
   m_ObjectHideFlags: 0
