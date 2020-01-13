@@ -2715,11 +2715,36 @@ PrefabInstance:
     - target: {fileID: 700864834068728304, guid: 29759f4f2cd0e5d43b11785e40507882,
         type: 3}
       propertyPath: hasSecondMonster
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 545704648792883050, guid: 29759f4f2cd0e5d43b11785e40507882, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 29759f4f2cd0e5d43b11785e40507882, type: 3}
+--- !u!1 &574727584 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7320614034779622227, guid: 29759f4f2cd0e5d43b11785e40507882,
+    type: 3}
+  m_PrefabInstance: {fileID: 574727583}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &574727585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574727584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a5c28a120599c54dbc9ee55c2d87eb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  monsterType: Slime
+  monsterName: Slime Two
+  health: 5
+  experienceToGive: 10
+  combatSprite: {fileID: 21300002, guid: ea975ecad8f78d0499e700289b6642f9, type: 3}
+  iconSprite: {fileID: 21300002, guid: ea975ecad8f78d0499e700289b6642f9, type: 3}
 --- !u!1 &628888258
 GameObject:
   m_ObjectHideFlags: 0

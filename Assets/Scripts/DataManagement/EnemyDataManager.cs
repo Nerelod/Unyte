@@ -1,19 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyDataManager : DataManager
 {
     // Reference to EnemyDataManager
     public static EnemyDataManager EnemyManager;
-    public static EnemyDataManager EnemyManagerTwo;
 
     public int healthTwo;
     public int experienceGives, experienceGivesTwo;
     public int speedTwo;
     public int assignedOrderInCombatTwo;
+    public Text combatTextTwo;
     // Sprite of enemy in combat scene
     public Sprite currentSpriteTwo;
+    public Sprite combatIconTwo;
     public string currentName, currentNameTwo;
     public string currentType, currentTypeTwo;
     public Monster theMonster, theMonsterTwo;
@@ -33,14 +35,6 @@ public class EnemyDataManager : DataManager
             EnemyManager = this;
         }
         else if (EnemyManager != this) {        
-            Destroy(gameObject);
-        }
-
-        if (EnemyManagerTwo == null) {
-            DontDestroyOnLoad(gameObject);
-            EnemyManagerTwo = this;
-        }
-        else if (EnemyManagerTwo != this) {
             Destroy(gameObject);
         }
     }

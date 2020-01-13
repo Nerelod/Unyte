@@ -9,4 +9,5 @@ public class SecondaryMonster : MonoBehaviour {
     public int health;
     public int experienceToGive;
     public Sprite combatSprite;
+    public Sprite iconSprite;
 }

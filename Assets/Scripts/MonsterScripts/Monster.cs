@@ -35,6 +35,7 @@ public class Monster : MonoBehaviour{
             if (hasSecondMonster) {
                 SecondaryMonster secondMonster = GetComponent<SecondaryMonster>();
                 EnemyDataManager.EnemyManager.currentSpriteTwo = secondMonster.combatSprite;
+                EnemyDataManager.EnemyManager.combatIconTwo = secondMonster.iconSprite;
                 EnemyDataManager.EnemyManager.currentNameTwo = secondMonster.monsterName;
                 EnemyDataManager.EnemyManager.healthTwo = secondMonster.health;
                 EnemyDataManager.EnemyManager.experienceGivesTwo = secondMonster.experienceToGive;
