@@ -252,7 +252,7 @@ public class CombatManager : MonoBehaviour
        
         CombatTextManager.combatTextManager.enemyHealthText.text = "?";
         if (EnemyDataManager.EnemyManager.amountOfEnemies >= 2) { CombatTextManager.combatTextManager.enemyHealthTextTwo.text = "?"; }
-        orderToReset = getCombatMembersAmount() + EnemyDataManager.EnemyManager.amountOfEnemies;
+        orderToReset = getCombatMembersAmount() + 1;
     }
 
     // Gets the player's chosen action 
@@ -299,7 +299,24 @@ public class CombatManager : MonoBehaviour
         CombatTextManager.combatTextManager.damageText.text = "-" + character.qDamage.ToString();
         CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.damageText));
         CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
-        enemy.health -= character.qDamage;
+        if (enemy.health > 0) { enemy.health -= character.qDamage; }
+        if(enemy.health <= 0) {
+            orderToReset -= 1;
+            enemy.combatText.text = "";
+            // Get rid of icon
+            foreach (DataManager combatant in combatants) {
+                if (combatant.assignedOrderInCombat == enemy.assignedOrderInCombat + 1) {
+                    combatant.combatIcon = enemy.combatIcon;
+                    combatant.combatText = enemy.combatText;
+                    
+                }
+                if (combatant != enemy && combatant.assignedOrderInCombat > enemy.assignedOrderInCombat) {
+                    combatant.assignedOrderInCombat -= 1;
+                    Debug.Log(combatant.theName + " " + combatant.assignedOrderInCombat);
+                }
+            }
+            enemy.assignedOrderInCombat = 0;
+        }
     }
 
     // Method for getting the player's chosen order to act
@@ -350,7 +367,7 @@ public class CombatManager : MonoBehaviour
                 }
                 else if (player.combatOption == CombatOptions.Ability)
                 {
-                    if (player.combatOption == CombatOptions.Ability && saralfChosenOrder == junakChosenOrder && SaralfDataManager.Saralf.isInParty)
+                    if (SaralfDataManager.Saralf.combatOption == CombatOptions.Ability && saralfChosenOrder == junakChosenOrder && SaralfDataManager.Saralf.isInParty)
                     {
                         if(JunakDataManager.Junak.abilityManager.checkCombo(JunakDataManager.Junak, SaralfDataManager.Saralf)){
                             JunakDataManager.Junak.abilityManager.executeCombo(JunakDataManager.Junak, SaralfDataManager.Saralf);
@@ -381,7 +398,7 @@ public class CombatManager : MonoBehaviour
                 }
                 else if (player.combatOption == CombatOptions.Ability)
                 {
-                    if (player.combatOption == CombatOptions.Ability && junakChosenOrder == saralfChosenOrder) {
+                    if (JunakDataManager.Junak.combatOption == CombatOptions.Ability && junakChosenOrder == saralfChosenOrder) {
                         if(SaralfDataManager.Saralf.abilityManager.checkCombo(SaralfDataManager.Saralf, JunakDataManager.Junak)) {
                             SaralfDataManager.Saralf.abilityManager.executeCombo(SaralfDataManager.Saralf, JunakDataManager.Junak);
                             junakHandled = true;
@@ -439,9 +456,6 @@ public class CombatManager : MonoBehaviour
         }
         if (deadEnemies == EnemyDataManager.EnemyManager.amountOfEnemies)
         {
-            Debug.Log(deadEnemies);
-            Debug.Log("EnemyDataManager: " + EnemyDataManager.EnemyManager.health);
-            Debug.Log("EnemyDataManagerTwo: " + EnemyDataManagerTwo.EnemyManagerTwo.health);
             combatState = CombatStates.PlayerWon;
         }
     }
@@ -520,6 +534,7 @@ public class CombatManager : MonoBehaviour
                     SaralfDataManager.Saralf.isTurnInCombat = false;
                     combatState = CombatStates.EnemyAttacking;
                 }
+                
                 if (order == EnemyDataManagerTwo.EnemyManagerTwo.assignedOrderInCombat) {
                     junakHandled = false;
                     saralfHandled = false;
@@ -534,24 +549,19 @@ public class CombatManager : MonoBehaviour
                     SaralfDataManager.Saralf.isTurnInCombat = false;
                     combatState = CombatStates.JunakAttacking;
                 }
-
                 break;
             case CombatStates.EnemyAttacking: // On enemy's turn
                 checkWinner();
-                if (EnemyDataManager.EnemyManager.health <= 0) {
-                    break;
-                }
-                if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !enemyOneHasAttacked)
-                {
+                if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !enemyOneHasAttacked) {
                     //TODO: Choose Target
                     whichtarget = UnityEngine.Random.Range(0, getCombatMembersAmount() - EnemyDataManager.EnemyManager.amountOfEnemies);
-                    EnemyDataManager.EnemyManager.theMonster.Attack(partymembers[whichtarget]);
+                    EnemyDataManager.EnemyManager.theMonster.Attack(partymembers[whichtarget], EnemyDataManager.EnemyManager);
                     enemyOneHasAttacked = true;
                 }
-                if (isTextManagerDone() && !EnemyDataManager.EnemyManager.theMonster.displayedDamage)
-                {
+                if (isTextManagerDone() && !EnemyDataManager.EnemyManager.theMonster.displayedDamage) {
                     EnemyDataManager.EnemyManager.theMonster.DisplayDamage(partymembers[whichtarget]);
                 }
+                
 
                 if (enemyOneHasAttacked)
                 {
@@ -571,6 +581,8 @@ public class CombatManager : MonoBehaviour
                     combatState = CombatStates.SaralfAttacking;
                 }
                 else if (order == EnemyDataManagerTwo.EnemyManagerTwo.assignedOrderInCombat && CombatTextManager.combatTextManager.textIsFinished) {
+                    junakHandled = false;
+                    saralfHandled = false;
                     combatState = CombatStates.EnemyTwoAttacking;
                 }
                 else if (order == orderToReset)
@@ -581,18 +593,14 @@ public class CombatManager : MonoBehaviour
                 break;
             case CombatStates.EnemyTwoAttacking: // On enemy two's turn
                 checkWinner();
-                if (EnemyDataManagerTwo.EnemyManagerTwo.health <= 0) {
-                    break;
-                }
                 if (CombatTextManager.combatTextManager.textIsFinished && CombatTextManager.combatTextManager.pressedSpace && !enemyTwoHasAttacked) {
                     whichtarget = UnityEngine.Random.Range(0, getCombatMembersAmount() - EnemyDataManager.EnemyManager.amountOfEnemies);
-                    EnemyDataManagerTwo.EnemyManagerTwo.theMonster.Attack(partymembers[whichtarget]);
+                    EnemyDataManagerTwo.EnemyManagerTwo.theMonster.Attack(partymembers[whichtarget], EnemyDataManagerTwo.EnemyManagerTwo);
                     enemyTwoHasAttacked = true;
                 }
                 if (isTextManagerDone() && !EnemyDataManagerTwo.EnemyManagerTwo.theMonster.displayedDamage) {
                     EnemyDataManagerTwo.EnemyManagerTwo.theMonster.DisplayDamage(partymembers[whichtarget]);
                 }
-
                 if (enemyTwoHasAttacked) {
                     if (!junakHandled) { HandleOrder(JunakDataManager.Junak); }
                     if (!saralfHandled && SaralfDataManager.Saralf.isInParty) { HandleOrder(SaralfDataManager.Saralf); }
@@ -608,7 +616,6 @@ public class CombatManager : MonoBehaviour
                 else if (order == orderToReset) {
                     combatState = CombatStates.ResetValues;
                 }
-
                 break;
             case CombatStates.ResetValues:
                 order = 1;
@@ -637,7 +644,7 @@ public class CombatManager : MonoBehaviour
                 {
                     combatState = CombatStates.EnemyAttacking;
                 }
-                else if (order == EnemyDataManagerTwo.EnemyManager.assignedOrderInCombat) {
+                else if (order == EnemyDataManagerTwo.EnemyManagerTwo.assignedOrderInCombat) {
                     combatState = CombatStates.EnemyTwoAttacking;
                 }
                 break;
@@ -683,6 +690,8 @@ public class CombatManager : MonoBehaviour
         {
             CombatTextManager.combatTextManager.saralfHealthText.text = SaralfDataManager.Saralf.health.ToString();
         }
-        CombatTextManager.combatTextManager.orderText.text = order.ToString();
+        if (order != orderToReset) { CombatTextManager.combatTextManager.orderText.text = order.ToString(); }
+        CombatTextManager.combatTextManager.enemyHealthText.text = "?";
+        if (EnemyDataManager.EnemyManager.amountOfEnemies >= 2) { CombatTextManager.combatTextManager.enemyHealthTextTwo.text = "?"; }
     }
 }

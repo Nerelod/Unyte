@@ -16,7 +16,7 @@ public class Monster : MonoBehaviour{
 
     }
 
-    public virtual void Attack(DataManager target){}
+    public virtual void Attack(DataManager target, EnemyDataManager monster){}
     public virtual void DisplayDamage(DataManager target){}
     protected void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "Player" && !monsterController.player.isInvincible) {

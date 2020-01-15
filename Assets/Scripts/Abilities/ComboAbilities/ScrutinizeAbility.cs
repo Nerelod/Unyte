@@ -17,5 +17,6 @@ public class ScrutinizeAbility : ComboAbility
     }
     public override void execute() {
         CombatTextManager.combatTextManager.ManageText("Scrutinized");
+        CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
     }
 }

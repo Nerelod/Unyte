@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Slime : Monster
 {
     private int damage;
-
+    private string monsterName;
     void Start()
     {
         damage = 2;
@@ -16,22 +16,25 @@ public class Slime : Monster
 
     private void Launch(DataManager target){
         if (textWasPrompt == false) {
-                CombatTextManager.combatTextManager.ManageText("Slime launches itself at " + target.theName + "!");
-                CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
-                target.health = target.health - damage;
-                textWasPrompt = true;
-            }
+            CombatTextManager.combatTextManager.ManageText(monsterName + " launches itself at " + target.theName + "!");
+            CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+            target.health = target.health - damage;
+            textWasPrompt = true;
+        }
     }
     private void JumpMenancingly(){
         if (textWasPrompt == false) {
-                CombatTextManager.combatTextManager.ManageText("Slime Jumps Menancingly!");
-                CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
-                textWasPrompt = true;
-            }
+            CombatTextManager.combatTextManager.ManageText(monsterName + " Jumps Menancingly!");
+            CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+            textWasPrompt = true;
+        }
     }
- 
-    public override void Attack(DataManager target) {
+
+    public override void Attack(DataManager target, EnemyDataManager monster) {
         whichAttack = Random.Range(1, 3);
+        textWasPrompt = false;
+        displayedDamage = false;
+        monsterName = monster.currentName;
         if (whichAttack == 1) {
             Launch(target);
         }
