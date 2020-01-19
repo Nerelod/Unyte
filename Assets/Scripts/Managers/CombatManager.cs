@@ -225,21 +225,22 @@ public class CombatManager : MonoBehaviour
 
         foreach (DataManager combatant in combatants) {
             if(combatant.assignedOrderInCombat == 1) {
-                iconOne.GetComponent<SpriteRenderer>().sprite = combatant.combatIcon;
+                combatant.combatIconObject = iconOne;;
                 combatant.combatText = textIconOne;
             }
             else if(combatant.assignedOrderInCombat == 2) {
-                iconTwo.GetComponent<SpriteRenderer>().sprite = combatant.combatIcon;
+                combatant.combatIconObject = iconTwo;
                 combatant.combatText = textIconTwo;
             }
             else if(combatant.assignedOrderInCombat == 3) {
-                iconThree.GetComponent<SpriteRenderer>().sprite = combatant.combatIcon;
+                combatant.combatIconObject = iconThree;
                 combatant.combatText = textIconThree;
             }
             else if(combatant.assignedOrderInCombat == 4) {
-                iconFour.GetComponent<SpriteRenderer>().sprite = combatant.combatIcon;
+                combatant.combatIconObject = iconFour;
                 combatant.combatText = textIconFour;
             }
+            combatant.combatIconObject.GetComponent<SpriteRenderer>().sprite = combatant.combatIcon;
         }
         
         CombatTextManager.combatTextManager.junakHealthText = JunakDataManager.Junak.combatText;
@@ -303,12 +304,18 @@ public class CombatManager : MonoBehaviour
         if(enemy.health <= 0) {
             orderToReset -= 1;
             enemy.combatText.text = "";
-            // Get rid of icon
+            enemySprite.GetComponent<SpriteRenderer>().sprite = null;
             foreach (DataManager combatant in combatants) {
                 if (combatant.assignedOrderInCombat == enemy.assignedOrderInCombat + 1) {
-                    combatant.combatIcon = enemy.combatIcon;
+                    combatant.combatIconObject.GetComponent<SpriteRenderer>().sprite = null;
+                    combatant.combatIconObject = enemy.combatIconObject;
+                    combatant.combatIconObject.GetComponent<SpriteRenderer>().sprite = combatant.combatIcon;
+                    string tempText = "";
+                    tempText = combatant.combatText.text;
+                    combatant.combatText.text = "";
                     combatant.combatText = enemy.combatText;
-                    
+                    combatant.combatText.text = tempText;
+
                 }
                 if (combatant != enemy && combatant.assignedOrderInCombat > enemy.assignedOrderInCombat) {
                     combatant.assignedOrderInCombat -= 1;
@@ -691,7 +698,7 @@ public class CombatManager : MonoBehaviour
             CombatTextManager.combatTextManager.saralfHealthText.text = SaralfDataManager.Saralf.health.ToString();
         }
         if (order != orderToReset) { CombatTextManager.combatTextManager.orderText.text = order.ToString(); }
-        CombatTextManager.combatTextManager.enemyHealthText.text = "?";
-        if (EnemyDataManager.EnemyManager.amountOfEnemies >= 2) { CombatTextManager.combatTextManager.enemyHealthTextTwo.text = "?"; }
+        //if (EnemyDataManager.EnemyManager.health > 0) { CombatTextManager.combatTextManager.enemyHealthText.text = "?"; }
+        //if (EnemyDataManager.EnemyManager.amountOfEnemies >= 2 && EnemyDataManagerTwo.EnemyManagerTwo.health > 0) { CombatTextManager.combatTextManager.enemyHealthTextTwo.text = "?"; }
     }
 }

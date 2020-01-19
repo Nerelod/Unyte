@@ -40,6 +40,7 @@ public class DataManager : MonoBehaviour
     public Sprite combatSprite;
     public Sprite combatIcon;
     public Text combatText;
+    public GameObject combatIconObject;
 
     public bool isInParty;
     // Variable for containing which direction was facing

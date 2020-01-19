@@ -1149,15 +1149,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0bf6ce738df8744380a0ee1ac3ea941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityManager: {fileID: 0}
+  itemManager: {fileID: 0}
+  experience: 0
+  experienceNeeded: 0
+  level: 0
   health: 0
-  experienceGives: 0
+  totalHealth: 0
   speed: 3
+  qDamage: 0
+  currentScene: 
+  xpos: 0
+  ypos: 0
+  theName: 
   assignedOrderInCombat: 0
-  currentSprite: {fileID: 0}
+  isBeingLoaded: 0
+  hasSaved: 0
+  ranFromCombat: 0
+  isTurnInCombat: 0
+  combatSprite: {fileID: 0}
+  combatIcon: {fileID: 0}
+  combatText: {fileID: 0}
+  isInParty: 0
+  directionHolder: 0
+  combatOption: 0
+  experienceGives: 0
   currentName: 
   currentType: 
   theMonster: {fileID: 0}
   theScene: 
+  amountOfEnemies: 0
   defeatedEnemies: []
 --- !u!4 &1313605770
 Transform:
@@ -2173,7 +2194,7 @@ PrefabInstance:
     - target: {fileID: 1016896741313170667, guid: 6db611f0e81c39148baa3f446f416438,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1016896741313170670, guid: 6db611f0e81c39148baa3f446f416438,
         type: 3}
@@ -2254,22 +2275,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5689314215894988661, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 31
-      objectReference: {fileID: 0}
-    - target: {fileID: 5689314215894988661, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
-        type: 3}
-      propertyPath: m_FontData.m_FontStyle
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5689314215894988661, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 08a95d2a56e587d4bb9b48d2d6b0188b,
-        type: 3}
     - target: {fileID: 5689314215297217158, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2415,6 +2420,22 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 99.78003
       objectReference: {fileID: 0}
+    - target: {fileID: 5689314215894988661, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689314215894988661, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689314215894988661, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 08a95d2a56e587d4bb9b48d2d6b0188b,
+        type: 3}
     - target: {fileID: 5689314215894988662, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
         type: 3}
       propertyPath: m_AnchoredPosition.x
