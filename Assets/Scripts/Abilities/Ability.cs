@@ -8,5 +8,6 @@ public class Ability
     public int experience;
     public string name;
     public List<string> compatibleAbilities = new List<string>();
+    public bool requiresEnemyTarget;
     public virtual void execute() { }
 }

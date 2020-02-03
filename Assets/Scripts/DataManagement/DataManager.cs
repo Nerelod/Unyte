@@ -7,6 +7,8 @@ public class DataManager : MonoBehaviour
 {
     public AbilityManager abilityManager;
     public ItemManager itemManager;
+
+    public EnemyDataManager enemyToTarget;
     // amount of experience
     public int experience;
     public int experienceNeeded;
@@ -48,23 +50,28 @@ public class DataManager : MonoBehaviour
     public CombatOptions combatOption;
 
     // Method for adding experience to total experience
-    public void addExperience(int experienceToAdd) {
+    public void addExperience(int experienceToAdd)
+    {
         experience = experience + experienceToAdd;
-        if (experience >= experienceNeeded) {
+        if (experience >= experienceNeeded)
+        {
             levelUp();
         }
     }
-    public void levelUp() {
+    public void levelUp()
+    {
         level += 1;
         experience = experience - experienceNeeded;
         experienceNeeded = (experienceNeeded * 2) - (experienceNeeded / 2);
     }
     // Resets the experience back to 0
-    public void resetExperience() {
+    public void resetExperience()
+    {
         experience = 0;
     }
     // Adds or subtracts health
-    public void manageHealth(int healthToAdd) {
+    public void manageHealth(int healthToAdd)
+    {
         health = health + healthToAdd;
     }
 }

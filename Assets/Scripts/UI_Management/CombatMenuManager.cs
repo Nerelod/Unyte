@@ -23,7 +23,12 @@ public class CombatMenuManager : MonoBehaviour
     public GameObject allySelectPanel;
     public Button junakButton;
     public Button saralfButton;
-
+    // Enemy Select Panel shenanigans
+    public GameObject enemySelectPanel;
+    public Button enemyOneButton;
+    public Text enemyOneButtonText;
+    public Button enemyTwoButton;
+    public Text enemyTwoButtonText;
     void Start()
     {
         abilitySelectPanel.SetActive(false);
@@ -69,6 +74,40 @@ public class CombatMenuManager : MonoBehaviour
         saralfButton.gameObject.SetActive(SaralfDataManager.Saralf.isInParty);
         allySelectPanel.SetActive(true);
         junakButton.Select();
+    }
+    public void enemySelectPanelWhenTurnedOn()
+    {
+        enemySelectPanel.gameObject.SetActive(true);
+        if (EnemyDataManager.EnemyManager.health > 0)
+        {
+            enemyOneButton.gameObject.SetActive(true);
+            enemyOneButton.Select();
+            enemyOneButtonText.text = EnemyDataManager.EnemyManager.currentName;
+        }
+        if (EnemyDataManager.EnemyManager.amountOfEnemies >= 2)
+        {
+            if (EnemyDataManagerTwo.EnemyManagerTwo.health > 0)
+            {
+                enemyTwoButton.gameObject.SetActive(true);
+                enemyTwoButtonText.text = EnemyDataManagerTwo.EnemyManagerTwo.currentName;
+                if (EnemyDataManager.EnemyManager.health <= 0) { enemyTwoButton.Select(); }
+            }
+        }
+    }
+
+    public void selectEnemy(string enemy)
+    {
+        if (enemy == "EnemyOne")
+        {
+            if (JunakDataManager.Junak.isTurnInCombat) { JunakDataManager.Junak.enemyToTarget = EnemyDataManager.EnemyManager; }
+            else if (SaralfDataManager.Saralf.isTurnInCombat) { SaralfDataManager.Saralf.enemyToTarget = EnemyDataManager.EnemyManager; }
+        }
+        else if (enemy == "EnemyTwo")
+        {
+            if (JunakDataManager.Junak.isTurnInCombat) { JunakDataManager.Junak.enemyToTarget = EnemyDataManagerTwo.EnemyManagerTwo; }
+            else if (SaralfDataManager.Saralf.isTurnInCombat) { SaralfDataManager.Saralf.enemyToTarget = EnemyDataManagerTwo.EnemyManagerTwo; }
+        }
+        CombatMenuManager.combatMenuManager.enemySelectPanel.SetActive(false);
     }
 
     void Update()
