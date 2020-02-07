@@ -45,6 +45,7 @@ public class ItemManager : MonoBehaviour
                 JunakDataManager.Junak.itemManager.itemToUse = JunakDataManager.Junak.itemManager.itemScripts[itemIndex];
                 JunakDataManager.Junak.itemManager.choseItemInCombat = true;
                 CombatMenuManager.combatMenuManager.itemSelectPanel.SetActive(false);
+                if (JunakDataManager.Junak.itemManager.itemToUse.requiresEnemyTarget) { CombatMenuManager.combatMenuManager.enemySelectPanelWhenTurnedOn(); }
             }
         }
         else if (SaralfDataManager.Saralf.isTurnInCombat)
@@ -54,6 +55,7 @@ public class ItemManager : MonoBehaviour
                 SaralfDataManager.Saralf.itemManager.itemToUse = JunakDataManager.Junak.itemManager.itemScripts[itemIndex];
                 SaralfDataManager.Saralf.itemManager.choseItemInCombat = true;
                 CombatMenuManager.combatMenuManager.itemSelectPanel.SetActive(false);
+                if (SaralfDataManager.Saralf.itemManager.itemToUse.requiresEnemyTarget) { CombatMenuManager.combatMenuManager.enemySelectPanelWhenTurnedOn(); }
             }
         }
         if (JunakDataManager.Junak.itemManager.aquiredItems.Contains(itemName))
@@ -62,6 +64,7 @@ public class ItemManager : MonoBehaviour
             {
                 CombatMenuManager.combatMenuManager.allySelectPanelWhenTurnedOn();
             }
+
         }
         JunakDataManager.Junak.itemManager.aquiredItems.Remove(itemName);
     }

@@ -10,10 +10,11 @@ public class InvestigateAbility : Ability
     {
         name = "Investigate";
         compatibleAbilities.Add("Analyze");
+        requiresEnemyTarget = true;
     }
     public override void execute()
     {
-        CombatTextManager.combatTextManager.ManageText("Investigate Reveals The Enemy Has " + EnemyDataManager.EnemyManager.health.ToString() + " health");
+        CombatTextManager.combatTextManager.ManageText("Investigate Reveals " + JunakDataManager.Junak.enemyToTarget.currentName + " Has " + JunakDataManager.Junak.enemyToTarget.health.ToString() + " health");
         experience++;
         CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
     }

@@ -20,6 +20,7 @@ public class AbilityManager : MonoBehaviour
         JunakDataManager.Junak.abilityManager.abilityToUse = JunakDataManager.Junak.abilityManager.aquiredAbilities[abilityIndex];
         JunakDataManager.Junak.abilityManager.choseAbilityInCombat = true;
         CombatMenuManager.combatMenuManager.abilitySelectPanel.SetActive(false);
+        if (JunakDataManager.Junak.abilityManager.abilityToUse.requiresEnemyTarget == true) { CombatMenuManager.combatMenuManager.enemySelectPanelWhenTurnedOn(); }
     }
     public void saralfSelectAbility(string abilityName)
     {
@@ -29,17 +30,23 @@ public class AbilityManager : MonoBehaviour
         CombatMenuManager.combatMenuManager.saralfAbilitySelectPanel.SetActive(false);
     }
 
-    public bool checkCombo(DataManager primaryMember, DataManager secondaryMember) {
-        if (primaryMember.abilityManager.abilityToUse.compatibleAbilities.Contains(secondaryMember.abilityManager.abilityToUse.name)) {
+    public bool checkCombo(DataManager primaryMember, DataManager secondaryMember)
+    {
+        if (primaryMember.abilityManager.abilityToUse.compatibleAbilities.Contains(secondaryMember.abilityManager.abilityToUse.name))
+        {
             return true;
         }
-        else {
+        else
+        {
             return false;
         }
     }
-    public void executeCombo(DataManager primaryMember, DataManager secondaryMember) {
-        foreach (ComboAbility comboAbility in primaryMember.abilityManager.aquiredComboAbilities) {
-            if (comboAbility.requiredAbilities.Contains(primaryMember.abilityManager.abilityToUse) && comboAbility.requiredAbilities.Contains(secondaryMember.abilityManager.abilityToUse)) {
+    public void executeCombo(DataManager primaryMember, DataManager secondaryMember)
+    {
+        foreach (ComboAbility comboAbility in primaryMember.abilityManager.aquiredComboAbilities)
+        {
+            if (comboAbility.requiredAbilities.Contains(primaryMember.abilityManager.abilityToUse) && comboAbility.requiredAbilities.Contains(secondaryMember.abilityManager.abilityToUse))
+            {
                 comboAbility.execute();
             }
         }

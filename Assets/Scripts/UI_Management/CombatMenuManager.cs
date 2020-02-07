@@ -84,29 +84,39 @@ public class CombatMenuManager : MonoBehaviour
             enemyOneButton.Select();
             enemyOneButtonText.text = EnemyDataManager.EnemyManager.currentName;
         }
+        else
+        {
+            enemyOneButton.gameObject.SetActive(false);
+        }
         if (EnemyDataManager.EnemyManager.amountOfEnemies >= 2)
         {
             if (EnemyDataManagerTwo.EnemyManagerTwo.health > 0)
             {
                 enemyTwoButton.gameObject.SetActive(true);
+                if (EnemyDataManager.EnemyManager.health < 0) { enemyTwoButton.Select(); }
                 enemyTwoButtonText.text = EnemyDataManagerTwo.EnemyManagerTwo.currentName;
                 if (EnemyDataManager.EnemyManager.health <= 0) { enemyTwoButton.Select(); }
+            }
+            else
+            {
+                enemyTwoButton.gameObject.SetActive(false);
             }
         }
     }
 
     public void selectEnemy(string enemy)
     {
+        EnemyDataManager chosenEnemy = null;
         if (enemy == "EnemyOne")
         {
-            if (JunakDataManager.Junak.isTurnInCombat) { JunakDataManager.Junak.enemyToTarget = EnemyDataManager.EnemyManager; }
-            else if (SaralfDataManager.Saralf.isTurnInCombat) { SaralfDataManager.Saralf.enemyToTarget = EnemyDataManager.EnemyManager; }
+            chosenEnemy = EnemyDataManager.EnemyManager;
         }
         else if (enemy == "EnemyTwo")
         {
-            if (JunakDataManager.Junak.isTurnInCombat) { JunakDataManager.Junak.enemyToTarget = EnemyDataManagerTwo.EnemyManagerTwo; }
-            else if (SaralfDataManager.Saralf.isTurnInCombat) { SaralfDataManager.Saralf.enemyToTarget = EnemyDataManagerTwo.EnemyManagerTwo; }
+            chosenEnemy = EnemyDataManagerTwo.EnemyManagerTwo;
         }
+        if (JunakDataManager.Junak.isTurnInCombat) { JunakDataManager.Junak.enemyToTarget = chosenEnemy; }
+        else if (SaralfDataManager.Saralf.isTurnInCombat) { SaralfDataManager.Saralf.enemyToTarget = chosenEnemy; }
         CombatMenuManager.combatMenuManager.enemySelectPanel.SetActive(false);
     }
 

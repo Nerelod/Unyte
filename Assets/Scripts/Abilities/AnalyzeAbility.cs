@@ -10,6 +10,7 @@ public class AnalyzeAbility : Ability
     {
         name = "Analyze";
         compatibleAbilities.Add("Investigate");
+        requiresEnemyTarget = true;
     }
     public override void execute()
     {
