@@ -67,9 +67,10 @@ public class GameMenuManager : MonoBehaviour
         itemMode = false;
     }
 
-    private void checkPlayerOneAbilities()
+    private void checkJunakAbilities()
     {
-        if (JunakDataManager.Junak.abilityManager.aquiredAbilities.Contains(InvestigateAbility.investigateAbility)) { investigateText.text = "Investigate"; } else { investigateText.text = ""; }
+        foreach (Ability ability in JunakDataManager.Junak.abilityManager.aquiredAbilities) { Debug.Log(ability.name); }
+        if (JunakDataManager.Junak.abilityManager.aquiredAbilities.OfType<InvestigateAbility>().Any()) { investigateText.text = "Investigate"; } else { investigateText.text = ""; }
     }
     private void checkContainedItems(string itemName, Text textBox)
     {
@@ -82,7 +83,7 @@ public class GameMenuManager : MonoBehaviour
             textBox.text = "";
         }
     }
-    private void checkPlayerOneItems()
+    private void checkJunakItems()
     {
         healthPotionText.text = "Health Potion " + JunakDataManager.Junak.itemManager.getAmountOfItem("Health Potion");
         checkContainedItems("Stone", stoneText);
@@ -106,7 +107,7 @@ public class GameMenuManager : MonoBehaviour
         {
             loadButton.interactable = false;
         }
-        checkPlayerOneAbilities();
+        checkJunakAbilities();
         checkParty();
     }
 
@@ -200,7 +201,7 @@ public class GameMenuManager : MonoBehaviour
         healthText.text = "Health: " + JunakDataManager.Junak.health;
         experienceText.text = "Experience: " + JunakDataManager.Junak.experience;
         junakLevelText.text = "Level: " + JunakDataManager.Junak.level.ToString();
-        checkPlayerOneItems();
+        checkJunakItems();
         if (SaralfDataManager.Saralf.isInParty)
         {
             saralfHealthText.text = "Health: " + SaralfDataManager.Saralf.health;

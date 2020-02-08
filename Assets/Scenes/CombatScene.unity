@@ -1285,6 +1285,7 @@ MonoBehaviour:
   allyItems: []
   itemToUse:
     name: 
+    requiresEnemyTarget: 0
   allyToTarget: {fileID: 0}
   isInCombat: 0
   choseItemInCombat: 0
@@ -1436,6 +1437,7 @@ MonoBehaviour:
   allyItems: []
   itemToUse:
     name: 
+    requiresEnemyTarget: 0
   allyToTarget: {fileID: 0}
   isInCombat: 0
   choseItemInCombat: 0
@@ -1952,6 +1954,7 @@ MonoBehaviour:
   allyItems: []
   itemToUse:
     name: 
+    requiresEnemyTarget: 0
   allyToTarget: {fileID: 0}
   isInCombat: 0
   choseItemInCombat: 0
@@ -2654,6 +2657,7 @@ MonoBehaviour:
     experience: 0
     name: 
     compatibleAbilities: []
+    requiresEnemyTarget: 0
   choseAbilityInCombat: 0
 --- !u!114 &1278923925
 MonoBehaviour:
@@ -2882,6 +2886,7 @@ MonoBehaviour:
   allyItems: []
   itemToUse:
     name: 
+    requiresEnemyTarget: 0
   allyToTarget: {fileID: 0}
   isInCombat: 0
   choseItemInCombat: 0
@@ -3112,6 +3117,7 @@ MonoBehaviour:
     experience: 0
     name: 
     compatibleAbilities: []
+    requiresEnemyTarget: 0
   choseAbilityInCombat: 0
 --- !u!114 &1373801300
 MonoBehaviour:
@@ -3294,6 +3300,7 @@ MonoBehaviour:
   allyItems: []
   itemToUse:
     name: 
+    requiresEnemyTarget: 0
   allyToTarget: {fileID: 0}
   isInCombat: 0
   choseItemInCombat: 0
@@ -4256,6 +4263,7 @@ MonoBehaviour:
   allyItems: []
   itemToUse:
     name: 
+    requiresEnemyTarget: 0
   allyToTarget: {fileID: 0}
   isInCombat: 0
   choseItemInCombat: 0
@@ -4729,6 +4737,7 @@ MonoBehaviour:
     experience: 0
     name: 
     compatibleAbilities: []
+    requiresEnemyTarget: 0
   choseAbilityInCombat: 0
 --- !u!114 &1919110713
 MonoBehaviour:
@@ -5612,6 +5621,7 @@ MonoBehaviour:
     experience: 0
     name: 
     compatibleAbilities: []
+    requiresEnemyTarget: 0
   choseAbilityInCombat: 0
 --- !u!114 &2131584537
 MonoBehaviour:

@@ -114,6 +114,8 @@ public class CombatManager : MonoBehaviour
         if (EnemyDataManager.EnemyManager.amountOfEnemies >= 2)
         {
             enemySpriteTwo = GameObject.Find("EnemyTwo");
+            enemySprite.transform.position = new Vector3(-1.7f, 0, 0);
+            enemySpriteTwo.transform.position = new Vector3(1.7f, 0, 0);
             enemySpriteTwo.GetComponent<SpriteRenderer>().sprite = EnemyDataManagerTwo.EnemyManagerTwo.combatSprite;
         }
 
@@ -206,6 +208,38 @@ public class CombatManager : MonoBehaviour
         if (SaralfDataManager.Saralf.isInParty)
         {
             partymembers.Add(SaralfDataManager.Saralf);
+        }
+    }
+    private void dealWithDeadEnemy(EnemyDataManager enemy)
+    {
+        if (enemy.health <= 0)
+        {
+            orderToReset -= 1;
+            enemy.combatText.text = "";
+            if (enemy == EnemyDataManager.EnemyManager) { enemySprite.GetComponent<SpriteRenderer>().sprite = null; }
+            else if (enemy == EnemyDataManagerTwo.EnemyManagerTwo) { enemySpriteTwo.GetComponent<SpriteRenderer>().sprite = null; }
+            enemy.combatIconObject.GetComponent<SpriteRenderer>().sprite = null;
+            foreach (DataManager combatant in combatants)
+            {
+                if (combatant.assignedOrderInCombat == enemy.assignedOrderInCombat + 1)
+                {
+                    combatant.combatIconObject.GetComponent<SpriteRenderer>().sprite = null;
+                    combatant.combatIconObject = enemy.combatIconObject;
+                    combatant.combatIconObject.GetComponent<SpriteRenderer>().sprite = combatant.combatIcon;
+                    string tempText = "";
+                    tempText = combatant.combatText.text;
+                    combatant.combatText.text = "";
+                    combatant.combatText = enemy.combatText;
+                    combatant.combatText.text = tempText;
+
+                }
+                if (combatant != enemy && combatant.assignedOrderInCombat > enemy.assignedOrderInCombat)
+                {
+                    combatant.assignedOrderInCombat -= 1;
+                    Debug.Log(combatant.theName + " " + combatant.assignedOrderInCombat);
+                }
+            }
+            enemy.assignedOrderInCombat = 0;
         }
     }
     // Order is determined by speed
@@ -317,35 +351,7 @@ public class CombatManager : MonoBehaviour
         CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.FadeText(CombatTextManager.combatTextManager.damageText));
         CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
         if (enemy.health > 0) { enemy.health -= character.qDamage; }
-        if (enemy.health <= 0)
-        {
-            orderToReset -= 1;
-            enemy.combatText.text = "";
-            if (enemy == EnemyDataManager.EnemyManager) { enemySprite.GetComponent<SpriteRenderer>().sprite = null; }
-            else if (enemy == EnemyDataManagerTwo.EnemyManagerTwo) { enemySpriteTwo.GetComponent<SpriteRenderer>().sprite = null; }
-            enemy.combatIconObject.GetComponent<SpriteRenderer>().sprite = null;
-            foreach (DataManager combatant in combatants)
-            {
-                if (combatant.assignedOrderInCombat == enemy.assignedOrderInCombat + 1)
-                {
-                    combatant.combatIconObject.GetComponent<SpriteRenderer>().sprite = null;
-                    combatant.combatIconObject = enemy.combatIconObject;
-                    combatant.combatIconObject.GetComponent<SpriteRenderer>().sprite = combatant.combatIcon;
-                    string tempText = "";
-                    tempText = combatant.combatText.text;
-                    combatant.combatText.text = "";
-                    combatant.combatText = enemy.combatText;
-                    combatant.combatText.text = tempText;
-
-                }
-                if (combatant != enemy && combatant.assignedOrderInCombat > enemy.assignedOrderInCombat)
-                {
-                    combatant.assignedOrderInCombat -= 1;
-                    Debug.Log(combatant.theName + " " + combatant.assignedOrderInCombat);
-                }
-            }
-            enemy.assignedOrderInCombat = 0;
-        }
+        dealWithDeadEnemy(enemy);
     }
 
     // Method for getting the player's chosen order to act
@@ -413,6 +419,7 @@ public class CombatManager : MonoBehaviour
                 else if (player.combatOption == CombatOptions.Item)
                 {
                     JunakDataManager.Junak.itemManager.useItem(JunakDataManager.Junak);
+                    dealWithDeadEnemy(player.enemyToTarget);
                     CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
                 }
 
