@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MonsterController : MonoBehaviour { 
+public class MonsterController : MonoBehaviour
+{
 
     // Reference to the player position
     public Transform target;
@@ -12,6 +13,8 @@ public class MonsterController : MonoBehaviour {
     public Transform pointTwo;
     // Speed of the monster when traveling to points. Can be changed in editor
     public int speed;
+    // Speed to be used in combat
+    public int combatSpeed;
     // Speed when monster chases player. Can be changed in editor
     public float chaseSpeed;
     // Determines if the player is in the range of the monsters rangeBox
@@ -24,7 +27,7 @@ public class MonsterController : MonoBehaviour {
     public bool canMove;
 
     public string monsterType;
-    
+
     private Animator anim;
     // Reference to the player
     public PlayerController player;
@@ -44,7 +47,8 @@ public class MonsterController : MonoBehaviour {
     // The scene the monster is in
     public string scene;
 
-    void Start() {
+    void Start()
+    {
         canMove = true;
         // Get the scene the monster is in
         scene = SceneManager.GetActiveScene().name;
@@ -58,30 +62,38 @@ public class MonsterController : MonoBehaviour {
         player = FindObjectOfType<PlayerController>();
         // If the monster is in the list of defeated monsters, 
         // kill it.
-        if(EnemyDataManager.EnemyManager.defeatedEnemies.Contains(monsterName)) {
+        if (EnemyDataManager.EnemyManager.defeatedEnemies.Contains(monsterName))
+        {
             this.gameObject.SetActive(false);
         }
-            
+
     }
-    private void move(){
+    private void move()
+    {
         // Chase the player if inRange is true
-        if (inRange) {         
+        if (inRange)
+        {
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
             // If the player is to the right of the monster, set goingRight true
-            if (player.transform.position.x > transform.position.x) {            
+            if (player.transform.position.x > transform.position.x)
+            {
                 goingRight = true;
             }
             // If the player is to the left of the monster, set goingRight false
-            else {           
+            else
+            {
                 goingRight = false;
             }
         }
         // if not in range
-        else {       
+        else
+        {
             // if pointA is true, go to pointA
-            if (pointA) { 
+            if (pointA)
+            {
                 // if reaches pointOne, set pointA false
-                if (transform.position == pointOne.transform.position) {  
+                if (transform.position == pointOne.transform.position)
+                {
                     pointA = false;
                 }
                 transform.position = Vector2.MoveTowards(transform.position, pointOne.position, speed * Time.deltaTime);
@@ -89,9 +101,11 @@ public class MonsterController : MonoBehaviour {
 
             }
             // if pointA is false, go to pointTwo
-            else { 
+            else
+            {
                 //If reaches pointTwo, set pointA true
-                if (transform.position == pointTwo.transform.position) {                 
+                if (transform.position == pointTwo.transform.position)
+                {
                     pointA = true;
                 }
                 transform.position = Vector2.MoveTowards(transform.position, pointTwo.position, speed * Time.deltaTime);
@@ -99,29 +113,36 @@ public class MonsterController : MonoBehaviour {
             }
         }
         // if going right, play the going right animation
-        if (goingRight) { 
-        
+        if (goingRight)
+        {
+
             anim.Play(animRight);
         }
         //if going left, play the going left animation
-        else {        
+        else
+        {
             anim.Play(animLeft);
         }
     }
-    void Update() {   
-        if(canMove){ move(); }
+    void Update()
+    {
+        if (canMove) { move(); }
     }
 
     // If something collides in trigegrbox, set inRange true and move toward 
-    private void OnTriggerEnter2D(Collider2D other) { 
-        if(!player.isInvincible){
-            inRange = true;      
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!player.isInvincible)
+        {
+            inRange = true;
             transform.position = Vector2.MoveTowards(transform.position, target.position, chaseSpeed * Time.deltaTime);
         }
     }
     // If something leaves the triggerbox, set inRange false
-    private void OnTriggerExit2D(Collider2D collision) { 
-        if(!player.isInvincible){
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!player.isInvincible)
+        {
             inRange = false;
         }
     }

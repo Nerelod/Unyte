@@ -6,13 +6,15 @@ public class EnemyDataManagerTwo : EnemyDataManager
 {
     public static EnemyDataManagerTwo EnemyManagerTwo;
 
-    private void Awake() {
-
-        if (EnemyManagerTwo == null) {
+    private void Awake()
+    {
+        if (EnemyManagerTwo == null)
+        {
             DontDestroyOnLoad(gameObject);
             EnemyManagerTwo = this;
         }
-        else if (EnemyManagerTwo != this) {
+        else if (EnemyManagerTwo != this)
+        {
             Destroy(gameObject);
         }
     }

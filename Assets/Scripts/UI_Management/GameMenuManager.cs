@@ -69,7 +69,6 @@ public class GameMenuManager : MonoBehaviour
 
     private void checkJunakAbilities()
     {
-        foreach (Ability ability in JunakDataManager.Junak.abilityManager.aquiredAbilities) { Debug.Log(ability.name); }
         if (JunakDataManager.Junak.abilityManager.aquiredAbilities.OfType<InvestigateAbility>().Any()) { investigateText.text = "Investigate"; } else { investigateText.text = ""; }
     }
     private void checkContainedItems(string itemName, Text textBox)

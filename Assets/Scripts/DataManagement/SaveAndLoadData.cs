@@ -29,7 +29,6 @@ public class SaveAndLoadData : MonoBehaviour
         data.items = JunakDataManager.Junak.itemManager.aquiredItems;
         data.itemScripts = JunakDataManager.Junak.itemManager.itemScripts;
         data.JuankAbilities = JunakDataManager.Junak.abilityManager.aquiredAbilities;
-        foreach (Ability ability in data.JuankAbilities) { Debug.Log(ability.name); }
         data.SaralfAbilities = SaralfDataManager.Saralf.abilityManager.aquiredAbilities;
         data.JunakComboAbilities = JunakDataManager.Junak.abilityManager.aquiredComboAbilities;
         data.SaralfComboAbilities = SaralfDataManager.Saralf.abilityManager.aquiredComboAbilities;
@@ -68,7 +67,6 @@ public class SaveAndLoadData : MonoBehaviour
             JunakDataManager.Junak.itemManager.aquiredItems = data.items;
             JunakDataManager.Junak.itemManager.itemScripts = data.itemScripts;
             JunakDataManager.Junak.abilityManager.aquiredAbilities = data.JuankAbilities;
-            foreach (Ability ability in JunakDataManager.Junak.abilityManager.aquiredAbilities) { Debug.Log(ability.name); }
             JunakDataManager.Junak.abilityManager.aquiredComboAbilities = data.JunakComboAbilities;
             SaralfDataManager.Saralf.abilityManager.aquiredAbilities = data.SaralfAbilities;
             SaralfDataManager.Saralf.abilityManager.aquiredComboAbilities = data.SaralfComboAbilities;
