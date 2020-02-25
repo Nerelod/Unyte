@@ -9,7 +9,7 @@ public class Slime : Monster
     private string monsterName;
     void Start()
     {
-        damage = 2;
+        damage = 12;
         textWasPrompt = false;
         monsterController = GetComponent<MonsterController>();
     }
@@ -35,6 +35,7 @@ public class Slime : Monster
         textWasPrompt = false;
         displayedDamage = false;
         monsterName = monster.currentName;
+        Debug.Log("Slime target: " + target.theName);
         if (whichAttack == 1) {
             Launch(target);
         }
