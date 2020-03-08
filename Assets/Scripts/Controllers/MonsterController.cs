@@ -73,7 +73,7 @@ public class MonsterController : MonoBehaviour
         // Chase the player if inRange is true
         if (inRange)
         {
-            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, target.position, chaseSpeed * Time.deltaTime);
             // If the player is to the right of the monster, set goingRight true
             if (player.transform.position.x > transform.position.x)
             {

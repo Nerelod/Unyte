@@ -9,7 +9,7 @@ public class Slime : Monster
     private string monsterName;
     void Start()
     {
-        damage = 12;
+        damage = 3;
         textWasPrompt = false;
         monsterController = GetComponent<MonsterController>();
     }
