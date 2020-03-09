@@ -43,7 +43,7 @@ public class Monster : MonoBehaviour
             EnemyDataManager.EnemyManager.currentName = monsterController.monsterName;
             EnemyDataManager.EnemyManager.health = monsterController.health;
             EnemyDataManager.EnemyManager.experienceGives = monsterController.experienceToGive;
-            EnemyDataManager.EnemyManager.speed = monsterController.speed;
+            EnemyDataManager.EnemyManager.speed = monsterController.combatSpeed;
             EnemyDataManager.EnemyManager.currentType = monsterController.monsterType;
             EnemyDataManager.EnemyManager.theMonster = this;
             monsterController.canMove = false;

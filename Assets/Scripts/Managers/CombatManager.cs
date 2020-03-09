@@ -287,6 +287,7 @@ public class CombatManager : MonoBehaviour
         {
             speeds[i] = combatant.speed;
             i++;
+            Debug.Log(combatant.theName + combatant.speed);
         }
 
         Array.Sort(speeds);
@@ -460,6 +461,7 @@ public class CombatManager : MonoBehaviour
                 }
 
             }
+            Debug.Log("Handeled J");
             junakHandled = true;
         }
         else if (player == SaralfDataManager.Saralf && isTextManagerDone())
@@ -490,12 +492,14 @@ public class CombatManager : MonoBehaviour
                 }
 
             }
+            Debug.Log("Handled S");
             saralfHandled = true;
 
         }
         if (SaralfDataManager.Saralf.isInParty)
         {
-            if (saralfHandled && junakHandled) { order += 1; }
+            
+            if (saralfHandled && junakHandled) { Debug.Log("adding one to order"); order += 1; }
         }
         else
         {
@@ -711,6 +715,12 @@ public class CombatManager : MonoBehaviour
                 {
                     resetSaralfOptions();
                     combatState = CombatStates.SaralfAttacking;
+                }
+                else if (order == EnemyDataManager.EnemyManager.assignedOrderInCombat) {
+                    junakHandled = false;
+                    saralfHandled = false;
+                    SaralfDataManager.Saralf.isTurnInCombat = false;
+                    combatState = CombatStates.EnemyAttacking;
                 }
                 else if (order == orderToReset)
                 {

@@ -2600,12 +2600,12 @@ PrefabInstance:
     - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
         type: 3}
       propertyPath: speed
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
         type: 3}
       propertyPath: combatSpeed
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
         type: 3}
@@ -2615,7 +2615,7 @@ PrefabInstance:
     - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
         type: 3}
       propertyPath: chaseSpeed
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3702520463104611409, guid: 29759f4f2cd0e5d43b11785e40507882,
         type: 3}
@@ -2735,7 +2735,7 @@ PrefabInstance:
     - target: {fileID: 700864834068728304, guid: 29759f4f2cd0e5d43b11785e40507882,
         type: 3}
       propertyPath: hasSecondMonster
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 545704648792883050, guid: 29759f4f2cd0e5d43b11785e40507882, type: 3}
@@ -2758,7 +2758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5c28a120599c54dbc9ee55c2d87eb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 3
   monsterType: Slime
   monsterName: Slime Two
   health: 5
