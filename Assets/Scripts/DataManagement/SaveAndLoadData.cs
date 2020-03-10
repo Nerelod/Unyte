@@ -86,9 +86,11 @@ public class SaveAndLoadData : MonoBehaviour
         EnemyDataManager.EnemyManager.defeatedEnemies.Clear();
         JunakDataManager.Junak.health = 10;
         JunakDataManager.Junak.experience = 0;
+        JunakDataManager.Junak.level = 0;
         JunakDataManager.Junak.qDamage = 3;
         SaralfDataManager.Saralf.health = 12;
         SaralfDataManager.Saralf.experience = 0;
+        SaralfDataManager.Saralf.level = 0;
         JunakDataManager.Junak.theName = "Junak";
         JunakDataManager.Junak.abilityManager.aquiredAbilities.Clear();
         JunakDataManager.Junak.abilityManager.aquiredComboAbilities.Clear();

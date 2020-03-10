@@ -2496,7 +2496,7 @@ PrefabInstance:
     - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
         type: 3}
       propertyPath: combatSpeed
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
         type: 3}
@@ -2649,7 +2649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5c28a120599c54dbc9ee55c2d87eb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 1
   monsterType: Slime
   monsterName: Slime Two
   monsterIdentifier: 0

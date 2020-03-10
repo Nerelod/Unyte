@@ -21,6 +21,8 @@ public class CombatManagerTools
     // Boolean that represents whether the win text was prompt
     public bool winTextHasBeenPrompt;
 
+    public bool thereWasDeath;
+
     public List<DataManager> combatants = new List<DataManager>();
     public List<DataManager> partymembers = new List<DataManager>();
     public List<DataManager> livingPartyMembers;
@@ -31,6 +33,7 @@ public class CombatManagerTools
     public int deadEnemies;
     
     public void initiateTools() {
+        thereWasDeath = false;
         amountDead = 0;
         deadEnemies = 0;
         JunakDataManager.Junak.isTurnInCombat = false;
