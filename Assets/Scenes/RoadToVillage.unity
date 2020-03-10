@@ -1276,115 +1276,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f457be0fa31b07489dfb39beabcda02, type: 3}
---- !u!1001 &365013719
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7320614034779622227, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: m_Name
-      value: Slime (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6179833079225478788, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.592838
-      objectReference: {fileID: 0}
-    - target: {fileID: 6179833079225478788, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.0855727
-      objectReference: {fileID: 0}
-    - target: {fileID: 6179833079225478788, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6179833079225478788, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6179833079225478788, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6179833079225478788, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6179833079225478788, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6179833079225478788, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6179833079225478788, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6179833079225478788, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6179833079225478788, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: pointOne
-      value: 
-      objectReference: {fileID: 896702483}
-    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: pointTwo
-      value: 
-      objectReference: {fileID: 1842628626}
-    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: speed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 160898954}
-    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 160898955}
-    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: monsterIdentifier
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: monsterName
-      value: Slime1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
-        type: 3}
-      propertyPath: combatSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 29759f4f2cd0e5d43b11785e40507882, type: 3}
 --- !u!1001 &373659574
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2555,7 +2446,7 @@ PrefabInstance:
     - target: {fileID: 6179833079225478788, guid: 29759f4f2cd0e5d43b11785e40507882,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6179833079225478788, guid: 29759f4f2cd0e5d43b11785e40507882,
         type: 3}
@@ -2761,10 +2652,221 @@ MonoBehaviour:
   speed: 3
   monsterType: Slime
   monsterName: Slime Two
+  monsterIdentifier: 0
   health: 5
   experienceToGive: 10
   combatSprite: {fileID: 21300002, guid: ea975ecad8f78d0499e700289b6642f9, type: 3}
   iconSprite: {fileID: 21300002, guid: ea975ecad8f78d0499e700289b6642f9, type: 3}
+--- !u!1001 &607473886
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7320614034779622227, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320614034779622227, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_Name
+      value: Slime (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6179833079225478788, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6179833079225478788, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6179833079225478788, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 6179833079225478788, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 160898954}
+    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: pointOne
+      value: 
+      objectReference: {fileID: 896702483}
+    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: pointTwo
+      value: 
+      objectReference: {fileID: 1842628626}
+    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 160898955}
+    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: monsterIdentifier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: combatSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: chaseSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3845368725519899849, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: monsterName
+      value: Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 3702520463104611409, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_Name
+      value: Slime (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891120121450072045, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891120121450072045, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891120121450072045, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 22.056343
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891120121450072045, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891120121450072045, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891120121450072045, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891120121450072045, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891120121450072045, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891120121450072045, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891120121450072045, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891120121450072045, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891120121450072045, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891120121450072045, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178842440792351147, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178842440792351147, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: pointOne
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178842440792351147, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: pointTwo
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178842440792351147, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: health
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178842440792351147, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: experienceToGive
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178842440792351147, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: monsterName
+      value: Slime2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178842440792351147, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: monsterType
+      value: Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178842440792351147, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 700864834068728304, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: hasSecondaryMonster
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 700864834068728304, guid: 29759f4f2cd0e5d43b11785e40507882,
+        type: 3}
+      propertyPath: hasSecondMonster
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 545704648792883050, guid: 29759f4f2cd0e5d43b11785e40507882, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 29759f4f2cd0e5d43b11785e40507882, type: 3}
 --- !u!1 &628888258
 GameObject:
   m_ObjectHideFlags: 0

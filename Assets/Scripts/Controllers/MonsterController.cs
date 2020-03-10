@@ -62,7 +62,7 @@ public class MonsterController : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         // If the monster is in the list of defeated monsters, 
         // kill it.
-        if (EnemyDataManager.EnemyManager.defeatedEnemies.Contains(monsterName))
+        if (EnemyDataManager.EnemyManager.defeatedEnemies.Contains(monsterIdentifier))
         {
             this.gameObject.SetActive(false);
         }

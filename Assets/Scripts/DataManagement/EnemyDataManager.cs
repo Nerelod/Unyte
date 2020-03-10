@@ -12,6 +12,7 @@ public class EnemyDataManager : DataManager
     public int experienceGives;
     public string currentName;
     public string currentType;
+    public int currentID;
     public Monster theMonster;
     public string theScene;
 
@@ -20,7 +21,7 @@ public class EnemyDataManager : DataManager
 
 
     //List of enemies that were defeated in combat
-    public List<string> defeatedEnemies = new List<string>();
+    public List<int> defeatedEnemies = new List<int>();
 
     private void Awake()
     {

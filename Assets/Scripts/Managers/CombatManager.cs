@@ -771,7 +771,7 @@ public class CombatManager : MonoBehaviour
                 if (CombatTextManager.combatTextManager.pressedSpace && winTextHasBeenPrompt && CombatTextManager.combatTextManager.textIsFinished)
                 {
                     JunakDataManager.Junak.isBeingLoaded = true;
-                    EnemyDataManager.EnemyManager.defeatedEnemies.Add(EnemyDataManager.EnemyManager.currentName);
+                    EnemyDataManager.EnemyManager.defeatedEnemies.Add(EnemyDataManager.EnemyManager.currentID);
                     JunakDataManager.Junak.addExperience(EnemyDataManager.EnemyManager.experienceGives);
                     if (SaralfDataManager.Saralf.isInParty) { SaralfDataManager.Saralf.addExperience(EnemyDataManager.EnemyManager.experienceGives); }
                     JunakDataManager.Junak.itemManager.isInCombat = false;

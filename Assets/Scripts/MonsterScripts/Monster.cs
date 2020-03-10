@@ -27,6 +27,7 @@ public class Monster : MonoBehaviour
         enemyManager.health = monster.health;
         enemyManager.experienceGives = monster.experienceToGive;
         enemyManager.speed = monster.speed;
+        enemyManager.currentID = monster.monsterIdentifier;
         EnemyDataManager.EnemyManager.amountOfEnemies = 2;
         enemyManager.theMonster = this;
     }
@@ -45,6 +46,7 @@ public class Monster : MonoBehaviour
             EnemyDataManager.EnemyManager.experienceGives = monsterController.experienceToGive;
             EnemyDataManager.EnemyManager.speed = monsterController.combatSpeed;
             EnemyDataManager.EnemyManager.currentType = monsterController.monsterType;
+            EnemyDataManager.EnemyManager.currentID = monsterController.monsterIdentifier;
             EnemyDataManager.EnemyManager.theMonster = this;
             monsterController.canMove = false;
             EnemyDataManager.EnemyManager.amountOfEnemies = 1;

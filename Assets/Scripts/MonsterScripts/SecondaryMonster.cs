@@ -6,6 +6,7 @@ public class SecondaryMonster : MonoBehaviour {
     public int speed;
     public string monsterType;
     public string monsterName;
+    public int monsterIdentifier;
     public int health;
     public int experienceToGive;
     public Sprite combatSprite;

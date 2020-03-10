@@ -124,7 +124,7 @@ public class SaveAndLoadData : MonoBehaviour
         public string currentScene;
 
         public bool saved;
-        public List<string> deadEnemies = new List<string>();
+        public List<int> deadEnemies = new List<int>();
         public List<string> items = new List<string>();
         public List<ItemScript> itemScripts = new List<ItemScript>();
         public List<Ability> JuankAbilities = new List<Ability>();
