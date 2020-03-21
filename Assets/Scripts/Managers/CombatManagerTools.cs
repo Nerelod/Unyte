@@ -22,6 +22,7 @@ public class CombatManagerTools
     public bool winTextHasBeenPrompt;
 
     public bool thereWasDeath;
+    public int oldDeadCombatantOrder;
 
     public List<DataManager> combatants = new List<DataManager>();
     public List<DataManager> partymembers = new List<DataManager>();
@@ -31,8 +32,9 @@ public class CombatManagerTools
 
     public int amountDead;
     public int deadEnemies;
-    
-    public void initiateTools() {
+
+    public void initiateTools()
+    {
         thereWasDeath = false;
         amountDead = 0;
         deadEnemies = 0;
@@ -76,46 +78,56 @@ public class CombatManagerTools
         getCombatMembers();
         getPartyMembers();
     }
-    public void Run(DataManager player) {
+    public void Run(DataManager player)
+    {
         // run away animation
-        if (player.speed > EnemyDataManager.EnemyManager.speed) {
+        if (player.speed > EnemyDataManager.EnemyManager.speed)
+        {
             JunakDataManager.Junak.isBeingLoaded = true;
             JunakDataManager.Junak.ranFromCombat = true;
             SceneManager.LoadScene(EnemyDataManager.EnemyManager.theScene);
         }
-        else {
+        else
+        {
             CombatTextManager.combatTextManager.ManageText("Failed to run");
             CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
             order += 1;
         }
     }
     // Returns amount of combatants
-    public int getCombatantsAmount() {
+    public int getCombatantsAmount()
+    {
         int members = 1;
         if (SaralfDataManager.Saralf.isInParty) { members += 1; }
         members += EnemyDataManager.EnemyManager.amountOfEnemies;
         return members;
     }
     // Adds all combatants to combatants
-    public void getCombatMembers() {
+    public void getCombatMembers()
+    {
         combatants.Add(JunakDataManager.Junak);
         combatants.Add(EnemyDataManager.EnemyManager);
         if (SaralfDataManager.Saralf.isInParty) { combatants.Add(SaralfDataManager.Saralf); }
         if (EnemyDataManager.EnemyManager.amountOfEnemies >= 2) { combatants.Add(EnemyDataManagerTwo.EnemyManagerTwo); }
     }
     // Adds party members to partymembers
-    public void getPartyMembers() {
+    public void getPartyMembers()
+    {
         partymembers.Add(JunakDataManager.Junak);
-        if (SaralfDataManager.Saralf.isInParty) {
+        if (SaralfDataManager.Saralf.isInParty)
+        {
             partymembers.Add(SaralfDataManager.Saralf);
         }
         livingPartyMembers = partymembers;
     }
     // Returns amount of every living combatant
-    public int getLivingCombatantsAmount() {
+    public int getLivingCombatantsAmount()
+    {
         int amountAlive = 0;
-        foreach (DataManager combatant in combatants) {
-            if (combatant.health > 0) {
+        foreach (DataManager combatant in combatants)
+        {
+            if (combatant.health > 0)
+            {
                 amountAlive += 1;
             }
         }

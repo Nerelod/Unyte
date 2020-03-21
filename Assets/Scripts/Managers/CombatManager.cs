@@ -124,6 +124,7 @@ public class CombatManager : MonoBehaviour
     {
         if (dead.health <= 0)
         {
+            Tools.oldDeadCombatantOrder = dead.assignedOrderInCombat;
             Tools.thereWasDeath = true;
             if (Tools.livingPartyMembers.Contains(dead)) { Tools.livingPartyMembers.Remove(dead); }
             Debug.Log("Dealing with dead enemy");
@@ -297,7 +298,8 @@ public class CombatManager : MonoBehaviour
             CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
             theOrder = 3;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha4) && CombatTextManager.combatTextManager.textIsFinished && Tools.getCombatantsAmount() >= 4) {
+        else if (Input.GetKeyDown(KeyCode.Alpha4) && CombatTextManager.combatTextManager.textIsFinished && Tools.getCombatantsAmount() >= 4)
+        {
             CombatTextManager.combatTextManager.ManageText("Order is Four");
             CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
             theOrder = 4;
@@ -384,20 +386,34 @@ public class CombatManager : MonoBehaviour
             Tools.saralfHandled = true;
 
         }
+        // WHEN SOMEONE DIES ONLY ADD ONE TO ORDER IF NEXT COMBATANTS TURN IS BEFORE DEAD PERSON'S TURN;TODO
+        // WHEN SOMEONE DIES DON'T ADD ONE TO ORDER IF NEXT COMBATANTS TURN IS AFTER DEAD PERSON'S TURN;TODO
         if (SaralfDataManager.Saralf.isInParty)
-        {         
-            if (Tools.saralfHandled && Tools.junakHandled) {
+        {
+            if (Tools.saralfHandled && Tools.junakHandled)
+            {
                 Debug.Log("adding one to order");
-                if (!Tools.thereWasDeath) {
+                if (!Tools.thereWasDeath)
+                {
                     Tools.order += 1;
                 }
-                else { Tools.thereWasDeath = false; }
+                else
+                {
+                    Tools.thereWasDeath = false;
+                    if (Tools.oldDeadCombatantOrder > Tools.order)
+                    {
+                        Tools.order += 1;
+                    }
+                }
+
             }
         }
         else
         {
-            if (Tools.junakHandled) {
-                if (!Tools.thereWasDeath) {
+            if (Tools.junakHandled)
+            {
+                if (!Tools.thereWasDeath)
+                {
                     Tools.order += 1;
                 }
                 else { Tools.thereWasDeath = false; }
@@ -614,7 +630,8 @@ public class CombatManager : MonoBehaviour
                     resetSaralfOptions();
                     combatState = CombatStates.SaralfAttacking;
                 }
-                else if (Tools.order == EnemyDataManager.EnemyManager.assignedOrderInCombat) {
+                else if (Tools.order == EnemyDataManager.EnemyManager.assignedOrderInCombat)
+                {
                     Tools.junakHandled = false;
                     Tools.saralfHandled = false;
                     SaralfDataManager.Saralf.isTurnInCombat = false;
