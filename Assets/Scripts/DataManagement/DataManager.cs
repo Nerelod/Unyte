@@ -29,6 +29,8 @@ public class DataManager : MonoBehaviour
     public string theName;
     // the number assigned to them for combat order
     public int assignedOrderInCombat;
+    // Boolean of whether handled in combat
+    public bool handled;
     // Boolean for if there is a scene change or the 
     // game is being loaded
     public bool isBeingLoaded = false;

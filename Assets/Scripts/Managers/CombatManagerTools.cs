@@ -16,8 +16,6 @@ public class CombatManagerTools
     // Boolean that represents whether the combatant has attacked/been handled
     public bool enemyOneHasAttacked;
     public bool enemyTwoHasAttacked;
-    public bool junakHandled;
-    public bool saralfHandled;
     // Boolean that represents whether the win text was prompt
     public bool winTextHasBeenPrompt;
 
@@ -40,7 +38,7 @@ public class CombatManagerTools
         deadEnemies = 0;
         JunakDataManager.Junak.isTurnInCombat = false;
         SaralfDataManager.Saralf.isTurnInCombat = false;
-        junakHandled = saralfHandled = false;
+        JunakDataManager.Junak.handled = SaralfDataManager.Saralf.handled = false;
         JunakDataManager.Junak.itemManager.isInCombat = true;
         JunakDataManager.Junak.abilityManager.choseAbilityInCombat = false;
         JunakDataManager.Junak.itemManager.itemToUse = null;
@@ -132,6 +130,26 @@ public class CombatManagerTools
             }
         }
         return amountAlive;
+    }
+
+    public bool allPartyMembersHandled()
+    {
+        int amountHandled = 0;
+        int amount = 0;
+        foreach (DataManager partyMember in partymembers)
+        {
+            amount += 1;
+            if (partyMember.handled)
+            {
+                amountHandled += 1;
+
+            }
+        }
+        if (amountHandled == amount)
+        {
+            return true;
+        }
+        else { return false; }
     }
 
 }

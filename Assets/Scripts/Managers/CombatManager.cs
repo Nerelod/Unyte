@@ -101,8 +101,8 @@ public class CombatManager : MonoBehaviour
         JunakDataManager.Junak.combatOption = CombatOptions.HasNotChosen;
         CombatTextManager.combatTextManager.textHasBeenPrompt = false;
         Tools.junakChosenOrder = 0;
-        Tools.junakHandled = false;
-        Tools.saralfHandled = false;
+        JunakDataManager.Junak.handled = false;
+        SaralfDataManager.Saralf.handled = false;
         JunakDataManager.Junak.abilityManager.abilityToUse = null;
         JunakDataManager.Junak.abilityManager.choseAbilityInCombat = false;
         JunakDataManager.Junak.itemManager.itemToUse = null;
@@ -113,8 +113,8 @@ public class CombatManager : MonoBehaviour
         SaralfDataManager.Saralf.combatOption = CombatOptions.HasNotChosen;
         CombatTextManager.combatTextManager.textHasBeenPrompt = false;
         Tools.saralfChosenOrder = 0;
-        Tools.saralfHandled = false;
-        Tools.junakHandled = false;
+        JunakDataManager.Junak.handled = false;
+        SaralfDataManager.Saralf.handled = false;
         SaralfDataManager.Saralf.abilityManager.choseAbilityInCombat = false;
         SaralfDataManager.Saralf.itemManager.itemToUse = null;
         SaralfDataManager.Saralf.itemManager.choseItemInCombat = false;
@@ -334,7 +334,7 @@ public class CombatManager : MonoBehaviour
                         if (JunakDataManager.Junak.abilityManager.checkCombo(JunakDataManager.Junak, SaralfDataManager.Saralf))
                         {
                             JunakDataManager.Junak.abilityManager.executeCombo(JunakDataManager.Junak, SaralfDataManager.Saralf);
-                            Tools.saralfHandled = true;
+                            SaralfDataManager.Saralf.handled = true;
                         }
                         else { JunakDataManager.Junak.abilityManager.useAbility(); }
                     }
@@ -346,13 +346,13 @@ public class CombatManager : MonoBehaviour
                 else if (player.combatOption == CombatOptions.Item)
                 {
                     JunakDataManager.Junak.itemManager.useItem(JunakDataManager.Junak);
-                    dealWithDead(player.enemyToTarget);
+                    if (player.enemyToTarget != null) { dealWithDead(player.enemyToTarget); }
                     CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
                 }
 
             }
             Debug.Log("Handeled J");
-            Tools.junakHandled = true;
+            JunakDataManager.Junak.handled = true;
         }
         else if (player == SaralfDataManager.Saralf && isTextManagerDone())
         {
@@ -369,7 +369,7 @@ public class CombatManager : MonoBehaviour
                         if (SaralfDataManager.Saralf.abilityManager.checkCombo(SaralfDataManager.Saralf, JunakDataManager.Junak))
                         {
                             SaralfDataManager.Saralf.abilityManager.executeCombo(SaralfDataManager.Saralf, JunakDataManager.Junak);
-                            Tools.junakHandled = true;
+                            JunakDataManager.Junak.handled = true;
                         }
                         else { SaralfDataManager.Saralf.abilityManager.useAbility(); }
                     }
@@ -378,47 +378,32 @@ public class CombatManager : MonoBehaviour
                 else if (player.combatOption == CombatOptions.Item)
                 {
                     SaralfDataManager.Saralf.itemManager.useItem(SaralfDataManager.Saralf);
+                    if (player.enemyToTarget != null) { dealWithDead(player.enemyToTarget); }
                     CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
                 }
 
             }
             Debug.Log("Handled S");
-            Tools.saralfHandled = true;
+            SaralfDataManager.Saralf.handled = true;
 
         }
-        // WHEN SOMEONE DIES ONLY ADD ONE TO ORDER IF NEXT COMBATANTS TURN IS BEFORE DEAD PERSON'S TURN;TODO
-        // WHEN SOMEONE DIES DON'T ADD ONE TO ORDER IF NEXT COMBATANTS TURN IS AFTER DEAD PERSON'S TURN;TODO
-        if (SaralfDataManager.Saralf.isInParty)
+        if (Tools.allPartyMembersHandled())
         {
-            if (Tools.saralfHandled && Tools.junakHandled)
+            Debug.Log("adding one to order");
+            if (!Tools.thereWasDeath)
             {
-                Debug.Log("adding one to order");
-                if (!Tools.thereWasDeath)
+                Tools.order += 1;
+            }
+            else
+            {
+                Tools.thereWasDeath = false;
+                if (Tools.oldDeadCombatantOrder > Tools.order)
                 {
                     Tools.order += 1;
                 }
-                else
-                {
-                    Tools.thereWasDeath = false;
-                    if (Tools.oldDeadCombatantOrder > Tools.order)
-                    {
-                        Tools.order += 1;
-                    }
-                }
+            }
+        }
 
-            }
-        }
-        else
-        {
-            if (Tools.junakHandled)
-            {
-                if (!Tools.thereWasDeath)
-                {
-                    Tools.order += 1;
-                }
-                else { Tools.thereWasDeath = false; }
-            }
-        }
     }
     private void checkWinner()
     {
@@ -474,26 +459,26 @@ public class CombatManager : MonoBehaviour
                 {
                     GetOrder(JunakDataManager.Junak);
                 }
-                if (JunakDataManager.Junak.combatOption != CombatOptions.HasNotChosen && Tools.junakChosenOrder != 0 && !Tools.junakHandled && isTextManagerDone())
+                if (JunakDataManager.Junak.combatOption != CombatOptions.HasNotChosen && Tools.junakChosenOrder != 0 && !JunakDataManager.Junak.handled && isTextManagerDone())
                 {
                     HandleOrder(JunakDataManager.Junak);
                 }
-                if (!Tools.saralfHandled && isTextManagerDone() && Tools.junakHandled && SaralfDataManager.Saralf.isInParty)
+                if (!SaralfDataManager.Saralf.handled && isTextManagerDone() && JunakDataManager.Junak.handled && SaralfDataManager.Saralf.isInParty)
                 {
                     HandleOrder(SaralfDataManager.Saralf);
                 }
 
                 if (Tools.order == EnemyDataManager.EnemyManager.assignedOrderInCombat)
                 {
-                    Tools.junakHandled = false;
-                    Tools.saralfHandled = false;
+                    JunakDataManager.Junak.handled = false;
+                    SaralfDataManager.Saralf.handled = false;
                     JunakDataManager.Junak.isTurnInCombat = false;
                     combatState = CombatStates.EnemyAttacking;
                 }
                 else if (Tools.order == EnemyDataManagerTwo.EnemyManagerTwo.assignedOrderInCombat)
                 {
-                    Tools.junakHandled = false;
-                    Tools.saralfHandled = false;
+                    JunakDataManager.Junak.handled = false;
+                    SaralfDataManager.Saralf.handled = false;
                     JunakDataManager.Junak.isTurnInCombat = false;
                     combatState = CombatStates.EnemyTwoAttacking;
                 }
@@ -523,26 +508,26 @@ public class CombatManager : MonoBehaviour
                 {
                     GetOrder(SaralfDataManager.Saralf);
                 }
-                if (SaralfDataManager.Saralf.combatOption != CombatOptions.HasNotChosen && Tools.saralfChosenOrder != 0 && !Tools.saralfHandled && isTextManagerDone())
+                if (SaralfDataManager.Saralf.combatOption != CombatOptions.HasNotChosen && Tools.saralfChosenOrder != 0 && !SaralfDataManager.Saralf.handled && isTextManagerDone())
                 {
                     HandleOrder(SaralfDataManager.Saralf);
                 }
-                if (!Tools.junakHandled && isTextManagerDone() && Tools.saralfHandled)
+                if (!JunakDataManager.Junak.handled && isTextManagerDone() && SaralfDataManager.Saralf.handled)
                 {
                     HandleOrder(JunakDataManager.Junak);
                 }
                 if (Tools.order == EnemyDataManager.EnemyManager.assignedOrderInCombat)
                 {
-                    Tools.junakHandled = false;
-                    Tools.saralfHandled = false;
+                    JunakDataManager.Junak.handled = false;
+                    SaralfDataManager.Saralf.handled = false;
                     SaralfDataManager.Saralf.isTurnInCombat = false;
                     combatState = CombatStates.EnemyAttacking;
                 }
 
                 if (Tools.order == EnemyDataManagerTwo.EnemyManagerTwo.assignedOrderInCombat)
                 {
-                    Tools.junakHandled = false;
-                    Tools.saralfHandled = false;
+                    JunakDataManager.Junak.handled = false;
+                    SaralfDataManager.Saralf.handled = false;
                     SaralfDataManager.Saralf.isTurnInCombat = false;
                     combatState = CombatStates.EnemyTwoAttacking;
                 }
@@ -575,8 +560,8 @@ public class CombatManager : MonoBehaviour
 
                 if (Tools.enemyOneHasAttacked)
                 {
-                    if (!Tools.junakHandled) { HandleOrder(JunakDataManager.Junak); }
-                    if (!Tools.saralfHandled && SaralfDataManager.Saralf.isInParty) { HandleOrder(SaralfDataManager.Saralf); }
+                    if (!JunakDataManager.Junak.handled) { HandleOrder(JunakDataManager.Junak); }
+                    if (!SaralfDataManager.Saralf.handled && SaralfDataManager.Saralf.isInParty) { HandleOrder(SaralfDataManager.Saralf); }
                 }
 
 
@@ -592,8 +577,8 @@ public class CombatManager : MonoBehaviour
                 }
                 else if (Tools.order == EnemyDataManagerTwo.EnemyManagerTwo.assignedOrderInCombat && CombatTextManager.combatTextManager.textIsFinished)
                 {
-                    Tools.junakHandled = false;
-                    Tools.saralfHandled = false;
+                    JunakDataManager.Junak.handled = false;
+                    SaralfDataManager.Saralf.handled = false;
                     combatState = CombatStates.EnemyTwoAttacking;
                 }
                 else if (Tools.order == Tools.orderToReset)
@@ -617,8 +602,8 @@ public class CombatManager : MonoBehaviour
                 }
                 if (Tools.enemyTwoHasAttacked)
                 {
-                    if (!Tools.junakHandled) { HandleOrder(JunakDataManager.Junak); }
-                    if (!Tools.saralfHandled && SaralfDataManager.Saralf.isInParty) { HandleOrder(SaralfDataManager.Saralf); }
+                    if (!JunakDataManager.Junak.handled) { HandleOrder(JunakDataManager.Junak); }
+                    if (!SaralfDataManager.Saralf.handled && SaralfDataManager.Saralf.isInParty) { HandleOrder(SaralfDataManager.Saralf); }
                 }
                 if (Tools.order == JunakDataManager.Junak.assignedOrderInCombat && CombatTextManager.combatTextManager.textIsFinished)
                 {
@@ -632,8 +617,8 @@ public class CombatManager : MonoBehaviour
                 }
                 else if (Tools.order == EnemyDataManager.EnemyManager.assignedOrderInCombat)
                 {
-                    Tools.junakHandled = false;
-                    Tools.saralfHandled = false;
+                    JunakDataManager.Junak.handled = false;
+                    SaralfDataManager.Saralf.handled = false;
                     SaralfDataManager.Saralf.isTurnInCombat = false;
                     combatState = CombatStates.EnemyAttacking;
                 }
@@ -645,8 +630,8 @@ public class CombatManager : MonoBehaviour
             case CombatStates.ResetValues:
                 Debug.Log("RESET");
                 Tools.order = 1;
-                Tools.junakHandled = false;
-                Tools.saralfHandled = false;
+                JunakDataManager.Junak.handled = false;
+                SaralfDataManager.Saralf.handled = false;
                 Tools.enemyOneHasAttacked = false;
                 Tools.enemyTwoHasAttacked = false;
                 CombatTextManager.combatTextManager.textHasBeenPrompt = false;
