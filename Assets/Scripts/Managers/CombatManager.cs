@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 // The states of combat, the phases
 public enum CombatStates { JunakAttacking, SaralfAttacking, EnemyAttacking, EnemyTwoAttacking, ResetValues, PlayerWon, EnemyWon }
 // The actions a player can take on their turn/order of combat
-public enum CombatOptions { Attack, Ability, Item, Run, HasNotChosen }
+public enum CombatOptions { Attack, Ability, Item, Run, Nothing, HasNotChosen }
 
 public class CombatManager : MonoBehaviour
 {
@@ -160,6 +160,14 @@ public class CombatManager : MonoBehaviour
             icons[Tools.getCombatantsAmount() - 1].GetComponent<SpriteRenderer>().sprite = null;
             iconTexts[Tools.getCombatantsAmount() - 1].text = "";
             dead.assignedOrderInCombat = 0;
+            foreach (DataManager member in Tools.livingPartyMembers)
+            {
+                if (member.enemyToTarget == dead)
+                {
+                    member.enemyToTarget = null;
+                    member.combatOption = CombatOptions.Nothing;
+                }
+            }
         }
     }
     // Order is determined by speed
@@ -348,6 +356,10 @@ public class CombatManager : MonoBehaviour
                     JunakDataManager.Junak.itemManager.useItem(JunakDataManager.Junak);
                     if (player.enemyToTarget != null) { dealWithDead(player.enemyToTarget); }
                     CombatTextManager.combatTextManager.StartCoroutine(CombatTextManager.combatTextManager.WaitForKeyDown());
+                }
+                else if (player.combatOption == CombatOptions.Nothing)
+                {
+                    Debug.Log("N o t h i n g");
                 }
 
             }
