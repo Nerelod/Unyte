@@ -24,7 +24,8 @@ public class GameMenuManager : MonoBehaviour
     // Item Texts
     public Text healthPotionText, stoneText;
     // Panels
-    public GameObject AbilityPanel;
+    public GameObject junakAbilityPanel;
+    public GameObject saralfAbilityPanel;
     public GameObject ItemPanel;
     public GameObject mainPanel;
     public GameObject allySelectOutsideCombatPanel;
@@ -60,7 +61,7 @@ public class GameMenuManager : MonoBehaviour
         // Set the gameMenu to not activate at the start
         gameMenuManager.gameMenu.SetActive(false);
         // Make the AbilityPanel not active at the start
-        AbilityPanel.SetActive(false);
+        junakAbilityPanel.SetActive(false);
         // Make the mainPanel Active
         mainPanel.SetActive(true);
         canInteractWith = true;
@@ -94,7 +95,7 @@ public class GameMenuManager : MonoBehaviour
     }
     public void whenTurnedOn()
     {
-        AbilityPanel.SetActive(false);
+        junakAbilityPanel.SetActive(false);
         ItemPanel.SetActive(false);
         mainPanel.SetActive(true);
         if (JunakDataManager.Junak.hasSaved)
@@ -110,20 +111,20 @@ public class GameMenuManager : MonoBehaviour
         checkParty();
     }
 
-    public void showAbilities()
+    public void showAbilities(GameObject panel)
     {
         // Show AbilityPanel
-        AbilityPanel.SetActive(true);
+        panel.SetActive(true);
         // Deactivate mainPanel
         mainPanel.SetActive(false);
 
         // Make Return the default Button 
         abilityReturnButton.Select();
     }
-    public void hideAbilities()
+    public void hideAbilities(GameObject panel)
     {
         // Deactivate Abilities Panel
-        AbilityPanel.SetActive(false);
+        panel.SetActive(false);
         // Activate mainPanel
         mainPanel.SetActive(true);
 
