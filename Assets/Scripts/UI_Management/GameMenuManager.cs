@@ -19,8 +19,10 @@ public class GameMenuManager : MonoBehaviour
     public Text saralfHealthText;
     public Text saralfExperienceText;
     public Text saralfLevelText;
-    // Ability Texts
+    // Junak Ability Texts
     public Text investigateText;
+    // Saralf Ability Texts
+    public Text analyzeText;
     // Item Texts
     public Text healthPotionText, stoneText;
     // Panels
@@ -30,10 +32,12 @@ public class GameMenuManager : MonoBehaviour
     public GameObject mainPanel;
     public GameObject allySelectOutsideCombatPanel;
     // Buttons
-    public Button abilityReturnButton;
+    public Button junakAbilityReturnButton;
+    public Button saralfAbilityReturnButton;
     public Button itemReturnButton;
     public Button healthPotionButton;
-    public Button abilitiesButton;
+    public Button junakAbilitiesButton;
+    public Button saralfAbilitiesButton;
     public Button itemsButton;
     public Button loadButton;
     public Button JunakButton;
@@ -72,6 +76,10 @@ public class GameMenuManager : MonoBehaviour
     {
         if (JunakDataManager.Junak.abilityManager.aquiredAbilities.OfType<InvestigateAbility>().Any()) { investigateText.text = "Investigate"; } else { investigateText.text = ""; }
     }
+    private void checkSaralfAbilities()
+    {
+        if (SaralfDataManager.Saralf.abilityManager.aquiredAbilities.OfType<AnalyzeAbility>().Any()) { analyzeText.text = "Analyze"; } else { analyzeText.text = ""; }
+    }
     private void checkContainedItems(string itemName, Text textBox)
     {
         if (JunakDataManager.Junak.itemManager.aquiredItems.Contains(itemName))
@@ -96,6 +104,7 @@ public class GameMenuManager : MonoBehaviour
     public void whenTurnedOn()
     {
         junakAbilityPanel.SetActive(false);
+        saralfAbilityPanel.SetActive(false);
         ItemPanel.SetActive(false);
         mainPanel.SetActive(true);
         if (JunakDataManager.Junak.hasSaved)
@@ -119,7 +128,8 @@ public class GameMenuManager : MonoBehaviour
         mainPanel.SetActive(false);
 
         // Make Return the default Button 
-        abilityReturnButton.Select();
+        if (panel == junakAbilityPanel) { junakAbilityReturnButton.Select(); }
+        else if (panel == saralfAbilityPanel) { saralfAbilityReturnButton.Select(); }
     }
     public void hideAbilities(GameObject panel)
     {
@@ -129,7 +139,8 @@ public class GameMenuManager : MonoBehaviour
         mainPanel.SetActive(true);
 
         // Make Abilities Button default button
-        abilitiesButton.Select();
+        if (panel == junakAbilityPanel) { junakAbilitiesButton.Select(); }
+        else if (panel == saralfAbilityPanel) { saralfAbilitiesButton.Select(); }
     }
 
     public void showItems()
