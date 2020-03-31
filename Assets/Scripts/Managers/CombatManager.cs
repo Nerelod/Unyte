@@ -107,6 +107,7 @@ public class CombatManager : MonoBehaviour
         JunakDataManager.Junak.abilityManager.choseAbilityInCombat = false;
         JunakDataManager.Junak.itemManager.itemToUse = null;
         JunakDataManager.Junak.itemManager.choseItemInCombat = false;
+        Tools.thereWasDeath = false;
     }
     private void resetSaralfOptions()
     {
@@ -118,6 +119,7 @@ public class CombatManager : MonoBehaviour
         SaralfDataManager.Saralf.abilityManager.choseAbilityInCombat = false;
         SaralfDataManager.Saralf.itemManager.itemToUse = null;
         SaralfDataManager.Saralf.itemManager.choseItemInCombat = false;
+        Tools.thereWasDeath = false;
     }
 
     private void dealWithDead(DataManager dead)
@@ -169,6 +171,7 @@ public class CombatManager : MonoBehaviour
                 }
             }
         }
+        else { Tools.thereWasDeath = false; }
     }
     // Order is determined by speed
     private void determineOrder()
@@ -401,16 +404,21 @@ public class CombatManager : MonoBehaviour
         }
         if (Tools.allPartyMembersHandled())
         {
-            Debug.Log("adding one to order");
+            Debug.Log("everyone handled");
+            Debug.Log(Tools.thereWasDeath);
             if (!Tools.thereWasDeath)
             {
+                Debug.Log("adding one to order");
                 Tools.order += 1;
             }
-            else
+            else //Someone died
             {
                 Tools.thereWasDeath = false;
+                Debug.Log("OldCombatantOrder: " + Tools.oldDeadCombatantOrder);
+                Debug.Log("Current Order: " + Tools.order);
                 if (Tools.oldDeadCombatantOrder > Tools.order)
                 {
+                    Debug.Log("adding one to order");
                     Tools.order += 1;
                 }
             }
@@ -642,6 +650,7 @@ public class CombatManager : MonoBehaviour
             case CombatStates.ResetValues:
                 Debug.Log("RESET");
                 Tools.order = 1;
+                Tools.thereWasDeath = false;
                 JunakDataManager.Junak.handled = false;
                 SaralfDataManager.Saralf.handled = false;
                 Tools.enemyOneHasAttacked = false;
