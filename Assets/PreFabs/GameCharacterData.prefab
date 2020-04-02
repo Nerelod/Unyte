@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1414370546112543641}
   - component: {fileID: 503760104495064909}
   - component: {fileID: 7375679996483487708}
+  - component: {fileID: 6219385727341861982}
   m_Layer: 0
   m_Name: GameCharacterData
   m_TagString: Untagged
@@ -46,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityManager: {fileID: 0}
   itemManager: {fileID: 0}
+  enemyToTarget: {fileID: 0}
   experience: 0
   experienceNeeded: 0
   level: 0
@@ -58,12 +60,18 @@ MonoBehaviour:
   ypos: 0
   theName: 
   assignedOrderInCombat: 0
+  handled: 0
   isBeingLoaded: 0
   hasSaved: 0
   ranFromCombat: 0
   isTurnInCombat: 0
+  combatSprite: {fileID: 0}
+  combatIcon: {fileID: 0}
+  combatText: {fileID: 0}
+  combatIconObject: {fileID: 0}
   isInParty: 0
   directionHolder: 0
+  combatOption: 0
 --- !u!114 &7375679996483487708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +86,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityManager: {fileID: 0}
   itemManager: {fileID: 0}
+  enemyToTarget: {fileID: 0}
   experience: 0
   experienceNeeded: 0
   level: 0
@@ -90,9 +99,54 @@ MonoBehaviour:
   ypos: 0
   theName: 
   assignedOrderInCombat: 0
+  handled: 0
   isBeingLoaded: 0
   hasSaved: 0
   ranFromCombat: 0
   isTurnInCombat: 0
+  combatSprite: {fileID: 0}
+  combatIcon: {fileID: 0}
+  combatText: {fileID: 0}
+  combatIconObject: {fileID: 0}
   isInParty: 0
   directionHolder: 0
+  combatOption: 0
+--- !u!114 &6219385727341861982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5024840359456801373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90ec8e6d49f0b34ca97e1634429783f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityManager: {fileID: 0}
+  itemManager: {fileID: 0}
+  enemyToTarget: {fileID: 0}
+  experience: 0
+  experienceNeeded: 0
+  level: 0
+  health: 10
+  totalHealth: 10
+  speed: 5
+  qDamage: 1
+  currentScene: 
+  xpos: 0
+  ypos: 0
+  theName: 
+  assignedOrderInCombat: 0
+  handled: 0
+  isBeingLoaded: 0
+  hasSaved: 0
+  ranFromCombat: 0
+  isTurnInCombat: 0
+  combatSprite: {fileID: 0}
+  combatIcon: {fileID: 0}
+  combatText: {fileID: 0}
+  combatIconObject: {fileID: 0}
+  isInParty: 0
+  directionHolder: 0
+  combatOption: 0

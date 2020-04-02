@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class PartyMemberController : MonoBehaviour {
     protected PlayerController player;
+    protected SaralfController saralf;
+    protected RedController red;
     public Transform target;
     public float moveSpeed;
+    public float xOffSet;
+    public float yOffSet;
+    public int orderOffSet;
     protected Animator anim;
     protected Rigidbody2D rigid;
 
@@ -42,14 +47,14 @@ public class PartyMemberController : MonoBehaviour {
         // Determine the direction and animation to play 
         transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.fixedDeltaTime);
         
-        if (player.transform.position.x - .4 < transform.position.x &&  transform.position.x < player.transform.position.x + .4) {
+        if (player.transform.position.x - xOffSet < transform.position.x &&  transform.position.x < player.transform.position.x + xOffSet) {
             goingRight = false;
             goingLeft = false;
             trueRight = false;
             trueLeft = false;
         }
         else if (player.transform.position.x > transform.position.x) {
-            if (player.transform.position.y - .2 < transform.position.y && transform.position.y < player.transform.position.y + .2) {
+            if (player.transform.position.y - yOffSet < transform.position.y && transform.position.y < player.transform.position.y + yOffSet) {
                 trueRight = true;
                 trueLeft = false;
                 goingRight = false;
@@ -62,7 +67,7 @@ public class PartyMemberController : MonoBehaviour {
             }
         }
         else if (player.transform.position.x < transform.position.x){
-            if (player.transform.position.y - .2 < transform.position.y && transform.position.y < player.transform.position.y + .2) {
+            if (player.transform.position.y - yOffSet < transform.position.y && transform.position.y < player.transform.position.y + yOffSet) {
                 trueLeft = true;
                 trueRight = false;
                 goingRight = false;
@@ -101,10 +106,10 @@ public class PartyMemberController : MonoBehaviour {
         }
 
         if(transform.position.y < player.transform.position.y) { // if below
-            sprite.sortingOrder = player.render.sortingOrder + 1;
+            sprite.sortingOrder = player.render.sortingOrder + orderOffSet;
         }
         else { // if above
-            sprite.sortingOrder = player.render.sortingOrder - 1; 
+            sprite.sortingOrder = player.render.sortingOrder - orderOffSet; 
         }
 
         if (transform.position != oldPos) { // if moving
