@@ -2,3 +2,4 @@
 Sal: Greetings Player
 Sal: How goes it?
 
+Sal: So you found the potion?

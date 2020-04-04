@@ -28,7 +28,6 @@ TextureImporter:
     21300046: Red1-sheet_23
     21300048: Red1-sheet_24
     21300050: Red1-sheet_25
-    21300052: Red1-sheet_26
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -125,7 +124,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3cc27e68192c5234387b99dc1e42567a
+      spriteID: 4f889ee4e93b13542bd62e48ceab5b7a
       vertices: []
       indices: 
       edges: []
@@ -145,7 +144,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e211810ec841e444cb857de30256a71c
+      spriteID: 5c3835279cbf0af4bac1900dc57d6fac
       vertices: []
       indices: 
       edges: []
@@ -165,7 +164,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 576202b8a338cb447972bce3cb342466
+      spriteID: 0083b0c1ebbc903429be70e093abf276
       vertices: []
       indices: 
       edges: []
@@ -185,7 +184,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c207b7980bca1f419692dc6eb906221
+      spriteID: f0408d38a95f17d4289d51bae5667963
       vertices: []
       indices: 
       edges: []
@@ -194,9 +193,9 @@ TextureImporter:
       name: Red1-sheet_4
       rect:
         serializedVersion: 2
-        x: 137
+        x: 136
         y: 1
-        width: 17
+        width: 18
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -205,7 +204,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f0e2a14df855ad45a48f2c870f789b0
+      spriteID: cabdddeaacd1efc4cb21677200a7f894
       vertices: []
       indices: 
       edges: []
@@ -216,7 +215,7 @@ TextureImporter:
         serializedVersion: 2
         x: 167
         y: 1
-        width: 17
+        width: 18
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -225,7 +224,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63513cdae3348954f9cfdd33b4b89c9d
+      spriteID: 872a4e7b19d60a6429ec0227838283d1
       vertices: []
       indices: 
       edges: []
@@ -236,7 +235,7 @@ TextureImporter:
         serializedVersion: 2
         x: 199
         y: 1
-        width: 16
+        width: 17
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -245,7 +244,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a783beab83eccb44496231fecea93c55
+      spriteID: 11913513885d1854caef82f25162e185
       vertices: []
       indices: 
       edges: []
@@ -256,7 +255,7 @@ TextureImporter:
         serializedVersion: 2
         x: 232
         y: 1
-        width: 18
+        width: 19
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -265,7 +264,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a2d6ef1e7342e046b0a08ff41817223
+      spriteID: 9e4e6ee33ebc4c94ebf069f0001850e8
       vertices: []
       indices: 
       edges: []
@@ -276,7 +275,7 @@ TextureImporter:
         serializedVersion: 2
         x: 263
         y: 1
-        width: 16
+        width: 17
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -285,7 +284,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c7448c7c482fca40bfb659a9378a544
+      spriteID: f5c6ffa17c59e604eb4c2a43ba626ac6
       vertices: []
       indices: 
       edges: []
@@ -296,7 +295,7 @@ TextureImporter:
         serializedVersion: 2
         x: 294
         y: 1
-        width: 19
+        width: 20
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -305,7 +304,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a542651305b37148ba637253536e176
+      spriteID: 4a521ac9e3d58e540a329950807af082
       vertices: []
       indices: 
       edges: []
@@ -314,9 +313,9 @@ TextureImporter:
       name: Red1-sheet_10
       rect:
         serializedVersion: 2
-        x: 330
+        x: 329
         y: 1
-        width: 16
+        width: 17
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -325,7 +324,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac1028d34ee74684fb49aca13a89feba
+      spriteID: bdf020e2060ae0a43adae9c7da1e89e0
       vertices: []
       indices: 
       edges: []
@@ -334,27 +333,7 @@ TextureImporter:
       name: Red1-sheet_11
       rect:
         serializedVersion: 2
-        x: 359
-        y: 1
-        width: 18
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1fb98bbd61e151e449637499ae66aa4b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Red1-sheet_12
-      rect:
-        serializedVersion: 2
-        x: 392
+        x: 358
         y: 1
         width: 19
         height: 28
@@ -365,7 +344,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65b1e726e9f1e3e4b8525c317eb8fba9
+      spriteID: 3a1f6365d4f83ee4196ad4f79be75738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Red1-sheet_12
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 1
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3dfa7dc3a0b70e409a57c71a10a364a
       vertices: []
       indices: 
       edges: []
@@ -385,7 +384,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 644486b43a87ae94bb27c4fec98dd9b3
+      spriteID: b6662e5ce7fdacc45ab3dac83c253715
       vertices: []
       indices: 
       edges: []
@@ -396,7 +395,7 @@ TextureImporter:
         serializedVersion: 2
         x: 458
         y: 1
-        width: 15
+        width: 16
         height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -405,7 +404,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d03f4de4cd8956b46a00e8384e1475f2
+      spriteID: 6ad5a036854af4044a8aca5960b29fa3
       vertices: []
       indices: 
       edges: []
@@ -416,8 +415,8 @@ TextureImporter:
         serializedVersion: 2
         x: 489
         y: 1
-        width: 15
-        height: 28
+        width: 17
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -425,7 +424,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f55826775871a8f4e83ca44ce043225c
+      spriteID: 093325afeec32424280912f1fcad084b
       vertices: []
       indices: 
       edges: []
@@ -436,26 +435,6 @@ TextureImporter:
         serializedVersion: 2
         x: 521
         y: 1
-        width: 16
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 46aeee4b9f0e0da44bb4a7322785469d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Red1-sheet_17
-      rect:
-        serializedVersion: 2
-        x: 553
-        y: 1
         width: 15
         height: 28
       alignment: 0
@@ -465,18 +444,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa5b11845d28e2b47852488fb4720ddd
+      spriteID: d1cf6fd3d8a20ee4b8646f3653c229d0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Red1-sheet_18
+      name: Red1-sheet_17
       rect:
         serializedVersion: 2
-        x: 584
+        x: 551
         y: 1
-        width: 15
+        width: 16
         height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -485,7 +464,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4fee03aee0e3bb43b1e2cba4915732a
+      spriteID: bee607d9288ed4143ab320d4dce6e04e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Red1-sheet_18
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 1
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 885520b5056b9f449ac6bf9243b18968
       vertices: []
       indices: 
       edges: []
@@ -496,27 +495,7 @@ TextureImporter:
         serializedVersion: 2
         x: 616
         y: 1
-        width: 16
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 406bcaa2a73e1374195a31214e1fdf09
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Red1-sheet_20
-      rect:
-        serializedVersion: 2
-        x: 649
-        y: 1
-        width: 16
+        width: 17
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -525,18 +504,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 108897528886e7a459c2bf1a89a861f7
+      spriteID: 915eff755283d784fb1a488a836513f9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Red1-sheet_21
+      name: Red1-sheet_20
       rect:
         serializedVersion: 2
-        x: 681
+        x: 648
         y: 1
-        width: 16
+        width: 17
         height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -545,7 +524,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de3bd6ffe32eb4e4aa5ab018c6c9eb83
+      spriteID: 8f8a8ef718626ec45967a5421cafd904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Red1-sheet_21
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 1
+        width: 18
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e811c3a3a99aa774996d1e89504d8ae0
       vertices: []
       indices: 
       edges: []
@@ -556,8 +555,8 @@ TextureImporter:
         serializedVersion: 2
         x: 712
         y: 1
-        width: 18
-        height: 27
+        width: 17
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -565,7 +564,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b24c38251e1abb544b1fc826ec8706b4
+      spriteID: 6abd6873579f588478735dbd18a38f18
       vertices: []
       indices: 
       edges: []
@@ -576,8 +575,8 @@ TextureImporter:
         serializedVersion: 2
         x: 744
         y: 1
-        width: 16
-        height: 28
+        width: 17
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -585,7 +584,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80be6bc0dd9492444a6f3076a7c623c3
+      spriteID: f85ba0dfdf34a43489c98c98ca534be6
       vertices: []
       indices: 
       edges: []
@@ -596,27 +595,7 @@ TextureImporter:
         serializedVersion: 2
         x: 776
         y: 1
-        width: 16
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 46b57013cf724964aa0dac32a10a3a3a
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Red1-sheet_25
-      rect:
-        serializedVersion: 2
-        x: 808
-        y: 1
-        width: 16
+        width: 17
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -625,16 +604,16 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98dc9492854309949be3c8bc57a64e1d
+      spriteID: b5b1fe6eff2624c4ca5ad4a49aea8ae6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Red1-sheet_26
+      name: Red1-sheet_25
       rect:
         serializedVersion: 2
-        x: 839
+        x: 807
         y: 1
         width: 18
         height: 27
@@ -645,7 +624,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3582aba34543d454d9e1a32b43da822a
+      spriteID: 580cf9a610d92844d9660b533dd8bbbc
       vertices: []
       indices: 
       edges: []
@@ -653,7 +632,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0a907b4d7a0b45e4f941ae1278fa034e
+    spriteID: 0cbb062e3c9dd6445bf69fd8b10162e5
     vertices: []
     indices: 
     edges: []

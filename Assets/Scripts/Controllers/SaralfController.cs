@@ -31,7 +31,7 @@ public class SaralfController : PartyMemberController
         if (SaralfDataManager.Saralf.isInParty) {
             Move();
             Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-            Physics2D.IgnoreCollision(red.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            if (RedDataManager.Red.isInParty) { Physics2D.IgnoreCollision(red.GetComponent<Collider2D>(), GetComponent<Collider2D>()); }
         }
         else { Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false); }
     }
