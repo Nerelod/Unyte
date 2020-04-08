@@ -6,7 +6,7 @@ public class FollowPointController : MonoBehaviour
 {
     public PlayerController player;
     public Transform target;
-
+    public float yMover;
     [SerializeField] private float distance;
 
     void Start()
@@ -24,10 +24,10 @@ public class FollowPointController : MonoBehaviour
             transform.position = new Vector3(player.transform.position.x, player.transform.position.y - distance);
         }
         else if(player.direction == 3) { // if going left
-            transform.position = new Vector3(player.transform.position.x + distance, player.transform.position.y + 0.1f);
+            transform.position = new Vector3(player.transform.position.x + distance, player.transform.position.y + yMover);
         }
         else if(player.direction == 4) { // if going right
-            transform.position = new Vector3(player.transform.position.x - distance, player.transform.position.y + 0.1f);
+            transform.position = new Vector3(player.transform.position.x - distance, player.transform.position.y + yMover);
         }
         else if(player.direction == 5) { // if going up left
             transform.position = new Vector3(player.transform.position.x + distance, player.transform.position.y - distance);

@@ -5184,7 +5184,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300016, guid: 8a13557e64e0494449bbd2f3558c1114, type: 3}
+  m_Sprite: {fileID: 21300008, guid: 08af2a67389d5bb4e8fbbff4b0a2d3d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5203,7 +5203,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1996142309}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -3.49, z: -0.06594336}
+  m_LocalPosition: {x: -0.02, y: -3.18, z: -0.06594336}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5255,7 +5255,6 @@ MonoBehaviour:
   combatCharSprite: {fileID: 1996142309}
   enemySprite: {fileID: 0}
   enemySpriteTwo: {fileID: 0}
-  junakHandled: 0
   textIconOne: {fileID: 1125754454}
   textIconTwo: {fileID: 214137627}
   textIconThree: {fileID: 215590199}
