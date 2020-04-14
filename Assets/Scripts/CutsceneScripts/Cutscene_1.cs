@@ -28,21 +28,25 @@ public class Cutscene_1 : CutsceneManager
 
     void Update()
     {
-        if (waitIsFinished) {
+        if (waitIsFinished)
+        {
             if (!reachedTargetOne) { moveObject(player, targetOne, 1.5f); playerController.anim.Play("PlayerWalkingDownLeft"); }
-            if (player.transform.position == targetOne.transform.position && !textHasEnded) {
+            if (player.transform.position == targetOne.transform.position && !textHasEnded)
+            {
                 reachedTargetOne = true;
                 playerController.anim.Play("PlayerDown");
                 textManager.ManageText("Junak: *It's already noon.*");
                 StartCoroutine(textManager.WaitForKeyDown());
                 textHasEnded = true;
             }
-            if(textManager.pressedSpace && textManager.textIsFinished && !readyToSwitchScenes && textHasEnded) {
-                textManager.ManageText("Junak: *I should go visit Paul in town.*");
+            if (textManager.pressedSpace && textManager.textIsFinished && !readyToSwitchScenes && textHasEnded)
+            {
+                textManager.ManageText("Junak: *I should go visit the town.*");
                 StartCoroutine(textManager.WaitForKeyDown());
                 readyToSwitchScenes = true;
             }
-            if (textManager.pressedSpace && textManager.textIsFinished && readyToSwitchScenes) {
+            if (textManager.pressedSpace && textManager.textIsFinished && readyToSwitchScenes)
+            {
                 JunakDataManager.Junak.xpos = -0.3f;
                 JunakDataManager.Junak.ypos = -1.07f;
                 JunakDataManager.Junak.isBeingLoaded = true;
