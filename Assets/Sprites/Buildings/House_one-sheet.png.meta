@@ -1,7 +1,9 @@
 fileFormatVersion: 2
-guid: 5fc07afb4ee5f47b78aa91de38a5867c
+guid: 341de048db3b5d342a83243cc93ee1c4
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: House_one-sheet_0
+    21300002: House_one-sheet_1
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -40,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -82,11 +84,51 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: House_one-sheet_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 10
+        width: 111
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d200c7da40b34b6469164874dff88464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: House_one-sheet_1
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 10
+        width: 111
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bd40c51658d8254fbfc412560bf7af1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d7123c230251b4755b8b41930436f6d2
+    spriteID: 69d907c1374f4da4dafcc0519e32a1cd
     vertices: []
     indices: 
     edges: []

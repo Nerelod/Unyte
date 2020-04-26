@@ -7,7 +7,7 @@ public class PartyMemberController : MonoBehaviour {
     protected SaralfController saralf;
     protected RedController red;
     public Transform target;
-    public float moveSpeed;
+    public float moveSpeed = 1.5f;
     public float xOffSet;
     public float yOffSet;
     public int orderOffSet;
@@ -44,8 +44,11 @@ public class PartyMemberController : MonoBehaviour {
 
     public void Move() {
 
+        moveSpeed = player.moveSpeed;
+        anim.speed = player.anim.speed;
         // Determine the direction and animation to play 
         transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.fixedDeltaTime);
+        
         
         if (player.transform.position.x - xOffSet < transform.position.x &&  transform.position.x < player.transform.position.x + xOffSet) {
             goingRight = false;
@@ -122,8 +125,7 @@ public class PartyMemberController : MonoBehaviour {
             else if (goingRight && goingUp) { anim.Play(walkingUpRightAnimation); moveSpeed = 2.0f; } // going up right
             else if (goingRight && goingDown) { anim.Play(walkingDownRightAnimation); moveSpeed = 2.0f; } // going down right
         }
-
-
+        
     }
 
     

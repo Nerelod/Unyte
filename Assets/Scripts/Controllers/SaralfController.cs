@@ -35,4 +35,5 @@ public class SaralfController : PartyMemberController
         }
         else { Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false); }
     }
+
 }

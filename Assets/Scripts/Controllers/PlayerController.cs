@@ -9,7 +9,14 @@ public enum States { CanMove, CannotMove, IsDead }
 public class PlayerController : MonoBehaviour {
 
     // The player movement speed, can be changed in the editor
-    public float moveSpeed = 3;
+    public float moveSpeed = 1.5f;
+    public float runSpeed = 2.5f;
+    public float walkSpeed = 1.5f;
+    public float walkAnimSpeed = 1.5f;
+    public float runAnimSpeed = 1.8f;
+    public float animSpeed = 1.5f;
+    private bool running = false;
+    private Vector3 change;
     // A reference to the animator, used for animating
     public Animator anim;
     // The sprite image
@@ -70,21 +77,32 @@ public class PlayerController : MonoBehaviour {
     private void Move() {
         // Determine the direction and animation to play 
         // Based on input
+        if (Input.GetKey(KeyCode.Z)) {
+            running = !running;
+        }
+        if (running) {
+            moveSpeed = runSpeed;
+            animSpeed = runAnimSpeed;
+        }
+        else {
+            moveSpeed = walkSpeed;
+            animSpeed = walkAnimSpeed;
+        }
         if (Input.GetAxisRaw("Horizontal") > 0) {
             isStill = false;
             if (Input.GetKey(KeyCode.UpArrow)) {
                 anim.Play("PlayerWalkingUpRight");
-                anim.speed = 1.5f;
+                anim.speed = animSpeed;
                 direction = 6;
             }
             else if (Input.GetKey(KeyCode.DownArrow)) {
                 anim.Play("PlayerWalkingDownRight");
-                anim.speed = 1.5f;
+                anim.speed = animSpeed;
                 direction = 8;
             }
             else {
                 anim.Play("PlayerWalkingRight");
-                anim.speed = 1.5f;
+                anim.speed = animSpeed;
                 direction = 4;
             }
         }
@@ -92,30 +110,30 @@ public class PlayerController : MonoBehaviour {
             isStill = false;
             if (Input.GetKey(KeyCode.UpArrow)) {
                 anim.Play("PlayerWalkingUpLeft");
-                anim.speed = 1.5f;
+                anim.speed = animSpeed;
                 direction = 5;
             }
             else if (Input.GetKey(KeyCode.DownArrow)) {
                 anim.Play("PlayerWalkingDownLeft");
-                anim.speed = 1.5f;
+                anim.speed = animSpeed;
                 direction = 7;
             }
             else {
                 anim.Play("PlayerWalkingLeft");
-                anim.speed = 1.5f;
+                anim.speed = animSpeed;
                 direction = 3;
             }
         }
         else if (Input.GetAxisRaw("Vertical") < 0) {
             isStill = false;
             anim.Play("PlayerWalkingDown");
-            anim.speed = 1.5f;
+            anim.speed = animSpeed;
             direction = 1;
         }
         else if (Input.GetAxisRaw("Vertical") > 0) {
             isStill = false;
             anim.Play("PlayerWalkingUp");
-            anim.speed = 1.5f;
+            anim.speed = animSpeed;
             direction = 2;
         }
         // Determine the sprite animation pose
@@ -152,9 +170,16 @@ public class PlayerController : MonoBehaviour {
 
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
         float moveVertical = Input.GetAxisRaw("Vertical");
-        var moveVector = new Vector3(moveHorizontal, moveVertical, 0);
+        /*var moveVector = new Vector3(moveHorizontal, moveVertical, 0);
         rigid.MovePosition(new Vector2((transform.position.x + moveVector.x * moveSpeed * Time.fixedDeltaTime),
-                   transform.position.y + moveVector.y * moveSpeed * Time.fixedDeltaTime));
+                   transform.position.y + moveVector.y * moveSpeed * Time.fixedDeltaTime));*/
+        change = Vector3.zero;
+        change.x = Input.GetAxisRaw("Horizontal");
+        change.y = Input.GetAxisRaw("Vertical");
+        if(change != Vector3.zero) {
+            rigid.MovePosition(transform.position + change.normalized * moveSpeed * Time.deltaTime);
+        }
+
 
         JunakDataManager.Junak.xpos = transform.position.x;
         JunakDataManager.Junak.ypos = transform.position.y;
