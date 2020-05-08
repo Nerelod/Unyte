@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 4a69fd261dfeb8b4483928c0f6e31907
+guid: dc56abf056e67234b8875af707b0ce56
 TextureImporter:
   fileIDToRecycleName:
-    21300000: HouseFour1-sheet_0
-    21300002: HouseFour1-sheet_1
+    21300000: HouseFive-sheet 1_0
+    21300002: HouseFive-sheet 1_1
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -86,12 +86,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HouseFour1-sheet_0
+      name: HouseFive-sheet 1_0
       rect:
         serializedVersion: 2
-        x: 210
+        x: 0
         y: 0
-        width: 256
+        width: 217
         height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -100,18 +100,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5162a732bc9eda4c938dddbd6503630
+      spriteID: 772ecf76faee6e14289c19054fac8a27
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HouseFour1-sheet_1
+      name: HouseFive-sheet 1_1
       rect:
         serializedVersion: 2
-        x: 521
+        x: 256
         y: 0
-        width: 256
+        width: 217
         height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -120,7 +120,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46c19785585f1d642b45228dc4cc0fbe
+      spriteID: be87abdffe2b92445b44671ad3ea3e68
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0e36c5b3c1a0b5b449280e723b18fa6f
+    spriteID: 084682edb8cff424b8f4e7c6bbce52a2
     vertices: []
     indices: 
     edges: []

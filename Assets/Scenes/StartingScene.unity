@@ -1233,16 +1233,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TextBoxManager
       objectReference: {fileID: 0}
-    - target: {fileID: 8621298658727458823, guid: 0204b1d01193f4df29730a41db5b21b7,
-        type: 3}
-      propertyPath: theBox
-      value: 
-      objectReference: {fileID: 835354225}
-    - target: {fileID: 8621298658727458823, guid: 0204b1d01193f4df29730a41db5b21b7,
-        type: 3}
-      propertyPath: theText
-      value: 
-      objectReference: {fileID: 835354224}
     - target: {fileID: 8621298658727458820, guid: 0204b1d01193f4df29730a41db5b21b7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1298,6 +1288,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8621298658727458823, guid: 0204b1d01193f4df29730a41db5b21b7,
+        type: 3}
+      propertyPath: theBox
+      value: 
+      objectReference: {fileID: 835354225}
+    - target: {fileID: 8621298658727458823, guid: 0204b1d01193f4df29730a41db5b21b7,
+        type: 3}
+      propertyPath: theText
+      value: 
+      objectReference: {fileID: 835354224}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0204b1d01193f4df29730a41db5b21b7, type: 3}
 --- !u!1 &494837626
@@ -1780,6 +1780,27 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5689314215894988661, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 08a95d2a56e587d4bb9b48d2d6b0188b,
+        type: 3}
+    - target: {fileID: 5689314215894988661, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689314215894988661, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689314215894988661, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
+        type: 3}
+      propertyPath: m_Text
+      value: New Text
+      objectReference: {fileID: 0}
     - target: {fileID: 5689314215297217158, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1914,27 +1935,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5689314215894988661, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 08a95d2a56e587d4bb9b48d2d6b0188b,
-        type: 3}
-    - target: {fileID: 5689314215894988661, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 31
-      objectReference: {fileID: 0}
-    - target: {fileID: 5689314215894988661, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
-        type: 3}
-      propertyPath: m_FontData.m_FontStyle
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5689314215894988661, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
-        type: 3}
-      propertyPath: m_Text
-      value: New Text
       objectReference: {fileID: 0}
     - target: {fileID: 5689314215894988662, guid: 085a11fcecf7c4d49a7cdb51eb20a725,
         type: 3}
@@ -3176,6 +3176,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8874672489141842321, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8874672489141842320, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
         type: 3}
       propertyPath: direction
@@ -3190,11 +3195,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8874672489141842321, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8874672489141842326, guid: 3303d2a6e0238394a9ed9c2fa57eb61d,
         type: 3}
@@ -6333,6 +6333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ec9b532da4a634ab2bb115fbd497fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationOnEnter: ClosedDoortoMainHouse
+  animationOnExit: OpenDoorToMainHouse
 --- !u!61 &1994246737
 BoxCollider2D:
   m_ObjectHideFlags: 0

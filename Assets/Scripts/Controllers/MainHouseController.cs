@@ -7,7 +7,8 @@ public class MainHouseController : MonoBehaviour {
     
     SpriteRenderer render;
     Rigidbody2D rigid;
-
+    [SerializeField] private string animationOnEnter;
+    [SerializeField] private string animationOnExit;
     Animator anim;
     
 
@@ -19,11 +20,16 @@ public class MainHouseController : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {   
         if (collision.CompareTag("Player")) {        
-            anim.Play("ClosedDoortoMainHouse");
+            anim.Play(animationOnEnter);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.CompareTag("Player")) {
+            anim.Play(animationOnExit);
         }
     }
 
-    
+
 
 
     void Update () {

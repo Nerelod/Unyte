@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: f7940187231361546afeca7b922892a8
+guid: 548ae89036b462546ae5bd1cb3a5b13c
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Broneore1-sheet_0
-    21300002: Broneore1-sheet_1
+    21300000: Broneore1-sheet 1_0
+    21300002: Broneore1-sheet 1_1
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -86,7 +86,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Broneore1-sheet_0
+      name: Broneore1-sheet 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -100,13 +100,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ed82dd8624a2ff40b64e97bc8d832a9
+      spriteID: 42f5140fddafe1c41954935a47c26813
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Broneore1-sheet_1
+      name: Broneore1-sheet 1_1
       rect:
         serializedVersion: 2
         x: 256
@@ -120,7 +120,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c7e0460142c196469583f750c039c44
+      spriteID: 6bc4e7ab113754642b746522c43706f7
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 14a728cf7f86ddb46b2af0e9cfd223e0
+    spriteID: 747bdcd1fac58394f954aeaccce1af3a
     vertices: []
     indices: 
     edges: []
