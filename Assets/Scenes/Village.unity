@@ -2225,6 +2225,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 622150341}
+    - target: {fileID: 2885686312888776397, guid: 6db611f0e81c39148baa3f446f416438,
+        type: 3}
+      propertyPath: followDistance
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1016896741313170671, guid: 6db611f0e81c39148baa3f446f416438,
         type: 3}
       propertyPath: m_SortingOrder

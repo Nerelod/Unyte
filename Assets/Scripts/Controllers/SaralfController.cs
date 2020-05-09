@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SaralfController : PartyMemberController
 {
-
+    private void Awake() {
+        storedPositions = new List<Vector3>(); //create a blank list
+    }
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -25,7 +27,7 @@ public class SaralfController : PartyMemberController
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         oldPos = transform.position;
         if (SaralfDataManager.Saralf.isInParty) {
@@ -35,5 +37,4 @@ public class SaralfController : PartyMemberController
         }
         else { Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false); }
     }
-
 }

@@ -13,7 +13,8 @@ public class PartyMemberController : MonoBehaviour {
     public int orderOffSet;
     protected Animator anim;
     protected Rigidbody2D rigid;
-
+    public int followDistance;
+    protected List<Vector3> storedPositions;
     protected Vector3 oldPos;
 
     [SerializeField] protected string LeftAnimation;
@@ -43,13 +44,12 @@ public class PartyMemberController : MonoBehaviour {
 
 
     public void Move() {
-
-        moveSpeed = player.moveSpeed;
         anim.speed = player.anim.speed;
+        moveSpeed = player.moveSpeed;
         // Determine the direction and animation to play 
         transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.fixedDeltaTime);
-        
-        
+
+
         if (player.transform.position.x - xOffSet < transform.position.x &&  transform.position.x < player.transform.position.x + xOffSet) {
             goingRight = false;
             goingLeft = false;
@@ -116,14 +116,14 @@ public class PartyMemberController : MonoBehaviour {
         }
 
         if (transform.position != oldPos) { // if moving
-            if (trueRight) { anim.Play(walkingRightAnimation); moveSpeed = 1.5f; } // going right
-            else if (trueLeft) { anim.Play(walkingLeftAnimation); moveSpeed = 1.5f; } // going left
-            else if (goingUp && !goingLeft && !goingRight) { anim.Play(walkingUpAnimation); moveSpeed = 1.5f; } // going up
-            else if (goingDown && !goingLeft && !goingRight) { anim.Play(walkingDownAnimation); moveSpeed = 1.5f; } // going down
-            else if (goingLeft && goingUp) { anim.Play(walkingUpLeftAnimation); moveSpeed = 2.0f; } // going up left
-            else if (goingLeft && goingDown) { anim.Play(walkingDownLeftAnimation); moveSpeed = 2.0f; }// going down left
-            else if (goingRight && goingUp) { anim.Play(walkingUpRightAnimation); moveSpeed = 2.0f; } // going up right
-            else if (goingRight && goingDown) { anim.Play(walkingDownRightAnimation); moveSpeed = 2.0f; } // going down right
+            if (trueRight) { anim.Play(walkingRightAnimation); }
+            else if (trueLeft) { anim.Play(walkingLeftAnimation); } // going left
+            else if (goingUp && !goingLeft && !goingRight) { anim.Play(walkingUpAnimation);} // going up
+            else if (goingDown && !goingLeft && !goingRight) { anim.Play(walkingDownAnimation);} // going down
+            else if (goingLeft && goingUp) { anim.Play(walkingUpLeftAnimation); } // going up left
+            else if (goingLeft && goingDown) { anim.Play(walkingDownLeftAnimation);  }// going down left
+            else if (goingRight && goingUp) { anim.Play(walkingUpRightAnimation); } // going up right
+            else if (goingRight && goingDown) { anim.Play(walkingDownRightAnimation);} // going down right
         }
         
     }

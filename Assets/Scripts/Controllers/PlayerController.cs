@@ -177,7 +177,7 @@ public class PlayerController : MonoBehaviour {
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");
         if(change != Vector3.zero) {
-            rigid.MovePosition(transform.position + change.normalized * moveSpeed * Time.deltaTime);
+            rigid.MovePosition(transform.position + change.normalized * moveSpeed * Time.fixedDeltaTime);
         }
 
 
@@ -218,7 +218,7 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(3);
         isInvincible = false;
     }
-    void Update() {
+    void FixedUpdate() {
         // State controller
         if (State == States.CanMove) {
             Move();

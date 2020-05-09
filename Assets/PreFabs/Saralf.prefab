@@ -166,6 +166,7 @@ MonoBehaviour:
   xOffSet: 0
   yOffSet: 0
   orderOffSet: 0
+  followDistance: 20
   LeftAnimation: Saralf Left
   RightAnimation: Saralf Right
   UpAnimation: Saralf Up
